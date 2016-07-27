@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	QApplication application(argc, argv);
 
 	//CREATE MAIN WINDOW
-	MainWindow mainWindow("Toltec", 800, 600);
+	MainWindow mainWindow("Toltec", 960, 600);
 	mainWindow.show();
 
 	return application.exec();

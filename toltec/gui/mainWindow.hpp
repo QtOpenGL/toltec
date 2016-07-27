@@ -16,6 +16,8 @@
 #include <string>
 
 #include <QtWidgets/qmainwindow.h>
+#include <QtWidgets/qmenu.h>
+#include <QtWidgets/qmenubar.h>
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -30,5 +32,5 @@ public:
 	virtual		~MainWindow() {}
 
 private:
-	//...
+	void		setupUI();
 };
