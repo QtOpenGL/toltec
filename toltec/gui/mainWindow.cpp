@@ -1,22 +1,14 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <QtWidgets/qapplication.h>
-
-#include "gui/mainWindow.hpp"
+#include "mainWindow.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FUNCTION DEFINITIONS
-*	MAIN
+*	CONSTRUCTOR
+*	(const std::string&, int, int)
 *-----------------------------------------------------------------------------*/
-int main(int argc, char *argv[])
+MainWindow::MainWindow(const std::string& title, int width, int height)
 {
-	//START QT
-	QApplication application(argc, argv);
-
-	//CREATE MAIN WINDOW
-	MainWindow mainWindow("Toltec", 800, 600);
-	mainWindow.show();
-
-	return application.exec();
+	this->setWindowTitle(title.c_str());
+	this->resize(width, height);
 }
