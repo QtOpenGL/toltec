@@ -4,6 +4,7 @@
 #include <QtWidgets/qapplication.h>
 
 #include "gui/mainWindow.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *	FUNCTION DEFINITIONS
@@ -24,7 +25,7 @@ int main(int argc, char *argv[])
 	//CREATE VIEWPORTS
 
 	//mainWindow.setMainPanel();
-	
+	LOG_DEBUG("Creating MainWindow.");
 	//SHOW MAIN WINDOW
 	mainWindow.show();
 

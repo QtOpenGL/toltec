@@ -30,6 +30,11 @@
     <Filter Include="Main Files\renderingSystem">
       <UniqueIdentifier>{95e2153e-29c4-46cc-9a17-ef0ef2c64542}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -61,5 +66,10 @@
     <CustomBuild Include="renderingSystem\viewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
