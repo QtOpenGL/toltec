@@ -6,7 +6,7 @@
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		MainWindow class, as it name suggest, is the class for the main window
+*		MainWindow class, as it's name suggests, is the class for the main window
 *		inside program.
 *-----------------------------------------------------------------------------*/
 
@@ -21,6 +21,7 @@
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
+*	MAIN WINDOW
 *-----------------------------------------------------------------------------*/
 class MainWindow : public QMainWindow
 {
