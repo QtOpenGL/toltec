@@ -11,7 +11,7 @@
 #define DEBUG_BUILD
 
 #ifdef DEBUG_BUILD
-#define LOG_DEBUG(x) do { std::cerr << __FILE__ << "(" << __LINE__ << ") : " << x << "\n"; } \
+#define DEBUG_MSG(x) do { std::cerr << __FILE__ << "(" << __LINE__ << ") : " << x << "\n"; } \
 	while (false)
 #else
 #define LOG_DEBUG(x) do {} while (false)

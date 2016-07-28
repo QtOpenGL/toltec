@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	//CREATE VIEWPORTS
 
 	//mainWindow.setMainPanel();
-	LOG_DEBUG("Creating MainWindow.");
+	DEBUG_MSG("Creating MainWindow.");
 	//SHOW MAIN WINDOW
 	mainWindow.show();
 
