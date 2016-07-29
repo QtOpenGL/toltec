@@ -1,9 +1,12 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <memory>
+
 #include <QtWidgets/qapplication.h>
 
 #include "gui/mainWindow.hpp"
+#include "renderingSystem/viewport.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -23,9 +26,11 @@ int main(int argc, char *argv[])
 	MainWindow mainWindow("Toltec", 960, 600);
 	
 	//CREATE VIEWPORTS
+	Viewport* p_viewport1 = new Viewport();
 
-	//mainWindow.setMainPanel();
-	DEBUG_MSG("Creating MainWindow.");
+	//SET MAIN PANEL
+	mainWindow.setMainPanel(p_viewport1);
+
 	//SHOW MAIN WINDOW
 	mainWindow.show();
 
