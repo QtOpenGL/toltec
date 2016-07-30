@@ -7,6 +7,8 @@
 
 #include "gui/mainWindow.hpp"
 #include "renderingSystem/viewport.hpp"
+#include "renderingSystem/renderManager.hpp"
+#include "renderingSystem/toltecRenderer.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -19,6 +21,14 @@ int main(int argc, char *argv[])
 	*	START QT
 	*-----------------------------------------------------------------------------*/
 	QApplication application(argc, argv);
+
+	/*-----------------------------------------------------------------------------
+	*	CREATE CORE OBJECTS
+	*-----------------------------------------------------------------------------*/
+	//RENDERERS
+	ToltecRenderer toltecRenderer;
+	//add
+	RenderManager::getInstance().addRenderer(&toltecRenderer, RenderManager::TOLTEC_RENDERER);
 
 	/*-----------------------------------------------------------------------------
 	*	CREATE GUI

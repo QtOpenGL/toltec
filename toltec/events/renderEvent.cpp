@@ -14,7 +14,7 @@
 *	STATIC CLASS MEMBERS
 *-----------------------------------------------------------------------------*/
 //PUBLIC
-const QEvent::Type RenderEvent::type = static_cast<QEvent::Type>(QEvent::registerEventType());
+const QEvent::Type RenderEvent::TYPE = static_cast<QEvent::Type>(QEvent::registerEventType());
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
@@ -22,7 +22,7 @@ const QEvent::Type RenderEvent::type = static_cast<QEvent::Type>(QEvent::registe
 *-----------------------------------------------------------------------------*/
 RenderEvent::RenderEvent(Viewport* viewport)
 	:
-	QEvent(RenderEvent::type),
+	QEvent(RenderEvent::TYPE),
 	mp_viewport(viewport)
 {
 	//...

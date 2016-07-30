@@ -32,7 +32,7 @@ public:
 	Viewport*	getViewport() const;
 
 public:
-	static const QEvent::Type type;
+	static const QEvent::Type TYPE;
 
 private:
 	Viewport*	mp_viewport;

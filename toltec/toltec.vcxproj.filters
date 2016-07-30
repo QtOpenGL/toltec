@@ -77,6 +77,9 @@
     <ClCompile Include="renderingSystem\abstractRenderer.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\renderManager.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gui\mainWindow.hpp">
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="events\renderEvent.hpp">
       <Filter>Main Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\renderManager.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

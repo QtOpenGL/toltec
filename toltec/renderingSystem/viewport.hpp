@@ -36,6 +36,9 @@ public:
 	//SET
 	void			setRenderer(AbstractRenderer* p_renderer);
 
+	//GET
+	AbstractRenderer*	getRenderer() const;
+
 	//OTHER
 	virtual	void	paintGL();
 	virtual void	resizeGL();
@@ -46,6 +49,11 @@ private:
 };
 
 /*----------------------------------------------------------------------------*/
+
+inline AbstractRenderer* Viewport::getRenderer() const
+{
+	return mp_renderer;
+}
 
 inline void Viewport::paintGL()
 {
