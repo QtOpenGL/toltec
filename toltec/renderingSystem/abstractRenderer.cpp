@@ -1,53 +1,36 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *	CREATED:
 *		30 VII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
-*	INFO:
-*		AbstractRenderer class is a base class for all renderers inside program.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <vector>
+#include "abstractRenderer.hpp"
 
-#include <QtCore/qobject.h>
+#include <cstdlib>
 
-/*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
-*-----------------------------------------------------------------------------*/
-class Viewport;
+#include "viewport.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	ABSTRACT RENDERER
+*	ADD VIEWPORT
 *-----------------------------------------------------------------------------*/
-class AbstractRenderer : public QObject
+void AbstractRenderer::addViewport(Viewport* p_viewport)
 {
-	Q_OBJECT
+	m_viewportList.push_back(p_viewport);
+}
 
-public:
-	//CONSTRUCTORS
-	virtual			~AbstractRenderer() {}
-
-	//EVENTS
-	virtual bool	event(QEvent* p_event) = 0;
-
-	//ADD
-	void			addViewport(Viewport* p_viewport);
-
-	//REMOVE
-	void			removeViewport(Viewport* p_viewport);
-
-	//OTHER
-	virtual void	requestRender(Viewport* p_viewport = nullptr) = 0;
-
-protected:
-	virtual void	render(Viewport* p_viewport) = 0;
-
-protected:
-	std::vector<Viewport*>		m_viewportList;
-};
+/*-----------------------------------------------------------------------------
+*	REMOVE VIEWPORT
+*-----------------------------------------------------------------------------*/
+void AbstractRenderer::removeViewport(Viewport* p_viewport)
+{
+	std::size_t numViewports = m_viewportList.size();
+	for (std::size_t i = 0; i < numViewports; i++)
+	{
+		if (m_viewportList[i] == p_viewport)
+			m_viewportList.erase(m_viewportList.begin() + i);
+	}
+}

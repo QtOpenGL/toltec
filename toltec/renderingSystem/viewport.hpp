@@ -14,7 +14,11 @@
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qopenglwidget.h>
-#include <QtGui/qsurfaceformat.h>
+
+/*-----------------------------------------------------------------------------
+*	FORWARD DECLARATIONS
+*-----------------------------------------------------------------------------*/
+class AbstractRenderer;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -29,13 +33,15 @@ public:
 					Viewport();
 	virtual			~Viewport() {}
 
+	//SET
+	void			setRenderer(AbstractRenderer* p_renderer);
+
 	//OTHER
-	void			renderCall();
 	virtual	void	paintGL();
 	virtual void	resizeGL();
 
 private:
-	//<render>
+	AbstractRenderer*	mp_renderer;
 	//<camera>
 };
 

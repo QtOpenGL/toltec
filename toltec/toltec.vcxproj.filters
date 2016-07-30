@@ -30,6 +30,9 @@
     <Filter Include="Main Files\renderingSystem">
       <UniqueIdentifier>{95e2153e-29c4-46cc-9a17-ef0ef2c64542}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\events">
+      <UniqueIdentifier>{3388edce-ff1a-44e7-a018-75e7f1dd4a8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +62,21 @@
     <ClCompile Include="GeneratedFiles\Release\moc_abstractRenderer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\toltecRenderer.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="events\renderEvent.cpp">
+      <Filter>Main Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_toltecRenderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_toltecRenderer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\abstractRenderer.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gui\mainWindow.hpp">
@@ -70,10 +88,16 @@
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
       <Filter>Main Files\renderingSystem</Filter>
     </CustomBuild>
+    <CustomBuild Include="renderingSystem\toltecRenderer.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils.hpp">
       <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="events\renderEvent.hpp">
+      <Filter>Main Files\events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
