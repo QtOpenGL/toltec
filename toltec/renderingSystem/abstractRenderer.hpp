@@ -2,45 +2,41 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		27 VII 2016
+*		30 VII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		MainWindow class, as it's name suggests, is the class for the main window
-*		inside program.
+*		AbstractRenderer class is a base class for all renderers inside program.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <string>
+#include <QtCore/qobject.h>
 
-#include <QtWidgets/qmainwindow.h>
-#include <QtWidgets/qwidget.h>
+/*-----------------------------------------------------------------------------
+*	FORWARD DECLARATIONS
+*-----------------------------------------------------------------------------*/
+class Viewport;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	MAIN WINDOW
+*	ABSTRACT RENDERER
 *-----------------------------------------------------------------------------*/
-class MainWindow : public QMainWindow
+class AbstractRenderer : public QObject
 {
 	Q_OBJECT
 
 public:
 	//CONSTRUCTORS
-				MainWindow(const std::string& title, int width, int height);
-	virtual		~MainWindow() {}
+	virtual			~AbstractRenderer() {}
 
-	//SET
-	void		setMainPanel(QWidget* p_widget);
+	//EVENTS
+	virtual bool	event(QEvent* event) = 0;
 
-private:
-	void		setupUI();
+	//OTHER
+	virtual void	requestRender(Viewport* p_viewport = nullptr) = 0;
+
+protected:
+	virtual void	render(Viewport* p_viewport = nullptr) = 0;
 };
-
-/*----------------------------------------------------------------------------*/
-
-inline void MainWindow::setMainPanel(QWidget* p_widget)
-{
-	this->setCentralWidget(p_widget);
-}

@@ -3,6 +3,9 @@
 *-----------------------------------------------------------------------------*/
 #include "mainWindow.hpp"
 
+#include <QtWidgets/qmenu.h>
+#include <QtWidgets/qmenubar.h>
+
 /*-----------------------------------------------------------------------------
 *	PUBLIC METHODS
 *	CONSTRUCTOR

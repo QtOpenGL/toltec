@@ -53,12 +53,21 @@
     <ClCompile Include="GeneratedFiles\Release\moc_viewport.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_abstractRenderer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gui\mainWindow.hpp">
       <Filter>Main Files\gui</Filter>
     </CustomBuild>
     <CustomBuild Include="renderingSystem\viewport.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
       <Filter>Main Files\renderingSystem</Filter>
     </CustomBuild>
   </ItemGroup>
