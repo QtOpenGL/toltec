@@ -11,7 +11,10 @@
 #include "viewport.hpp"
 
 #include <QtGui/qsurfaceformat.h>
+
 #include "abstractRenderer.hpp"
+#include "renderManager.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
@@ -19,7 +22,7 @@
 Viewport::Viewport()
 {
 	//INITIALIZE
-	mp_renderer = nullptr;	//CHANGE! USE RENDER MANAGER TO ASSING DEFAULT RENDERER ON CREATION.
+	mp_renderer = RenderManager::getInstance().getRenderer(RenderManager::DEFAULT_RENDERER);
 
 	//SETUP
 	//format
@@ -48,4 +51,22 @@ void Viewport::setRenderer(AbstractRenderer* p_renderer)
 
 	//ADD VIEWPORT TO CURRENT RENDERER
 	mp_renderer->addViewport(this);
+}
+
+/*-----------------------------------------------------------------------------
+*	PAINT GL
+*-----------------------------------------------------------------------------*/
+void Viewport::paintGL()
+{
+	DEBUG_MSG("painGL");
+	mp_renderer->requestRender(this);
+}
+
+/*-----------------------------------------------------------------------------
+*	RESIZE GL
+*-----------------------------------------------------------------------------*/
+void Viewport::resizeGL()
+{
+	DEBUG_MSG("resizeGL");
+	mp_renderer->requestRender(this);
 }

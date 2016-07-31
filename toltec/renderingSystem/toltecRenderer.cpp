@@ -13,6 +13,7 @@
 #include <QtCore/qobject.h>
 #include <QtGui/qevent.h>
 
+#include "utils.hpp"
 #include "viewport.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -50,5 +51,5 @@ bool ToltecRenderer::event(QEvent* p_event)
 *-----------------------------------------------------------------------------*/
 void ToltecRenderer::render(Viewport* p_viewport)
 {
-	//...
+	DEBUG_MSG("Render!");
 }

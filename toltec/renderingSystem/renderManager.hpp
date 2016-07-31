@@ -44,6 +44,9 @@ public:
 	//ADD
 	void		addRenderer(AbstractRenderer* p_renderer, RendererID rendererID);
 
+	//GET
+	AbstractRenderer* getRenderer(RendererID rendererID) const;
+
 	//OTHERS
 	void		renderCall(Viewport* p_viewport);				//VIEWPORT CALL
 	void		renderCall(AbstractRenderer* p_renderer);		//RENDERER CALL

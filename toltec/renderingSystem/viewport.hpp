@@ -54,13 +54,3 @@ inline AbstractRenderer* Viewport::getRenderer() const
 {
 	return mp_renderer;
 }
-
-inline void Viewport::paintGL()
-{
-	//request render //-what type of a render?
-}
-
-inline void Viewport::resizeGL()
-{
-	//request render //-what type of a render?
-}

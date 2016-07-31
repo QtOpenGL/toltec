@@ -29,6 +29,14 @@ void RenderManager::addRenderer(AbstractRenderer* p_renderer, RendererID rendere
 }
 
 /*-----------------------------------------------------------------------------
+*	GET RENDERER
+*-----------------------------------------------------------------------------*/
+AbstractRenderer* RenderManager::getRenderer(RendererID rendererID) const
+{
+	return m_rendererDict.at(rendererID);
+}
+
+/*-----------------------------------------------------------------------------
 *	RENDER CALL
 *	(Viewport*)
 *-----------------------------------------------------------------------------*/
