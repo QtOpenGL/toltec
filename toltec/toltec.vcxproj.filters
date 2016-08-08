@@ -93,6 +93,9 @@
     <ClCompile Include="renderingSystem\abstractViewport.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
+    <ClCompile Include="guiManager.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gui\mainWindow.hpp">
@@ -135,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="renderingSystem\openGLViewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="guiManager.hpp">
+      <Filter>Main Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

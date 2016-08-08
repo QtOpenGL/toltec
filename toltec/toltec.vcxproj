@@ -170,6 +170,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="guiManager.cpp" />
     <ClCompile Include="gui\mainWindow.cpp" />
     <ClCompile Include="gui\viewportPanel.cpp" />
     <ClCompile Include="main.cpp" />
@@ -264,6 +265,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </Command>
     </CustomBuild>
+    <ClInclude Include="guiManager.hpp" />
     <ClInclude Include="renderingSystem\abstractRendererResource.hpp" />
     <ClInclude Include="renderingSystem\openGLViewport.hpp" />
     <ClInclude Include="renderingSystem\renderingAPI.hpp" />
