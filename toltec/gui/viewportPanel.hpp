@@ -2,53 +2,55 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VII 2016
+*		31 VII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		Toltec renderer is a default renderer inside the program.
+*		ViewportPanel is a class that holds Viewport and menus associated with
+*		it.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <QtCore/qcoreapplication.h>
-
-#include "abstractRenderer.hpp"
-#include "events/renderEvent.hpp"
+#include <QtWidgets/qwidget.h>
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class QEvent;
-class Viewport;
+class QComboBox;
+class AbstractViewport;
+//class AbstractRenderingSystem;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	TOLTEC RENDERER
+*	VIEWPORT PANEL
 *-----------------------------------------------------------------------------*/
-class ToltecRenderer : public AbstractRenderer
+class ViewportPanel : public QWidget
 {
 	Q_OBJECT
 
 public:
 	//CONSTRUCTORS
-	virtual			~ToltecRenderer() {}
+				ViewportPanel();
+	virtual		~ViewportPanel() {}
 
-	//EVENTS
-	virtual bool	event(QEvent* p_event);
-
-	//OTHER
-	virtual void	requestRender(Viewport* p_viewport = nullptr);
-	virtual void	render(Viewport* p_viewport);
+	//GET
+	AbstractViewport* getViewport() const;
 
 private:
-	//...
+	void		setupUI();
+
+private:
+	AbstractViewport*			mp_viewport;
+	QComboBox*					mp_activeCameraComboBox;
+	//AbstractRenderingSystem*	mp_activeRenderingSystem;		//exactly why?
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline void ToltecRenderer::requestRender(Viewport* p_viewport)
+inline AbstractViewport* ViewportPanel::getViewport() const
 {
-	QCoreApplication::postEvent(this, new RenderEvent(p_viewport));
+	return mp_viewport;
 }
+

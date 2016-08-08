@@ -10,8 +10,14 @@
 *-----------------------------------------------------------------------------*/
 #include "mainWindow.hpp"
 
+#include <QtWidgets/qboxlayout.h>
+#include <QtWidgets/qlabel.h>
 #include <QtWidgets/qmenu.h>
 #include <QtWidgets/qmenubar.h>
+#include <QtWidgets/qsizepolicy.h>
+#include <QtWidgets/qwidget.h>
+
+#include "renderingSystem/abstractViewport.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
@@ -28,12 +34,23 @@ MainWindow::MainWindow(const std::string& title, int width, int height)
 }
 
 /*-----------------------------------------------------------------------------
+*	SET MAIN PANEL
+*-----------------------------------------------------------------------------*/
+void MainWindow::setMainPanel(QWidget* p_widget)
+{
+	mp_mainLayout->replaceWidget(mp_mainPanel, p_widget);
+	
+	delete mp_mainPanel;
+	mp_mainPanel = p_widget;
+}
+
+/*-----------------------------------------------------------------------------
 *	SETUP UI
 *-----------------------------------------------------------------------------*/
 void MainWindow::setupUI()
 {
 	/*-----------------------------------------------------------------------------
-	*	MENU BAR NESTING:
+	*	MENU BAR NESTING
 	*
 	*	1..	MENU (FILE)
 	*	2..	MENU (DISPLAY)
@@ -69,4 +86,35 @@ void MainWindow::setupUI()
 	p_lightsMenu->addAction("Directional Light");
 	p_lightsMenu->addAction("Spot Light");
 	p_lightsMenu->addAction("Area Light");
+
+	/*-----------------------------------------------------------------------------
+	*	UI NESTING
+	*
+	*	1..	WIDGET (CENTRAL WIDGET)
+	*	1.1....	V BOX LAYOUT
+	*	1.1.1......	WIDGET (MAIN PANEL)
+	*	1.1.2......	LABEL (MESSAGE BAR)
+	*-----------------------------------------------------------------------------*/
+	
+	//1. CENTRAL (WIDGET)
+	auto p_centralWidget = new QWidget();
+	//set
+	this->setCentralWidget(p_centralWidget);
+
+	//1.1. MAIN LAYOUT (V BOX LYAOUT)
+	mp_mainLayout = new QVBoxLayout();
+	mp_mainLayout->setContentsMargins(0, 0, 0, 0);
+	//set
+	p_centralWidget->setLayout(mp_mainLayout);
+
+	//1.1.1. MAIN PANEL (WIDGET)
+	mp_mainPanel = new QWidget();
+	//add
+	mp_mainLayout->addWidget(mp_mainPanel);
+
+	//1.1.2. MESSAGE BAR (LABEL)
+	auto p_messageBar = new QLabel();
+	p_messageBar->setFixedHeight(20);
+	p_messageBar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+	mp_mainLayout->addWidget(p_messageBar);
 }

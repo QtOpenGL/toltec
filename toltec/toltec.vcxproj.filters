@@ -13,6 +13,7 @@
     </Filter>
     <Filter Include="Main Files">
       <UniqueIdentifier>{3446f8b2-565d-418f-bb30-c845663461c8}</UniqueIdentifier>
+      <Extensions>.cpp;.hpp;.h</Extensions>
     </Filter>
     <Filter Include="Main Files\gui">
       <UniqueIdentifier>{99d33621-165a-49ba-9a45-ea1d96e474d8}</UniqueIdentifier>
@@ -33,6 +34,9 @@
     <Filter Include="Main Files\events">
       <UniqueIdentifier>{3388edce-ff1a-44e7-a018-75e7f1dd4a8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\renderingSystem\toltec">
+      <UniqueIdentifier>{e03253ef-0d98-4170-885e-a7baad82ddbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,37 +51,46 @@
     <ClCompile Include="gui\mainWindow.cpp">
       <Filter>Main Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="renderingSystem\viewport.cpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_viewport.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_viewport.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_abstractRenderer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="renderingSystem\toltecRenderer.cpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </ClCompile>
     <ClCompile Include="events\renderEvent.cpp">
       <Filter>Main Files\events</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_toltecRenderer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_toltecRenderer.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="renderingSystem\abstractRenderer.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
-    <ClCompile Include="renderingSystem\renderManager.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_viewportPanel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\viewportPanel.cpp">
+      <Filter>Main Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_toltecOpenGLRenderer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\renderingAPI.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="renderManager.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\renderingSystem.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\toltecOpenGLRenderer.cpp">
+      <Filter>Main Files\renderingSystem\toltec</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\abstractViewport.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,14 +98,20 @@
     <CustomBuild Include="gui\mainWindow.hpp">
       <Filter>Main Files\gui</Filter>
     </CustomBuild>
-    <CustomBuild Include="renderingSystem\viewport.hpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </CustomBuild>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
       <Filter>Main Files\renderingSystem</Filter>
     </CustomBuild>
-    <CustomBuild Include="renderingSystem\toltecRenderer.hpp">
+    <CustomBuild Include="gui\viewportPanel.hpp">
+      <Filter>Main Files\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\abstractViewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\toltec\toltecOpenGLRenderer.hpp">
+      <Filter>Main Files\renderingSystem\toltec</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\toltec\toltecOpenGLRendererResource.hpp">
+      <Filter>Main Files\renderingSystem\toltec</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +121,19 @@
     <ClInclude Include="events\renderEvent.hpp">
       <Filter>Main Files\events</Filter>
     </ClInclude>
-    <ClInclude Include="renderingSystem\renderManager.hpp">
+    <ClInclude Include="renderingSystem\abstractRendererResource.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\renderingAPI.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="renderManager.hpp">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\renderingSystem.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGLViewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClInclude>
   </ItemGroup>

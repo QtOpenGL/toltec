@@ -1,31 +1,29 @@
+#pragma once
+
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VII 2016
+*		04 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
+*	INFO:
+*		...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderEvent.hpp"
-
-#include "../renderingSystem/abstractViewport.hpp"
+//...
 
 /*-----------------------------------------------------------------------------
-*	STATIC CLASS MEMBERS
+*	CLASS DECLARATIONS
+*	ABSTRACT RENDERER RESOURCE
 *-----------------------------------------------------------------------------*/
-//PUBLIC
-const QEvent::Type RenderEvent::TYPE = static_cast<QEvent::Type>(QEvent::registerEventType());
-
-/*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
-*	(Viewport*)
-*-----------------------------------------------------------------------------*/
-RenderEvent::RenderEvent(AbstractViewport* p_viewport)
-	:
-	QEvent(RenderEvent::TYPE),
-	mp_viewport(p_viewport)
+class AbstractRendererResource
 {
+public:
+	//CONSTRUCTORS
+	virtual ~AbstractRendererResource() {}
+
+private:
 	//...
-}
+};

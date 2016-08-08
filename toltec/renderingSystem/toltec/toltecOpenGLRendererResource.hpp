@@ -1,31 +1,31 @@
+#pragma once
+
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VII 2016
+*		04 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
+*	INFO:
+*		...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderEvent.hpp"
+#include <string>
 
-#include "../renderingSystem/abstractViewport.hpp"
-
-/*-----------------------------------------------------------------------------
-*	STATIC CLASS MEMBERS
-*-----------------------------------------------------------------------------*/
-//PUBLIC
-const QEvent::Type RenderEvent::TYPE = static_cast<QEvent::Type>(QEvent::registerEventType());
+#include "../abstractRendererResource.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
-*	(Viewport*)
+*	CLASS DECLARATIONS
+*	TOLTEC OPENGL RENDERER RESOURCE
 *-----------------------------------------------------------------------------*/
-RenderEvent::RenderEvent(AbstractViewport* p_viewport)
-	:
-	QEvent(RenderEvent::TYPE),
-	mp_viewport(p_viewport)
+class ToltecOpenGLRendererResource : public AbstractRendererResource
 {
+public:
+	//CONSTRUCTORS
+	virtual			~ToltecOpenGLRendererResource() {}
+
+private:
 	//...
-}
+};

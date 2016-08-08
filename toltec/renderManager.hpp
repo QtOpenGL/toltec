@@ -2,36 +2,33 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VII 2016
+*		06 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		Render Manager is responsible for managing renderers and redner calls.
+*		Render Manager is responsible for managing renderering systems and 
+*		redner calls.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <map>
+#include <string>
+#include <vector>
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class AbstractRenderer;
-class Viewport;
+class RenderingSystem;
+class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
 *	RENDER MANAGER
 *-----------------------------------------------------------------------------*/
-class RenderManager 
+class RenderManager
 {
 public:
-	//TYPES
-	enum RendererID {
-		TOLTEC_RENDERER
-	};
-
 	//SINGLETON
 	static RenderManager& getInstance()
 	{
@@ -42,24 +39,28 @@ public:
 	void operator=(const RenderManager&) = delete;
 
 	//ADD
-	void		addRenderer(AbstractRenderer* p_renderer, RendererID rendererID);
+	void		addRenderingSystem(RenderingSystem* p_renderingSystem);
 
 	//GET
-	AbstractRenderer* getRenderer(RendererID rendererID) const;
+	RenderingSystem*	getDefaultRenderingSystem() const;
 
-	//OTHERS
-	void		renderCall(Viewport* p_viewport);				//VIEWPORT CALL
-	void		renderCall(AbstractRenderer* p_renderer);		//RENDERER CALL
-	void		renderCall(RendererID rendererID);				//RENDERER CALL
-	void		renderCall();									//GLOBAL CALL
-
-public:
-	static const RendererID DEFAULT_RENDERER;
+	//OTHER
+	void		renderCall(AbstractViewport* p_viewport);				//VIEWPORT CALL
+	void		renderCall(RenderingSystem* p_renderingSystem);			//RENDERING SYSTEM CALL
+	void		renderCall(const std::string& renderingSystemName);		//RENDERING SYSTEM CALL
+	void		renderCall();											//GLOBAL CALL
 
 private:
 	//SINGLETON
 	RenderManager() {}
 
-	//RENDERER DICTIONARY
-	std::map<RendererID, AbstractRenderer*> m_rendererDict;
+private:
+	std::vector<RenderingSystem*>	m_renderingSystemList;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline RenderingSystem* RenderManager::getDefaultRenderingSystem() const
+{
+	return m_renderingSystemList[0];
+}

@@ -19,7 +19,7 @@
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class Viewport;
+class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -36,18 +36,9 @@ public:
 	//EVENTS
 	virtual bool	event(QEvent* p_event) = 0;
 
-	//ADD
-	void			addViewport(Viewport* p_viewport);
-
-	//REMOVE
-	void			removeViewport(Viewport* p_viewport);
-
 	//OTHER
-	virtual void	requestRender(Viewport* p_viewport = nullptr) = 0;
+	virtual void	requestRender(AbstractViewport* p_viewport) = 0;
 
 protected:
-	virtual void	render(Viewport* p_viewport) = 0;
-
-protected:
-	std::vector<Viewport*>		m_viewportList;
+	virtual void	render(AbstractViewport* p_viewport) = 0;
 };

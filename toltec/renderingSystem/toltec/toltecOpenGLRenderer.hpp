@@ -1,55 +1,45 @@
+#pragma once
+
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VII 2016
+*		04 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
+*	INFO:
+*		...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "toltecRenderer.hpp"
-
+#include <string>
 #include <QtCore/qobject.h>
-#include <QtGui/qevent.h>
-
-#include "utils.hpp"
-#include "viewport.hpp"
+#include "renderingSystem/abstractRenderer.hpp"
 
 /*-----------------------------------------------------------------------------
-*	EVENT
+*	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-bool ToltecRenderer::event(QEvent* p_event)
-{
-	if (p_event->type() == RenderEvent::TYPE)
-	{
-		RenderEvent* p_rednerEvent =	static_cast<RenderEvent*>(p_event);
-		Viewport* p_viewport =			p_rednerEvent->getViewport();
-
-		//RENDER INTO ONE VIEWPORT
-		if (p_viewport != nullptr)
-		{
-			this->render(p_viewport);
-		}
-		//RENDER INTO MULTIPLE VIEWPORTS
-		else
-		{
-			for (Viewport* p_viewport : m_viewportList)
-				this->render(p_viewport);
-		}
-
-		return true;
-	}
-	else
-	{
-		return QObject::event(p_event);
-	}
-}
+class QEvent;
+class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
-*	RENDER
+*	CLASS DECLARATIONS
+*	TOLTEC OPENGL RENDERER
 *-----------------------------------------------------------------------------*/
-void ToltecRenderer::render(Viewport* p_viewport)
+class ToltecOpenGLRenderer : public AbstractRenderer
 {
-	DEBUG_MSG("Render!");
-}
+	Q_OBJECT
+
+public:
+	//CONSTRUCTORS
+	virtual			~ToltecOpenGLRenderer() {}
+
+	//EVENTS
+	virtual bool	event(QEvent* p_event);
+
+	//OTHER
+	virtual void	requestRender(AbstractViewport* p_viewport);
+
+private:
+	virtual void	render(AbstractViewport* p_viewport);
+};

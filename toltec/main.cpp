@@ -6,9 +6,12 @@
 #include <QtWidgets/qapplication.h>
 
 #include "gui/mainWindow.hpp"
-#include "renderingSystem/viewport.hpp"
-#include "renderingSystem/renderManager.hpp"
-#include "renderingSystem/toltecRenderer.hpp"
+#include "gui/viewportPanel.hpp"
+#include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
+#include "renderingSystem/toltec/toltecOpenGLRendererResource.hpp"
+#include "renderingSystem/renderingAPI.hpp"
+#include "renderingSystem/renderingSystem.hpp"
+#include "renderManager.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -25,21 +28,30 @@ int main(int argc, char *argv[])
 	/*-----------------------------------------------------------------------------
 	*	CREATE CORE OBJECTS
 	*-----------------------------------------------------------------------------*/
-	//RENDERERS
-	ToltecRenderer toltecRenderer;
+	//TOLTEC RENDERING SYSTEM
+	RenderingSystem toltecRenderingSystem("Toltec");
+	//opengl
+	ToltecOpenGLRenderer* p_toltecOpenGLRenderer =					new ToltecOpenGLRenderer();
+	ToltecOpenGLRendererResource* p_toltecOpenGLRendererResource =	new ToltecOpenGLRendererResource();
+	RenderingAPI* p_toltecOpenGLRenderingAPI =						new RenderingAPI(
+		RenderingAPI::OPENGL_API, p_toltecOpenGLRenderer, p_toltecOpenGLRendererResource);
+
 	//add
-	RenderManager::getInstance().addRenderer(&toltecRenderer, RenderManager::TOLTEC_RENDERER);
+	toltecRenderingSystem.addRenderingAPI(p_toltecOpenGLRenderingAPI);
+
+	//ADD RENDERING SYSTEMS TO RENDER MANAGER
+	RenderManager::getInstance().addRenderingSystem(&toltecRenderingSystem);
 
 	/*-----------------------------------------------------------------------------
 	*	CREATE GUI
 	*-----------------------------------------------------------------------------*/
 	MainWindow mainWindow("Toltec", 960, 600);
 	
-	//CREATE VIEWPORTS
-	Viewport* p_viewport1 = new Viewport();
+	//VIEWPORT PANEL
+	ViewportPanel viewportPanel0;
 
 	//SET MAIN PANEL
-	mainWindow.setMainPanel(p_viewport1);
+	mainWindow.setMainPanel(&viewportPanel0);
 
 	//SHOW MAIN WINDOW
 	mainWindow.show();

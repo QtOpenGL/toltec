@@ -15,7 +15,10 @@
 *-----------------------------------------------------------------------------*/
 #include <QtGui/qevent.h>
 
-#include "renderingSystem/viewport.hpp"
+/*-----------------------------------------------------------------------------
+*	FORWARD DECLARATIONS
+*-----------------------------------------------------------------------------*/
+class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -25,22 +28,22 @@ class RenderEvent : public QEvent
 {
 public:
 	//CONSTRUCTORS
-				RenderEvent(Viewport* p_viewport = nullptr);
+				RenderEvent(AbstractViewport* p_viewport = nullptr);
 	virtual		~RenderEvent() {}
 
 	//GET
-	Viewport*	getViewport() const;
+	AbstractViewport*	getViewport() const;
 
 public:
 	static const QEvent::Type TYPE;
 
 private:
-	Viewport*	mp_viewport;
+	AbstractViewport*	mp_viewport;
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline Viewport* RenderEvent::getViewport() const
+inline AbstractViewport* RenderEvent::getViewport() const
 {
 	return mp_viewport;
 }

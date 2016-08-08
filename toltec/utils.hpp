@@ -9,7 +9,6 @@
 *	MACROS
 *-----------------------------------------------------------------------------*/
 #define DEBUG_BUILD
-
 #ifdef DEBUG_BUILD
 #define DEBUG_MSG(x) do { std::cerr << __FILE__ << "(" << __LINE__ << ") : " << x << "\n"; } \
 	while (false)

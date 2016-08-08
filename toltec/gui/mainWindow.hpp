@@ -16,7 +16,12 @@
 #include <string>
 
 #include <QtWidgets/qmainwindow.h>
-#include <QtWidgets/qwidget.h>
+
+/*-----------------------------------------------------------------------------
+*	FORWARD DECLARATIONS
+*-----------------------------------------------------------------------------*/
+class QWidget;
+class QVBoxLayout;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -36,11 +41,8 @@ public:
 
 private:
 	void		setupUI();
+
+private:
+	QWidget*		mp_mainPanel;
+	QVBoxLayout*	mp_mainLayout;
 };
-
-/*----------------------------------------------------------------------------*/
-
-inline void MainWindow::setMainPanel(QWidget* p_widget)
-{
-	this->setCentralWidget(p_widget);
-}

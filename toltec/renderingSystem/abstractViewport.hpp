@@ -2,12 +2,12 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		27 VII 2016
+*		02 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		Viewport class inherits QOpenGLWidget and adds additional render logic
-*		into it. It holds information about renderer and camera it's using.
+*		AbstractViewport class is a base class for all viewports and holds
+*		common interface for them.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -24,33 +24,25 @@ class AbstractRenderer;
 *	CLASS DECLARATIONS
 *	VIEWPORT
 *-----------------------------------------------------------------------------*/
-class Viewport : public QOpenGLWidget
+class AbstractViewport : public QOpenGLWidget //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
 {
-	Q_OBJECT
-
 public:
 	//CONSTRUCTORS
-					Viewport();
-	virtual			~Viewport() {}
+	virtual		~AbstractViewport() {}
 
 	//SET
-	void			setRenderer(AbstractRenderer* p_renderer);
+	void				setRenderer(AbstractRenderer* p_renderer);
 
 	//GET
 	AbstractRenderer*	getRenderer() const;
 
-	//OTHER
-	virtual	void	paintGL();
-	virtual void	resizeGL();
-
 private:
 	AbstractRenderer*	mp_renderer;
-	//<camera>
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline AbstractRenderer* Viewport::getRenderer() const
+inline AbstractRenderer* AbstractViewport::getRenderer() const
 {
 	return mp_renderer;
 }
