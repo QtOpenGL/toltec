@@ -94,7 +94,10 @@
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
     <ClCompile Include="guiManager.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\outputLineWidget.cpp">
+      <Filter>Main Files\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="guiManager.hpp">
       <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\outputLineWidget.hpp">
+      <Filter>Main Files\gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

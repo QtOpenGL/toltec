@@ -13,12 +13,12 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-//...
+#include <string>
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class QLabel;
+class OutputLineWidget;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -37,12 +37,17 @@ public:
 	void operator=(const GUIManager&) = delete;
 
 	//SET
-	void	setOutputStreamWidget(QLabel* p_outputStreamWidget);
+	void	setOutputLineWidget(OutputLineWidget* p_outputLineWidget);
+
+	//OTHER
+	void	displayMessage(const std::string& message);
+	void	displayWarning(const std::string& warning);
+	void	displayError(const std::string& error);
 
 private:
 	//SINGLETON
 	GUIManager();
 
 private:
-	QLabel*		mp_outputStreamWidget;
+	OutputLineWidget*	mp_outputStreamWidget;
 };

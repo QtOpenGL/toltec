@@ -11,12 +11,13 @@
 #include "mainWindow.hpp"
 
 #include <QtWidgets/qboxlayout.h>
-#include <QtWidgets/qlabel.h>
 #include <QtWidgets/qmenu.h>
 #include <QtWidgets/qmenubar.h>
 #include <QtWidgets/qsizepolicy.h>
 #include <QtWidgets/qwidget.h>
 
+#include "guiManager.hpp"
+#include "gui/outputLineWidget.hpp"
 #include "renderingSystem/abstractViewport.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -104,17 +105,22 @@ void MainWindow::setupUI()
 	//1.1. MAIN LAYOUT (V BOX LYAOUT)
 	mp_mainLayout = new QVBoxLayout();
 	mp_mainLayout->setContentsMargins(0, 0, 0, 0);
+	mp_mainLayout->setSpacing(0);
 	//set
 	p_centralWidget->setLayout(mp_mainLayout);
 
 	//1.1.1. MAIN PANEL (WIDGET)
 	mp_mainPanel = new QWidget();
+	mp_mainPanel->setContentsMargins(0, 0, 0, 0);
 	//add
 	mp_mainLayout->addWidget(mp_mainPanel);
 
-	//1.1.2. MESSAGE BAR (LABEL)
-	auto p_messageBar = new QLabel();
-	p_messageBar->setFixedHeight(20);
-	p_messageBar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-	mp_mainLayout->addWidget(p_messageBar);
+	//1.1.2. OUTPUT STREAM (LABEL)
+	auto p_outputLineWidget = new OutputLineWidget();
+	p_outputLineWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+	p_outputLineWidget->setFixedHeight(20);
+	//add
+	mp_mainLayout->addWidget(p_outputLineWidget);
+	//set
+	GUIManager::getInstance().setOutputLineWidget(p_outputLineWidget);
 }

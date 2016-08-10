@@ -33,6 +33,8 @@ ViewportPanel::ViewportPanel()
 *-----------------------------------------------------------------------------*/
 void ViewportPanel::setupUI()
 {
+	this->setContentsMargins(0, 0, 0, 0);
+
 	/*-----------------------------------------------------------------------------
 	*	UI NESTING
 	*
@@ -49,6 +51,8 @@ void ViewportPanel::setupUI()
 
 	//1. MAIN LAYOUT (V BOX LAYOUT)
 	QVBoxLayout* p_mainLayout = new QVBoxLayout;
+	p_mainLayout->setContentsMargins(0, 0, 0, 0);
+	p_mainLayout->setSpacing(0);
 	this->setLayout(p_mainLayout);
 
 	//1.1. TOP BAR LAYOUT (H BOX LAYOUT)

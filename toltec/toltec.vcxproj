@@ -172,6 +172,7 @@
     </ClCompile>
     <ClCompile Include="guiManager.cpp" />
     <ClCompile Include="gui\mainWindow.cpp" />
+    <ClCompile Include="gui\outputLineWidget.cpp" />
     <ClCompile Include="gui\viewportPanel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderingSystem\abstractRenderer.cpp" />
@@ -266,6 +267,7 @@
       </Command>
     </CustomBuild>
     <ClInclude Include="guiManager.hpp" />
+    <ClInclude Include="gui\outputLineWidget.hpp" />
     <ClInclude Include="renderingSystem\abstractRendererResource.hpp" />
     <ClInclude Include="renderingSystem\openGLViewport.hpp" />
     <ClInclude Include="renderingSystem\renderingAPI.hpp" />
