@@ -99,6 +99,9 @@
     <ClCompile Include="gui\outputLineWidget.cpp">
       <Filter>Main Files\gui</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\openGLViewport.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gui\mainWindow.hpp">

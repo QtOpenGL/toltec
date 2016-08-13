@@ -20,7 +20,7 @@
 //CONSTANTS
 //private
 const QColor OutputLineWidget::ms_MESSAGE_COLOR =	QColor(0, 0, 0);
-const QColor OutputLineWidget::ms_WARNING_COLOR =	QColor(80, 80, 0);
+const QColor OutputLineWidget::ms_WARNING_COLOR =	QColor(120, 80, 0);
 const QColor OutputLineWidget::ms_ERROR_COLOR =		QColor(160, 0, 0);
 
 /*-----------------------------------------------------------------------------

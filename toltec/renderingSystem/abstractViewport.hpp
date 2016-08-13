@@ -14,6 +14,7 @@
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qopenglwidget.h>
+#include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
@@ -22,12 +23,13 @@ class AbstractRenderer;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	VIEWPORT
+*	ABSTRACT VIEWPORT
 *-----------------------------------------------------------------------------*/
 class AbstractViewport : public QOpenGLWidget //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
 {
 public:
 	//CONSTRUCTORS
+				AbstractViewport();
 	virtual		~AbstractViewport() {}
 
 	//SET
@@ -35,9 +37,11 @@ public:
 
 	//GET
 	AbstractRenderer*	getRenderer() const;
+	RenderingAPI::Type	getType() const;
 
-private:
+protected:
 	AbstractRenderer*	mp_renderer;
+	RenderingAPI::Type	m_type;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -45,4 +49,9 @@ private:
 inline AbstractRenderer* AbstractViewport::getRenderer() const
 {
 	return mp_renderer;
+}
+
+inline RenderingAPI::Type AbstractViewport::getType() const
+{
+	return m_type;
 }

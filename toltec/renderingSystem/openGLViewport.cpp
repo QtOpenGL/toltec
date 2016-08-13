@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		07 VIII 2016
+*		11 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *-----------------------------------------------------------------------------*/
@@ -8,22 +8,15 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderingSystem/abstractViewport.hpp"
+#include "renderingSystem/openGLViewport.hpp"
+
+#include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-AbstractViewport::AbstractViewport()
-	:
-	mp_renderer(nullptr),
-	m_type(RenderingAPI::UNSPECIFIED_API)
+OpenGLViewport::OpenGLViewport()
 {
-}
-
-/*-----------------------------------------------------------------------------
-*	SET RENDERER
-*-----------------------------------------------------------------------------*/
-void AbstractViewport::setRenderer(AbstractRenderer* p_renderer)
-{
-	mp_renderer = p_renderer;
+	//INITIALIZE
+	m_type = RenderingAPI::OPENGL_API;
 }

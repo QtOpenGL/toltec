@@ -14,16 +14,35 @@
 *-----------------------------------------------------------------------------*/
 #include "abstractViewport.hpp"
 
+#include "renderingSystem/abstractRenderer.hpp"
+
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	VIEWPORT
+*	OPENGL VIEWPORT
 *-----------------------------------------------------------------------------*/
 class OpenGLViewport : public AbstractViewport
 {
 public:
-	//CONSTRUCTORS
-	virtual		~OpenGLViewport() {}
+	//(CON/DE)STRUCTORS
+					OpenGLViewport();
+	virtual			~OpenGLViewport() {}
+
+	//OTHER
+	virtual	void	paintGL();
+	virtual void	resizeGL();
 
 private:
 	//...
 };
+
+/*---------------------------------------------------------------------------*/
+
+inline void OpenGLViewport::paintGL()
+{
+	mp_renderer->requestRender(this);
+}
+
+inline void OpenGLViewport::resizeGL()
+{
+	mp_renderer->requestRender(this);
+}

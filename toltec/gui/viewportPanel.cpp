@@ -15,10 +15,15 @@
 #include <QtWidgets/qmenu.h>
 #include <QtWidgets/qmenubar.h>
 
+#include <glbinding/gl/gl.h>
+#include <glbinding/Binding.h>
+#include <glbinding/ContextInfo.h>
+
 #include "renderManager.hpp"
 #include "renderingSystem/openGLViewport.hpp"
 #include "renderingSystem/renderingAPI.hpp"
 #include "renderingSystem/renderingSystem.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
@@ -103,7 +108,7 @@ void ViewportPanel::setupUI()
 	auto p_defaultRenderingSystem = RenderManager::getInstance().getDefaultRenderingSystem();
 	p_defaultRenderingSystem->addViewportPanel(this);
 
-	//get active rendering api
+	//get active rendering api of the default rendering system
 	auto p_activeRenderingAPI = p_defaultRenderingSystem->getActiveRenderingAPI();
 	RenderingAPI::Type renderingAPIType = p_activeRenderingAPI->getType();
 
@@ -113,6 +118,11 @@ void ViewportPanel::setupUI()
 	case RenderingAPI::OPENGL_API:
 		mp_viewport = new OpenGLViewport();
 		mp_viewport->setRenderer(p_activeRenderingAPI->getRenderer());
+
+		//set opengl
+		mp_viewport->makeCurrent();
+		glbinding::Binding::initialize();
+		mp_viewport->doneCurrent();
 	}
 
 	//add

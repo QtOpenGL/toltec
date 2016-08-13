@@ -10,9 +10,15 @@
 *-----------------------------------------------------------------------------*/
 #include "toltecOpenGLRenderer.hpp"
 
+#include <iostream>
 #include <QtCore/qcoreapplication.h>
+#include <glbinding/gl/gl.h>
+
 #include "events/renderEvent.hpp"
+#include "guiManager.hpp"
 #include "renderingSystem/abstractViewport.hpp"
+#include "renderingSystem/openGLViewport.hpp"
+#include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
 *	EVENT
@@ -38,6 +44,7 @@ bool ToltecOpenGLRenderer::event(QEvent* p_event)
 *-----------------------------------------------------------------------------*/
 void ToltecOpenGLRenderer::requestRender(AbstractViewport* p_viewport)
 {
+	//POST EVENT
 	QCoreApplication::postEvent(this, new RenderEvent(p_viewport));
 }
 
@@ -46,5 +53,38 @@ void ToltecOpenGLRenderer::requestRender(AbstractViewport* p_viewport)
 *-----------------------------------------------------------------------------*/
 void ToltecOpenGLRenderer::render(AbstractViewport* p_viewport)
 {
-	//...
+	/*-----------------------------------------------------------------------------
+	*	CHECK
+	*-----------------------------------------------------------------------------*/
+	if (p_viewport->getType() != RenderingAPI::OPENGL_API)
+	{
+		GUIManager::getInstance().displayError(
+			"Rendering error! Viewport type is not matching renderer type.");
+		return;
+	}
+
+	/*-----------------------------------------------------------------------------
+	*	CAST
+	*-----------------------------------------------------------------------------*/
+	OpenGLViewport* p_openGLViewport = static_cast<OpenGLViewport*>(p_viewport);
+
+	/*-----------------------------------------------------------------------------
+	*	MAKE OPENGL CONTEXT CURRENT AGAINST GIVEN SURFACE
+	*-----------------------------------------------------------------------------*/
+	p_openGLViewport->makeCurrent();
+
+	/*-----------------------------------------------------------------------------
+	*	BUFFERS
+	*-----------------------------------------------------------------------------*/
+	//SET BACKGROUND COLOR
+	gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+
+	//CLEAR BUFFERS
+	//gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
+
+	/*-----------------------------------------------------------------------------
+	*	SWAP BUFFERS
+	*-----------------------------------------------------------------------------*/
+	//p_openGLViewport->update();
+	p_openGLViewport->doneCurrent();
 }
