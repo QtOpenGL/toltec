@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <QtCore/qcoreapplication.h>
+
 #include <glbinding/gl/gl.h>
 
 #include "events/renderEvent.hpp"
@@ -44,8 +45,9 @@ bool ToltecOpenGLRenderer::event(QEvent* p_event)
 *-----------------------------------------------------------------------------*/
 void ToltecOpenGLRenderer::requestRender(AbstractViewport* p_viewport)
 {
-	//POST EVENT
-	QCoreApplication::postEvent(this, new RenderEvent(p_viewport));
+	//SEND EVENT
+	RenderEvent renderEvent(p_viewport);
+	QCoreApplication::sendEvent(this, &renderEvent);
 }
 
 /*-----------------------------------------------------------------------------
@@ -80,11 +82,16 @@ void ToltecOpenGLRenderer::render(AbstractViewport* p_viewport)
 	gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
 	//CLEAR BUFFERS
-	//gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
+	gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
 
 	/*-----------------------------------------------------------------------------
 	*	SWAP BUFFERS
 	*-----------------------------------------------------------------------------*/
-	//p_openGLViewport->update();
+	p_openGLViewport->swapBuffers();
+
+	/*-----------------------------------------------------------------------------
+	*	DONE CURRENT
+	*	Convenience function for calling makeCurrent with a 0 surface.
+	*-----------------------------------------------------------------------------*/
 	p_openGLViewport->doneCurrent();
 }

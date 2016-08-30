@@ -37,6 +37,9 @@
     <Filter Include="Main Files\renderingSystem\toltec">
       <UniqueIdentifier>{e03253ef-0d98-4170-885e-a7baad82ddbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\nodes">
+      <UniqueIdentifier>{936a5d1f-cdd8-4b81-998a-e1f0fa5f8a11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,6 +153,12 @@
     </ClInclude>
     <ClInclude Include="gui\outputLineWidget.hpp">
       <Filter>Main Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\node.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\scene3DNode.hpp">
+      <Filter>Main Files\nodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

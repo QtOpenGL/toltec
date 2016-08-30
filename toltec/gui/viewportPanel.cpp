@@ -30,7 +30,46 @@
 *-----------------------------------------------------------------------------*/
 ViewportPanel::ViewportPanel()
 {
+	this->setupViewport();
 	this->setupUI();
+}
+
+/*-----------------------------------------------------------------------------
+*	DESTRUCTOR
+*-----------------------------------------------------------------------------*/
+ViewportPanel::~ViewportPanel()
+{
+	delete mp_viewport;
+}
+
+/*-----------------------------------------------------------------------------
+*	SETUP VIEWPORT
+*-----------------------------------------------------------------------------*/
+void ViewportPanel::setupViewport()
+{
+	//GET DEFAULT RENDERING SYSTEM
+	auto p_defaultRenderingSystem = RenderManager::getInstance().getDefaultRenderingSystem();
+	p_defaultRenderingSystem->addViewportPanel(this);
+
+	//GET ACTIVE RENDERING API OF THE DEFAULT RENDERING SYSTEM
+	auto p_activeRenderingAPI = p_defaultRenderingSystem->getActiveRenderingAPI();
+	RenderingAPI::Type renderingAPIType = p_activeRenderingAPI->getType();
+
+	//CREATE PROPER VIEWPORT
+	switch (renderingAPIType)
+	{
+	case RenderingAPI::OPENGL_API:
+		OpenGLViewport* p_viewport = new OpenGLViewport();
+		p_viewport->setRenderer(p_activeRenderingAPI->getRenderer());
+
+		//set opengl
+		p_viewport->makeCurrent();
+		glbinding::Binding::initialize();
+		p_viewport->doneCurrent();
+
+		//assign to member
+		mp_viewport = p_viewport;
+	}
 }
 
 /*-----------------------------------------------------------------------------
@@ -104,27 +143,8 @@ void ViewportPanel::setupUI()
 	p_menuBar->addMenu(p_rendererMenu);
 
 	//1.2. VIEWPORT
-	//get default rendering system
-	auto p_defaultRenderingSystem = RenderManager::getInstance().getDefaultRenderingSystem();
-	p_defaultRenderingSystem->addViewportPanel(this);
-
-	//get active rendering api of the default rendering system
-	auto p_activeRenderingAPI = p_defaultRenderingSystem->getActiveRenderingAPI();
-	RenderingAPI::Type renderingAPIType = p_activeRenderingAPI->getType();
-
-	//create proper viewport
-	switch (renderingAPIType)
-	{
-	case RenderingAPI::OPENGL_API:
-		mp_viewport = new OpenGLViewport();
-		mp_viewport->setRenderer(p_activeRenderingAPI->getRenderer());
-
-		//set opengl
-		mp_viewport->makeCurrent();
-		glbinding::Binding::initialize();
-		mp_viewport->doneCurrent();
-	}
-
+	QWidget* p_viewportWidget = QWidget::createWindowContainer(mp_viewport);
+	p_viewportWidget->setAutoFillBackground(false);
 	//add
-	p_mainLayout->addWidget(mp_viewport);
+	p_mainLayout->addWidget(p_viewportWidget);
 }

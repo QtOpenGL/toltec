@@ -31,14 +31,15 @@ class ViewportPanel : public QWidget
 	Q_OBJECT
 
 public:
-	//CONSTRUCTORS
+	//CONSTRUCTORS AND DESTRUCTORS
 				ViewportPanel();
-	virtual		~ViewportPanel() {}
+	virtual		~ViewportPanel();
 
 	//GET
 	AbstractViewport* getViewport() const;
 
 private:
+	void		setupViewport();
 	void		setupUI();
 
 private:

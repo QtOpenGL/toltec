@@ -17,6 +17,11 @@
 #include "renderingSystem/abstractRenderer.hpp"
 
 /*-----------------------------------------------------------------------------
+*	FORWARD DECLARATIONS
+*-----------------------------------------------------------------------------*/
+class QOpenGLContext;
+
+/*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
 *	OPENGL VIEWPORT
 *-----------------------------------------------------------------------------*/
@@ -27,22 +32,17 @@ public:
 					OpenGLViewport();
 	virtual			~OpenGLViewport() {}
 
-	//OTHER
-	virtual	void	paintGL();
-	virtual void	resizeGL();
+	//EVENTS
+	virtual void	exposeEvent(QExposeEvent*);
+
+	//OTHERS
+	void			makeCurrent();
+	void			doneCurrent();
+	void			swapBuffers();
 
 private:
-	//...
+	void			initializeOpenGLContext();
+
+private:
+	QOpenGLContext*		mp_openGLContext;
 };
-
-/*---------------------------------------------------------------------------*/
-
-inline void OpenGLViewport::paintGL()
-{
-	mp_renderer->requestRender(this);
-}
-
-inline void OpenGLViewport::resizeGL()
-{
-	mp_renderer->requestRender(this);
-}

@@ -13,7 +13,7 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <QtWidgets/qopenglwidget.h>
+#include <QtGui/qwindow.h>
 #include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -25,12 +25,12 @@ class AbstractRenderer;
 *	CLASS DECLARATIONS
 *	ABSTRACT VIEWPORT
 *-----------------------------------------------------------------------------*/
-class AbstractViewport : public QOpenGLWidget //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
+class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
 {
 public:
-	//CONSTRUCTORS
-				AbstractViewport();
-	virtual		~AbstractViewport() {}
+	//CONSTRUCTORS AND DESTRUCTORS
+						AbstractViewport();
+	virtual				~AbstractViewport() {}
 
 	//SET
 	void				setRenderer(AbstractRenderer* p_renderer);
