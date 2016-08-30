@@ -270,7 +270,9 @@
     <ClInclude Include="guiManager.hpp" />
     <ClInclude Include="gui\outputLineWidget.hpp" />
     <ClInclude Include="nodes\node.hpp" />
+    <ClInclude Include="nodes\polygonMeshNode.hpp" />
     <ClInclude Include="nodes\scene3DNode.hpp" />
+    <ClInclude Include="nodes\transformNode.hpp" />
     <ClInclude Include="renderingSystem\abstractRendererResource.hpp" />
     <ClInclude Include="renderingSystem\openGLViewport.hpp" />
     <ClInclude Include="renderingSystem\renderingAPI.hpp" />

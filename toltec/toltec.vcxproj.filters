@@ -160,5 +160,11 @@
     <ClInclude Include="nodes\scene3DNode.hpp">
       <Filter>Main Files\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="nodes\transformNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\polygonMeshNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
