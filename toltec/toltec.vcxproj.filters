@@ -40,6 +40,9 @@
     <Filter Include="Main Files\nodes">
       <UniqueIdentifier>{936a5d1f-cdd8-4b81-998a-e1f0fa5f8a11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\toltecPolygonMeshLibrary">
+      <UniqueIdentifier>{e447b132-5d9d-4d4f-bfac-d79260a509a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -105,6 +108,12 @@
     <ClCompile Include="renderingSystem\openGLViewport.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
+    <ClCompile Include="nodes\polygonMeshNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="toltecPolygonMeshLibrary\mesh.cpp">
+      <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="gui\mainWindow.hpp">
@@ -165,6 +174,12 @@
     </ClInclude>
     <ClInclude Include="nodes\polygonMeshNode.hpp">
       <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="toltecPolygonMeshLibrary\mesh.hpp">
+      <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="toltecPolygonMeshLibrary\math.hpp">
+      <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

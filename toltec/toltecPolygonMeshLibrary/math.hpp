@@ -2,30 +2,40 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VIII 2016
+*		10 IX 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
-*		PolygonMeshNode class holds information about mesh data structure 
-*		(vertices, edges, triangles, faces, etc.).
+*		...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "scene3DNode.hpp"
+//...
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SCENE 3D NODE
+*	NAMESPACE: TPM
 *-----------------------------------------------------------------------------*/
-class PolygonMeshNode : public Scene3DNode
+namespace tpm
 {
-public:
-	//CONSTRUCTORS
-				PolygonMeshNode();
-	virtual		~PolygonMeshNode() {}
+	/*-----------------------------------------------------------------------------
+	*	STRUCTS
+	*-----------------------------------------------------------------------------*/
+	struct Point2D {
+		float x;
+		float y;
+	};
+	
+	struct Point3D {
+		float x;
+		float y;
+		float z;
+	};
 
-private:
-	//...
-};
+	struct Vector3D {
+		float x;
+		float y;
+		float z;
+	};
+}

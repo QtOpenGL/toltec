@@ -20,6 +20,7 @@
 #include "renderingSystem/abstractViewport.hpp"
 #include "renderingSystem/openGLViewport.hpp"
 #include "renderingSystem/renderingAPI.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *	EVENT

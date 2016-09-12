@@ -7,6 +7,7 @@
 
 #include "gui/mainWindow.hpp"
 #include "gui/viewportPanel.hpp"
+#include "nodes/polygonMeshNode.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRendererResource.hpp"
 #include "renderingSystem/renderingAPI.hpp"
@@ -56,5 +57,13 @@ int main(int argc, char *argv[])
 	//SHOW MAIN WINDOW
 	mainWindow.show();
 
+	/*-----------------------------------------------------------------------------
+	*	TEST
+	*-----------------------------------------------------------------------------*/
+	PolygonMeshNode polyMoly;
+
+	/*-----------------------------------------------------------------------------
+	*	EXECUTE
+	*-----------------------------------------------------------------------------*/
 	return application.exec();
 }
