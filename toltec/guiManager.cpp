@@ -10,7 +10,7 @@
 *-----------------------------------------------------------------------------*/
 #include "guiManager.hpp"
 
-#include "gui/outputLineWidget.hpp"
+#include "ui/gui/outputLineWidget.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR

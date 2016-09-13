@@ -17,7 +17,7 @@
 #include <QtWidgets/qwidget.h>
 
 #include "guiManager.hpp"
-#include "gui/outputLineWidget.hpp"
+#include "ui/gui/outputLineWidget.hpp"
 #include "renderingSystem/abstractViewport.hpp"
 
 /*-----------------------------------------------------------------------------

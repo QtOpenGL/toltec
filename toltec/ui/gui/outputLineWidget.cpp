@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "gui/outputLineWidget.hpp"
+#include "ui/gui/outputLineWidget.hpp"
 
 #include <QtGui/qbrush.h>
 #include <QtGui/qpainter.h>

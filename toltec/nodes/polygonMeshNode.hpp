@@ -13,19 +13,33 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "scene3DNode.hpp"
+#include "renderableObjectNode.hpp"
+
+#include "toltecPolygonMeshLibrary/mesh.hpp"
+
+/*-----------------------------------------------------------------------------
+*	FORWARD DECLARATION
+*-----------------------------------------------------------------------------*/
+class TransformNode;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
 *	SCENE 3D NODE
 *-----------------------------------------------------------------------------*/
-class PolygonMeshNode : public Scene3DNode
+class PolygonMeshNode : public RenderableObjecNode
 {
 public:
 	//CONSTRUCTORS
 				PolygonMeshNode();
 	virtual		~PolygonMeshNode() {}
 
+	//OTHER
+	bool		create(
+		std::vector<tpm::Point3D>&	point3DList, 
+		std::vector<unsigned int>&	vertexSequence,
+		std::vector<unsigned int>&	polygonOffsets,
+		TransformNode*				p_parent = nullptr);
+
 private:
-	//...
+	tpm::Mesh	m_mesh;
 };

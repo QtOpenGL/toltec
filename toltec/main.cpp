@@ -5,8 +5,8 @@
 
 #include <QtWidgets/qapplication.h>
 
-#include "gui/mainWindow.hpp"
-#include "gui/viewportPanel.hpp"
+#include "ui/gui/mainWindow.hpp"
+#include "ui/gui/viewportPanel.hpp"
 #include "nodes/polygonMeshNode.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRendererResource.hpp"

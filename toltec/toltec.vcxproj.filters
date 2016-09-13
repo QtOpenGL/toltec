@@ -15,9 +15,6 @@
       <UniqueIdentifier>{3446f8b2-565d-418f-bb30-c845663461c8}</UniqueIdentifier>
       <Extensions>.cpp;.hpp;.h</Extensions>
     </Filter>
-    <Filter Include="Main Files\gui">
-      <UniqueIdentifier>{99d33621-165a-49ba-9a45-ea1d96e474d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generated Files\Debug">
       <UniqueIdentifier>{acf4d98a-13fd-4456-97d8-594f9ab1994d}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
@@ -43,19 +40,19 @@
     <Filter Include="Main Files\toltecPolygonMeshLibrary">
       <UniqueIdentifier>{e447b132-5d9d-4d4f-bfac-d79260a509a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\ui">
+      <UniqueIdentifier>{fedb090e-d5df-4b81-badb-7cdb71e2434d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Files\ui\gui">
+      <UniqueIdentifier>{99d33621-165a-49ba-9a45-ea1d96e474d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Files\ui\commands">
+      <UniqueIdentifier>{03a32da7-e5ec-41cb-a25b-b4b0559efe78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Main Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_mainWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_mainWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\mainWindow.cpp">
-      <Filter>Main Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -68,15 +65,6 @@
     </ClCompile>
     <ClCompile Include="renderingSystem\abstractRenderer.cpp">
       <Filter>Main Files\renderingSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_viewportPanel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\viewportPanel.cpp">
-      <Filter>Main Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -102,9 +90,6 @@
     <ClCompile Include="guiManager.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\outputLineWidget.cpp">
-      <Filter>Main Files\gui</Filter>
-    </ClCompile>
     <ClCompile Include="renderingSystem\openGLViewport.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
@@ -114,16 +99,31 @@
     <ClCompile Include="toltecPolygonMeshLibrary\mesh.cpp">
       <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="ui\gui\mainWindow.cpp">
+      <Filter>Main Files\ui\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mainWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mainWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\gui\outputLineWidget.cpp">
+      <Filter>Main Files\ui\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\gui\viewportPanel.cpp">
+      <Filter>Main Files\ui\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_viewportPanel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="gui\mainWindow.hpp">
-      <Filter>Main Files\gui</Filter>
-    </CustomBuild>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
       <Filter>Main Files\renderingSystem</Filter>
-    </CustomBuild>
-    <CustomBuild Include="gui\viewportPanel.hpp">
-      <Filter>Main Files\gui</Filter>
     </CustomBuild>
     <CustomBuild Include="renderingSystem\abstractViewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
@@ -133,6 +133,12 @@
     </CustomBuild>
     <CustomBuild Include="renderingSystem\toltec\toltecOpenGLRendererResource.hpp">
       <Filter>Main Files\renderingSystem\toltec</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\gui\mainWindow.hpp">
+      <Filter>Main Files\ui\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\gui\viewportPanel.hpp">
+      <Filter>Main Files\ui\gui</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +166,6 @@
     <ClInclude Include="guiManager.hpp">
       <Filter>Main Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\outputLineWidget.hpp">
-      <Filter>Main Files\gui</Filter>
-    </ClInclude>
     <ClInclude Include="nodes\node.hpp">
       <Filter>Main Files\nodes</Filter>
     </ClInclude>
@@ -180,6 +183,12 @@
     </ClInclude>
     <ClInclude Include="toltecPolygonMeshLibrary\math.hpp">
       <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\renderableObjectNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\gui\outputLineWidget.hpp">
+      <Filter>Main Files\ui\gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
