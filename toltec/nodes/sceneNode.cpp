@@ -1,44 +1,44 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VIII 2016
+*		15 IX 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
-*	INFO:
-*		PolygonMeshNode class holds information about mesh data structure 
-*		(vertices, edges, triangles, faces, etc.).
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderableObjectNode.hpp"
-#include "toltecPolygonMeshLibrary/math.hpp"
-#include "toltecPolygonMeshLibrary/mesh.hpp"
+#include "sceneNode.hpp"
+
+#include "transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATION
+*	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-class TransformNode;
-
-/*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SCENE 3D NODE
-*-----------------------------------------------------------------------------*/
-class PolygonMeshNode : public RenderableObjectNode
+SceneNode::SceneNode()
+	:
+	mp_parent(nullptr)
 {
-public:
-	//CONSTRUCTORS
-				PolygonMeshNode();
-	virtual		~PolygonMeshNode() {}
+}
 
-	//OTHER
-	bool		createMesh(
-		std::vector<tpm::Point3D>&	point3DList, 
-		std::vector<unsigned int>&	vertexSequence,
-		std::vector<unsigned int>&	polygonOffsets);
+/*-----------------------------------------------------------------------------
+*	SET PARENT NODE
+*-----------------------------------------------------------------------------*/
+void SceneNode::setParent(SceneNode* p_parent)
+{
+	//CHECK
+	//Parent pointer will be only assigned if the parent is a TransformNode object.
+	//Renderable object nodes can not be parents.
+	TransformNode* p_transformNode = dynamic_cast<TransformNode*>(p_parent);
+	if (p_transformNode == nullptr)
+		return;
 
-private:
-	tpm::Mesh		m_mesh;
-};
+	if (mp_parent == p_parent)
+		return;
+
+	//SET PARENT
+	mp_parent = p_parent;
+
+	//ADD CHILD
+	p_transformNode->addChild(this);
+}

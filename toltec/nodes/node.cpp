@@ -1,13 +1,8 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VIII 2016
+*		14 IX 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
-*	INFO:
-*		Scene3DNode class represnet base class for all nodes that will be 
-*		placed and rendered in the viewport.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -16,15 +11,10 @@
 #include "node.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SCENE 3D NODE
+*	SET NAME
 *-----------------------------------------------------------------------------*/
-class Scene3DNode : public Node
+void Node::setName(const std::string& name)
 {
-public:
-	//CONSTRUCTORS
-	virtual ~Scene3DNode() {}
+	m_name = name;
+}
 
-private:
-	//...
-};

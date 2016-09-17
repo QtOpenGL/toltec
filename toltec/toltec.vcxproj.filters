@@ -120,6 +120,27 @@
     <ClCompile Include="GeneratedFiles\Release\moc_viewportPanel.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ui\commands\createCube.cpp">
+      <Filter>Main Files\ui\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\node.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="resourceManager.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\transformNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Main Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\renderableObjectNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\sceneNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -169,9 +190,6 @@
     <ClInclude Include="nodes\node.hpp">
       <Filter>Main Files\nodes</Filter>
     </ClInclude>
-    <ClInclude Include="nodes\scene3DNode.hpp">
-      <Filter>Main Files\nodes</Filter>
-    </ClInclude>
     <ClInclude Include="nodes\transformNode.hpp">
       <Filter>Main Files\nodes</Filter>
     </ClInclude>
@@ -189,6 +207,15 @@
     </ClInclude>
     <ClInclude Include="ui\gui\outputLineWidget.hpp">
       <Filter>Main Files\ui\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\commands\createCube.hpp">
+      <Filter>Main Files\ui\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="resourceManager.hpp">
+      <Filter>Main Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\sceneNode.hpp">
+      <Filter>Main Files\nodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

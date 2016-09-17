@@ -12,7 +12,7 @@
 
 #include <algorithm>
 
-#include "gui/viewportPanel.hpp"
+#include "ui/gui/viewportPanel.hpp"
 #include "renderingSystem/abstractRenderer.hpp"
 #include "renderingSystem/abstractViewport.hpp"
 #include "renderingSystem/renderingSystem.hpp"

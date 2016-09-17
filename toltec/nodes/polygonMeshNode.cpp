@@ -1,4 +1,11 @@
 /*-----------------------------------------------------------------------------
+*	CREATED:
+*		30 VIII 2016
+*	CONTRIBUTORS:
+*		PETER MAKAL
+*-----------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "polygonMeshNode.hpp"
@@ -7,26 +14,26 @@
 #include <iostream>
 #include <vector>
 
+#include "transformNode.hpp"
+
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 PolygonMeshNode::PolygonMeshNode()
 {
-	//...
 }
 
 /*-----------------------------------------------------------------------------
 *	CREATE
 *-----------------------------------------------------------------------------*/
-bool PolygonMeshNode::create(
+bool PolygonMeshNode::createMesh(
 	std::vector<tpm::Point3D>&	point3DList,
 	std::vector<unsigned int>&	vertexSequence,
-	std::vector<unsigned int>&	polygonOffsets,
-	TransformNode*				p_parent)
+	std::vector<unsigned int>&	polygonOffsetList)
 {
 	//CHECK
 	unsigned int faceVertexCountCheck = 0;
-	for (const unsigned int& numPolygonSides : polygonOffsets)
+	for (const unsigned int& numPolygonSides : polygonOffsetList)
 		faceVertexCountCheck += numPolygonSides;
 
 	if (vertexSequence.size() != faceVertexCountCheck)
@@ -42,12 +49,12 @@ bool PolygonMeshNode::create(
 	std::vector<tpm::Vertex*> faceBuildList;
 
 	unsigned int faceVertexIndex = 0;
-	for (const unsigned int& numPolygonSides : polygonOffsets)
+	for (const unsigned int& numPolygonSides : polygonOffsetList)
 	{
 		faceBuildList.clear();
 		for (unsigned int i = 0; i < numPolygonSides; i++)
 		{
-			faceBuildList.push_back(vertexList[faceVertexIndex]);
+			faceBuildList.push_back(vertexList[vertexSequence[faceVertexIndex]]);
 			faceVertexIndex++;
 		}
 		m_mesh.addFace(faceBuildList);

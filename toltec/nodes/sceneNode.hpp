@@ -2,29 +2,43 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		12 IX 2016
+*		30 VIII 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		RenderableObjectNode is a base class for all nodes that can be 
-*		rendered inside the viewport.
+*		SceneNode class represnet base class for all nodes that will be 
+*		placed and rendered in the viewport.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "sceneNode.hpp"
+#include "node.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	RENDERABLE OBJECT NODE
+*	SCENE NODE
 *-----------------------------------------------------------------------------*/
-class RenderableObjectNode : public SceneNode
+class SceneNode : public Node
 {
 public:
 	//CONSTRUCTORS
-	virtual			~RenderableObjectNode() {}
+					SceneNode();
+	virtual			~SceneNode() {}
 
-private:
-	//...
+	//SET
+	virtual void	setParent(SceneNode* p_parent);
+
+	//GET
+	SceneNode*		getParent();
+
+protected:
+	SceneNode*		mp_parent;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline SceneNode* SceneNode::getParent()
+{
+	return mp_parent;
+}

@@ -5,14 +5,17 @@
 
 #include <QtWidgets/qapplication.h>
 
+#include "ui/commands/createCube.hpp"
 #include "ui/gui/mainWindow.hpp"
 #include "ui/gui/viewportPanel.hpp"
 #include "nodes/polygonMeshNode.hpp"
+#include "nodes/transformNode.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRendererResource.hpp"
 #include "renderingSystem/renderingAPI.hpp"
 #include "renderingSystem/renderingSystem.hpp"
 #include "renderManager.hpp"
+#include "resourceManager.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -29,6 +32,12 @@ int main(int argc, char *argv[])
 	/*-----------------------------------------------------------------------------
 	*	CREATE CORE OBJECTS
 	*-----------------------------------------------------------------------------*/
+	//ROOT TRANSFORM NODE
+	TransformNode rootTransformNode;
+	rootTransformNode.setName("root");
+	//add
+	ResourceManager::getInstance().setRootTransformNode(&rootTransformNode);
+	
 	//TOLTEC RENDERING SYSTEM
 	RenderingSystem toltecRenderingSystem("Toltec");
 	//opengl
@@ -60,7 +69,7 @@ int main(int argc, char *argv[])
 	/*-----------------------------------------------------------------------------
 	*	TEST
 	*-----------------------------------------------------------------------------*/
-	PolygonMeshNode polyMoly;
+	createCube();
 
 	/*-----------------------------------------------------------------------------
 	*	EXECUTE
