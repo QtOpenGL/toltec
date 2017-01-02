@@ -1,10 +1,12 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <iostream>
 #include <memory>
 
 #include <QtWidgets/qapplication.h>
 
+#include "events/globalEventFilter.hpp"
 #include "ui/commands/createCube.hpp"
 #include "ui/gui/mainWindow.hpp"
 #include "ui/gui/viewportPanel.hpp"
@@ -22,7 +24,7 @@
 *	FUNCTION DEFINITIONS
 *	MAIN
 *-----------------------------------------------------------------------------*/
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 	/*-----------------------------------------------------------------------------
 	*	START QT
@@ -32,24 +34,34 @@ int main(int argc, char *argv[])
 	/*-----------------------------------------------------------------------------
 	*	CREATE CORE OBJECTS
 	*-----------------------------------------------------------------------------*/
+	//GLOBAL EVENT FILTER
+	GlobalEventFilter globalEventFilter;
+	//instal
+	application.installEventFilter(&globalEventFilter);
+
 	//ROOT TRANSFORM NODE
 	TransformNode rootTransformNode;
 	rootTransformNode.setName("root");
 	//add
 	ResourceManager::getInstance().setRootTransformNode(&rootTransformNode);
+
+	//MAIN CAMERA NODE
+	//...
 	
 	//TOLTEC RENDERING SYSTEM
 	RenderingSystem toltecRenderingSystem("Toltec");
 	//opengl
-	ToltecOpenGLRenderer* p_toltecOpenGLRenderer =					new ToltecOpenGLRenderer();
-	ToltecOpenGLRendererResource* p_toltecOpenGLRendererResource =	new ToltecOpenGLRendererResource();
-	RenderingAPI* p_toltecOpenGLRenderingAPI =						new RenderingAPI(
-		RenderingAPI::OPENGL_API, p_toltecOpenGLRenderer, p_toltecOpenGLRendererResource);
+	ToltecOpenGLRenderer* p_toltecOpenGLRenderer =					
+		new ToltecOpenGLRenderer();
+	ToltecOpenGLRendererResource* p_toltecOpenGLRendererResource =	
+		new ToltecOpenGLRendererResource();
+	RenderingAPI* p_toltecOpenGLRenderingAPI =						
+		new RenderingAPI(RenderingAPI::OPENGL_API, p_toltecOpenGLRenderer, p_toltecOpenGLRendererResource);
 
 	//add
 	toltecRenderingSystem.addRenderingAPI(p_toltecOpenGLRenderingAPI);
 
-	//ADD RENDERING SYSTEMS TO RENDER MANAGER
+	//ADD RENDERING SYSTEMS TO THE RENDER MANAGER
 	RenderManager::getInstance().addRenderingSystem(&toltecRenderingSystem);
 
 	/*-----------------------------------------------------------------------------
@@ -67,7 +79,7 @@ int main(int argc, char *argv[])
 	mainWindow.show();
 
 	/*-----------------------------------------------------------------------------
-	*	TEST
+	*	CREATE SECONDARY OBJECTS
 	*-----------------------------------------------------------------------------*/
 	createCube();
 

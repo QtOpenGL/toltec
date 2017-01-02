@@ -30,9 +30,9 @@ OpenGLViewport::OpenGLViewport()
 /*-----------------------------------------------------------------------------
 *	EXPOSE EVENT
 *-----------------------------------------------------------------------------*/
-void OpenGLViewport::exposeEvent(QExposeEvent* event)
+void OpenGLViewport::exposeEvent(QExposeEvent* p_exposeEvent)
 {
-	Q_UNUSED(event);
+	Q_UNUSED(p_exposeEvent);
 	if (this->isExposed())
 		mp_renderer->requestRender(this);
 }

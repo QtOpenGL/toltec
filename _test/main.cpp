@@ -3,11 +3,29 @@
 #include <string>
 #include <vector>
 
-const std::string& giveTheName()
+class Node
 {
-	std::string theName = "Piotr Makal";
-	return theName;
-}
+public:
+	virtual ~Node() {}
+};
+
+class CameraNavigation
+{
+public:
+	virtual ~CameraNavigation() {}
+
+	void tumble();
+};
+
+class TNode : public Node, public CameraNavigation
+{
+public:
+	TNode() { x = 1; }
+	virtual ~TNode() {}
+
+private:
+	int x;
+};
 
 int main(int argc, char* argv[])
 {

@@ -141,6 +141,15 @@
     <ClCompile Include="nodes\sceneNode.cpp">
       <Filter>Main Files\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_globalEventFilter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_globalEventFilter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="events\globalEventFilter.cpp">
+      <Filter>Main Files\events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -160,6 +169,9 @@
     </CustomBuild>
     <CustomBuild Include="ui\gui\viewportPanel.hpp">
       <Filter>Main Files\ui\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="events\globalEventFilter.hpp">
+      <Filter>Main Files\events</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -217,5 +229,11 @@
     <ClInclude Include="nodes\sceneNode.hpp">
       <Filter>Main Files\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="nodes\cameraNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

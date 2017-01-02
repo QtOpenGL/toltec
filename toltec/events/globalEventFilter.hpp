@@ -2,43 +2,49 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VIII 2016
+*		21 IX 2016
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		PolygonMeshNode class holds information about mesh data structure 
-*		(vertices, edges, triangles, faces, etc.).
+*		...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderableObjectNode.hpp"
-#include "toltecPolygonMeshLibrary/math.hpp"
-#include "toltecPolygonMeshLibrary/mesh.hpp"
+#include <QtCore/qobject.h>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATION
+*	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class TransformNode;
+class QEvent;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	SCENE 3D NODE
+*	GLOBAL EVENT FILTER
 *-----------------------------------------------------------------------------*/
-class PolygonMeshNode : public RenderableObjectNode
+class GlobalEventFilter : public QObject
 {
+	Q_OBJECT
+
 public:
-	//CONSTRUCTORS
-				PolygonMeshNode();
-	virtual		~PolygonMeshNode() {}
+	//CONSTRUCTOR
+	virtual			~GlobalEventFilter() {}
+
+	//EVENTS
+	virtual bool	eventFilter(QObject* p_qObject, QEvent* p_qEvent);
 
 	//STATIC
-	bool		createMesh(
-		std::vector<tpm::Point3D>&	point3DList, 
-		std::vector<unsigned int>&	vertexSequence,
-		std::vector<unsigned int>&	polygonOffsets);
+	static bool		isAltPressed();
 
 private:
-	tpm::Mesh		m_mesh;
+	//STATIC
+	static bool		ms_isAltPressed;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline bool GlobalEventFilter::isAltPressed()
+{
+	return ms_isAltPressed;
+}

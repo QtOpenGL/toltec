@@ -20,6 +20,7 @@
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractRenderer;
+class TransformNode;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -28,30 +29,60 @@ class AbstractRenderer;
 class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
 {
 public:
-	//CONSTRUCTORS AND DESTRUCTORS
+	//CONSTRUCTORS
 						AbstractViewport();
 	virtual				~AbstractViewport() {}
 
+	//EVENTS
+	virtual void		mousePressEvent(QMouseEvent* p_mouseEvent);
+	virtual void		mouseReleaseEvent(QMouseEvent* p_mouseEvent);
+	virtual void		mouseMoveEvent(QMouseEvent* p_mouseEvent);
+
 	//SET
 	void				setRenderer(AbstractRenderer* p_renderer);
+	void				setCamera(TransformNode* p_camera);
 
 	//GET
-	AbstractRenderer*	getRenderer() const;
 	RenderingAPI::Type	getType() const;
+	AbstractRenderer*	getRenderer() const;
+	TransformNode*		getCamera() const;
 
 protected:
-	AbstractRenderer*	mp_renderer;
 	RenderingAPI::Type	m_type;
+	AbstractRenderer*	mp_renderer;
+	TransformNode*		mp_camera;
+
+private:
+	void				tumble(int x, int y);
+	void				track(int x, int y);
+	void				dolly(int x, int y);
+
+private:
+	bool				
+		m_isLeftMouseButtonPressed,
+		m_isMiddleMouseButtonPressed,
+		m_isRightMouseButtonPressed;
+
+	int
+		m_mouseLocalXPosition,
+		m_mouseLocalYPosition,
+		m_mouseRelativeXPosition,
+		m_mouseRelativeYPosition;
 };
 
 /*----------------------------------------------------------------------------*/
+
+inline RenderingAPI::Type AbstractViewport::getType() const
+{
+	return m_type;
+}
 
 inline AbstractRenderer* AbstractViewport::getRenderer() const
 {
 	return mp_renderer;
 }
 
-inline RenderingAPI::Type AbstractViewport::getType() const
+inline TransformNode* AbstractViewport::getCamera() const
 {
-	return m_type;
+	return mp_camera;
 }

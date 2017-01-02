@@ -28,12 +28,12 @@ class QOpenGLContext;
 class OpenGLViewport : public AbstractViewport
 {
 public:
-	//(CON/DE)STRUCTORS
+	//CONSTRUCTORS
 					OpenGLViewport();
 	virtual			~OpenGLViewport() {}
 
 	//EVENTS
-	virtual void	exposeEvent(QExposeEvent*);
+	virtual void	exposeEvent(QExposeEvent* p_exposeEvent);
 
 	//OTHERS
 	void			makeCurrent();
