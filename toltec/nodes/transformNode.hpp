@@ -46,19 +46,21 @@ public:
 	//GET
 	const std::vector<SceneNode*>&	getChildList() const;
 
-	const glm::vec3&	getTranslation() const;
-	const glm::vec3&	getRotation() const;
-	const glm::vec3&	getScale() const;
-	const glm::mat4&	getModelMatrix();
+	const glm::vec3&				getTranslation() const;
+	const glm::vec3&				getRotation() const;
+	const glm::vec3&				getScale() const;
+	const glm::mat4&				getModelMatrix();
 
 private:
-	std::vector<SceneNode*>			m_childList;
+	std::vector<SceneNode*>		m_childList;
 
-	glm::vec3	m_translation;
-	glm::vec3	m_rotation;
-	glm::vec3	m_scale;
+	glm::vec3					m_translation;
+	glm::vec3					m_rotation;
+	glm::vec3					m_scale;
 
-	glm::mat4	m_modelMatrix;
+	glm::mat4					m_modelMatrix;
+
+	bool						m_updateModelMatrixFlag;
 };
 
 /*----------------------------------------------------------------------------*/
