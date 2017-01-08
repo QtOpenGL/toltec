@@ -19,6 +19,8 @@ SceneNode::SceneNode()
 	:
 	mp_parent(nullptr)
 {
+	//INITIALIZE
+	this->setShortName("sceneNode");
 }
 
 /*-----------------------------------------------------------------------------

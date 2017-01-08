@@ -54,23 +54,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Main Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_abstractRenderer.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="events\renderEvent.cpp">
       <Filter>Main Files\events</Filter>
     </ClCompile>
     <ClCompile Include="renderingSystem\abstractRenderer.cpp">
       <Filter>Main Files\renderingSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_toltecOpenGLRenderer.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="renderingSystem\renderingAPI.cpp">
       <Filter>Main Files\renderingSystem</Filter>
@@ -102,23 +90,11 @@
     <ClCompile Include="ui\gui\mainWindow.cpp">
       <Filter>Main Files\ui\gui</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_mainWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_mainWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="ui\gui\outputLineWidget.cpp">
       <Filter>Main Files\ui\gui</Filter>
     </ClCompile>
     <ClCompile Include="ui\gui\viewportPanel.cpp">
       <Filter>Main Files\ui\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_viewportPanel.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="ui\commands\createCube.cpp">
       <Filter>Main Files\ui\commands</Filter>
@@ -141,14 +117,32 @@
     <ClCompile Include="nodes\sceneNode.cpp">
       <Filter>Main Files\nodes</Filter>
     </ClCompile>
+    <ClCompile Include="events\globalEventFilter.cpp">
+      <Filter>Main Files\events</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\cameraNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_abstractViewport.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_globalEventFilter.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_globalEventFilter.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mainWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="events\globalEventFilter.cpp">
-      <Filter>Main Files\events</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_openGLViewport.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,67 +167,63 @@
     <CustomBuild Include="events\globalEventFilter.hpp">
       <Filter>Main Files\events</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="utils.hpp">
+    <CustomBuild Include="ClassDiagram.cd" />
+    <CustomBuild Include="guiManager.hpp">
       <Filter>Main Files</Filter>
-    </ClInclude>
-    <ClInclude Include="events\renderEvent.hpp">
+    </CustomBuild>
+    <CustomBuild Include="renderManager.hpp">
+      <Filter>Main Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="resourceManager.hpp">
+      <Filter>Main Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="utils.hpp">
+      <Filter>Main Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\abstractRendererResource.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\openGLViewport.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\renderingAPI.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="renderingSystem\renderingSystem.hpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </CustomBuild>
+    <CustomBuild Include="events\renderEvent.hpp">
       <Filter>Main Files\events</Filter>
-    </ClInclude>
-    <ClInclude Include="renderingSystem\abstractRendererResource.hpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="renderingSystem\renderingAPI.hpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="renderManager.hpp">
-      <Filter>Main Files</Filter>
-    </ClInclude>
-    <ClInclude Include="renderingSystem\renderingSystem.hpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="renderingSystem\openGLViewport.hpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="guiManager.hpp">
-      <Filter>Main Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nodes\node.hpp">
+    </CustomBuild>
+    <CustomBuild Include="nodes\cameraNode.hpp">
       <Filter>Main Files\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="nodes\transformNode.hpp">
+    </CustomBuild>
+    <CustomBuild Include="nodes\node.hpp">
       <Filter>Main Files\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="nodes\polygonMeshNode.hpp">
+    </CustomBuild>
+    <CustomBuild Include="nodes\polygonMeshNode.hpp">
       <Filter>Main Files\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="toltecPolygonMeshLibrary\mesh.hpp">
+    </CustomBuild>
+    <CustomBuild Include="nodes\renderableObjectNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="nodes\sceneNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="nodes\transformNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="toltecPolygonMeshLibrary\math.hpp">
       <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="toltecPolygonMeshLibrary\math.hpp">
+    </CustomBuild>
+    <CustomBuild Include="toltecPolygonMeshLibrary\mesh.hpp">
       <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="nodes\renderableObjectNode.hpp">
-      <Filter>Main Files\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="ui\gui\outputLineWidget.hpp">
+    </CustomBuild>
+    <CustomBuild Include="ui\gui\outputLineWidget.hpp">
       <Filter>Main Files\ui\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="ui\commands\createCube.hpp">
+    </CustomBuild>
+    <CustomBuild Include="ui\commands\createCube.hpp">
       <Filter>Main Files\ui\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="resourceManager.hpp">
-      <Filter>Main Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nodes\sceneNode.hpp">
-      <Filter>Main Files\nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="nodes\cameraNode.hpp">
-      <Filter>Main Files\nodes</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    </CustomBuild>
   </ItemGroup>
 </Project>

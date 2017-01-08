@@ -9,3 +9,9 @@
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderableObjectNode.hpp"
+
+RenderableObjectNode::RenderableObjectNode()
+{
+	//INITIALIZE
+	this->setShortName("renderableObjectNode");
+}

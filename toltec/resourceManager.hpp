@@ -13,11 +13,14 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <cstdint>
 #include <vector>
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
+class CameraNode;
+class Node;
 class PolygonMeshNode;
 class TransformNode;
 
@@ -43,17 +46,29 @@ public:
 
 	//SET
 	void				setRootTransformNode(TransformNode* p_rootTransformNode);
+	void				setDefaultCameraNode(CameraNode* p_defaultCameraNode);
 
 	//GET
 	TransformNode*		getRootTransformNode();
 
-private:
-	//SINGLETON
-	ResourceManager() {}
+	//OTHER
+	std::uint32_t		assignNodeID();
+	void				removeNodeID(const std::uint32_t nodeID);
 
 private:
+	//SINGLETON
+	ResourceManager();
+
+private:
+	std::vector<std::uint32_t>		m_globalNodeIDList;
+
+	std::vector<Node*>				m_undeletableNodeList;
+
 	TransformNode*					mp_rootTransformNode;
+	CameraNode*						mp_defaultCameraNode;
+
 	std::vector<TransformNode*>		m_transformNodeList;
+	std::vector<CameraNode*>		m_cameraNodeList;
 	std::vector<PolygonMeshNode*>	m_polygonMeshNodeList;
 };
 

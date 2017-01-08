@@ -27,6 +27,8 @@ class QOpenGLContext;
 *-----------------------------------------------------------------------------*/
 class OpenGLViewport : public AbstractViewport
 {
+	Q_OBJECT
+
 public:
 	//CONSTRUCTORS
 					OpenGLViewport();

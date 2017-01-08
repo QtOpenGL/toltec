@@ -5,11 +5,13 @@
 #include <memory>
 
 #include <QtWidgets/qapplication.h>
+#include <glm/glm.hpp>
 
 #include "events/globalEventFilter.hpp"
 #include "ui/commands/createCube.hpp"
 #include "ui/gui/mainWindow.hpp"
 #include "ui/gui/viewportPanel.hpp"
+#include "nodes/cameraNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
@@ -36,16 +38,16 @@ int main(int argc, char* argv[])
 	*-----------------------------------------------------------------------------*/
 	//GLOBAL EVENT FILTER
 	GlobalEventFilter globalEventFilter;
-	//instal
 	application.installEventFilter(&globalEventFilter);
 
 	//ROOT TRANSFORM NODE
 	TransformNode rootTransformNode;
-	rootTransformNode.setName("root");
+	rootTransformNode.setShortName("root");
 	//add
 	ResourceManager::getInstance().setRootTransformNode(&rootTransformNode);
 
-	//MAIN CAMERA NODE
+	//DEFAULT CAMERA NODE
+	CameraNode defaultCameraNode;
 	//...
 	
 	//TOLTEC RENDERING SYSTEM

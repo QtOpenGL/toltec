@@ -12,7 +12,6 @@
 
 #include <cstddef>
 
-#include "sceneNode.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -20,9 +19,21 @@
 *-----------------------------------------------------------------------------*/
 TransformNode::TransformNode()
 	:
+	m_translation(glm::vec3(0.0f, 0.0f, 0.0f)),
+	m_rotation(glm::vec3(0.0f, 0.0f, 0.0f)),
 	m_scale(glm::vec3(1.0f, 1.0f, 1.0f)),
-	m_updateModelMatrixFlag(false)
+
+	m_updateModelMatrixFlag(false),
+
+	m_localX(glm::vec3(1.0f, 0.0f, 0.0f)),
+	m_localY(glm::vec3(0.0f, 1.0f, 0.0f)),
+	m_localZ(glm::vec3(0.0f, 0.0f, 1.0f)),
+
+	m_targetPosition(glm::vec3(0.0f, 0.0f, -1.0f))
 {
+	//INITIALIZE
+	this->setShortName("transformNode");
+	m_modelMatrix = utils::calcModelMatrix(m_translation, m_rotation, m_scale);
 }
 
 /*-----------------------------------------------------------------------------

@@ -12,6 +12,7 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <cstdint>
 #include <string>
 
 /*-----------------------------------------------------------------------------
@@ -22,21 +23,24 @@ class Node
 {
 public:
 	//CONSTRUCTORS
-	virtual					~Node() {}
+							Node();
+	virtual					~Node();
 
 	//SET
-	void					setName(const std::string& name);
+	void					setShortName(const std::string& shortName);
 
 	//GET
-	const std::string&		getName() const;
+	const std::string&		getShortName() const;
+	std::string				getFullName() const;
 
-protected:
-	std::string				m_name;
+private:
+	std::string				m_shortName;
+	const std::uint32_t		m_id;
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline const std::string& Node::getName() const
+inline const std::string& Node::getShortName() const
 {
-	return m_name;
+	return m_shortName;
 }

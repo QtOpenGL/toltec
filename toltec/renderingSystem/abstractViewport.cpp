@@ -22,13 +22,17 @@ AbstractViewport::AbstractViewport()
 	m_type(RenderingAPI::UNSPECIFIED_API),
 	mp_renderer(nullptr),
 	mp_camera(nullptr),
+
 	m_isLeftMouseButtonPressed(false),
 	m_isMiddleMouseButtonPressed(false),
 	m_isRightMouseButtonPressed(false),
+
 	m_mouseLocalXPosition(0),
 	m_mouseLocalYPosition(0),
 	m_mouseRelativeXPosition(0),
-	m_mouseRelativeYPosition(0)
+	m_mouseRelativeYPosition(0),
+
+	m_mouseSensitivity(1.0f)
 {
 }
 
@@ -39,13 +43,13 @@ void AbstractViewport::mousePressEvent(QMouseEvent* p_mouseEvent)
 {
 	switch (p_mouseEvent->button())
 	{
-	case Qt::LeftButton:		//LEFT BUTTON
+	case Qt::LeftButton:
 		m_isLeftMouseButtonPressed = true;
 		break;
-	case Qt::MiddleButton:		//MIDDLE BUTTON
+	case Qt::MiddleButton:		
 		m_isMiddleMouseButtonPressed = true;
 		break;
-	case Qt::RightButton:		//RIGHT BUTTON
+	case Qt::RightButton:		
 		m_isRightMouseButtonPressed = true;
 		break;
 	}
@@ -58,13 +62,13 @@ void AbstractViewport::mouseReleaseEvent(QMouseEvent* p_mouseEvent)
 {
 	switch (p_mouseEvent->button())
 	{
-	case Qt::LeftButton:		//LEFT BUTTON
+	case Qt::LeftButton:		
 		m_isLeftMouseButtonPressed = false;
 		break;
-	case Qt::MiddleButton:		//MIDDLE BUTTON
+	case Qt::MiddleButton:		
 		m_isMiddleMouseButtonPressed = false;
 		break;
-	case Qt::RightButton:		//RIGHT BUTTON
+	case Qt::RightButton:		
 		m_isRightMouseButtonPressed = false;
 		break;
 	}

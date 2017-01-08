@@ -28,6 +28,8 @@ class TransformNode;
 *-----------------------------------------------------------------------------*/
 class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
 {
+	Q_OBJECT
+
 public:
 	//CONSTRUCTORS
 						AbstractViewport();
@@ -68,6 +70,8 @@ private:
 		m_mouseLocalYPosition,
 		m_mouseRelativeXPosition,
 		m_mouseRelativeYPosition;
+
+	float m_mouseSensitivity;
 };
 
 /*----------------------------------------------------------------------------*/

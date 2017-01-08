@@ -23,6 +23,7 @@ class RenderableObjectNode : public SceneNode
 {
 public:
 	//CONSTRUCTORS
+					RenderableObjectNode();
 	virtual			~RenderableObjectNode() {}
 
 private:
