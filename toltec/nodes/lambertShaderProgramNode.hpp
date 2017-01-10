@@ -14,7 +14,7 @@
 *-----------------------------------------------------------------------------*/
 #include <glm/glm.hpp>
 
-#include "node.hpp"
+#include "shaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
@@ -25,7 +25,7 @@ class TextureNode;
 *	CLASS DECLARATIONS
 *	LAMBERT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-class LambertShaderProgramNode : public Node
+class LambertShaderProgramNode : public ShaderProgramNode
 {
 public:
 	//CONSTRUCTORS

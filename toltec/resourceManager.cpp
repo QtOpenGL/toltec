@@ -14,6 +14,7 @@
 
 #include "nodes/cameraNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
+#include "nodes/shaderProgramNode.hpp"
 #include "nodes/transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -21,11 +22,26 @@
 *-----------------------------------------------------------------------------*/
 ResourceManager::ResourceManager()
 	:
+	mp_defaultShaderProgramNode(nullptr),
 	mp_rootTransformNode(nullptr),
 	mp_defaultCameraNode(nullptr)
 {
 	//INITIALIZE
 	m_globalNodeIDList.push_back(0);
+}
+
+/*-----------------------------------------------------------------------------
+*	SET DEFAULT SHADER PROGRAM NODE
+*-----------------------------------------------------------------------------*/
+void ResourceManager::setDefaultShaderProgramNode(ShaderProgramNode* p_shaderProgramNode)
+{
+	if (mp_defaultShaderProgramNode != nullptr)	//return if already assigned
+		return;
+
+	mp_defaultShaderProgramNode = p_shaderProgramNode;
+
+	m_shaderProgramNodeList.push_back(mp_defaultShaderProgramNode);
+	m_undeletableNodeList.push_back(mp_defaultShaderProgramNode);
 }
 
 /*-----------------------------------------------------------------------------
@@ -38,12 +54,12 @@ void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
 
 	mp_rootTransformNode = p_rootTransformNode;
 
-	m_transformNodeList.push_back(p_rootTransformNode);
-	m_undeletableNodeList.push_back(p_rootTransformNode);
+	m_transformNodeList.push_back(mp_rootTransformNode);
+	m_undeletableNodeList.push_back(mp_rootTransformNode);
 }
 
 /*-----------------------------------------------------------------------------
-*	SET DEFAULT CAMERA
+*	SET DEFAULT CAMERA NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
 {
@@ -52,8 +68,8 @@ void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
 
 	mp_defaultCameraNode = p_defaultCameraNode;
 
-	m_cameraNodeList.push_back(p_defaultCameraNode);
-	m_undeletableNodeList.push_back(p_defaultCameraNode);
+	m_cameraNodeList.push_back(mp_defaultCameraNode);
+	m_undeletableNodeList.push_back(mp_defaultCameraNode);
 }
 
 /*-----------------------------------------------------------------------------

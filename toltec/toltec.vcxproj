@@ -149,10 +149,12 @@
     <ClCompile Include="guiManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="nodes\cameraNode.cpp" />
+    <ClCompile Include="nodes\lambertShaderProgramNode.cpp" />
     <ClCompile Include="nodes\node.cpp" />
     <ClCompile Include="nodes\polygonMeshNode.cpp" />
     <ClCompile Include="nodes\renderableObjectNode.cpp" />
     <ClCompile Include="nodes\sceneNode.cpp" />
+    <ClCompile Include="nodes\shaderProgramNode.cpp" />
     <ClCompile Include="nodes\transformNode.cpp" />
     <ClCompile Include="renderingSystem\abstractRenderer.cpp" />
     <ClCompile Include="renderingSystem\abstractViewport.cpp" />
@@ -898,6 +900,13 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nodes\lambertShaderProgramNode.hpp" />
+    <ClInclude Include="nodes\shaderProgramNode.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,6 +25,7 @@ void createCube()
 {
 	//CREATE TRANSFORM NODE
 	TransformNode* p_transformNode = new TransformNode();
+	p_transformNode->setShortName("polyCube");
 
 	//DEFINE CUBE POINTS
 	std::vector<tpm::Point3D> point3DList = {
@@ -53,6 +54,7 @@ void createCube()
 
 	//CREATE POLYGON MESH NODE
 	PolygonMeshNode* p_polygonMeshNode = new PolygonMeshNode();
+	p_polygonMeshNode->setShortName("polyCube");
 	p_polygonMeshNode->createMesh(point3DList, vertexSequence, polygonOffsetList);
 
 	//SET SCENE TREE

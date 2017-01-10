@@ -144,6 +144,12 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="nodes\shaderProgramNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\lambertShaderProgramNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -225,5 +231,16 @@
     <CustomBuild Include="ui\commands\createCube.hpp">
       <Filter>Main Files\ui\commands</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nodes\shaderProgramNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\lambertShaderProgramNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

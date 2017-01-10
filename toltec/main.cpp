@@ -12,6 +12,7 @@
 #include "ui/gui/mainWindow.hpp"
 #include "ui/gui/viewportPanel.hpp"
 #include "nodes/cameraNode.hpp"
+#include "nodes/lambertShaderProgramNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
 #include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
@@ -48,7 +49,15 @@ int main(int argc, char* argv[])
 
 	//DEFAULT CAMERA NODE
 	CameraNode defaultCameraNode;
-	//...
+	defaultCameraNode.setShortName("defaultCam");
+	//add
+	ResourceManager::getInstance().setDefaultCameraNode(&defaultCameraNode);
+
+	//DEFAULT SHADER
+	LambertShaderProgramNode lambertProgramShaderNode;
+	lambertProgramShaderNode.setShortName("defaultShader");
+	//add
+	ResourceManager::getInstance().setDefaultShaderProgramNode(&lambertProgramShaderNode);
 	
 	//TOLTEC RENDERING SYSTEM
 	RenderingSystem toltecRenderingSystem("Toltec");
@@ -59,7 +68,6 @@ int main(int argc, char* argv[])
 		new ToltecOpenGLRendererResource();
 	RenderingAPI* p_toltecOpenGLRenderingAPI =						
 		new RenderingAPI(RenderingAPI::OPENGL_API, p_toltecOpenGLRenderer, p_toltecOpenGLRendererResource);
-
 	//add
 	toltecRenderingSystem.addRenderingAPI(p_toltecOpenGLRenderingAPI);
 

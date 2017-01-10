@@ -22,6 +22,7 @@
 class CameraNode;
 class Node;
 class PolygonMeshNode;
+class ShaderProgramNode;
 class TransformNode;
 
 /*-----------------------------------------------------------------------------
@@ -45,6 +46,7 @@ public:
 	void				addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode);
 
 	//SET
+	void				setDefaultShaderProgramNode(ShaderProgramNode* p_shaderProgramNode);
 	void				setRootTransformNode(TransformNode* p_rootTransformNode);
 	void				setDefaultCameraNode(CameraNode* p_defaultCameraNode);
 
@@ -64,9 +66,11 @@ private:
 
 	std::vector<Node*>				m_undeletableNodeList;
 
+	ShaderProgramNode*				mp_defaultShaderProgramNode;
 	TransformNode*					mp_rootTransformNode;
 	CameraNode*						mp_defaultCameraNode;
 
+	std::vector<ShaderProgramNode*>	m_shaderProgramNodeList;
 	std::vector<TransformNode*>		m_transformNodeList;
 	std::vector<CameraNode*>		m_cameraNodeList;
 	std::vector<PolygonMeshNode*>	m_polygonMeshNodeList;
