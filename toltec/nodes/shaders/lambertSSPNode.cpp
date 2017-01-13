@@ -8,13 +8,22 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "shaderProgramNode.hpp"
+#include "lambertSSPNode.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-ShaderProgramNode::ShaderProgramNode()
+LambertSSPNode::LambertSSPNode()
+	:
+	m_diffuseColor(glm::vec3(0.5f, 0.5f, 0.5f)),
+	mp_diffuseMap(nullptr),
+	m_transparencyColor(glm::vec3(0.0f, 0.0f, 0.0f)),
+	mp_transparencyMap(nullptr),
+	m_ambientColor(glm::vec3(0.0f, 0.0f, 0.0f)),
+	mp_ambientMap(nullptr),
+
+	mp_bumpMap(nullptr)
 {
 	//INITIALIZE
-	this->setShortName("shaderProgram");
+	this->setShortName("lambertShader");
 }

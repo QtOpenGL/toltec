@@ -2,43 +2,47 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VIII 2016
+*		11 I 2017
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		PolygonMeshNode class holds information about mesh data structure 
-*		(vertices, edges, triangles, faces, etc.).
+*		SurfaceShaderProgramNode is a base class for all shaders programs that
+*		apply to surfaces (ie. meshes, NURBS-es, t-splines, etc.).
+*		This class holds reference to all surfaces that are using this class
+*		instance as shader program.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "surfaceNode.hpp"
-#include "toltecPolygonMeshLibrary/math.hpp"
-#include "toltecPolygonMeshLibrary/mesh.hpp"
+#include <vector>
+
+#include "shaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATION
+*	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class TransformNode;
+class SurfaceNode;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	SCENE 3D NODE
+*	SURFACE SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-class PolygonMeshNode : public SurfaceNode
+class SurfaceShaderProgramNode : public ShaderProgramNode
 {
 public:
 	//CONSTRUCTORS
-				PolygonMeshNode();
-	virtual		~PolygonMeshNode() {}
+				SurfaceShaderProgramNode();
+	virtual		~SurfaceShaderProgramNode() {}
 
-	//STATIC
-	bool		createMesh(
-		std::vector<tpm::Point3D>&	point3DList, 
-		std::vector<unsigned int>&	vertexSequence,
-		std::vector<unsigned int>&	polygonOffsets);
+	//ADD
+	void		addSurface(SurfaceNode* p_surfaceNode);
+	void		hardAddSurface(SurfaceNode* p_surfaceNode);
+
+	//REMOVE
+	void		removeSurface(SurfaceNode* p_surfaceNode);
+	void		hardRemoveSurface(SurfaceNode* p_surfaceNode);
 
 private:
-	tpm::Mesh		m_mesh;
+	std::vector<SurfaceNode*>	m_surfaceList;
 };

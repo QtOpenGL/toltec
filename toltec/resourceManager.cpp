@@ -14,7 +14,8 @@
 
 #include "nodes/cameraNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
-#include "nodes/shaderProgramNode.hpp"
+#include "nodes/shaders/shaderProgramNode.hpp"
+#include "nodes/shaders/surfaceShaderProgramNode.hpp"
 #include "nodes/transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -22,7 +23,7 @@
 *-----------------------------------------------------------------------------*/
 ResourceManager::ResourceManager()
 	:
-	mp_defaultShaderProgramNode(nullptr),
+	mp_defaultSSPNode(nullptr),
 	mp_rootTransformNode(nullptr),
 	mp_defaultCameraNode(nullptr)
 {
@@ -33,15 +34,15 @@ ResourceManager::ResourceManager()
 /*-----------------------------------------------------------------------------
 *	SET DEFAULT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::setDefaultShaderProgramNode(ShaderProgramNode* p_shaderProgramNode)
+void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgramNode)
 {
-	if (mp_defaultShaderProgramNode != nullptr)	//return if already assigned
+	if (mp_defaultSSPNode != nullptr)	//return if already assigned
 		return;
 
-	mp_defaultShaderProgramNode = p_shaderProgramNode;
+	mp_defaultSSPNode = p_shaderProgramNode;
 
-	m_shaderProgramNodeList.push_back(mp_defaultShaderProgramNode);
-	m_undeletableNodeList.push_back(mp_defaultShaderProgramNode);
+	m_shaderProgramNodeList.push_back(mp_defaultSSPNode);
+	m_undeletableNodeList.push_back(mp_defaultSSPNode);
 }
 
 /*-----------------------------------------------------------------------------

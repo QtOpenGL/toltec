@@ -23,6 +23,7 @@ class CameraNode;
 class Node;
 class PolygonMeshNode;
 class ShaderProgramNode;
+class SurfaceShaderProgramNode;
 class TransformNode;
 
 /*-----------------------------------------------------------------------------
@@ -46,12 +47,13 @@ public:
 	void				addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode);
 
 	//SET
-	void				setDefaultShaderProgramNode(ShaderProgramNode* p_shaderProgramNode);
+	void				setDefaultSSPNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
 	void				setRootTransformNode(TransformNode* p_rootTransformNode);
 	void				setDefaultCameraNode(CameraNode* p_defaultCameraNode);
 
 	//GET
-	TransformNode*		getRootTransformNode();
+	SurfaceShaderProgramNode*	getDefaultSSPNode();
+	TransformNode*				getRootTransformNode();
 
 	//OTHER
 	std::uint32_t		assignNodeID();
@@ -66,7 +68,7 @@ private:
 
 	std::vector<Node*>				m_undeletableNodeList;
 
-	ShaderProgramNode*				mp_defaultShaderProgramNode;
+	SurfaceShaderProgramNode*		mp_defaultSSPNode;
 	TransformNode*					mp_rootTransformNode;
 	CameraNode*						mp_defaultCameraNode;
 
@@ -77,6 +79,11 @@ private:
 };
 
 /*----------------------------------------------------------------------------*/
+
+inline SurfaceShaderProgramNode* ResourceManager::getDefaultSSPNode()
+{
+	return mp_defaultSSPNode;
+}
 
 inline TransformNode* ResourceManager::getRootTransformNode()
 {

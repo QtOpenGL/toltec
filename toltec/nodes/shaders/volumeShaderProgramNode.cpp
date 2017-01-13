@@ -1,30 +1,20 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		09 I 2017
+*		13 I 2017
 *	CONTRIBUTORS:
 *		PETER MAKAL
-*	INFO:
-*		Base class for all shader programs.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "node.hpp"
+#include "volumeShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SHADER PROGRAM NODE
+*	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-class ShaderProgramNode : public Node
+VolumeShaderProgramNode::VolumeShaderProgramNode()
 {
-public:
-	//CONSTRUCTORS
-				ShaderProgramNode();
-	virtual		~ShaderProgramNode() {}
-
-private:
-	//...
-};
+	//INITIALIZE
+	this->setShortName("volumeShaderProgramNode");
+}

@@ -1,27 +1,30 @@
+#pragma once
+
 /*-----------------------------------------------------------------------------
 *	CREATED:
 *		09 I 2017
 *	CONTRIBUTORS:
 *		PETER MAKAL
+*	INFO:
+*		Base class for all shader programs.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "lambertShaderProgramNode.hpp"
+#include "nodes/node.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*	CLASS DECLARATIONS
+*	SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-LambertShaderProgramNode::LambertShaderProgramNode()
-	:
-	m_diffuseColor(glm::vec3(0.5f, 0.5f, 0.5f)),
-	mp_diffuseMap(nullptr),
-	m_transparencyColor(glm::vec3(0.0f, 0.0f, 0.0f)),
-	mp_transparencyMap(nullptr),
-	m_ambientColor(glm::vec3(0.0f, 0.0f, 0.0f)),
-	mp_ambientMap(nullptr),
-
-	mp_bumpMap(nullptr)
+class ShaderProgramNode : public Node
 {
-}
+public:
+	//CONSTRUCTORS
+				ShaderProgramNode();
+	virtual		~ShaderProgramNode() {}
+
+private:
+	//...
+};

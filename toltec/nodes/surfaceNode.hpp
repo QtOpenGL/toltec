@@ -2,43 +2,48 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		30 VIII 2016
+*		13 I 2017
 *	CONTRIBUTORS:
 *		PETER MAKAL
 *	INFO:
-*		PolygonMeshNode class holds information about mesh data structure 
-*		(vertices, edges, triangles, faces, etc.).
+*		SurfaceNode is a base class for all surface type nodes (polygon meshes,
+*		NURBS-es, t-splines, etc.).
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "surfaceNode.hpp"
-#include "toltecPolygonMeshLibrary/math.hpp"
-#include "toltecPolygonMeshLibrary/mesh.hpp"
+#include "renderableObjectNode.hpp"
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATION
 *-----------------------------------------------------------------------------*/
-class TransformNode;
+class SurfaceShaderProgramNode;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	SCENE 3D NODE
+*	SURFACE NODE
 *-----------------------------------------------------------------------------*/
-class PolygonMeshNode : public SurfaceNode
+class SurfaceNode : public RenderableObjectNode
 {
 public:
 	//CONSTRUCTORS
-				PolygonMeshNode();
-	virtual		~PolygonMeshNode() {}
+				SurfaceNode();
+	virtual		~SurfaceNode() {}
 
-	//STATIC
-	bool		createMesh(
-		std::vector<tpm::Point3D>&	point3DList, 
-		std::vector<unsigned int>&	vertexSequence,
-		std::vector<unsigned int>&	polygonOffsets);
+	//SET
+	void		setSurfaceShaderProgram(SurfaceShaderProgramNode* p_surfaceShaderProgram);
+
+	//GET
+	SurfaceShaderProgramNode*	getSurfaceShaderProgram();
 
 private:
-	tpm::Mesh		m_mesh;
+	SurfaceShaderProgramNode*	mp_surfaceShaderProgram;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline SurfaceShaderProgramNode* SurfaceNode::getSurfaceShaderProgram()
+{
+	return mp_surfaceShaderProgram;
+}

@@ -14,7 +14,7 @@
 *-----------------------------------------------------------------------------*/
 #include <glm/glm.hpp>
 
-#include "shaderProgramNode.hpp"
+#include "surfaceShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
@@ -23,14 +23,14 @@ class TextureNode;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
-*	LAMBERT SHADER PROGRAM NODE
+*	LAMBERT SURFACE SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-class LambertShaderProgramNode : public ShaderProgramNode
+class LambertSSPNode : public SurfaceShaderProgramNode
 {
 public:
 	//CONSTRUCTORS
-				LambertShaderProgramNode();
-	virtual		~LambertShaderProgramNode() {}
+				LambertSSPNode();
+	virtual		~LambertSSPNode() {}
 
 private:
 	glm::vec3		m_diffuseColor;
