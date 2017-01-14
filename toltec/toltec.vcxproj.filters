@@ -154,7 +154,13 @@
       <Filter>Main Files\nodes\shaders</Filter>
     </ClCompile>
     <ClCompile Include="nodes\shaders\surfaceShaderProgramNode.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\surfaceNode.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shaders\volumeShaderProgramNode.cpp">
+      <Filter>Main Files\nodes\shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,8 +257,8 @@
     <ClInclude Include="nodes\shaders\volumeShaderProgramNode.hpp">
       <Filter>Main Files\nodes\shaders</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <ClInclude Include="nodes\surfaceNode.hpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

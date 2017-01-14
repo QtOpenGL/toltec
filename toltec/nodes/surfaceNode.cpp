@@ -38,12 +38,13 @@ void SurfaceNode::setSurfaceShaderProgram(SurfaceShaderProgramNode* p_surfaceSha
 	if (p_surfaceShaderProgram == nullptr)
 	{
 		mp_surfaceShaderProgram = ResourceManager::getInstance().getDefaultSSPNode();
-		mp_surfaceShaderProgram->hardAddSurface(this);
+		mp_surfaceShaderProgram->addSurface(this, true);
 	}
 	else
 	{
-		mp_surfaceShaderProgram->hardRemoveSurface(this);
+		if (mp_surfaceShaderProgram != nullptr)
+			mp_surfaceShaderProgram->removeSurface(this, true);
 		mp_surfaceShaderProgram = p_surfaceShaderProgram;
-		mp_surfaceShaderProgram->hardAddSurface(this);
+		mp_surfaceShaderProgram->addSurface(this, true);
 	}
 }

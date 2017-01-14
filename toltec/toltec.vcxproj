@@ -156,6 +156,8 @@
     <ClCompile Include="nodes\shaders\lambertSSPNode.cpp" />
     <ClCompile Include="nodes\shaders\shaderProgramNode.cpp" />
     <ClCompile Include="nodes\shaders\surfaceShaderProgramNode.cpp" />
+    <ClCompile Include="nodes\shaders\volumeShaderProgramNode.cpp" />
+    <ClCompile Include="nodes\surfaceNode.cpp" />
     <ClCompile Include="nodes\transformNode.cpp" />
     <ClCompile Include="renderingSystem\abstractRenderer.cpp" />
     <ClCompile Include="renderingSystem\abstractViewport.cpp" />
@@ -907,9 +909,7 @@
     <ClInclude Include="nodes\shaders\shaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\surfaceShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\volumeShaderProgramNode.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <ClInclude Include="nodes\surfaceNode.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

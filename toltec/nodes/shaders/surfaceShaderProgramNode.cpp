@@ -25,28 +25,7 @@ SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 /*-----------------------------------------------------------------------------
 *	ADD SURFACE
 *-----------------------------------------------------------------------------*/
-void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode)
-{
-	//CHECK
-	for (SurfaceNode* p_surfaceListElement : m_surfaceList)
-		if (p_surfaceListElement == p_surfaceNode)
-			return;
-	if (p_surfaceNode == nullptr)
-		return;
-
-	//CLEAN OLD
-	SurfaceShaderProgramNode* p_shaderProgram = p_surfaceNode->getSurfaceShaderProgram();
-	p_shaderProgram->hardRemoveSurface(p_surfaceNode);
-
-	//ADD / SET
-	m_surfaceList.push_back(p_surfaceNode);
-	p_surfaceNode->setSurfaceShaderProgram(this);
-}
-
-/*-----------------------------------------------------------------------------
-*	HARD ADD SURFACE
-*-----------------------------------------------------------------------------*/
-void SurfaceShaderProgramNode::hardAddSurface(SurfaceNode* p_surfaceNode)
+void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode, const bool hardAdd)
 {
 	//CHECK
 	for (SurfaceNode* p_surfaceListElement : m_surfaceList)
@@ -56,13 +35,27 @@ void SurfaceShaderProgramNode::hardAddSurface(SurfaceNode* p_surfaceNode)
 		return;
 
 	//ADD
-	m_surfaceList.push_back(p_surfaceNode);
+	if (hardAdd == false)
+	{
+		//clean old
+		SurfaceShaderProgramNode* p_shaderProgram = p_surfaceNode->getSurfaceShaderProgram();
+		p_shaderProgram->removeSurface(p_surfaceNode, true);
+
+		//add / set
+		m_surfaceList.push_back(p_surfaceNode);
+		p_surfaceNode->setSurfaceShaderProgram(this);
+	}
+	else
+	{
+		//add
+		m_surfaceList.push_back(p_surfaceNode);
+	}
 }
 
 /*-----------------------------------------------------------------------------
 *	REMOVE SURFACE
 *-----------------------------------------------------------------------------*/
-void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode)
+void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode, const bool hardRemove)
 {
 	//CHECK
 	if (p_surfaceNode == nullptr)
@@ -74,29 +67,13 @@ void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode)
 	{
 		if (m_surfaceList[i] == p_surfaceNode)
 		{
+			//remove old
 			m_surfaceList.erase(m_surfaceList.begin() + i);
-			p_surfaceNode->setSurfaceShaderProgram(ResourceManager::getInstance().getDefaultSSPNode);
-			break;
-		}
-	}
-}
 
-/*-----------------------------------------------------------------------------
-*	HARD REMOVE SURFACE
-*-----------------------------------------------------------------------------*/
-void SurfaceShaderProgramNode::hardRemoveSurface(SurfaceNode* p_surfaceNode)
-{
-	//CHECK
-	if (p_surfaceNode == nullptr)
-		return;
+			//set default
+			if (hardRemove == false)
+				p_surfaceNode->setSurfaceShaderProgram(ResourceManager::getInstance().getDefaultSSPNode());
 
-	//REMOVE
-	std::size_t numSurfaceNodes = m_surfaceList.size();
-	for (std::size_t i = 0; i < numSurfaceNodes; i++)
-	{
-		if (m_surfaceList[i] == p_surfaceNode)
-		{
-			m_surfaceList.erase(m_surfaceList.begin() + i);
 			break;
 		}
 	}

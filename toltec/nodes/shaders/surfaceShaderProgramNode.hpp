@@ -36,12 +36,10 @@ public:
 	virtual		~SurfaceShaderProgramNode() {}
 
 	//ADD
-	void		addSurface(SurfaceNode* p_surfaceNode);
-	void		hardAddSurface(SurfaceNode* p_surfaceNode);
+	void		addSurface(SurfaceNode* p_surfaceNode, const bool hardAdd = false);
 
 	//REMOVE
-	void		removeSurface(SurfaceNode* p_surfaceNode);
-	void		hardRemoveSurface(SurfaceNode* p_surfaceNode);
+	void		removeSurface(SurfaceNode* p_surfaceNode, const bool hardRemove = false);
 
 private:
 	std::vector<SurfaceNode*>	m_surfaceList;
