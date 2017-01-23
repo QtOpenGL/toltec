@@ -15,8 +15,8 @@
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
 #include "nodes/shaders/lambertSSPNode.hpp"
-#include "renderingSystem/toltec/toltecOpenGLRenderer.hpp"
-#include "renderingSystem/toltec/toltecOpenGLRendererResource.hpp"
+#include "renderingSystem/toltec/openGL/toltecOpenGLRenderer.hpp"
+#include "renderingSystem/toltec/openGL/toltecOpenGLRendererResource.hpp"
 #include "renderingSystem/renderingAPI.hpp"
 #include "renderingSystem/renderingSystem.hpp"
 #include "renderManager.hpp"
@@ -62,10 +62,10 @@ int main(int argc, char* argv[])
 	//TOLTEC RENDERING SYSTEM
 	RenderingSystem toltecRenderingSystem("Toltec");
 	//opengl
-	ToltecOpenGLRenderer* p_toltecOpenGLRenderer =					
-		new ToltecOpenGLRenderer();
-	ToltecOpenGLRendererResource* p_toltecOpenGLRendererResource =	
-		new ToltecOpenGLRendererResource();
+	tgl::ToltecOpenGLRenderer* p_toltecOpenGLRenderer =					
+		new tgl::ToltecOpenGLRenderer();
+	tgl::ToltecOpenGLRendererResource* p_toltecOpenGLRendererResource =	
+		new tgl::ToltecOpenGLRendererResource();
 	RenderingAPI* p_toltecOpenGLRenderingAPI =						
 		new RenderingAPI(RenderingAPI::OPENGL_API, p_toltecOpenGLRenderer, p_toltecOpenGLRendererResource);
 	//add

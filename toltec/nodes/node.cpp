@@ -18,7 +18,10 @@
 Node::Node()
 	:
 	m_shortName("node"),
-	m_id(ResourceManager::getInstance().assignNodeID())
+	m_id(ResourceManager::getInstance().assignNodeID()),
+
+	m_initializeFlag(true),
+	m_updateFlag(false)
 {
 }
 
@@ -36,6 +39,22 @@ Node::~Node()
 void Node::setShortName(const std::string& shortName)
 {
 	m_shortName = shortName;
+}
+
+/*-----------------------------------------------------------------------------
+*	SET INITIALIZE FLAG
+*-----------------------------------------------------------------------------*/
+void Node::setInitializeFlag(bool value)
+{
+	m_initializeFlag = value;
+}
+
+/*-----------------------------------------------------------------------------
+*	SET UPDATE FLAG
+*-----------------------------------------------------------------------------*/
+void Node::setUpdateFlag(bool value)
+{
+	m_updateFlag = value;
 }
 
 /*-----------------------------------------------------------------------------

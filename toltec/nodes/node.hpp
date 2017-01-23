@@ -28,6 +28,8 @@ public:
 
 	//SET
 	void					setShortName(const std::string& shortName);
+	void					setInitializeFlag(bool value);
+	void					setUpdateFlag(bool value);
 
 	//GET
 	const std::string&		getShortName() const;
@@ -36,6 +38,9 @@ public:
 private:
 	std::string				m_shortName;
 	const std::uint32_t		m_id;
+
+	bool					m_initializeFlag;
+	bool					m_updateFlag;
 };
 
 /*----------------------------------------------------------------------------*/

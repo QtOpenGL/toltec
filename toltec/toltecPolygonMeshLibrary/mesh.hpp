@@ -18,7 +18,7 @@
 #include "math.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TPM
+*	NAMESPACE: TPM (TOLTEC POLYGON MESH)
 *-----------------------------------------------------------------------------*/
 namespace tpm
 {
@@ -51,9 +51,9 @@ namespace tpm
 		virtual		~Mesh();
 
 		//ADD
-		Vertex*		addVertex(Point3D& point3D);
+		Vertex*		addVertex(const Point3D& point3D);
 		Vertex*		addVertex(float x, float y, float z);
-		Face*		addFace(std::vector<Vertex*>& vertexList);
+		Face*		addFace(const std::vector<Vertex*>& vertexList);
 
 		//OTHER
 		void		zeroUVs();

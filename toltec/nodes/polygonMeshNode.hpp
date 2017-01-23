@@ -28,12 +28,22 @@ public:
 				PolygonMeshNode();
 	virtual		~PolygonMeshNode() {}
 
-	//STATIC
+	//GET
+	tpm::Mesh*	getMesh();
+
+	//OTHER
 	bool		createMesh(
-		std::vector<tpm::Point3D>&	point3DList, 
-		std::vector<unsigned int>&	vertexSequence,
-		std::vector<unsigned int>&	polygonOffsets);
+					std::vector<tpm::Point3D>&	point3DList, 
+					std::vector<unsigned int>&	vertexSequence,
+					std::vector<unsigned int>&	polygonOffsets);
 
 private:
 	tpm::Mesh		m_mesh;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline tpm::Mesh* PolygonMeshNode::getMesh()
+{
+	return &m_mesh;
+}

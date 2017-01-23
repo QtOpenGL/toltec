@@ -13,6 +13,7 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -52,10 +53,14 @@ public:
 
 private:
 	//SINGLETON
-	RenderManager() {}
+	RenderManager();
+
+	//OTHER
+	void		finishRenderCall();
 
 private:
 	std::vector<RenderingSystem*>	m_renderingSystemList;
+	std::uint32_t					m_renderCycleNumber;
 };
 
 /*----------------------------------------------------------------------------*/

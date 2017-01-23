@@ -12,10 +12,21 @@
 
 #include <algorithm>
 
+#include "nodes/node.hpp"
 #include "ui/gui/viewportPanel.hpp"
 #include "renderingSystem/abstractRenderer.hpp"
 #include "renderingSystem/abstractViewport.hpp"
 #include "renderingSystem/renderingSystem.hpp"
+#include "resourceManager.hpp"
+
+/*-----------------------------------------------------------------------------
+*	CONSTRUCTOR
+*-----------------------------------------------------------------------------*/
+RenderManager::RenderManager()
+	:
+	m_renderCycleNumber(0)
+{
+}
 
 /*-----------------------------------------------------------------------------
 *	ADD RENDERING SYSTEM
@@ -39,6 +50,7 @@ void RenderManager::addRenderingSystem(RenderingSystem* p_renderingSystem)
 void RenderManager::renderCall(AbstractViewport* p_viewport)
 {
 	p_viewport->getRenderer()->requestRender(p_viewport);
+	this->finishRenderCall();
 }
 
 /*-----------------------------------------------------------------------------
@@ -55,6 +67,8 @@ void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 		p_viewport = p_viewportPanel->getViewport();
 		p_viewport->getRenderer()->requestRender(p_viewport);
 	}
+
+	this->finishRenderCall();
 }
 
 /*-----------------------------------------------------------------------------
@@ -83,6 +97,8 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
 		p_viewport = p_viewportPanel->getViewport();
 		p_viewport->getRenderer()->requestRender(p_viewport);
 	}
+
+	this->finishRenderCall();
 }
 
 /*-----------------------------------------------------------------------------
@@ -92,4 +108,23 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
 void RenderManager::renderCall()
 {
 	//...
+
+	this->finishRenderCall();
+}
+
+/*-----------------------------------------------------------------------------
+*	FINISH RENDER CALL
+*-----------------------------------------------------------------------------*/
+void RenderManager::finishRenderCall()
+{
+	//SET TO FALSE INITIALIZE AND UPDATE FLAGS ON ALL NODES
+	const std::vector<Node*>* p_allNodeList = ResourceManager::getInstance().getAllNodeList();
+	for (auto p_node : *p_allNodeList)
+	{
+		p_node->setInitializeFlag(false);
+		p_node->setUpdateFlag(false);
+	}
+
+	//INCREASE RENDER CYCLE NUMBER
+	m_renderCycleNumber++;
 }

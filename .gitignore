@@ -243,6 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-/include/glbinding
-/include/OpenMesh
-/include/glm
+include/

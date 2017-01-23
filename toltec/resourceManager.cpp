@@ -42,6 +42,7 @@ void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgra
 	mp_defaultSSPNode = p_shaderProgramNode;
 
 	m_shaderProgramNodeList.push_back(mp_defaultSSPNode);
+	m_allNodeList.push_back(mp_defaultSSPNode);
 	m_undeletableNodeList.push_back(mp_defaultSSPNode);
 }
 
@@ -56,6 +57,7 @@ void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
 	mp_rootTransformNode = p_rootTransformNode;
 
 	m_transformNodeList.push_back(mp_rootTransformNode);
+	m_allNodeList.push_back(mp_rootTransformNode);
 	m_undeletableNodeList.push_back(mp_rootTransformNode);
 }
 
@@ -70,6 +72,7 @@ void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
 	mp_defaultCameraNode = p_defaultCameraNode;
 
 	m_cameraNodeList.push_back(mp_defaultCameraNode);
+	m_allNodeList.push_back(mp_defaultCameraNode);
 	m_undeletableNodeList.push_back(mp_defaultCameraNode);
 }
 
@@ -85,6 +88,7 @@ void ResourceManager::addTransformNode(TransformNode* p_transformNode)
 
 	//ADD
 	m_transformNodeList.push_back(p_transformNode);
+	m_allNodeList.push_back(p_transformNode);
 }
 
 /*-----------------------------------------------------------------------------
@@ -99,6 +103,7 @@ void ResourceManager::addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode)
 
 	//ADD
 	m_polygonMeshNodeList.push_back(p_polygonMeshNode);
+	m_allNodeList.push_back(p_polygonMeshNode);
 }
 
 /*-----------------------------------------------------------------------------

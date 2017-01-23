@@ -2,9 +2,9 @@
 
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		10 IX 2016
+*		04 VIII 2016
 *	CONTRIBUTORS:
-*		PIOTR MAKAL
+*		PETER MAKAL
 *	INFO:
 *		...
 *-----------------------------------------------------------------------------*/
@@ -12,30 +12,25 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-//...
+#include <string>
+#include "renderingSystem/abstractRendererResource.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TPM (TOLTEC POLYGON MESH)
+*	NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
-namespace tpm
+namespace tgl
 {
 	/*-----------------------------------------------------------------------------
-	*	STRUCTS
+	*	CLASS DECLARATIONS
+	*	TOLTEC OPENGL RENDERER RESOURCE
 	*-----------------------------------------------------------------------------*/
-	struct Point2D {
-		float x;
-		float y;
-	};
-	
-	struct Point3D {
-		float x;
-		float y;
-		float z;
-	};
+	class ToltecOpenGLRendererResource : public AbstractRendererResource
+	{
+	public:
+		//CONSTRUCTORS
+		virtual			~ToltecOpenGLRendererResource() {}
 
-	struct Vector3D {
-		float x;
-		float y;
-		float z;
+	private:
+		//...
 	};
-}
+} //NAMESPACE: TGL

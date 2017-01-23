@@ -17,7 +17,7 @@
 #include <iterator>
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TPM
+*	NAMESPACE: TPM (TOLTEC POLYGON MESH)
 *-----------------------------------------------------------------------------*/
 namespace tpm
 {
@@ -41,7 +41,7 @@ namespace tpm
 	*	ADD VERTEX
 	*	(Point3D&)
 	*-----------------------------------------------------------------------------*/
-	Vertex* Mesh::addVertex(Point3D& point3D)
+	Vertex* Mesh::addVertex(const Point3D& point3D)
 	{
 		Vertex* p_vertex = new Vertex{ point3D };
 		m_vertexList.push_back(p_vertex);
@@ -65,7 +65,7 @@ namespace tpm
 	/*-----------------------------------------------------------------------------
 	*	ADD FACE
 	*-----------------------------------------------------------------------------*/
-	Face* Mesh::addFace(std::vector<Vertex*>& vertexList)
+	Face* Mesh::addFace(const std::vector<Vertex*>& vertexList)
 	{
 		//ADD FACE
 		Face* p_face = new Face{};

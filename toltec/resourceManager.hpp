@@ -52,6 +52,7 @@ public:
 	void				setDefaultCameraNode(CameraNode* p_defaultCameraNode);
 
 	//GET
+	const std::vector<Node*>*	getAllNodeList();
 	SurfaceShaderProgramNode*	getDefaultSSPNode();
 	TransformNode*				getRootTransformNode();
 
@@ -66,6 +67,7 @@ private:
 private:
 	std::vector<std::uint32_t>		m_globalNodeIDList;
 
+	std::vector<Node*>				m_allNodeList;
 	std::vector<Node*>				m_undeletableNodeList;
 
 	SurfaceShaderProgramNode*		mp_defaultSSPNode;
@@ -79,6 +81,11 @@ private:
 };
 
 /*----------------------------------------------------------------------------*/
+
+inline const std::vector<Node*>* ResourceManager::getAllNodeList()
+{
+	return &m_allNodeList;
+}
 
 inline SurfaceShaderProgramNode* ResourceManager::getDefaultSSPNode()
 {

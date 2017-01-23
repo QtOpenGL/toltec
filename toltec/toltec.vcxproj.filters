@@ -52,6 +52,9 @@
     <Filter Include="Main Files\nodes\shaders">
       <UniqueIdentifier>{0b4b4032-2f00-478d-8d81-ccbf66050932}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\renderingSystem\toltec\openGL">
+      <UniqueIdentifier>{50a3dc88-a75a-4cbf-8b58-5cd3a5d78efe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="renderingSystem\renderingSystem.cpp">
       <Filter>Main Files\renderingSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="renderingSystem\toltec\toltecOpenGLRenderer.cpp">
-      <Filter>Main Files\renderingSystem\toltec</Filter>
     </ClCompile>
     <ClCompile Include="renderingSystem\abstractViewport.cpp">
       <Filter>Main Files\renderingSystem</Filter>
@@ -138,9 +138,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_openGLViewport.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -162,6 +159,15 @@
     <ClCompile Include="nodes\shaders\volumeShaderProgramNode.cpp">
       <Filter>Main Files\nodes\shaders</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\toltecOpenGLRenderer.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_toltecOpenGLRenderer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -169,12 +175,6 @@
     </CustomBuild>
     <CustomBuild Include="renderingSystem\abstractViewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
-    </CustomBuild>
-    <CustomBuild Include="renderingSystem\toltec\toltecOpenGLRenderer.hpp">
-      <Filter>Main Files\renderingSystem\toltec</Filter>
-    </CustomBuild>
-    <CustomBuild Include="renderingSystem\toltec\toltecOpenGLRendererResource.hpp">
-      <Filter>Main Files\renderingSystem\toltec</Filter>
     </CustomBuild>
     <CustomBuild Include="ui\gui\mainWindow.hpp">
       <Filter>Main Files\ui\gui</Filter>
@@ -185,7 +185,6 @@
     <CustomBuild Include="events\globalEventFilter.hpp">
       <Filter>Main Files\events</Filter>
     </CustomBuild>
-    <CustomBuild Include="ClassDiagram.cd" />
     <CustomBuild Include="guiManager.hpp">
       <Filter>Main Files</Filter>
     </CustomBuild>
@@ -243,6 +242,10 @@
     <CustomBuild Include="ui\commands\createCube.hpp">
       <Filter>Main Files\ui\commands</Filter>
     </CustomBuild>
+    <CustomBuild Include="renderingSystem\toltec\openGL\toltecOpenGLRenderer.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </CustomBuild>
+    <CustomBuild Include="20160924001.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nodes\shaders\shaderProgramNode.hpp">
@@ -260,5 +263,14 @@
     <ClInclude Include="nodes\surfaceNode.hpp">
       <Filter>Main Files\nodes</Filter>
     </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\toltecOpenGLRendererResource.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\geometry.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="20170122001.cd" />
   </ItemGroup>
 </Project>
