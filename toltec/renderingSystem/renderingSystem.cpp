@@ -11,9 +11,13 @@
 #include "renderingSystem.hpp"
 
 #include <cstdlib>
+#include <glbinding/gl/gl.h>
+#include <glbinding/ContextInfo.h>
 
 #include "renderingSystem/abstractRenderer.hpp"
 #include "renderingSystem/abstractRendererResource.hpp"
+#include "renderingSystem/openGLViewport.hpp"
+#include "ui/gui/viewportPanel.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -89,4 +93,35 @@ void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
 	//SET NEW
 	mp_activeRenderingAPI = iterator->second;
 	mp_activeRenderingAPI->getRenderer()->getRendererResource()->initializeResources();
+}
+
+/*-----------------------------------------------------------------------------
+*	PRINT OPENGL DATA
+*-----------------------------------------------------------------------------*/
+void RenderingSystem::printOpenGLData() const
+{
+	//CHECK
+	if (mp_activeRenderingAPI->getType() != RenderingAPI::OPENGL_API)
+		return;
+
+	//FETCH
+	OpenGLViewport* p_openGLViewport = static_cast<OpenGLViewport*>(m_viewportPanelList[0]->getViewport());
+
+	//PRINT
+	int data[10];
+	p_openGLViewport->makeCurrent();
+	//fetch data
+	gl::glGetIntegerv(gl::GLenum::GL_MAX_UNIFORM_LOCATIONS, &data[0]);
+	gl::glGetIntegerv(gl::GLenum::GL_MAX_VERTEX_UNIFORM_COMPONENTS, &data[1]);
+	gl::glGetIntegerv(gl::GLenum::GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &data[2]);
+	//print data
+	std::cout << "OpenGL ver.:\t" << gl::glGetString(gl::GLenum::GL_VERSION) << std::endl
+		<< "GLSL ver.:\t" << gl::glGetString(gl::GLenum::GL_SHADING_LANGUAGE_VERSION) << std::endl
+		<< "Lib. vendor:\t" << gl::glGetString(gl::GLenum::GL_VENDOR) << std::endl
+		<< "Renderer:\t" << gl::glGetString(gl::GLenum::GL_RENDERER) << "\n\n"
+
+		<< "Max uniform locations:\t\t" << data[0] << std::endl
+		<< "Max vert uniform components:\t" << data[1] << std::endl
+		<< "Max frag uniform components:\t" << data[2] << "\n\n";
+	p_openGLViewport->doneCurrent();
 }

@@ -17,7 +17,6 @@
 
 #include <glbinding/gl/gl.h>
 #include <glbinding/Binding.h>
-#include <glbinding/ContextInfo.h>
 
 #include "renderManager.hpp"
 #include "renderingSystem/openGLViewport.hpp"

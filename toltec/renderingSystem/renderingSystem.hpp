@@ -48,10 +48,11 @@ public:
 
 	//OTHER
 	void			switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
+	void			printOpenGLData() const;
 
-protected:
-	std::string						m_name;
-	std::vector<ViewportPanel*>		m_viewportPanelList;
+private:
+	std::string										m_name;
+	std::vector<ViewportPanel*>						m_viewportPanelList;
 
 	std::map<RenderingAPI::Type, RenderingAPI*>		m_renderingAPIMap;
 	RenderingAPI*									mp_activeRenderingAPI;
