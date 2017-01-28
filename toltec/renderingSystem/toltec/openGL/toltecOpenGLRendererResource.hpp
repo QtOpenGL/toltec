@@ -12,7 +12,8 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <string>
+#include <vector>
+
 #include "renderingSystem/abstractRendererResource.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -31,11 +32,12 @@ namespace tgl
 		virtual			~ToltecOpenGLRendererResource() {}
 
 		//OTHER
-		virtual void	initializeResources();
-		virtual void	updateResources();
-		virtual void	deleteResources();
+		virtual void	initializeResources() {};
+		virtual void	updateResources() {};
+		virtual void	deleteResources() {};
 
 	private:
-		//...
+		//std::vector<RenderableObject*>		m_renderableObjectList;
+		//std::vector<
 	};
 } //NAMESPACE: TGL

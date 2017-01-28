@@ -8,9 +8,6 @@
 *	INFO:
 *		RenderingAPI class defines specific rendering API: OpenGL, Vulkan, 
 *		Direct3D, etc.
-*
-*	RAW POINTER MANAGER:
-*		- mp_renderer	(AbstractRenderer*)
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -41,10 +38,7 @@ public:
 
 	//CONSTRUCTORS
 				RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer);
-	virtual		~RenderingAPI();
-
-	//SET
-	void		setRenderer(AbstractRenderer* p_renderer);
+	virtual		~RenderingAPI() {};
 
 	//GET
 	RenderingAPI::Type				getType() const;

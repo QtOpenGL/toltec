@@ -28,16 +28,6 @@ RenderingSystem::RenderingSystem(const std::string& name)
 }
 
 /*-----------------------------------------------------------------------------
-*	DESTRUCTOR
-*-----------------------------------------------------------------------------*/
-RenderingSystem::~RenderingSystem()
-{
-	//CLEAN-UP
-	for (auto& kv : m_renderingAPIMap)
-		delete kv.second;
-}
-
-/*-----------------------------------------------------------------------------
 *	ADD RENDERING API
 *-----------------------------------------------------------------------------*/
 void RenderingSystem::addRenderingAPI(RenderingAPI* p_renderingAPI)

@@ -7,9 +7,6 @@
 *		PIOTR MAKAL
 *	INFO:
 *		...
-*
-*	RAW POINTER MANAGER:
-*		- m_renderingAPIList	(RenderingAPI*)
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -35,7 +32,7 @@ class RenderingSystem
 public:
 	//CONSTRUCTORS
 	explicit		RenderingSystem(const std::string& name);
-	virtual			~RenderingSystem();
+	virtual			~RenderingSystem() {};
 
 	//ADD
 	void			addRenderingAPI(RenderingAPI* p_renderingAPI);

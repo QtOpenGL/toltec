@@ -52,7 +52,7 @@ void RenderManager::addRenderingSystem(RenderingSystem* p_renderingSystem)
 void RenderManager::renderCall(AbstractViewport* p_viewport)
 {
 	//UPDATE RENDERER RESOURCES
-	p_viewport->getRenderer->getRendererResource()->updateResources();
+	p_viewport->getRenderer()->getRendererResource()->updateResources();
 
 	//REQUEST RENDERER
 	p_viewport->getRenderer()->requestRender(p_viewport);

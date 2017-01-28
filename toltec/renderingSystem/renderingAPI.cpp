@@ -20,20 +20,3 @@ RenderingAPI::RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer
 	mp_renderer(p_renderer)
 {
 }
-
-/*-----------------------------------------------------------------------------
-*	DESTRUCTOR
-*-----------------------------------------------------------------------------*/
-RenderingAPI::~RenderingAPI()
-{
-	delete mp_renderer;
-}
-
-/*-----------------------------------------------------------------------------
-*	SET RENDERER
-*-----------------------------------------------------------------------------*/
-void RenderingAPI::setRenderer(AbstractRenderer* p_renderer)
-{
-	delete mp_renderer;
-	mp_renderer = p_renderer;
-}
