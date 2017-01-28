@@ -4,7 +4,7 @@
 *	CREATED:
 *		30 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		PolygonMeshNode class holds information about mesh data structure 
 *		(vertices, edges, triangles, faces, etc.).

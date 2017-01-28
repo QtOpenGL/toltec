@@ -4,11 +4,12 @@
 *	CREATED:
 *		02 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		...
-*	RAW POINTER MANAGER FOR:
-*		- m_renderingAPIList (RenderingAPI*)
+*
+*	RAW POINTER MANAGER:
+*		- m_renderingAPIList	(RenderingAPI*)
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -43,19 +44,19 @@ public:
 	//REMOVE
 	void			removeViewportPanel(ViewportPanel* p_viewportPanel);
 
-	//SET
-	void			setActiveRenderingAPI(RenderingAPI::Type type);
-
 	//GET
 	const std::string&					getName() const;
 	const std::vector<ViewportPanel*>*	getViewportPanelList() const;
 	RenderingAPI*						getActiveRenderingAPI() const;
 
+	//OTHER
+	void			switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
+
 protected:
 	std::string						m_name;
 	std::vector<ViewportPanel*>		m_viewportPanelList;
 
-	std::map<RenderingAPI::Type, RenderingAPI*>		m_renderingAPIList;
+	std::map<RenderingAPI::Type, RenderingAPI*>		m_renderingAPIMap;
 	RenderingAPI*									mp_activeRenderingAPI;
 };
 

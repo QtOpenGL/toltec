@@ -4,7 +4,7 @@
 *	CREATED:
 *		11 I 2017
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		VolumeShaderProgramNode is a base class for all shaders programs that
 *		mimics fluid look from the inside (water, fog, etc.).

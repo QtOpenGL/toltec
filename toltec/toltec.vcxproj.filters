@@ -168,6 +168,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_toltecOpenGLRenderer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\abstractRendererResource.cpp">
+      <Filter>Main Files\renderingSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">

@@ -60,16 +60,12 @@ int main(int argc, char* argv[])
 	ResourceManager::getInstance().setDefaultSSPNode(&lambertShaderProgramNode);
 	
 	//TOLTEC RENDERING SYSTEM
-	RenderingSystem toltecRenderingSystem("Toltec");
+	RenderingSystem toltecRenderingSystem("toltec");
 	//opengl
-	tgl::ToltecOpenGLRenderer* p_toltecOpenGLRenderer =					
-		new tgl::ToltecOpenGLRenderer();
-	tgl::ToltecOpenGLRendererResource* p_toltecOpenGLRendererResource =	
-		new tgl::ToltecOpenGLRendererResource();
-	RenderingAPI* p_toltecOpenGLRenderingAPI =						
-		new RenderingAPI(RenderingAPI::OPENGL_API, p_toltecOpenGLRenderer, p_toltecOpenGLRendererResource);
+	tgl::ToltecOpenGLRenderer toltecOpenGLRenderer;
+	RenderingAPI toltecOpenGLRenderingAPI(RenderingAPI::OPENGL_API, &toltecOpenGLRenderer);
 	//add
-	toltecRenderingSystem.addRenderingAPI(p_toltecOpenGLRenderingAPI);
+	toltecRenderingSystem.addRenderingAPI(&toltecOpenGLRenderingAPI);
 
 	//ADD RENDERING SYSTEMS TO THE RENDER MANAGER
 	RenderManager::getInstance().addRenderingSystem(&toltecRenderingSystem);

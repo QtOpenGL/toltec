@@ -4,15 +4,13 @@
 *	CREATED:
 *		02 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
-*		RenderingAPI class acts like a container for 2 basic components that 
-*		are connected together: renderer (rendering pipeline) and renderer 
-*		resource. This class always represent specific rendering API:
-*		OpenGL, Vulkan, Direct3D, etc.
-*	RAW POINTER MANAGER FOR:
-*		- mp_renderer				(AbstractRenderer*)
-*		- mp_rendererResource		(AbstractRendererResource*)
+*		RenderingAPI class defines specific rendering API: OpenGL, Vulkan, 
+*		Direct3D, etc.
+*
+*	RAW POINTER MANAGER:
+*		- mp_renderer	(AbstractRenderer*)
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -24,7 +22,6 @@
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractRenderer;
-class AbstractRendererResource;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -43,25 +40,19 @@ public:
 	};
 
 	//CONSTRUCTORS
-				RenderingAPI(
-					RenderingAPI::Type type,
-					AbstractRenderer* p_renderer, 
-					AbstractRendererResource* p_rendererReource);
+				RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer);
 	virtual		~RenderingAPI();
 
 	//SET
 	void		setRenderer(AbstractRenderer* p_renderer);
-	void		setRendererResource(AbstractRendererResource* p_rendererReource);
 
 	//GET
 	RenderingAPI::Type				getType() const;
-	AbstractRenderer*				getRenderer() const;
-	AbstractRendererResource*		getRendererResource() const;
+	AbstractRenderer*				getRenderer();
 
 private:
 	RenderingAPI::Type				m_type;
 	AbstractRenderer*				mp_renderer;
-	AbstractRendererResource*		mp_rendererResource;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -71,12 +62,7 @@ inline RenderingAPI::Type RenderingAPI::getType() const
 	return m_type;
 }
 
-inline AbstractRenderer* RenderingAPI::getRenderer() const
+inline AbstractRenderer* RenderingAPI::getRenderer()
 {
 	return mp_renderer;
-}
-
-inline AbstractRendererResource* RenderingAPI::getRendererResource() const
-{
-	return mp_rendererResource;
 }

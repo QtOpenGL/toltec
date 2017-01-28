@@ -4,7 +4,7 @@
 *	CREATED:
 *		30 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		Base class for the node system.
 *-----------------------------------------------------------------------------*/

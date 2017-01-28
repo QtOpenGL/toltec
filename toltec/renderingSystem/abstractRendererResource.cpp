@@ -1,31 +1,20 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *	CREATED:
-*		04 VIII 2016
+*		24 I 2017
 *	CONTRIBUTORS:
-*		PETER MAKAL
-*	INFO:
-*		...
+*		PIOTR MAKAL
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <string>
-
-#include "../abstractRendererResource.hpp"
+#include "abstractRendererResource.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	TOLTEC OPENGL RENDERER RESOURCE
+*	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-class ToltecOpenGLRendererResource : public AbstractRendererResource
+AbstractRendererResource::AbstractRendererResource()
+	:
+	m_areResourcesInitialized(false)
 {
-public:
-	//CONSTRUCTORS
-	virtual			~ToltecOpenGLRendererResource() {}
-
-private:
-	//...
-};
+}

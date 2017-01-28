@@ -167,6 +167,7 @@
     <ClCompile Include="nodes\surfaceNode.cpp" />
     <ClCompile Include="nodes\transformNode.cpp" />
     <ClCompile Include="renderingSystem\abstractRenderer.cpp" />
+    <ClCompile Include="renderingSystem\abstractRendererResource.cpp" />
     <ClCompile Include="renderingSystem\abstractViewport.cpp" />
     <ClCompile Include="renderingSystem\openGLViewport.cpp" />
     <ClCompile Include="renderingSystem\renderingSystem.cpp" />

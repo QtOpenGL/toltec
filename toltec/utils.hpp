@@ -4,7 +4,7 @@
 *	CREATED:
 *		28 VII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		General utilities used across the program.
 *-----------------------------------------------------------------------------*/

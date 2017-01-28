@@ -4,7 +4,7 @@
 *	CREATED:
 *		16 I 2017
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		tgl::Geometry class holds all vertex and index buffers needed to render
 *		all visual aspects of an object (faces, wireframe, vertices, etc.).

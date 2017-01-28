@@ -4,7 +4,7 @@
 *	CREATED:
 *		30 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		TransformNode class holds main model matrix that any vertex of a
 *		partcular object can be multiply with in order to place it in world 

@@ -4,7 +4,7 @@
 *	CREATED:
 *		13 I 2017
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		SurfaceNode is a base class for all surface type nodes (polygon meshes,
 *		NURBS-es, t-splines, etc.).

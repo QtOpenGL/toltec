@@ -4,7 +4,7 @@
 *	CREATED:
 *		27 VII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		Render event is send whenever we want to add render request into Qt
 *		event loop.

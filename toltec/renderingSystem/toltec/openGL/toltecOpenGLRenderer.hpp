@@ -4,7 +4,7 @@
 *	CREATED:
 *		04 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		...
 *-----------------------------------------------------------------------------*/
@@ -37,6 +37,7 @@ namespace tgl
 
 	public:
 		//CONSTRUCTORS
+						ToltecOpenGLRenderer();
 		virtual			~ToltecOpenGLRenderer() {}
 
 		//EVENTS

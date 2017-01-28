@@ -15,9 +15,11 @@
 #include "nodes/node.hpp"
 #include "ui/gui/viewportPanel.hpp"
 #include "renderingSystem/abstractRenderer.hpp"
+#include "renderingSystem/abstractRendererResource.hpp"
 #include "renderingSystem/abstractViewport.hpp"
 #include "renderingSystem/renderingSystem.hpp"
 #include "resourceManager.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *	CONSTRUCTOR
@@ -49,7 +51,13 @@ void RenderManager::addRenderingSystem(RenderingSystem* p_renderingSystem)
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall(AbstractViewport* p_viewport)
 {
+	//UPDATE RENDERER RESOURCES
+	p_viewport->getRenderer->getRendererResource()->updateResources();
+
+	//REQUEST RENDERER
 	p_viewport->getRenderer()->requestRender(p_viewport);
+	//-->
+
 	this->finishRenderCall();
 }
 
@@ -61,12 +69,17 @@ void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 {
 	AbstractViewport* p_viewport = nullptr;
 
+	//UPDATE RENDERER RESOURCES
+	p_renderingSystem->getActiveRenderingAPI()->getRenderer()->getRendererResource()->updateResources();
+
+	//REQUEST RENDERER
 	auto p_viewportPanelList = p_renderingSystem->getViewportPanelList();
 	for (auto p_viewportPanel : *p_viewportPanelList)
 	{
 		p_viewport = p_viewportPanel->getViewport();
 		p_viewport->getRenderer()->requestRender(p_viewport);
 	}
+	//-->
 
 	this->finishRenderCall();
 }
@@ -89,14 +102,23 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
 			break;
 		}
 	}
+	if (p_renderingSystem == nullptr)
+	{
+		DEBUG_MSG("ERROR : Rendering system not found!");
+		return;
+	}
 
-	//RENDER CALL
+	//UPDATE RENDERER RESOURCES
+	p_renderingSystem->getActiveRenderingAPI()->getRenderer()->getRendererResource()->updateResources();
+
+	//REQUEST RENDERER
 	auto p_viewportPanelList = p_renderingSystem->getViewportPanelList();
 	for (auto p_viewportPanel : *p_viewportPanelList)
 	{
 		p_viewport = p_viewportPanel->getViewport();
 		p_viewport->getRenderer()->requestRender(p_viewport);
 	}
+	//-->
 
 	this->finishRenderCall();
 }

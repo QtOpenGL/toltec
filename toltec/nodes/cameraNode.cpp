@@ -2,7 +2,7 @@
 *	CREATED:
 *		03 I 2017
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *-----------------------------------------------------------------------------*/
 #include "cameraNode.hpp"
 

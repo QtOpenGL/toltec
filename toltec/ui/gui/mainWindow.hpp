@@ -4,7 +4,7 @@
 *	CREATED:
 *		27 VII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		MainWindow class, as it's name suggests, is the class for the main window
 *		inside program.

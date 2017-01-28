@@ -60,7 +60,7 @@ private:
 
 private:
 	std::vector<RenderingSystem*>	m_renderingSystemList;
-	std::uint32_t					m_renderCycleNumber;
+	std::uint64_t					m_renderCycleNumber;
 };
 
 /*----------------------------------------------------------------------------*/

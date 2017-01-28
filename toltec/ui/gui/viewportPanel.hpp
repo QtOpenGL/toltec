@@ -4,7 +4,7 @@
 *	CREATED:
 *		31 VII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		ViewportPanel is a class that holds Viewport and menus associated with
 *		it.
@@ -18,9 +18,9 @@
 /*-----------------------------------------------------------------------------
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class QComboBox;
 class AbstractViewport;
-//class AbstractRenderingSystem;
+class QComboBox;
+class RenderingSystem;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -36,16 +36,17 @@ public:
 	virtual		~ViewportPanel();
 
 	//GET
-	AbstractViewport* getViewport() const;
+	AbstractViewport*	getViewport() const;
 
 private:
 	void		setupViewport();
 	void		setupUI();
 
 private:
+	RenderingSystem*			mp_activeRenderingSystem;	
 	AbstractViewport*			mp_viewport;
+
 	QComboBox*					mp_activeCameraComboBox;
-	//AbstractRenderingSystem*	mp_activeRenderingSystem;		//exactly why?
 };
 
 /*----------------------------------------------------------------------------*/

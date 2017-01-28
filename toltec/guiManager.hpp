@@ -4,7 +4,7 @@
 *	CREATED:
 *		08 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		GUIManager is a singleton class that is responsible for holding GUI
 *		state, creating GUI objects, displaying information to a user, etc.

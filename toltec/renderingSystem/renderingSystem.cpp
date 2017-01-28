@@ -2,7 +2,7 @@
 *	CREATED:
 *		04 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -11,6 +11,9 @@
 #include "renderingSystem.hpp"
 
 #include <cstdlib>
+
+#include "renderingSystem/abstractRenderer.hpp"
+#include "renderingSystem/abstractRendererResource.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -18,10 +21,10 @@
 *	(const std::string&)
 *-----------------------------------------------------------------------------*/
 RenderingSystem::RenderingSystem(const std::string& name)
+	:
+	m_name(name),
+	mp_activeRenderingAPI(nullptr)
 {
-	//INITIALIZE
-	m_name =					name;
-	mp_activeRenderingAPI =		nullptr;
 }
 
 /*-----------------------------------------------------------------------------
@@ -30,7 +33,7 @@ RenderingSystem::RenderingSystem(const std::string& name)
 RenderingSystem::~RenderingSystem()
 {
 	//CLEAN-UP
-	for (auto& kv : m_renderingAPIList)
+	for (auto& kv : m_renderingAPIMap)
 		delete kv.second;
 }
 
@@ -42,13 +45,13 @@ void RenderingSystem::addRenderingAPI(RenderingAPI* p_renderingAPI)
 	RenderingAPI::Type renderingAPIType = p_renderingAPI->getType();
 
 	//If this is the first rendering API, make it to be the active one.
-	if (m_renderingAPIList.size() == 0)
+	if (m_renderingAPIMap.size() == 0)
 		mp_activeRenderingAPI = p_renderingAPI;
 
 	//Prevent overwrite.
-	auto iterator = m_renderingAPIList.find(renderingAPIType);
-	if (iterator == m_renderingAPIList.end())
-		m_renderingAPIList[renderingAPIType] = p_renderingAPI;
+	auto iterator = m_renderingAPIMap.find(renderingAPIType);
+	if (iterator == m_renderingAPIMap.end())
+		m_renderingAPIMap[renderingAPIType] = p_renderingAPI;
 }
 
 /*-----------------------------------------------------------------------------
@@ -73,13 +76,27 @@ void RenderingSystem::removeViewportPanel(ViewportPanel* p_viewportPanel)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET ACTIVE RENDERING API
+*	SWITCH TO RENDERING API
 *-----------------------------------------------------------------------------*/
-void RenderingSystem::setActiveRenderingAPI(RenderingAPI::Type type)
+void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
 {
-	auto iterator = m_renderingAPIList.find(type);
-	if (iterator != m_renderingAPIList.end())
-		mp_activeRenderingAPI = iterator->second;
-	else
+	//CHECK
+	//if exists
+	auto iterator = m_renderingAPIMap.find(renderingAPIType);
+	if (iterator == m_renderingAPIMap.end())
+	{
 		DEBUG_MSG("ERROR : Specified API type could not be found!");
+		return;
+	}
+
+	//if already assigned
+	if (mp_activeRenderingAPI->getType() == renderingAPIType)
+		return;
+
+	//CLEAR OLD RESOURCES
+	mp_activeRenderingAPI->getRenderer()->getRendererResource()->deleteResources();
+
+	//SET NEW
+	mp_activeRenderingAPI = iterator->second;
+	mp_activeRenderingAPI->getRenderer()->getRendererResource()->initializeResources();
 }

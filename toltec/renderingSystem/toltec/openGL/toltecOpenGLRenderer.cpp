@@ -2,7 +2,7 @@
 *	CREATED:
 *		07 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -20,6 +20,7 @@
 #include "renderingSystem/abstractViewport.hpp"
 #include "renderingSystem/openGLViewport.hpp"
 #include "renderingSystem/renderingAPI.hpp"
+#include "renderingSystem/toltec/openGL/toltecOpenGLRendererResource.hpp"
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -27,6 +28,15 @@
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
+	/*-----------------------------------------------------------------------------
+	*	CONSTRUCTOR
+	*-----------------------------------------------------------------------------*/
+	ToltecOpenGLRenderer::ToltecOpenGLRenderer()
+	{
+		//INITIALIZE
+		mp_rendererResource = new ToltecOpenGLRendererResource();
+	}
+
 	/*-----------------------------------------------------------------------------
 	*	EVENT
 	*-----------------------------------------------------------------------------*/

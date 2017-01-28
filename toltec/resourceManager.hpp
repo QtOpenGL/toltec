@@ -4,7 +4,7 @@
 *	CREATED:
 *		14 IX 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		ResourceManager is a singleton class responsible for managing resources
 *		across the program. It also sends the data to the rendering system.

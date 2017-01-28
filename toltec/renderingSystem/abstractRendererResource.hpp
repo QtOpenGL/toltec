@@ -4,7 +4,7 @@
 *	CREATED:
 *		04 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		...
 *-----------------------------------------------------------------------------*/
@@ -22,7 +22,16 @@ class AbstractRendererResource
 {
 public:
 	//CONSTRUCTORS
-	virtual ~AbstractRendererResource() {}
+					AbstractRendererResource();
+	virtual			~AbstractRendererResource() {}
+
+	//OTHER
+	virtual void	initializeResources() = 0;
+	virtual void	updateResources() = 0;
+	virtual void	deleteResources() = 0;
+
+protected:
+	bool			m_areResourcesInitialized;
 
 private:
 	//...

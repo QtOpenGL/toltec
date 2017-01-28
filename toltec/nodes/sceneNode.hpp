@@ -4,7 +4,7 @@
 *	CREATED:
 *		30 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		SceneNode class represnet base class for all nodes that will be 
 *		placed and rendered in the viewport.

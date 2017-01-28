@@ -2,7 +2,7 @@
 *	CREATED:
 *		31 VII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -29,6 +29,8 @@
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 ViewportPanel::ViewportPanel()
+	:
+	mp_activeRenderingSystem(RenderManager::getInstance().getDefaultRenderingSystem())
 {
 	this->setupViewport();
 	this->setupUI();
@@ -47,12 +49,11 @@ ViewportPanel::~ViewportPanel()
 *-----------------------------------------------------------------------------*/
 void ViewportPanel::setupViewport()
 {
-	//GET DEFAULT RENDERING SYSTEM
-	auto p_defaultRenderingSystem = RenderManager::getInstance().getDefaultRenderingSystem();
-	p_defaultRenderingSystem->addViewportPanel(this);
+	//ADD VIEWPORT PANEL TO RENDERING SYSTEM
+	mp_activeRenderingSystem->addViewportPanel(this);
 
 	//GET ACTIVE RENDERING API OF THE DEFAULT RENDERING SYSTEM
-	auto p_activeRenderingAPI = p_defaultRenderingSystem->getActiveRenderingAPI();
+	RenderingAPI* p_activeRenderingAPI = mp_activeRenderingSystem->getActiveRenderingAPI();
 	RenderingAPI::Type renderingAPIType = p_activeRenderingAPI->getType();
 
 	//CREATE PROPER VIEWPORT

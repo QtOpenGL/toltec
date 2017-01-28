@@ -4,7 +4,7 @@
 *	CREATED:
 *		11 I 2017
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		SurfaceShaderProgramNode is a base class for all shaders programs that
 *		apply to surfaces (ie. meshes, NURBS-es, t-splines, etc.).

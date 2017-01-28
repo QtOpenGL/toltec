@@ -4,7 +4,7 @@
 *	CREATED:
 *		09 VIII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		OutputLineWidget is a class for displaying information inside of a GUI 
 *		of the program. It can spit normal messages as well as warnings and

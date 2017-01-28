@@ -4,9 +4,12 @@
 *	CREATED:
 *		30 VII 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		AbstractRenderer class is a base class for all renderers inside program.
+*	
+*	RAW POINTER MANAGER:
+*		- mp_rendererResource	(AbstractRendererResource)
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
@@ -20,6 +23,7 @@
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractViewport;
+class AbstractRendererResource;
 
 /*-----------------------------------------------------------------------------
 *	CLASS DECLARATIONS
@@ -31,14 +35,28 @@ class AbstractRenderer : public QObject
 
 public:
 	//CONSTRUCTORS
-	virtual			~AbstractRenderer() {}
+					AbstractRenderer();
+	virtual			~AbstractRenderer();
 
 	//EVENTS
 	virtual bool	event(QEvent* p_event) = 0;
+
+	//GET
+	AbstractRendererResource*	getRendererResource();
 
 	//OTHER
 	virtual void	requestRender(AbstractViewport* p_viewport) = 0;
 
 protected:
 	virtual void	render(AbstractViewport* p_viewport) = 0;
+
+protected:
+	AbstractRendererResource*	mp_rendererResource;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline AbstractRendererResource* AbstractRenderer::getRendererResource()
+{
+	return mp_rendererResource;
+}

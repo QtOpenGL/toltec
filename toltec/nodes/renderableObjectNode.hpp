@@ -4,7 +4,7 @@
 *	CREATED:
 *		12 IX 2016
 *	CONTRIBUTORS:
-*		PETER MAKAL
+*		PIOTR MAKAL
 *	INFO:
 *		RenderableObjectNode is a base class for all nodes that can be 
 *		rendered inside the viewport.
