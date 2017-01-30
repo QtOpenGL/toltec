@@ -19,7 +19,7 @@
 #include <glbinding/Binding.h>
 
 #include "renderManager.hpp"
-#include "renderingSystem/openGLViewport.hpp"
+#include "renderingSystem/openGL/openGLViewport.hpp"
 #include "renderingSystem/renderingAPI.hpp"
 #include "renderingSystem/renderingSystem.hpp"
 #include "utils.hpp"

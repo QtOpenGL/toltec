@@ -38,6 +38,6 @@ namespace tgl
 
 	private:
 		//std::vector<RenderableObject*>		m_renderableObjectList;
-		//std::vector<
+		//std::vector<ShaderInstance*>		m_shaderInstanceList;
 	};
 } //NAMESPACE: TGL

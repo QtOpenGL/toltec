@@ -18,7 +18,7 @@
 #include "events/renderEvent.hpp"
 #include "guiManager.hpp"
 #include "renderingSystem/abstractViewport.hpp"
-#include "renderingSystem/openGLViewport.hpp"
+#include "renderingSystem/openGL/openGLViewport.hpp"
 #include "renderingSystem/renderingAPI.hpp"
 #include "renderingSystem/toltec/openGL/toltecOpenGLRendererResource.hpp"
 #include "utils.hpp"

@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderingSystem/openGLViewport.hpp"
+#include "openGLViewport.hpp"
 
 #include <QtGui/qsurfaceformat.h>
 #include <QtGui/qopenglcontext.h>

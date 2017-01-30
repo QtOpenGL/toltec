@@ -55,6 +55,9 @@
     <Filter Include="Main Files\renderingSystem\toltec\openGL">
       <UniqueIdentifier>{50a3dc88-a75a-4cbf-8b58-5cd3a5d78efe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\renderingSystem\openGL">
+      <UniqueIdentifier>{626575ff-7ebe-4c41-9524-7d09b5fcb89d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="guiManager.cpp">
       <Filter>Main Files</Filter>
-    </ClCompile>
-    <ClCompile Include="renderingSystem\openGLViewport.cpp">
-      <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
     <ClCompile Include="nodes\polygonMeshNode.cpp">
       <Filter>Main Files\nodes</Filter>
@@ -135,9 +135,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_mainWindow.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_openGLViewport.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_viewportPanel.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -171,6 +168,15 @@
     <ClCompile Include="renderingSystem\abstractRendererResource.cpp">
       <Filter>Main Files\renderingSystem</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\openGLViewport.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_openGLViewport.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_openGLViewport.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -201,9 +207,6 @@
       <Filter>Main Files</Filter>
     </CustomBuild>
     <CustomBuild Include="renderingSystem\abstractRendererResource.hpp">
-      <Filter>Main Files\renderingSystem</Filter>
-    </CustomBuild>
-    <CustomBuild Include="renderingSystem\openGLViewport.hpp">
       <Filter>Main Files\renderingSystem</Filter>
     </CustomBuild>
     <CustomBuild Include="renderingSystem\renderingAPI.hpp">
@@ -249,6 +252,9 @@
       <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
     </CustomBuild>
     <CustomBuild Include="20160924001.cd" />
+    <CustomBuild Include="renderingSystem\openGL\openGLViewport.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nodes\shaders\shaderProgramNode.hpp">
