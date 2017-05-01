@@ -1,18 +1,18 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		30 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		TransformNode class holds main model matrix that any vertex of a
-*		partcular object can be multiply with in order to place it in world 
-*		coordinates.
+*   CREATED:
+*       30 VIII 2016
+*   CONTRIBUTORS:
+*       PIOTR MAKAL
+*   INFO:
+*       TransformNode class holds main model matrix that any vertex of a
+*       partcular object can be multiply with in order to place it in world 
+*       coordinates.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <vector>
 #include <glm/glm.hpp>
@@ -20,53 +20,53 @@
 #include "sceneNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	TRANSFORM NODE
+*   CLASS DECLARATIONS
+*   TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
 class TransformNode : public SceneNode
 {
 public:
     //CONSTRUCTORS
                 TransformNode();
-    virtual		~TransformNode() {}
+    virtual     ~TransformNode() {}
 
     //ADD
-    void		addChild(SceneNode* p_sceneNode);
+    void        addChild(SceneNode* p_sceneNode);
 
     //REMOVE
-    bool		removeChild(SceneNode* p_sceneNode);
+    bool        removeChild(SceneNode* p_sceneNode);
 
     //SET
-    void		setTranslation(const glm::vec3& translation);
-    void		setTranslation(float x, float y, float z);
-    void		setRotation(const glm::vec3& rotation);
-    void		setRotation(float x, float y, float z);
-    void		setScale(float uniformScale);
-    void		setScale(const glm::vec3& scale);
-    void		setScale(float x, float y, float z);
+    void        setTranslation(const glm::vec3& translation);
+    void        setTranslation(float x, float y, float z);
+    void        setRotation(const glm::vec3& rotation);
+    void        setRotation(float x, float y, float z);
+    void        setScale(float uniformScale);
+    void        setScale(const glm::vec3& scale);
+    void        setScale(float x, float y, float z);
 
     //GET
-    const std::vector<SceneNode*>&	getChildList() const;
+    const std::vector<SceneNode*>&  getChildList() const;
 
-    const glm::mat4&				getModelMatrix();
+    const glm::mat4&                getModelMatrix();
 
-    const glm::vec3&				getTranslation() const;
-    const glm::vec3&				getRotation() const;
-    const glm::vec3&				getScale() const;
+    const glm::vec3&                getTranslation() const;
+    const glm::vec3&                getRotation() const;
+    const glm::vec3&                getScale() const;
 
-    const glm::vec3&				getLocalX() const;
-    const glm::vec3&				getLocalY() const;
-    const glm::vec3&				getLocalZ() const;
+    const glm::vec3&                getLocalX() const;
+    const glm::vec3&                getLocalY() const;
+    const glm::vec3&                getLocalZ() const;
 
-    const glm::vec3&				getTargetPosition() const;
+    const glm::vec3&                getTargetPosition() const;
 
 private:
-    std::vector<SceneNode*>	m_childList;
+    std::vector<SceneNode*> m_childList;
 
-    bool					m_updateModelMatrixFlag;
-    glm::mat4				m_modelMatrix;
+    bool                    m_updateModelMatrixFlag;
+    glm::mat4               m_modelMatrix;
 
-    glm::vec3	
+    glm::vec3   
         m_translation,
         m_rotation,
         m_scale,
