@@ -4,7 +4,7 @@
 *	CREATED:
 *		14 IX 2016
 *	CONTRIBUTORS:
-*		PIOTR MAKAL
+*		Piotr Makal
 *	INFO:
 *		ResourceManager is a singleton class responsible for managing resources
 *		across the program. It also sends the data to the rendering system.
@@ -20,6 +20,7 @@
 *	FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class CameraNode;
+class ComponentShaderProgramNode;
 class Node;
 class PolygonMeshNode;
 class ShaderProgramNode;
@@ -33,66 +34,69 @@ class TransformNode;
 class ResourceManager
 {
 public:
-	//SINGLETON
-	static ResourceManager& getInstance()
-	{
-		static ResourceManager instance;
-		return instance;
-	}
-	ResourceManager(const ResourceManager&) = delete;
-	void operator=(const ResourceManager&) = delete;
+    //SINGLETON
+    static ResourceManager& getInstance()
+    {
+        static ResourceManager instance;
+        return instance;
+    }
+    ResourceManager(const ResourceManager&) = delete;
+    void operator=(const ResourceManager&) = delete;
 
-	//ADD
-	void				addTransformNode(TransformNode* p_transformNode);
-	void				addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode);
+    //ADD
+    void				addSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
+    void				addComponentShaderProgramNode(ComponentShaderProgramNode* p_componentShaderProgramNode);
+    void				addTransformNode(TransformNode* p_transformNode);
+    void				addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode);
 
-	//SET
-	void				setDefaultSSPNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
-	void				setRootTransformNode(TransformNode* p_rootTransformNode);
-	void				setDefaultCameraNode(CameraNode* p_defaultCameraNode);
+    //SET
+    void				setDefaultSSPNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
+    void				setRootTransformNode(TransformNode* p_rootTransformNode);
+    void				setDefaultCameraNode(CameraNode* p_defaultCameraNode);
 
-	//GET
-	const std::vector<Node*>*	getAllNodeList();
-	SurfaceShaderProgramNode*	getDefaultSSPNode();
-	TransformNode*				getRootTransformNode();
+    //GET
+    const std::vector<Node*>*	getAllNodeList();
+    SurfaceShaderProgramNode*	getDefaultSSPNode();
+    TransformNode*				getRootTransformNode();
 
-	//OTHER
-	std::uint32_t		assignNodeID();
-	void				removeNodeID(const std::uint32_t nodeID);
-
-private:
-	//SINGLETON
-	ResourceManager();
+    //OTHER
+    std::uint32_t		assignNodeID();
+    void				removeNodeID(const std::uint32_t nodeID);
 
 private:
-	std::vector<std::uint32_t>		m_globalNodeIDList;
+    //SINGLETON
+    ResourceManager();
 
-	std::vector<Node*>				m_allNodeList;
-	std::vector<Node*>				m_undeletableNodeList;
+private:
+    std::vector<std::uint32_t>				m_globalNodeIDList;
 
-	SurfaceShaderProgramNode*		mp_defaultSSPNode;
-	TransformNode*					mp_rootTransformNode;
-	CameraNode*						mp_defaultCameraNode;
+    std::vector<Node*>						m_allNodeList;
+    std::vector<Node*>						m_undeletableNodeList;
 
-	std::vector<ShaderProgramNode*>	m_shaderProgramNodeList;
-	std::vector<TransformNode*>		m_transformNodeList;
-	std::vector<CameraNode*>		m_cameraNodeList;
-	std::vector<PolygonMeshNode*>	m_polygonMeshNodeList;
+    SurfaceShaderProgramNode*				mp_defaultSSPNode;
+    TransformNode*							mp_rootTransformNode;
+    CameraNode*								mp_defaultCameraNode;
+
+    std::vector<SurfaceShaderProgramNode*>	m_surfaceShaderProgramNodeList;
+    std::vector<ComponentShaderProgramNode*> m_componentShaderProgramNodeList;
+    std::vector<TransformNode*>				m_transformNodeList;
+    std::vector<CameraNode*>				m_cameraNodeList;
+    std::vector<PolygonMeshNode*>			m_polygonMeshNodeList;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline const std::vector<Node*>* ResourceManager::getAllNodeList()
 {
-	return &m_allNodeList;
+    return &m_allNodeList;
 }
 
 inline SurfaceShaderProgramNode* ResourceManager::getDefaultSSPNode()
 {
-	return mp_defaultSSPNode;
+    return mp_defaultSSPNode;
 }
 
 inline TransformNode* ResourceManager::getRootTransformNode()
 {
-	return mp_rootTransformNode;
+    return mp_rootTransformNode;
 }

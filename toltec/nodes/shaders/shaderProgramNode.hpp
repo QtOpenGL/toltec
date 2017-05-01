@@ -21,10 +21,10 @@
 class ShaderProgramNode : public Node
 {
 public:
-	//CONSTRUCTORS
-				ShaderProgramNode();
-	virtual		~ShaderProgramNode() {}
+    //CONSTRUCTORS
+                ShaderProgramNode();
+    virtual		~ShaderProgramNode() {}
 
 private:
-	//...
+    //...
 };

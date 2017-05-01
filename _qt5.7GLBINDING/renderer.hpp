@@ -19,22 +19,22 @@
 *-----------------------------------------------------------------------------*/
 class Renderer : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	//CONSTRUCTORS
-	explicit		Renderer(Window* p_window);
-	virtual			~Renderer() {}
+    //CONSTRUCTORS
+    explicit		Renderer(Window* p_window);
+    virtual			~Renderer() {}
 
-	//EVENTS
-	virtual bool	event(QEvent* event);
+    //EVENTS
+    virtual bool	event(QEvent* event);
 
-	//OTHERS
-	void			requestRender();
-
-private:
-	void			render();
+    //OTHERS
+    void			requestRender();
 
 private:
-	Window*			mp_window;
+    void			render();
+
+private:
+    Window*			mp_window;
 };

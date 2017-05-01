@@ -14,7 +14,7 @@
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 AbstractRendererResource::AbstractRendererResource()
-	:
-	m_areResourcesInitialized(false)
+    :
+    m_areResourcesInitialized(false)
 {
 }

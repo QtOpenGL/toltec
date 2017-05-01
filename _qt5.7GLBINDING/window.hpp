@@ -20,18 +20,18 @@ class QOpenGLContext;
 class Window : public QWindow
 {
 public:
-	//CONSTRUCTORS
-					Window(const std::string& name, int width, int height);
-	virtual			~Window() {}
+    //CONSTRUCTORS
+                    Window(const std::string& name, int width, int height);
+    virtual			~Window() {}
 
-	//GET
-	void			getWindowSize(int* p_width, int* p_height);
+    //GET
+    void			getWindowSize(int* p_width, int* p_height);
 
-	//OTHERS
-	void			makeCurrent();
-	void			doneCurrent();
-	void			swapBuffers();
+    //OTHERS
+    void			makeCurrent();
+    void			doneCurrent();
+    void			swapBuffers();
 
 private:
-	QOpenGLContext* mp_openGLContext;
+    QOpenGLContext* mp_openGLContext;
 };

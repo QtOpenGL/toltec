@@ -58,6 +58,9 @@
     <Filter Include="Main Files\renderingSystem\openGL">
       <UniqueIdentifier>{626575ff-7ebe-4c41-9524-7d09b5fcb89d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main Files\renderingSystem\toltec\openGL\shaders">
+      <UniqueIdentifier>{f9fe7cc3-532b-435e-8dca-9cdce1849570}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,6 +180,51 @@
     <ClCompile Include="GeneratedFiles\Release\moc_openGLViewport.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\vertexBuffer.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\toltecOpenGLRendererResource.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\geometry.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\renderableObject.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\indexBuffer.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\renderItem.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shaders\componentShaderProgramNode.cpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shaders\pointCSPNode.cpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shaders\lineCSPNode.cpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shaders\planeCSPNode.cpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\uniform.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\shaders\shaderProgram.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\shaders\shaderInstance.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\shaders\lambertShaderProgram.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\uniformContainer.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -236,9 +284,6 @@
     <CustomBuild Include="nodes\transformNode.hpp">
       <Filter>Main Files\nodes</Filter>
     </CustomBuild>
-    <CustomBuild Include="toltecPolygonMeshLibrary\math.hpp">
-      <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
-    </CustomBuild>
     <CustomBuild Include="toltecPolygonMeshLibrary\mesh.hpp">
       <Filter>Main Files\toltecPolygonMeshLibrary</Filter>
     </CustomBuild>
@@ -277,6 +322,48 @@
     </ClInclude>
     <ClInclude Include="renderingSystem\toltec\openGL\geometry.hpp">
       <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\renderableObject.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGL\vertexBuffer.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGL\indexBuffer.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\renderItem.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\shaders\componentShaderProgramNode.hpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\shaders\pointCSPNode.hpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\shaders\lineCSPNode.hpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\shaders\planeCSPNode.hpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGL\uniform.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\shaders\shaderInstance.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\shaders\shaderProgram.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\shaders\lambertShaderProgram.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGL\uniformContainer.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGL\uniformArray.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,8 +13,9 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <glm/glm.hpp>
+
 #include "surfaceNode.hpp"
-#include "toltecPolygonMeshLibrary/math.hpp"
 #include "toltecPolygonMeshLibrary/mesh.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -24,26 +25,26 @@
 class PolygonMeshNode : public SurfaceNode
 {
 public:
-	//CONSTRUCTORS
-				PolygonMeshNode();
-	virtual		~PolygonMeshNode() {}
+    //CONSTRUCTORS
+                PolygonMeshNode();
+    virtual		~PolygonMeshNode() {}
 
-	//GET
-	tpm::Mesh*	getMesh();
+    //GET
+    tpm::Mesh*	getMesh();
 
-	//OTHER
-	bool		createMesh(
-					std::vector<tpm::Point3D>&	point3DList, 
-					std::vector<unsigned int>&	vertexSequence,
-					std::vector<unsigned int>&	polygonOffsets);
+    //OTHER
+    bool		createMesh(
+                    std::vector<glm::vec3>&	point3DList, 
+                    std::vector<unsigned int>&	vertexSequence,
+                    std::vector<unsigned int>&	polygonOffsets);
 
 private:
-	tpm::Mesh		m_mesh;
+    tpm::Mesh		m_mesh;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline tpm::Mesh* PolygonMeshNode::getMesh()
 {
-	return &m_mesh;
+    return &m_mesh;
 }

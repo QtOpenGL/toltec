@@ -18,21 +18,21 @@
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 AbstractViewport::AbstractViewport()
-	:
-	m_type(RenderingAPI::UNSPECIFIED_API),
-	mp_renderer(nullptr),
-	mp_camera(nullptr),
+    :
+    m_type(RenderingAPI::UNSPECIFIED_API),
+    mp_renderer(nullptr),
+    mp_camera(nullptr),
 
-	m_isLeftMouseButtonPressed(false),
-	m_isMiddleMouseButtonPressed(false),
-	m_isRightMouseButtonPressed(false),
+    m_isLeftMouseButtonPressed(false),
+    m_isMiddleMouseButtonPressed(false),
+    m_isRightMouseButtonPressed(false),
 
-	m_mouseLocalXPosition(0),
-	m_mouseLocalYPosition(0),
-	m_mouseRelativeXPosition(0),
-	m_mouseRelativeYPosition(0),
+    m_mouseLocalXPosition(0),
+    m_mouseLocalYPosition(0),
+    m_mouseRelativeXPosition(0),
+    m_mouseRelativeYPosition(0),
 
-	m_mouseSensitivity(1.0f)
+    m_mouseSensitivity(1.0f)
 {
 }
 
@@ -41,18 +41,18 @@ AbstractViewport::AbstractViewport()
 *-----------------------------------------------------------------------------*/
 void AbstractViewport::mousePressEvent(QMouseEvent* p_mouseEvent)
 {
-	switch (p_mouseEvent->button())
-	{
-	case Qt::LeftButton:
-		m_isLeftMouseButtonPressed = true;
-		break;
-	case Qt::MiddleButton:		
-		m_isMiddleMouseButtonPressed = true;
-		break;
-	case Qt::RightButton:		
-		m_isRightMouseButtonPressed = true;
-		break;
-	}
+    switch (p_mouseEvent->button())
+    {
+    case Qt::LeftButton:
+        m_isLeftMouseButtonPressed = true;
+        break;
+    case Qt::MiddleButton:		
+        m_isMiddleMouseButtonPressed = true;
+        break;
+    case Qt::RightButton:		
+        m_isRightMouseButtonPressed = true;
+        break;
+    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -60,18 +60,18 @@ void AbstractViewport::mousePressEvent(QMouseEvent* p_mouseEvent)
 *-----------------------------------------------------------------------------*/
 void AbstractViewport::mouseReleaseEvent(QMouseEvent* p_mouseEvent)
 {
-	switch (p_mouseEvent->button())
-	{
-	case Qt::LeftButton:		
-		m_isLeftMouseButtonPressed = false;
-		break;
-	case Qt::MiddleButton:		
-		m_isMiddleMouseButtonPressed = false;
-		break;
-	case Qt::RightButton:		
-		m_isRightMouseButtonPressed = false;
-		break;
-	}
+    switch (p_mouseEvent->button())
+    {
+    case Qt::LeftButton:		
+        m_isLeftMouseButtonPressed = false;
+        break;
+    case Qt::MiddleButton:		
+        m_isMiddleMouseButtonPressed = false;
+        break;
+    case Qt::RightButton:		
+        m_isRightMouseButtonPressed = false;
+        break;
+    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -79,21 +79,21 @@ void AbstractViewport::mouseReleaseEvent(QMouseEvent* p_mouseEvent)
 *-----------------------------------------------------------------------------*/
 void AbstractViewport::mouseMoveEvent(QMouseEvent* p_mouseEvent)
 {
-	m_mouseRelativeXPosition =	m_mouseLocalXPosition - p_mouseEvent->localPos().x();
-	m_mouseRelativeYPosition =	m_mouseLocalYPosition - p_mouseEvent->localPos().y();
-	m_mouseLocalXPosition =		p_mouseEvent->localPos().x();
-	m_mouseLocalYPosition =		p_mouseEvent->localPos().y();
+    m_mouseRelativeXPosition =	m_mouseLocalXPosition - p_mouseEvent->localPos().x();
+    m_mouseRelativeYPosition =	m_mouseLocalYPosition - p_mouseEvent->localPos().y();
+    m_mouseLocalXPosition =		p_mouseEvent->localPos().x();
+    m_mouseLocalYPosition =		p_mouseEvent->localPos().y();
 
-	//CAMERA MOVEMENT
-	//tumble
-	if (GlobalEventFilter::isAltPressed() && m_isLeftMouseButtonPressed)
-		this->tumble(-m_mouseRelativeXPosition, -m_mouseRelativeYPosition);
-	//track
-	else if (GlobalEventFilter::isAltPressed() && m_isMiddleMouseButtonPressed)
-		this->track(-m_mouseRelativeXPosition, -m_mouseRelativeYPosition);
-	//dolly
-	else if (GlobalEventFilter::isAltPressed() && m_isRightMouseButtonPressed)
-		this->dolly(-m_mouseRelativeXPosition, -m_mouseRelativeYPosition);
+    //CAMERA MOVEMENT
+    //tumble
+    if (GlobalEventFilter::isAltPressed() && m_isLeftMouseButtonPressed)
+        this->tumble(-m_mouseRelativeXPosition, -m_mouseRelativeYPosition);
+    //track
+    else if (GlobalEventFilter::isAltPressed() && m_isMiddleMouseButtonPressed)
+        this->track(-m_mouseRelativeXPosition, -m_mouseRelativeYPosition);
+    //dolly
+    else if (GlobalEventFilter::isAltPressed() && m_isRightMouseButtonPressed)
+        this->dolly(-m_mouseRelativeXPosition, -m_mouseRelativeYPosition);
 }
 
 /*-----------------------------------------------------------------------------
@@ -101,7 +101,7 @@ void AbstractViewport::mouseMoveEvent(QMouseEvent* p_mouseEvent)
 *-----------------------------------------------------------------------------*/
 void AbstractViewport::setRenderer(AbstractRenderer* p_renderer)
 {
-	mp_renderer = p_renderer;
+    mp_renderer = p_renderer;
 }
 
 /*-----------------------------------------------------------------------------
@@ -109,7 +109,7 @@ void AbstractViewport::setRenderer(AbstractRenderer* p_renderer)
 *-----------------------------------------------------------------------------*/
 void AbstractViewport::setCamera(TransformNode* p_camera)
 {
-	mp_camera = p_camera;
+    mp_camera = p_camera;
 }
 
 /*-----------------------------------------------------------------------------

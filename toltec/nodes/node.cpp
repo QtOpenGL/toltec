@@ -16,12 +16,13 @@
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 Node::Node()
-	:
-	m_shortName("node"),
-	m_id(ResourceManager::getInstance().assignNodeID()),
+    :
+    m_shortName("node"),
+    m_id(ResourceManager::getInstance().assignNodeID()),
+    m_type(Node::NODE),
 
-	m_initializeFlag(true),
-	m_updateFlag(false)
+    m_initializeFlag(true),
+    m_updateFlag(false)
 {
 }
 
@@ -30,7 +31,7 @@ Node::Node()
 *-----------------------------------------------------------------------------*/
 Node::~Node()
 {
-	ResourceManager::getInstance().removeNodeID(m_id);
+    ResourceManager::getInstance().removeNodeID(m_id);
 }
 
 /*-----------------------------------------------------------------------------
@@ -38,7 +39,7 @@ Node::~Node()
 *-----------------------------------------------------------------------------*/
 void Node::setShortName(const std::string& shortName)
 {
-	m_shortName = shortName;
+    m_shortName = shortName;
 }
 
 /*-----------------------------------------------------------------------------
@@ -46,7 +47,7 @@ void Node::setShortName(const std::string& shortName)
 *-----------------------------------------------------------------------------*/
 void Node::setInitializeFlag(bool value)
 {
-	m_initializeFlag = value;
+    m_initializeFlag = value;
 }
 
 /*-----------------------------------------------------------------------------
@@ -54,7 +55,7 @@ void Node::setInitializeFlag(bool value)
 *-----------------------------------------------------------------------------*/
 void Node::setUpdateFlag(bool value)
 {
-	m_updateFlag = value;
+    m_updateFlag = value;
 }
 
 /*-----------------------------------------------------------------------------
@@ -62,6 +63,14 @@ void Node::setUpdateFlag(bool value)
 *-----------------------------------------------------------------------------*/
 std::string Node::getFullName() const
 {
-	return m_shortName + "#" + std::to_string(m_id);
+    return m_shortName + "#" + std::to_string(m_id);
+}
+
+/*-----------------------------------------------------------------------------
+*	SET TYPE
+*-----------------------------------------------------------------------------*/
+void Node::setType(Node::Type type)
+{
+    m_type = type;
 }
 

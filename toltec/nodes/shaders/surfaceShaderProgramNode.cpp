@@ -18,8 +18,9 @@
 *-----------------------------------------------------------------------------*/
 SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 {
-	//INITIALIZE
-	this->setShortName("surfaceShaderProgramNode");
+    //INITIALIZE
+    this->setShortName("surfaceShaderProgramNode");
+    this->setType(Node::SURFACE_SHADER_PROGRAM_NODE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -27,29 +28,29 @@ SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 *-----------------------------------------------------------------------------*/
 void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode, const bool hardAdd)
 {
-	//CHECK
-	for (SurfaceNode* p_surfaceListElement : m_surfaceList)
-		if (p_surfaceListElement == p_surfaceNode)
-			return;
-	if (p_surfaceNode == nullptr)
-		return;
+    //CHECK
+    for (SurfaceNode* p_surfaceListElement : m_surfaceNodeList)
+        if (p_surfaceListElement == p_surfaceNode)
+            return;
+    if (p_surfaceNode == nullptr)
+        return;
 
-	//ADD
-	if (hardAdd == false)
-	{
-		//clean old
-		SurfaceShaderProgramNode* p_shaderProgram = p_surfaceNode->getSurfaceShaderProgram();
-		p_shaderProgram->removeSurface(p_surfaceNode, true);
+    //ADD
+    if (hardAdd == false)
+    {
+        //clean old
+        SurfaceShaderProgramNode* p_shaderProgram = p_surfaceNode->getSurfaceShaderProgramNode();
+        p_shaderProgram->removeSurface(p_surfaceNode, true);
 
-		//add / set
-		m_surfaceList.push_back(p_surfaceNode);
-		p_surfaceNode->setSurfaceShaderProgram(this);
-	}
-	else
-	{
-		//add
-		m_surfaceList.push_back(p_surfaceNode);
-	}
+        //add / set
+        m_surfaceNodeList.push_back(p_surfaceNode);
+        p_surfaceNode->setSurfaceShaderProgramNode(this);
+    }
+    else
+    {
+        //add
+        m_surfaceNodeList.push_back(p_surfaceNode);
+    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -57,26 +58,26 @@ void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode, const bool
 *-----------------------------------------------------------------------------*/
 void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode, const bool hardRemove)
 {
-	//CHECK
-	if (p_surfaceNode == nullptr)
-		return;
+    //CHECK
+    if (p_surfaceNode == nullptr)
+        return;
 
-	//REMOVE
-	std::size_t numSurfaceNodes = m_surfaceList.size();
-	for (std::size_t i = 0; i < numSurfaceNodes; i++)
-	{
-		if (m_surfaceList[i] == p_surfaceNode)
-		{
-			//remove old
-			m_surfaceList.erase(m_surfaceList.begin() + i);
+    //REMOVE
+    std::size_t numSurfaceNodes = m_surfaceNodeList.size();
+    for (std::size_t i = 0; i < numSurfaceNodes; i++)
+    {
+        if (m_surfaceNodeList[i] == p_surfaceNode)
+        {
+            //remove old
+            m_surfaceNodeList.erase(m_surfaceNodeList.begin() + i);
 
-			//set default
-			if (hardRemove == false)
-				p_surfaceNode->setSurfaceShaderProgram(ResourceManager::getInstance().getDefaultSSPNode());
+            //set default
+            if (hardRemove == false)
+                p_surfaceNode->setSurfaceShaderProgramNode(ResourceManager::getInstance().getDefaultSSPNode());
 
-			break;
-		}
-	}
+            break;
+        }
+    }
 }
 
 

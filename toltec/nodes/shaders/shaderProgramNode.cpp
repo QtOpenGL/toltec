@@ -15,6 +15,7 @@
 *-----------------------------------------------------------------------------*/
 ShaderProgramNode::ShaderProgramNode()
 {
-	//INITIALIZE
-	this->setShortName("shaderProgramNode");
+    //INITIALIZE
+    this->setShortName("shaderProgramNode");
+    this->setType(Node::SHADER_PROGRAM_NODE);
 }

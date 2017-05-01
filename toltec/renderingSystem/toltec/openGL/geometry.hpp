@@ -4,7 +4,7 @@
 *	CREATED:
 *		16 I 2017
 *	CONTRIBUTORS:
-*		PIOTR MAKAL
+*		Piotr Makal
 *	INFO:
 *		tgl::Geometry class holds all vertex and index buffers needed to render
 *		all visual aspects of an object (faces, wireframe, vertices, etc.).
@@ -13,25 +13,32 @@
 /*-----------------------------------------------------------------------------
 *	IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <string>
-#include "renderingSystem/abstractRendererResource.hpp"
+#include <vector>
+
+#include "renderingSystem/openGL/vertexBuffer.hpp"
+#include "renderingSystem/openGL/indexBuffer.hpp"
 
 /*-----------------------------------------------------------------------------
 *	NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-	/*-----------------------------------------------------------------------------
-	*	CLASS DECLARATIONS
-	*	GEOMETRY
-	*-----------------------------------------------------------------------------*/
-	class Geometry
-	{
-	public:
-		//CONSTRUCTORS
-		virtual			~Geometry() {}
+    /*-----------------------------------------------------------------------------
+    *	CLASS DECLARATIONS
+    *	GEOMETRY
+    *-----------------------------------------------------------------------------*/
+    class Geometry
+    {
+    public:
+        //CONSTRUCTORS
+        virtual			~Geometry() {}
 
-	private:
-		//...
-	};
+        //ADD
+        void			addVertexBuffer(const gl::VertexBuffer& vertexBuffer);
+        void			addIndexBuffer(const gl::IndexBuffer& indexBuffer);
+
+    private:
+        std::vector<gl::VertexBuffer>	m_vertexBufferList;
+        std::vector<gl::IndexBuffer>	m_indexBufferList;
+    };
 } //NAMESPACE: TGL

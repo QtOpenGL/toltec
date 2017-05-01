@@ -14,8 +14,8 @@
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 AbstractRenderer::AbstractRenderer()
-	:
-	mp_rendererResource(nullptr)
+    :
+    mp_rendererResource(nullptr)
 {
 }
 
@@ -24,5 +24,5 @@ AbstractRenderer::AbstractRenderer()
 *-----------------------------------------------------------------------------*/
 AbstractRenderer::~AbstractRenderer()
 {
-	delete mp_rendererResource;
+    delete mp_rendererResource;
 }

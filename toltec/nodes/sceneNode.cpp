@@ -16,11 +16,12 @@
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 SceneNode::SceneNode()
-	:
-	mp_parent(nullptr)
+    :
+    mp_parent(nullptr)
 {
-	//INITIALIZE
-	this->setShortName("sceneNode");
+    //INITIALIZE
+    this->setShortName("sceneNode");
+    this->setType(Node::SCENE_NODE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -28,19 +29,19 @@ SceneNode::SceneNode()
 *-----------------------------------------------------------------------------*/
 void SceneNode::setParent(SceneNode* p_parent)
 {
-	//CHECK
-	//Parent pointer will be only assigned if the parent is a TransformNode object.
-	//Renderable object nodes can not be parents.
-	TransformNode* p_transformNode = dynamic_cast<TransformNode*>(p_parent);
-	if (p_transformNode == nullptr)
-		return;
+    //CHECK
+    //Parent pointer will be only assigned if the parent is a TransformNode object.
+    //Renderable object nodes can not be parents.
+    TransformNode* p_transformNode = dynamic_cast<TransformNode*>(p_parent);
+    if (p_transformNode == nullptr)
+        return;
 
-	if (mp_parent == p_parent)
-		return;
+    if (mp_parent == p_parent)
+        return;
 
-	//SET PARENT
-	mp_parent = p_parent;
+    //SET PARENT
+    mp_parent = p_parent;
 
-	//ADD CHILD
-	p_transformNode->addChild(this);
+    //ADD CHILD
+    p_transformNode->addChild(this);
 }

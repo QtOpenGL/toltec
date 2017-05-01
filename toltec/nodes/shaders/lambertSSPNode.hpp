@@ -28,17 +28,17 @@ class TextureNode;
 class LambertSSPNode : public SurfaceShaderProgramNode
 {
 public:
-	//CONSTRUCTORS
-				LambertSSPNode();
-	virtual		~LambertSSPNode() {}
+    //CONSTRUCTORS
+                LambertSSPNode();
+    virtual		~LambertSSPNode() {}
 
 private:
-	glm::vec3		m_diffuseColor;
-	TextureNode*	mp_diffuseMap;
-	glm::vec3		m_transparencyColor;
-	TextureNode*	mp_transparencyMap;
-	glm::vec3		m_ambientColor;
-	TextureNode*	mp_ambientMap;
+    glm::vec3		m_diffuseColor;
+    TextureNode*	mp_diffuseMap;
+    glm::vec3		m_transparencyColor;
+    TextureNode*	mp_transparencyMap;
+    glm::vec3		m_ambientColor;
+    TextureNode*	mp_ambientMap;
 
-	TextureNode*	mp_bumpMap;
+    TextureNode*	mp_bumpMap;
 };

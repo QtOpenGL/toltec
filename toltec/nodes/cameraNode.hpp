@@ -23,61 +23,61 @@
 class CameraNode : public RenderableObjectNode
 {
 public:
-	//TYPES
-	enum Type {
-		PERSPECTIVE_CAMERA,
-		ORTHOGRAPHIC_CAMERA
-	};
+    //TYPES
+    enum CameraType {
+        PERSPECTIVE_CAMERA,
+        ORTHOGRAPHIC_CAMERA
+    };
 
-	//CONSTRUCTORS
-					CameraNode();
-	virtual			~CameraNode() {}
+    //CONSTRUCTORS
+                    CameraNode();
+    virtual			~CameraNode() {}
 
-	//SET
-	void			setType(const CameraNode::Type cameraType);
-	void			setFieldOfView(const float fieldOfView);
-	void			setOrthographicArea(const float orthographicArea);
-	void			setZNear(const float zNear);
-	void			setZFar(const float zFar);
+    //SET
+    void			setCameraType(const CameraNode::CameraType cameraType);
+    void			setFieldOfView(const float fieldOfView);
+    void			setOrthographicArea(const float orthographicArea);
+    void			setZNear(const float zNear);
+    void			setZFar(const float zFar);
 
-	//GET
-	const glm::mat4&	getViewMatrix();
-	const glm::mat4&	getProjectionMatrix();		//either perspective or orthographic matrix
-	const glm::mat4&	getPerspectiveMatrix();
-	const glm::mat4&	getOrthographicMatrix();
+    //GET
+    const glm::mat4&	getViewMatrix();
+    const glm::mat4&	getProjectionMatrix();		//either perspective or orthographic matrix
+    const glm::mat4&	getPerspectiveMatrix();
+    const glm::mat4&	getOrthographicMatrix();
 
-	//OTHER
-	void			updateViewMatrix();
-	void			updateViewMatrix(
-		const glm::vec3& cameraPosition, 
-		const glm::vec3& targetPosition,
-		const glm::vec3& localY);
-	void			updatePerspectiveMatrix(const float aspectRatio);
-	void			updateOrthographicMatrix(const float aspectRatio);
+    //OTHER
+    void			updateViewMatrix();
+    void			updateViewMatrix(
+        const glm::vec3& cameraPosition, 
+        const glm::vec3& targetPosition,
+        const glm::vec3& localY);
+    void			updatePerspectiveMatrix(const float aspectRatio);
+    void			updateOrthographicMatrix(const float aspectRatio);
 
 private:
-	CameraNode::Type	m_type;
+    CameraNode::CameraType	m_type;
 
-	float				m_fieldOfView;			//CHANGE ONLY WITH CameraNode::setFieldOfView()!
-	float				m_orthographicArea;		//CHANGE ONLY WITH CameraNode::setOrthographicArea()!
+    float					m_fieldOfView;			//CHANGE ONLY WITH CameraNode::setFieldOfView()!
+    float					m_orthographicArea;		//CHANGE ONLY WITH CameraNode::setOrthographicArea()!
 
-	float				m_zNear;				//CHANGE ONLY WITH CameraNode::setZNear()!
-	float				m_zFar;					//CHANGE ONLY WITH CameraNode::setZFar()!
+    float					m_zNear;				//CHANGE ONLY WITH CameraNode::setZNear()!
+    float					m_zFar;					//CHANGE ONLY WITH CameraNode::setZFar()!
 
-	float				m_aspectRatio;
+    float					m_aspectRatio;
 
-	glm::mat4			m_viewMatrix;
+    glm::mat4				m_viewMatrix;
 
-	bool				m_updatePerspectiveMatrixFlag;
-	glm::mat4			m_perspectiveMatrix;
+    bool					m_updatePerspectiveMatrixFlag;
+    glm::mat4				m_perspectiveMatrix;
 
-	bool				m_updateOrthographicMatrixFlag;
-	glm::mat4			m_orthographicMatrix;
+    bool					m_updateOrthographicMatrixFlag;
+    glm::mat4				m_orthographicMatrix;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline const glm::mat4& CameraNode::getViewMatrix()
 {
-	return m_viewMatrix;
+    return m_viewMatrix;
 }

@@ -22,29 +22,35 @@
 class QOpenGLContext;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	OPENGL VIEWPORT
+*	NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
-class OpenGLViewport : public AbstractViewport
+namespace gl
 {
-	Q_OBJECT
+    /*-----------------------------------------------------------------------------
+    *	CLASS DECLARATIONS
+    *	OPENGL VIEWPORT
+    *-----------------------------------------------------------------------------*/
+    class OpenGLViewport : public AbstractViewport
+    {
+        Q_OBJECT
 
-public:
-	//CONSTRUCTORS
-					OpenGLViewport();
-	virtual			~OpenGLViewport() {}
+    public:
+        //CONSTRUCTORS
+                        OpenGLViewport();
+        virtual			~OpenGLViewport() {}
 
-	//EVENTS
-	virtual void	exposeEvent(QExposeEvent* p_exposeEvent);
+        //EVENTS
+        virtual void	exposeEvent(QExposeEvent* p_exposeEvent);
 
-	//OTHERS
-	void			makeCurrent();
-	void			doneCurrent();
-	void			swapBuffers();
+        //OTHERS
+        void			makeCurrent();
+        void			doneCurrent();
+        void			swapBuffers();
 
-private:
-	void			initializeOpenGLContext();
+    private:
+        void			initializeOpenGLContext();
 
-private:
-	QOpenGLContext*		mp_openGLContext;
-};
+    private:
+        QOpenGLContext*		mp_openGLContext;
+    };
+}; //NAMESPACE: GL

@@ -170,7 +170,11 @@
     <ClCompile Include="nodes\polygonMeshNode.cpp" />
     <ClCompile Include="nodes\renderableObjectNode.cpp" />
     <ClCompile Include="nodes\sceneNode.cpp" />
+    <ClCompile Include="nodes\shaders\componentShaderProgramNode.cpp" />
     <ClCompile Include="nodes\shaders\lambertSSPNode.cpp" />
+    <ClCompile Include="nodes\shaders\lineCSPNode.cpp" />
+    <ClCompile Include="nodes\shaders\planeCSPNode.cpp" />
+    <ClCompile Include="nodes\shaders\pointCSPNode.cpp" />
     <ClCompile Include="nodes\shaders\shaderProgramNode.cpp" />
     <ClCompile Include="nodes\shaders\surfaceShaderProgramNode.cpp" />
     <ClCompile Include="nodes\shaders\volumeShaderProgramNode.cpp" />
@@ -179,10 +183,21 @@
     <ClCompile Include="renderingSystem\abstractRenderer.cpp" />
     <ClCompile Include="renderingSystem\abstractRendererResource.cpp" />
     <ClCompile Include="renderingSystem\abstractViewport.cpp" />
+    <ClCompile Include="renderingSystem\openGL\indexBuffer.cpp" />
     <ClCompile Include="renderingSystem\openGL\openGLViewport.cpp" />
+    <ClCompile Include="renderingSystem\openGL\uniform.cpp" />
+    <ClCompile Include="renderingSystem\openGL\uniformContainer.cpp" />
+    <ClCompile Include="renderingSystem\openGL\vertexBuffer.cpp" />
     <ClCompile Include="renderingSystem\renderingSystem.cpp" />
     <ClCompile Include="renderingSystem\renderingAPI.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\geometry.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\renderableObject.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\renderItem.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\shaders\lambertShaderProgram.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\shaders\shaderInstance.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\shaders\shaderProgram.cpp" />
     <ClCompile Include="renderingSystem\toltec\openGL\toltecOpenGLRenderer.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\toltecOpenGLRendererResource.cpp" />
     <ClCompile Include="renderManager.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="toltecPolygonMeshLibrary\mesh.cpp" />
@@ -637,36 +652,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="toltecPolygonMeshLibrary\math.hpp">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing Custom Build Tools</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </Outputs>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </AdditionalInputs>
-    </CustomBuild>
     <CustomBuild Include="toltecPolygonMeshLibrary\mesh.hpp">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
@@ -857,7 +842,11 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="nodes\shaders\componentShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\lambertSSPNode.hpp" />
+    <ClInclude Include="nodes\shaders\lineCSPNode.hpp" />
+    <ClInclude Include="nodes\shaders\planeCSPNode.hpp" />
+    <ClInclude Include="nodes\shaders\pointCSPNode.hpp" />
     <ClInclude Include="nodes\shaders\shaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\surfaceShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\volumeShaderProgramNode.hpp" />
@@ -880,7 +869,17 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\gui" "-I.\renderingSystem"</Command>
     </CustomBuild>
+    <ClInclude Include="renderingSystem\openGL\uniformArray.hpp" />
+    <ClInclude Include="renderingSystem\openGL\uniformContainer.hpp" />
+    <ClInclude Include="renderingSystem\openGL\indexBuffer.hpp" />
+    <ClInclude Include="renderingSystem\openGL\uniform.hpp" />
+    <ClInclude Include="renderingSystem\openGL\vertexBuffer.hpp" />
     <ClInclude Include="renderingSystem\toltec\openGL\geometry.hpp" />
+    <ClInclude Include="renderingSystem\toltec\openGL\renderableObject.hpp" />
+    <ClInclude Include="renderingSystem\toltec\openGL\renderItem.hpp" />
+    <ClInclude Include="renderingSystem\toltec\openGL\shaders\lambertShaderProgram.hpp" />
+    <ClInclude Include="renderingSystem\toltec\openGL\shaders\shaderInstance.hpp" />
+    <ClInclude Include="renderingSystem\toltec\openGL\shaders\shaderProgram.hpp" />
     <ClInclude Include="renderingSystem\toltec\openGL\toltecOpenGLRendererResource.hpp" />
     <CustomBuild Include="renderingSystem\toltec\openGL\toltecOpenGLRenderer.hpp">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

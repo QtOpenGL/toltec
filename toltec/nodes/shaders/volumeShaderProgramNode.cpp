@@ -15,6 +15,7 @@
 *-----------------------------------------------------------------------------*/
 VolumeShaderProgramNode::VolumeShaderProgramNode()
 {
-	//INITIALIZE
-	this->setShortName("volumeShaderProgramNode");
+    //INITIALIZE
+    this->setShortName("volumeShaderProgramNode");
+    this->setType(Node::VOLUME_SHADER_PROGRAM_NODE);
 }

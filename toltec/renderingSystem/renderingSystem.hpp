@@ -30,47 +30,47 @@ class ViewportPanel;
 class RenderingSystem
 {
 public:
-	//CONSTRUCTORS
-	explicit		RenderingSystem(const std::string& name);
-	virtual			~RenderingSystem() {};
+    //CONSTRUCTORS
+    explicit		RenderingSystem(const std::string& name);
+    virtual			~RenderingSystem() {};
 
-	//ADD
-	void			addRenderingAPI(RenderingAPI* p_renderingAPI);
-	void			addViewportPanel(ViewportPanel* p_viewportPanel);
+    //ADD
+    void			addRenderingAPI(RenderingAPI* p_renderingAPI);
+    void			addViewportPanel(ViewportPanel* p_viewportPanel);
 
-	//REMOVE
-	void			removeViewportPanel(ViewportPanel* p_viewportPanel);
+    //REMOVE
+    void			removeViewportPanel(ViewportPanel* p_viewportPanel);
 
-	//GET
-	const std::string&					getName() const;
-	const std::vector<ViewportPanel*>*	getViewportPanelList() const;
-	RenderingAPI*						getActiveRenderingAPI() const;
+    //GET
+    const std::string&					getName() const;
+    const std::vector<ViewportPanel*>*	getViewportPanelList() const;
+    RenderingAPI*						getActiveRenderingAPI() const;
 
-	//OTHER
-	void			switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
-	void			printOpenGLData() const;
+    //OTHER
+    void			switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
+    void			printOpenGLData() const;
 
 private:
-	std::string										m_name;
-	std::vector<ViewportPanel*>						m_viewportPanelList;
+    std::string										m_name;
+    std::vector<ViewportPanel*>						m_viewportPanelList;
 
-	std::map<RenderingAPI::Type, RenderingAPI*>		m_renderingAPIMap;
-	RenderingAPI*									mp_activeRenderingAPI;
+    std::map<RenderingAPI::Type, RenderingAPI*>		m_renderingAPIMap;
+    RenderingAPI*									mp_activeRenderingAPI;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline const std::string& RenderingSystem::getName() const
 {
-	return m_name;
+    return m_name;
 }
 
 inline const std::vector<ViewportPanel*>* RenderingSystem::getViewportPanelList() const
 {
-	return &m_viewportPanelList;
+    return &m_viewportPanelList;
 }
 
 inline RenderingAPI* RenderingSystem::getActiveRenderingAPI() const
 {
-	return mp_activeRenderingAPI;
+    return mp_activeRenderingAPI;
 }

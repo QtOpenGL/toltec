@@ -28,31 +28,31 @@ class RenderingSystem;
 *-----------------------------------------------------------------------------*/
 class ViewportPanel : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	//CONSTRUCTORS AND DESTRUCTORS
-				ViewportPanel();
-	virtual		~ViewportPanel();
+    //CONSTRUCTORS
+                ViewportPanel();
+    virtual		~ViewportPanel();
 
-	//GET
-	AbstractViewport*	getViewport() const;
-
-private:
-	void		setupViewport();
-	void		setupUI();
+    //GET
+    AbstractViewport*	getViewport() const;
 
 private:
-	RenderingSystem*			mp_activeRenderingSystem;	
-	AbstractViewport*			mp_viewport;
+    void		setupViewport();
+    void		setupUI();
 
-	QComboBox*					mp_activeCameraComboBox;
+private:
+    RenderingSystem*			mp_activeRenderingSystem;	
+    AbstractViewport*			mp_viewport;
+
+    QComboBox*					mp_activeCameraComboBox;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline AbstractViewport* ViewportPanel::getViewport() const
 {
-	return mp_viewport;
+    return mp_viewport;
 }
 

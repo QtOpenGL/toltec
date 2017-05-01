@@ -26,95 +26,96 @@
 class TransformNode : public SceneNode
 {
 public:
-	//CONSTRUCTORS
-				TransformNode();
-	virtual		~TransformNode() {}
+    //CONSTRUCTORS
+                TransformNode();
+    virtual		~TransformNode() {}
 
-	//ADD
-	void		addChild(SceneNode* p_sceneNode);
+    //ADD
+    void		addChild(SceneNode* p_sceneNode);
 
-	//REMOVE
-	bool		removeChild(SceneNode* p_sceneNode);
+    //REMOVE
+    bool		removeChild(SceneNode* p_sceneNode);
 
-	//SET
-	void		setTranslation(const glm::vec3& translation);
-	void		setTranslation(float x, float y, float z);
-	void		setRotation(const glm::vec3& rotation);
-	void		setRotation(float x, float y, float z);
-	void		setScale(float uniformScale);
-	void		setScale(const glm::vec3& scale);
-	void		setScale(float x, float y, float z);
+    //SET
+    void		setTranslation(const glm::vec3& translation);
+    void		setTranslation(float x, float y, float z);
+    void		setRotation(const glm::vec3& rotation);
+    void		setRotation(float x, float y, float z);
+    void		setScale(float uniformScale);
+    void		setScale(const glm::vec3& scale);
+    void		setScale(float x, float y, float z);
 
-	//GET
-	const std::vector<SceneNode*>&	getChildList() const;
+    //GET
+    const std::vector<SceneNode*>&	getChildList() const;
 
-	const glm::vec3&				getTranslation() const;
-	const glm::vec3&				getRotation() const;
-	const glm::vec3&				getScale() const;
+    const glm::mat4&				getModelMatrix();
 
-	const glm::mat4&				getModelMatrix();
+    const glm::vec3&				getTranslation() const;
+    const glm::vec3&				getRotation() const;
+    const glm::vec3&				getScale() const;
 
-	const glm::vec3&				getLocalX() const;
-	const glm::vec3&				getLocalY() const;
-	const glm::vec3&				getLocalZ() const;
+    const glm::vec3&				getLocalX() const;
+    const glm::vec3&				getLocalY() const;
+    const glm::vec3&				getLocalZ() const;
 
-	const glm::vec3&				getTargetPosition() const;
+    const glm::vec3&				getTargetPosition() const;
 
 private:
-	std::vector<SceneNode*>	m_childList;
+    std::vector<SceneNode*>	m_childList;
 
-	glm::vec3				m_translation;
-	glm::vec3				m_rotation;
-	glm::vec3				m_scale;
+    bool					m_updateModelMatrixFlag;
+    glm::mat4				m_modelMatrix;
 
-	bool					m_updateModelMatrixFlag;
-	glm::mat4				m_modelMatrix;
+    glm::vec3	
+        m_translation,
+        m_rotation,
+        m_scale,
 
-	glm::vec3				m_localX;
-	glm::vec3				m_localY;
-	glm::vec3				m_localZ;
+        m_localX,
+        m_localY,
+        m_localZ,
 
-	glm::vec3				m_targetPosition;
+        m_targetPosition;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline const std::vector<SceneNode*>& TransformNode::getChildList() const
 {
-	return m_childList;
+    return m_childList;
 }
 
 inline const glm::vec3& TransformNode::getTranslation() const
 {
-	return m_translation;
+    return m_translation;
 }
 
 inline const glm::vec3& TransformNode::getRotation() const
 {
-	return m_rotation;
+    return m_rotation;
 }
 
 inline const glm::vec3& TransformNode::getScale() const
 {
-	return m_scale;
+    return m_scale;
 }
 
 inline const glm::vec3& TransformNode::getLocalX() const
 {
-	return m_localX;
+    return m_localX;
 }
 
 inline const glm::vec3 & TransformNode::getLocalY() const
 {
-	return m_localY;
+    return m_localY;
 }
 
 inline const glm::vec3 & TransformNode::getLocalZ() const
 {
-	return m_localZ;
+    return m_localZ;
 }
 
 inline const glm::vec3 & TransformNode::getTargetPosition() const
 {
-	return m_targetPosition;
+    return m_targetPosition;
 }

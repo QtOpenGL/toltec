@@ -12,6 +12,8 @@
 
 #include <vector>
 
+#include <glm/glm.hpp>
+
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
 #include "toltecPolygonMeshLibrary/mesh.hpp"
@@ -23,45 +25,45 @@
 *-----------------------------------------------------------------------------*/
 void createCube()
 {
-	//CREATE TRANSFORM NODE
-	TransformNode* p_transformNode = new TransformNode();
-	p_transformNode->setShortName("polyCube");
+    //CREATE TRANSFORM NODE
+    TransformNode* p_transformNode = new TransformNode();
+    p_transformNode->setShortName("polyCube");
 
-	//DEFINE CUBE POINTS
-	std::vector<tpm::Point3D> point3DList = {
-		tpm::Point3D{ -1, -1,  1 },		//0
-		tpm::Point3D{  1, -1,  1 },		//1
-		tpm::Point3D{  1,  1,  1 },		//2
-		tpm::Point3D{ -1,  1,  1 },		//3
-		tpm::Point3D{ -1, -1, -1 },		//4
-		tpm::Point3D{  1, -1, -1 },		//5
-		tpm::Point3D{  1,  1, -1 },		//6
-		tpm::Point3D{ -1,  1, -1 }		//7
-	};
+    //DEFINE CUBE POINTS
+    std::vector<glm::vec3> point3DList = {
+        glm::vec3{ -1, -1,  1 },	//0
+        glm::vec3{  1, -1,  1 },	//1
+        glm::vec3{  1,  1,  1 },	//2
+        glm::vec3{ -1,  1,  1 },	//3
+        glm::vec3{ -1, -1, -1 },	//4
+        glm::vec3{  1, -1, -1 },	//5
+        glm::vec3{  1,  1, -1 },	//6
+        glm::vec3{ -1,  1, -1 }		//7
+    };
 
-	//DEFINE VERTEX SEQUENCE
-	std::vector<unsigned int> vertexSequence = {
-		0, 1, 2, 3,
-		7, 6, 5, 4,
-		1, 0, 4, 5,
-		2, 1, 5, 6,
-		3, 2, 6, 7,
-		0, 3, 7, 4
-	};
+    //DEFINE VERTEX SEQUENCE
+    std::vector<unsigned int> vertexSequence = {
+        0, 1, 2, 3,
+        7, 6, 5, 4,
+        1, 0, 4, 5,
+        2, 1, 5, 6,
+        3, 2, 6, 7,
+        0, 3, 7, 4
+    };
 
-	//DEFINE POLYGON OFFSET LIST
-	std::vector<unsigned int> polygonOffsetList = { 4, 4, 4, 4, 4, 4 };
+    //DEFINE POLYGON OFFSET LIST
+    std::vector<unsigned int> polygonOffsetList = { 4, 4, 4, 4, 4, 4 };
 
-	//CREATE POLYGON MESH NODE
-	PolygonMeshNode* p_polygonMeshNode = new PolygonMeshNode();
-	p_polygonMeshNode->setShortName("polyCube");
-	p_polygonMeshNode->createMesh(point3DList, vertexSequence, polygonOffsetList);
+    //CREATE POLYGON MESH NODE
+    PolygonMeshNode* p_polygonMeshNode = new PolygonMeshNode();
+    p_polygonMeshNode->setShortName("polyCube");
+    p_polygonMeshNode->createMesh(point3DList, vertexSequence, polygonOffsetList);
 
-	//SET SCENE TREE
-	p_transformNode->addChild(p_polygonMeshNode);
-	ResourceManager::getInstance().getRootTransformNode()->addChild(p_transformNode);
+    //SET SCENE TREE
+    p_transformNode->addChild(p_polygonMeshNode);
+    ResourceManager::getInstance().getRootTransformNode()->addChild(p_transformNode);
 
-	//ADD TO THE RESOURCE MANAGER
-	ResourceManager::getInstance().addTransformNode(p_transformNode);
-	ResourceManager::getInstance().addPolygonMeshNode(p_polygonMeshNode);
+    //ADD TO THE RESOURCE MANAGER
+    ResourceManager::getInstance().addTransformNode(p_transformNode);
+    ResourceManager::getInstance().addPolygonMeshNode(p_polygonMeshNode);
 }

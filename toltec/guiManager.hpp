@@ -27,27 +27,27 @@ class OutputLineWidget;
 class GUIManager
 {
 public:
-	//SINGLETON
-	static GUIManager& getInstance()
-	{
-		static GUIManager instance;
-		return instance;
-	}
-	GUIManager(const GUIManager&) = delete;
-	void operator=(const GUIManager&) = delete;
+    //SINGLETON
+    static GUIManager& getInstance()
+    {
+        static GUIManager instance;
+        return instance;
+    }
+    GUIManager(const GUIManager&) = delete;
+    void operator=(const GUIManager&) = delete;
 
-	//SET
-	void	setOutputLineWidget(OutputLineWidget* p_outputLineWidget);
+    //SET
+    void	setOutputLineWidget(OutputLineWidget* p_outputLineWidget);
 
-	//OTHER
-	void	displayMessage(const std::string& message);
-	void	displayWarning(const std::string& warning);
-	void	displayError(const std::string& error);
-
-private:
-	//SINGLETON
-	GUIManager();
+    //OTHER
+    void	displayMessage(const std::string& message);
+    void	displayWarning(const std::string& warning);
+    void	displayError(const std::string& error);
 
 private:
-	OutputLineWidget*	mp_outputStreamWidget;
+    //SINGLETON
+    GUIManager();
+
+private:
+    OutputLineWidget*	mp_outputStreamWidget;
 };

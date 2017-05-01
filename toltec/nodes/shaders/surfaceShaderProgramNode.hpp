@@ -31,16 +31,16 @@ class SurfaceNode;
 class SurfaceShaderProgramNode : public ShaderProgramNode
 {
 public:
-	//CONSTRUCTORS
-				SurfaceShaderProgramNode();
-	virtual		~SurfaceShaderProgramNode() {}
+    //CONSTRUCTORS
+                SurfaceShaderProgramNode();
+    virtual		~SurfaceShaderProgramNode() {}
 
-	//ADD
-	void		addSurface(SurfaceNode* p_surfaceNode, const bool hardAdd = false);
+    //ADD
+    void		addSurface(SurfaceNode* p_surfaceNode, const bool hardAdd = false);
 
-	//REMOVE
-	void		removeSurface(SurfaceNode* p_surfaceNode, const bool hardRemove = false);
+    //REMOVE
+    void		removeSurface(SurfaceNode* p_surfaceNode, const bool hardRemove = false);
 
 private:
-	std::vector<SurfaceNode*>	m_surfaceList;
+    std::vector<SurfaceNode*>	m_surfaceNodeList;
 };

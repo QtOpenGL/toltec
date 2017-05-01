@@ -22,10 +22,10 @@
 class RenderableObjectNode : public SceneNode
 {
 public:
-	//CONSTRUCTORS
-					RenderableObjectNode();
-	virtual			~RenderableObjectNode() {}
+    //CONSTRUCTORS
+                    RenderableObjectNode();
+    virtual			~RenderableObjectNode() {}
 
 private:
-	//...
+    //...
 };

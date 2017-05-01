@@ -27,31 +27,31 @@
 class OutputLineWidget : public QWidget
 {
 public:
-	//TYPES
-	enum MessageType {
-		NORMAL_MESSAGE,
-		WARNING_MESSAGE,
-		ERROR_MESSAGE
-	};
+    //TYPES
+    enum MessageType {
+        NORMAL_MESSAGE,
+        WARNING_MESSAGE,
+        ERROR_MESSAGE
+    };
 
-	//(CON/DE)STRUCTORS
-					OutputLineWidget();
-	virtual			~OutputLineWidget() {}
+    //(CON/DE)STRUCTORS
+                    OutputLineWidget();
+    virtual			~OutputLineWidget() {}
 
-	//EVENTS
-	virtual void	paintEvent(QPaintEvent* event);
+    //EVENTS
+    virtual void	paintEvent(QPaintEvent* event);
 
-	//SET
-	void			setText(
-		const std::string& text, 
-		OutputLineWidget::MessageType messageType = OutputLineWidget::NORMAL_MESSAGE);
+    //SET
+    void			setText(
+        const std::string& text, 
+        OutputLineWidget::MessageType messageType = OutputLineWidget::NORMAL_MESSAGE);
 
 private:
-	static const QColor
-		ms_MESSAGE_COLOR,
-		ms_WARNING_COLOR,
-		ms_ERROR_COLOR;
+    static const QColor
+        ms_MESSAGE_COLOR,
+        ms_WARNING_COLOR,
+        ms_ERROR_COLOR;
 
-	std::string		m_text;
-	QColor			m_messageColor;
+    std::string		m_text;
+    QColor			m_messageColor;
 };

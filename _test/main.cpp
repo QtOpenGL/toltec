@@ -3,36 +3,36 @@
 #include <string>
 #include <vector>
 
-class Node
+#include <glm/glm.hpp>
+
+class A
 {
 public:
-	virtual ~Node() {}
+    A() : m_value(99) {}
+    ~A() {}
+
+    void	setValue(int val) { m_value = val; }
+    int		getValue() const { return m_value; }
+
+protected:
+    int m_value;
 };
 
-class CameraNavigation
+class B : public A
 {
 public:
-	virtual ~CameraNavigation() {}
+    B() : m_value("haha") {}
+    ~B() {}
 
-	void tumble();
-};
+    void			setValue(std::string val) { m_value = val; }
+    std::string		getValue() const { return m_value; }
 
-class TNode : public Node, public CameraNavigation
-{
-public:
-	TNode() { x = 1; }
-	virtual ~TNode() {}
-
-private:
-	int x;
+protected:
+    std::string		m_value;
 };
 
 int main(int argc, char* argv[])
 {
-	std::string theName;
-
-	theName = giveTheName();
-	std::cout << theName << std::endl;
-
-	return 0;
+    B benc;
+    int halo = benc.getValue();
 }

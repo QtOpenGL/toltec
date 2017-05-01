@@ -27,23 +27,23 @@ class SurfaceShaderProgramNode;
 class SurfaceNode : public RenderableObjectNode
 {
 public:
-	//CONSTRUCTORS
-				SurfaceNode();
-	virtual		~SurfaceNode() {}
+    //CONSTRUCTORS
+                SurfaceNode();
+    virtual		~SurfaceNode() {}
 
-	//SET
-	void		setSurfaceShaderProgram(SurfaceShaderProgramNode* p_surfaceShaderProgram);
+    //SET
+    void		setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
 
-	//GET
-	SurfaceShaderProgramNode*	getSurfaceShaderProgram();
+    //GET
+    SurfaceShaderProgramNode*	getSurfaceShaderProgramNode();
 
 private:
-	SurfaceShaderProgramNode*	mp_surfaceShaderProgram;
+    SurfaceShaderProgramNode*	mp_surfaceShaderProgramNode;
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline SurfaceShaderProgramNode* SurfaceNode::getSurfaceShaderProgram()
+inline SurfaceShaderProgramNode* SurfaceNode::getSurfaceShaderProgramNode()
 {
-	return mp_surfaceShaderProgram;
+    return mp_surfaceShaderProgramNode;
 }

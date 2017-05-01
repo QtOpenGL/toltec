@@ -27,26 +27,27 @@ class AbstractViewport;
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-	/*-----------------------------------------------------------------------------
-	*	CLASS DECLARATIONS
-	*	TOLTEC OPENGL RENDERER
-	*-----------------------------------------------------------------------------*/
-	class ToltecOpenGLRenderer : public AbstractRenderer
-	{
-		Q_OBJECT
+    /*-----------------------------------------------------------------------------
+    *	CLASS DECLARATIONS
+    *	TOLTEC OPENGL RENDERER
+    *-----------------------------------------------------------------------------*/
+    class ToltecOpenGLRenderer : public AbstractRenderer
+    {
+        Q_OBJECT
 
-	public:
-		//CONSTRUCTORS
-						ToltecOpenGLRenderer();
-		virtual			~ToltecOpenGLRenderer() {}
+    public:
+        //CONSTRUCTORS
+                        ToltecOpenGLRenderer();
+        virtual			~ToltecOpenGLRenderer() {}
 
-		//EVENTS
-		virtual bool	event(QEvent* p_event);
+        //EVENTS
+        virtual bool	event(QEvent* p_event);
 
-		//OTHER
-		virtual void	requestRender(AbstractViewport* p_viewport);
+        //OTHER
+        virtual void	requestRender(AbstractViewport* p_viewport);
 
-	private:
-		virtual void	render(AbstractViewport* p_viewport);
-	};
+    private:
+        virtual void	prepareForRendering();
+        virtual void	render(AbstractViewport* p_viewport);
+    };
 } //NAMESPACE: TGL

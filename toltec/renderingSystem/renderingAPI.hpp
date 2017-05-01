@@ -27,36 +27,36 @@ class AbstractRenderer;
 class RenderingAPI
 {
 public:
-	//TYPES
-	enum Type {
-		OPENGL_API,
-		VULKAN_API,
-		DIRECT3D_API,
-		METAL_API,
-		UNSPECIFIED_API
-	};
+    //TYPES
+    enum Type {
+        OPENGL_API,
+        VULKAN_API,
+        DIRECT3D_API,
+        METAL_API,
+        UNSPECIFIED_API
+    };
 
-	//CONSTRUCTORS
-				RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer);
-	virtual		~RenderingAPI() {};
+    //CONSTRUCTORS
+                RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer);
+    virtual		~RenderingAPI() {};
 
-	//GET
-	RenderingAPI::Type				getType() const;
-	AbstractRenderer*				getRenderer();
+    //GET
+    RenderingAPI::Type				getType() const;
+    AbstractRenderer*				getRenderer();
 
 private:
-	RenderingAPI::Type				m_type;
-	AbstractRenderer*				mp_renderer;
+    RenderingAPI::Type				m_type;
+    AbstractRenderer*				mp_renderer;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline RenderingAPI::Type RenderingAPI::getType() const
 {
-	return m_type;
+    return m_type;
 }
 
 inline AbstractRenderer* RenderingAPI::getRenderer()
 {
-	return mp_renderer;
+    return mp_renderer;
 }

@@ -29,20 +29,20 @@ class QVBoxLayout;
 *-----------------------------------------------------------------------------*/
 class MainWindow : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	//CONSTRUCTORS
-				MainWindow(const std::string& title, int width, int height);
-	virtual		~MainWindow() {}
+    //CONSTRUCTORS
+                MainWindow(const std::string& title, int width, int height);
+    virtual		~MainWindow() {}
 
-	//SET
-	void		setMainPanel(QWidget* p_widget);
-
-private:
-	void		setupUI();
+    //SET
+    void		setMainPanel(QWidget* p_widget);
 
 private:
-	QWidget*		mp_mainPanel;
-	QVBoxLayout*	mp_mainLayout;
+    void		setupUI();
+
+private:
+    QWidget*		mp_mainPanel;
+    QVBoxLayout*	mp_mainLayout;
 };

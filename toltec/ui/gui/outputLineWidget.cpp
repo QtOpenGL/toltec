@@ -27,9 +27,9 @@ const QColor OutputLineWidget::ms_ERROR_COLOR =		QColor(160, 0, 0);
 *	CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 OutputLineWidget::OutputLineWidget()
-	:
-	m_text("..."),
-	m_messageColor(ms_MESSAGE_COLOR)
+    :
+    m_text("..."),
+    m_messageColor(ms_MESSAGE_COLOR)
 {
 }
 
@@ -38,24 +38,24 @@ OutputLineWidget::OutputLineWidget()
 *-----------------------------------------------------------------------------*/
 void OutputLineWidget::paintEvent(QPaintEvent* event)
 {
-	QPainter painter(this);
+    QPainter painter(this);
 
-	//LOAD PARAMETERS
-	int x =			this->rect().x();
-	int y =			this->rect().y();
-	int width =		this->rect().width();
-	int height =	this->rect().height();
+    //LOAD PARAMETERS
+    int x =			this->rect().x();
+    int y =			this->rect().y();
+    int width =		this->rect().width();
+    int height =	this->rect().height();
 
-	//DRAW
-	//background
-	painter.setPen(Qt::NoPen);
-	painter.setBrush(m_messageColor);
-	painter.drawRect(this->rect());
+    //DRAW
+    //background
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(m_messageColor);
+    painter.drawRect(this->rect());
 
-	//text
-	painter.setPen(QPen(QColor(200, 200, 200)));
-	painter.setBrush(Qt::NoBrush);
-	painter.drawText(x+6, y, width, height, (Qt::AlignLeft | Qt::AlignVCenter), m_text.c_str());
+    //text
+    painter.setPen(QPen(QColor(200, 200, 200)));
+    painter.setBrush(Qt::NoBrush);
+    painter.drawText(x+6, y, width, height, (Qt::AlignLeft | Qt::AlignVCenter), m_text.c_str());
 }
 
 /*-----------------------------------------------------------------------------
@@ -63,18 +63,18 @@ void OutputLineWidget::paintEvent(QPaintEvent* event)
 *-----------------------------------------------------------------------------*/
 void OutputLineWidget::setText(const std::string& text, OutputLineWidget::MessageType messageType)
 {
-	m_text = text;
+    m_text = text;
 
-	switch (messageType) 
-	{
-	case OutputLineWidget::NORMAL_MESSAGE:
-		m_messageColor = ms_MESSAGE_COLOR;
-		break;
-	case OutputLineWidget::WARNING_MESSAGE:
-		m_messageColor = ms_WARNING_COLOR;
-		break;
-	case OutputLineWidget::ERROR_MESSAGE:
-		m_messageColor = ms_ERROR_COLOR;
-		break;
-	}
+    switch (messageType) 
+    {
+    case OutputLineWidget::NORMAL_MESSAGE:
+        m_messageColor = ms_MESSAGE_COLOR;
+        break;
+    case OutputLineWidget::WARNING_MESSAGE:
+        m_messageColor = ms_WARNING_COLOR;
+        break;
+    case OutputLineWidget::ERROR_MESSAGE:
+        m_messageColor = ms_ERROR_COLOR;
+        break;
+    }
 }

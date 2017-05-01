@@ -27,23 +27,23 @@ class AbstractViewport;
 class RenderEvent : public QEvent
 {
 public:
-	//CONSTRUCTORS
-				RenderEvent(AbstractViewport* p_viewport = nullptr);
-	virtual		~RenderEvent() {}
+    //CONSTRUCTORS
+                RenderEvent(AbstractViewport* p_viewport = nullptr);
+    virtual		~RenderEvent() {}
 
-	//GET
-	AbstractViewport*	getViewport() const;
+    //GET
+    AbstractViewport*	getViewport() const;
 
 public:
-	static const QEvent::Type TYPE;
+    static const QEvent::Type TYPE;
 
 private:
-	AbstractViewport*	mp_viewport;
+    AbstractViewport*	mp_viewport;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline AbstractViewport* RenderEvent::getViewport() const
 {
-	return mp_viewport;
+    return mp_viewport;
 }

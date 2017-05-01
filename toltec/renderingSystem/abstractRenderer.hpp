@@ -31,32 +31,33 @@ class AbstractRendererResource;
 *-----------------------------------------------------------------------------*/
 class AbstractRenderer : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	//CONSTRUCTORS
-					AbstractRenderer();
-	virtual			~AbstractRenderer();
+    //CONSTRUCTORS
+                    AbstractRenderer();
+    virtual			~AbstractRenderer();
 
-	//EVENTS
-	virtual bool	event(QEvent* p_event) = 0;
+    //EVENTS
+    virtual bool	event(QEvent* p_event) = 0;
 
-	//GET
-	AbstractRendererResource*	getRendererResource();
+    //GET
+    AbstractRendererResource*	getRendererResource();
 
-	//OTHER
-	virtual void	requestRender(AbstractViewport* p_viewport) = 0;
-
-protected:
-	virtual void	render(AbstractViewport* p_viewport) = 0;
+    //OTHER
+    virtual void	requestRender(AbstractViewport* p_viewport) = 0;
 
 protected:
-	AbstractRendererResource*	mp_rendererResource;
+    virtual void	prepareForRendering() = 0;
+    virtual void	render(AbstractViewport* p_viewport) = 0;
+
+protected:
+    AbstractRendererResource*	mp_rendererResource;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline AbstractRendererResource* AbstractRenderer::getRendererResource()
 {
-	return mp_rendererResource;
+    return mp_rendererResource;
 }

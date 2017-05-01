@@ -28,87 +28,103 @@
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-	/*-----------------------------------------------------------------------------
-	*	CONSTRUCTOR
-	*-----------------------------------------------------------------------------*/
-	ToltecOpenGLRenderer::ToltecOpenGLRenderer()
-	{
-		//INITIALIZE
-		mp_rendererResource = new ToltecOpenGLRendererResource();
-	}
+    /*-----------------------------------------------------------------------------
+    *	CONSTRUCTOR
+    *-----------------------------------------------------------------------------*/
+    ToltecOpenGLRenderer::ToltecOpenGLRenderer()
+    {
+        //INITIALIZE
+        mp_rendererResource = new ToltecOpenGLRendererResource();
+    }
 
-	/*-----------------------------------------------------------------------------
-	*	EVENT
-	*-----------------------------------------------------------------------------*/
-	bool ToltecOpenGLRenderer::event(QEvent* p_event)
-	{
-		if (p_event->type() == RenderEvent::TYPE)
-		{
-			RenderEvent* p_rednerEvent =		static_cast<RenderEvent*>(p_event);
-			AbstractViewport* p_viewport =		p_rednerEvent->getViewport();
+    /*-----------------------------------------------------------------------------
+    *	EVENT
+    *-----------------------------------------------------------------------------*/
+    bool ToltecOpenGLRenderer::event(QEvent* p_event)
+    {
+        if (p_event->type() == RenderEvent::TYPE)
+        {
+            RenderEvent* p_rednerEvent =		static_cast<RenderEvent*>(p_event);
+            AbstractViewport* p_viewport =		p_rednerEvent->getViewport();
 
-			this->render(p_viewport);
-			return true;
-		}
-		else
-		{
-			return QObject::event(p_event);
-		}
-	}
+            this->prepareForRendering();
+            this->render(p_viewport);
+            return true;
+        }
+        else
+        {
+            return QObject::event(p_event);
+        }
+    }
 
-	/*-----------------------------------------------------------------------------
-	*	REQUEST RENDER
-	*-----------------------------------------------------------------------------*/
-	void ToltecOpenGLRenderer::requestRender(AbstractViewport* p_viewport)
-	{
-		//SEND EVENT
-		RenderEvent renderEvent(p_viewport);
-		QCoreApplication::sendEvent(this, &renderEvent);
-	}
+    /*-----------------------------------------------------------------------------
+    *	REQUEST RENDER
+    *-----------------------------------------------------------------------------*/
+    void ToltecOpenGLRenderer::requestRender(AbstractViewport* p_viewport)
+    {
+        //SEND EVENT
+        RenderEvent renderEvent(p_viewport);
+        QCoreApplication::sendEvent(this, &renderEvent);
+    }
 
-	/*-----------------------------------------------------------------------------
-	*	RENDER
-	*-----------------------------------------------------------------------------*/
-	void ToltecOpenGLRenderer::render(AbstractViewport* p_viewport)
-	{
-		/*-----------------------------------------------------------------------------
-		*	CHECK
-		*-----------------------------------------------------------------------------*/
-		if (p_viewport->getType() != RenderingAPI::OPENGL_API)
-		{
-			GUIManager::getInstance().displayError(
-				"Rendering error! Viewport type is not matching renderer type.");
-			return;
-		}
+    /*-----------------------------------------------------------------------------
+    *	PREPARE FOR RENDERING
+    *-----------------------------------------------------------------------------*/
+    void ToltecOpenGLRenderer::prepareForRendering()
+    {
+        //INITIALIZE OR UPDATE RENDER RESOURCES
+        if (mp_rendererResource->areResourcesInitialized())
+            mp_rendererResource->initializeResources();
+        else
+            mp_rendererResource->updateResources();
 
-		/*-----------------------------------------------------------------------------
-		*	CAST
-		*-----------------------------------------------------------------------------*/
-		OpenGLViewport* p_openGLViewport = static_cast<OpenGLViewport*>(p_viewport);
+        //RENDER ITEM PRUNING
+        //...
+    }
 
-		/*-----------------------------------------------------------------------------
-		*	MAKE OPENGL CONTEXT CURRENT AGAINST GIVEN SURFACE
-		*-----------------------------------------------------------------------------*/
-		p_openGLViewport->makeCurrent();
+    /*-----------------------------------------------------------------------------
+    *	RENDER
+    *-----------------------------------------------------------------------------*/
+    void ToltecOpenGLRenderer::render(AbstractViewport* p_viewport)
+    {
+        /*-----------------------------------------------------------------------------
+        *	CHECK
+        *-----------------------------------------------------------------------------*/
+        if (p_viewport->getType() != RenderingAPI::OPENGL_API)
+        {
+            GUIManager::getInstance().displayError(
+                "Rendering error! Viewport type is not matching renderer type.");
+            return;
+        }
 
-		/*-----------------------------------------------------------------------------
-		*	BUFFERS
-		*-----------------------------------------------------------------------------*/
-		//SET BACKGROUND COLOR
-		gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+        /*-----------------------------------------------------------------------------
+        *	CAST
+        *-----------------------------------------------------------------------------*/
+        gl::OpenGLViewport* p_openGLViewport = static_cast<gl::OpenGLViewport*>(p_viewport);
 
-		//CLEAR BUFFERS
-		gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
+        /*-----------------------------------------------------------------------------
+        *	MAKE OPENGL CONTEXT CURRENT AGAINST GIVEN SURFACE
+        *-----------------------------------------------------------------------------*/
+        p_openGLViewport->makeCurrent();
 
-		/*-----------------------------------------------------------------------------
-		*	SWAP BUFFERS
-		*-----------------------------------------------------------------------------*/
-		p_openGLViewport->swapBuffers();
+        /*-----------------------------------------------------------------------------
+        *	BUFFERS
+        *-----------------------------------------------------------------------------*/
+        //SET BACKGROUND COLOR
+        gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
-		/*-----------------------------------------------------------------------------
-		*	DONE CURRENT
-		*	Convenience function for calling makeCurrent with a 0 surface.
-		*-----------------------------------------------------------------------------*/
-		p_openGLViewport->doneCurrent();
-	}
+        //CLEAR BUFFERS
+        gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
+
+        /*-----------------------------------------------------------------------------
+        *	SWAP BUFFERS
+        *-----------------------------------------------------------------------------*/
+        p_openGLViewport->swapBuffers();
+
+        /*-----------------------------------------------------------------------------
+        *	DONE CURRENT
+        *	Convenience function for calling makeCurrent with a 0 surface.
+        *-----------------------------------------------------------------------------*/
+        p_openGLViewport->doneCurrent();
+    }
 } //NAMESPACE: TGL

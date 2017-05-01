@@ -12,6 +12,7 @@
 
 RenderableObjectNode::RenderableObjectNode()
 {
-	//INITIALIZE
-	this->setShortName("renderableObjectNode");
+    //INITIALIZE
+    this->setShortName("renderableObjectNode");
+    this->setType(Node::RENDERABLE_OBJECT_NODE);
 }

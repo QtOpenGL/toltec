@@ -22,10 +22,10 @@
 class VolumeShaderProgramNode : public ShaderProgramNode
 {
 public:
-	//CONSTRUCTORS
-				VolumeShaderProgramNode();
-	virtual		~VolumeShaderProgramNode() {}
+    //CONSTRUCTORS
+                VolumeShaderProgramNode();
+    virtual		~VolumeShaderProgramNode() {}
 
 private:
-	//...
+    //...
 };

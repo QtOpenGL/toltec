@@ -15,8 +15,8 @@
 *	(RenderingAPI::Type, AbstractRenderer*)
 *-----------------------------------------------------------------------------*/
 RenderingAPI::RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer)
-	:
-	m_type(type),
-	mp_renderer(p_renderer)
+    :
+    m_type(type),
+    mp_renderer(p_renderer)
 {
 }

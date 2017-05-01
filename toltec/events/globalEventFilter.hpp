@@ -25,26 +25,26 @@ class QEvent;
 *-----------------------------------------------------------------------------*/
 class GlobalEventFilter : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	//CONSTRUCTOR
-	virtual			~GlobalEventFilter() {}
+    //CONSTRUCTOR
+    virtual			~GlobalEventFilter() {}
 
-	//EVENTS
-	virtual bool	eventFilter(QObject* p_qObject, QEvent* p_qEvent);
+    //EVENTS
+    virtual bool	eventFilter(QObject* p_qObject, QEvent* p_qEvent);
 
-	//STATIC
-	static bool		isAltPressed();
+    //STATIC
+    static bool		isAltPressed();
 
 private:
-	//STATIC
-	static bool		ms_isAltPressed;
+    //STATIC
+    static bool		ms_isAltPressed;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline bool GlobalEventFilter::isAltPressed()
 {
-	return ms_isAltPressed;
+    return ms_isAltPressed;
 }

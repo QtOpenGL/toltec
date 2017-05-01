@@ -23,9 +23,9 @@ const QEvent::Type RenderEvent::TYPE = static_cast<QEvent::Type>(QEvent::registe
 *	(Viewport*)
 *-----------------------------------------------------------------------------*/
 RenderEvent::RenderEvent(AbstractViewport* p_viewport)
-	:
-	QEvent(RenderEvent::TYPE),
-	mp_viewport(p_viewport)
+    :
+    QEvent(RenderEvent::TYPE),
+    mp_viewport(p_viewport)
 {
-	//...
+    //...
 }

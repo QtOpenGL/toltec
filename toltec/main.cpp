@@ -15,6 +15,7 @@
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
 #include "nodes/shaders/lambertSSPNode.hpp"
+#include "nodes/shaders/pointCSPNode.hpp"
 #include "renderingSystem/toltec/openGL/toltecOpenGLRenderer.hpp"
 #include "renderingSystem/toltec/openGL/toltecOpenGLRendererResource.hpp"
 #include "renderingSystem/renderingAPI.hpp"
@@ -29,73 +30,101 @@
 *-----------------------------------------------------------------------------*/
 int main(int argc, char* argv[])
 {
-	/*-----------------------------------------------------------------------------
-	*	START QT
-	*-----------------------------------------------------------------------------*/
-	QApplication application(argc, argv);
+    /*-----------------------------------------------------------------------------
+    *	START QT
+    *-----------------------------------------------------------------------------*/
+    QApplication application(argc, argv);
 
-	/*-----------------------------------------------------------------------------
-	*	CREATE CORE OBJECTS
-	*-----------------------------------------------------------------------------*/
-	//GLOBAL EVENT FILTER
-	GlobalEventFilter globalEventFilter;
-	application.installEventFilter(&globalEventFilter);
+    /*-----------------------------------------------------------------------------
+    *	CORE ARCHITECTURE
+    *-----------------------------------------------------------------------------*/
+    //GLOBAL EVENT FILTER
+    GlobalEventFilter globalEventFilter;
+    application.installEventFilter(&globalEventFilter);
+     
+    //CREATE CORE OBJECTS
+    //root transform node
+    TransformNode rootTransformNode;
+    rootTransformNode.setShortName("root");
+    ResourceManager::getInstance().setRootTransformNode(&rootTransformNode);
 
-	//ROOT TRANSFORM NODE
-	TransformNode rootTransformNode;
-	rootTransformNode.setShortName("root");
-	//add
-	ResourceManager::getInstance().setRootTransformNode(&rootTransformNode);
+    //default camera node
+    CameraNode defaultCameraNode;
+    defaultCameraNode.setShortName("defaultCam");
+    ResourceManager::getInstance().setDefaultCameraNode(&defaultCameraNode);
 
-	//DEFAULT CAMERA NODE
-	CameraNode defaultCameraNode;
-	defaultCameraNode.setShortName("defaultCam");
-	//add
-	ResourceManager::getInstance().setDefaultCameraNode(&defaultCameraNode);
+    //default shader
+    LambertSSPNode lambertShaderProgramNode;
+    lambertShaderProgramNode.setShortName("defaultShader");
+    ResourceManager::getInstance().setDefaultSSPNode(&lambertShaderProgramNode);
 
-	//DEFAULT SHADER
-	LambertSSPNode lambertShaderProgramNode;
-	lambertShaderProgramNode.setShortName("defaultShader");
-	//add
-	ResourceManager::getInstance().setDefaultSSPNode(&lambertShaderProgramNode);
-	
-	//TOLTEC RENDERING SYSTEM
-	RenderingSystem toltecRenderingSystem("toltec");
-	//opengl
-	tgl::ToltecOpenGLRenderer toltecOpenGLRenderer;
-	RenderingAPI toltecOpenGLRenderingAPI(RenderingAPI::OPENGL_API, &toltecOpenGLRenderer);
-	//add
-	toltecRenderingSystem.addRenderingAPI(&toltecOpenGLRenderingAPI);
+    //poly vertex component shader - inactive
+    PointCSPNode polyVertexShaderInactive;
+    polyVertexShaderInactive.setShortName("polyVertexShaderInactive");
+    polyVertexShaderInactive.setColor(1.0f, 0.0f, 1.0f);
+    polyVertexShaderInactive.setSize(2);
+    ResourceManager::getInstance().addComponentShaderProgramNode(&polyVertexShaderInactive);
 
-	//ADD RENDERING SYSTEMS TO THE RENDER MANAGER
-	RenderManager::getInstance().addRenderingSystem(&toltecRenderingSystem);
+    //vertex component shader - inactive hover
+    //...
+    //vertex component shader - active
+    //...
+    //vertex component shader - active hover
+    //...
 
-	/*-----------------------------------------------------------------------------
-	*	CREATE GUI
-	*-----------------------------------------------------------------------------*/
-	MainWindow mainWindow("Toltec", 960, 600);
-	
-	//VIEWPORT PANEL
-	ViewportPanel viewportPanel0;
+    //poly edge component shader - inactive
+    PointCSPNode polyEdgeShaderInactive;
+    polyEdgeShaderInactive.setShortName("polyEdgeShaderInactive");
+    polyEdgeShaderInactive.setColor(1.0f, 0.0f, 1.0f);
+    polyEdgeShaderInactive.setSize(1);
+    ResourceManager::getInstance().addComponentShaderProgramNode(&polyEdgeShaderInactive);
 
-	//SET MAIN PANEL
-	mainWindow.setMainPanel(&viewportPanel0);
+    //poly edge component shader - inactive hover
+    //...
+    //poly edge component shader - active
+    //...
+    //poly edge component shader - active hover
+    //...
 
-	//SHOW MAIN WINDOW
-	mainWindow.show();
+    /*-----------------------------------------------------------------------------
+    *	RENDERING ARCHITECTURE
+    *-----------------------------------------------------------------------------*/
+    //TOLTEC RENDERING SYSTEM
+    RenderingSystem toltecRenderingSystem("toltec");
+    //opengl
+    tgl::ToltecOpenGLRenderer toltecOpenGLRenderer;
+    RenderingAPI toltecOpenGLRenderingAPI(RenderingAPI::OPENGL_API, &toltecOpenGLRenderer);
+    toltecRenderingSystem.addRenderingAPI(&toltecOpenGLRenderingAPI);
 
-	/*-----------------------------------------------------------------------------
-	*	CREATE SECONDARY OBJECTS
-	*-----------------------------------------------------------------------------*/
-	createCube();
+    //ADD RENDERING SYSTEMS TO THE RENDER MANAGER
+    RenderManager::getInstance().addRenderingSystem(&toltecRenderingSystem);
 
-	/*-----------------------------------------------------------------------------
-	*	PRINT DATA
-	*-----------------------------------------------------------------------------*/
-	toltecRenderingSystem.printOpenGLData();
+    /*-----------------------------------------------------------------------------
+    *	GUI
+    *-----------------------------------------------------------------------------*/
+    MainWindow mainWindow("Toltec", 960, 600);
+    
+    //VIEWPORT PANEL
+    ViewportPanel viewportPanel0;
 
-	/*-----------------------------------------------------------------------------
-	*	EXECUTE
-	*-----------------------------------------------------------------------------*/
-	return application.exec();
+    //SET MAIN PANEL
+    mainWindow.setMainPanel(&viewportPanel0);
+
+    //SHOW MAIN WINDOW
+    mainWindow.show();
+
+    /*-----------------------------------------------------------------------------
+    *	CREATE SECONDARY OBJECTS
+    *-----------------------------------------------------------------------------*/
+    createCube();
+
+    /*-----------------------------------------------------------------------------
+    *	PRINT DATA
+    *-----------------------------------------------------------------------------*/
+    toltecRenderingSystem.printOpenGLData();
+
+    /*-----------------------------------------------------------------------------
+    *	EXECUTE
+    *-----------------------------------------------------------------------------*/
+    return application.exec();
 }

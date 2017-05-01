@@ -22,23 +22,23 @@
 class SceneNode : public Node
 {
 public:
-	//CONSTRUCTORS
-					SceneNode();
-	virtual			~SceneNode() {}
+    //CONSTRUCTORS
+                    SceneNode();
+    virtual			~SceneNode() {}
 
-	//SET
-	virtual void	setParent(SceneNode* p_parent);
+    //SET
+    virtual void	setParent(SceneNode* p_parent);
 
-	//GET
-	SceneNode*		getParent();
+    //GET
+    SceneNode*		getParent();
 
 protected:
-	SceneNode*		mp_parent;
+    SceneNode*		mp_parent;
 };
 
 /*----------------------------------------------------------------------------*/
 
 inline SceneNode* SceneNode::getParent()
 {
-	return mp_parent;
+    return mp_parent;
 }
