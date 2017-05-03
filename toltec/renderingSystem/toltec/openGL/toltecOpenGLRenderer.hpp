@@ -1,35 +1,35 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		04 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		...
+*   CREATED:
+*       04 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <string>
 #include <QtCore/qobject.h>
 #include "renderingSystem/abstractRenderer.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class QEvent;
 class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	TOLTEC OPENGL RENDERER
+    *   CLASS DECLARATIONS
+    *   TOLTEC OPENGL RENDERER
     *-----------------------------------------------------------------------------*/
     class ToltecOpenGLRenderer : public AbstractRenderer
     {
@@ -38,16 +38,16 @@ namespace tgl
     public:
         //CONSTRUCTORS
                         ToltecOpenGLRenderer();
-        virtual			~ToltecOpenGLRenderer() {}
+        virtual         ~ToltecOpenGLRenderer() {}
 
         //EVENTS
-        virtual bool	event(QEvent* p_event);
+        virtual bool    event(QEvent* p_event);
 
         //OTHER
-        virtual void	requestRender(AbstractViewport* p_viewport);
+        virtual void    requestRender(AbstractViewport* p_viewport);
 
     private:
-        virtual void	prepareForRendering();
-        virtual void	render(AbstractViewport* p_viewport);
+        virtual void    prepareForRendering();
+        virtual void    render(AbstractViewport* p_viewport);
     };
 } //NAMESPACE: TGL

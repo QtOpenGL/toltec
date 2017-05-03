@@ -1,8 +1,8 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		03 I 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       03 I 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 #include "cameraNode.hpp"
 
@@ -10,7 +10,7 @@
 #include "transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 CameraNode::CameraNode()
     :
@@ -30,7 +30,7 @@ CameraNode::CameraNode()
 }
 
 /*-----------------------------------------------------------------------------
-*	SET TYPE
+*   SET TYPE
 *-----------------------------------------------------------------------------*/
 void CameraNode::setCameraType(CameraNode::CameraType cameraType)
 {
@@ -38,45 +38,45 @@ void CameraNode::setCameraType(CameraNode::CameraType cameraType)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET FIELD OF VIEW
+*   SET FIELD OF VIEW
 *-----------------------------------------------------------------------------*/
 void CameraNode::setFieldOfView(const float fieldOfView)
 {
-    m_fieldOfView =						fieldOfView;
-    m_updatePerspectiveMatrixFlag =		true;
+    m_fieldOfView =                     fieldOfView;
+    m_updatePerspectiveMatrixFlag =     true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET ORTHOGRAPHIC AREA
+*   SET ORTHOGRAPHIC AREA
 *-----------------------------------------------------------------------------*/
 void CameraNode::setOrthographicArea(const float orthographicArea)
 {
-    m_orthographicArea =				orthographicArea;
-    m_updateOrthographicMatrixFlag =	true;
+    m_orthographicArea =                orthographicArea;
+    m_updateOrthographicMatrixFlag =    true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET Z NEAR
+*   SET Z NEAR
 *-----------------------------------------------------------------------------*/
 void CameraNode::setZNear(const float zNear)
 {
-    m_zNear =							zNear;
-    m_updatePerspectiveMatrixFlag =		true;
-    m_updateOrthographicMatrixFlag =	true;
+    m_zNear =                           zNear;
+    m_updatePerspectiveMatrixFlag =     true;
+    m_updateOrthographicMatrixFlag =    true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET Z FAR
+*   SET Z FAR
 *-----------------------------------------------------------------------------*/
 void CameraNode::setZFar(const float zFar)
 {
-    m_zFar =							zFar;
-    m_updatePerspectiveMatrixFlag =		true;
-    m_updateOrthographicMatrixFlag =	true;
+    m_zFar =                            zFar;
+    m_updatePerspectiveMatrixFlag =     true;
+    m_updateOrthographicMatrixFlag =    true;
 }
 
 /*-----------------------------------------------------------------------------
-*	GET PROJECTION MATRIX
+*   GET PROJECTION MATRIX
 *-----------------------------------------------------------------------------*/
 const glm::mat4& CameraNode::getProjectionMatrix()
 {
@@ -115,7 +115,7 @@ const glm::mat4& CameraNode::getProjectionMatrix()
 }
 
 /*-----------------------------------------------------------------------------
-*	GET PERSPECTIVE MATRIX
+*   GET PERSPECTIVE MATRIX
 *-----------------------------------------------------------------------------*/
 const glm::mat4& CameraNode::getPerspectiveMatrix()
 {
@@ -129,7 +129,7 @@ const glm::mat4& CameraNode::getPerspectiveMatrix()
 }
 
 /*-----------------------------------------------------------------------------
-*	GET ORTHOGRAPHIC MATRIX
+*   GET ORTHOGRAPHIC MATRIX
 *-----------------------------------------------------------------------------*/
 const glm::mat4& CameraNode::getOrthographicMatrix()
 {
@@ -149,8 +149,8 @@ const glm::mat4& CameraNode::getOrthographicMatrix()
 }
 
 /*-----------------------------------------------------------------------------
-*	UPDATE VIEW MATRIX
-*	()
+*   UPDATE VIEW MATRIX
+*   ()
 *-----------------------------------------------------------------------------*/
 void CameraNode::updateViewMatrix()
 {
@@ -162,8 +162,8 @@ void CameraNode::updateViewMatrix()
 }
 
 /*-----------------------------------------------------------------------------
-*	UPDATE VIEW MATRIX
-*	(const glm::vec3&, const glm::vec3&, const glm::vec3&)
+*   UPDATE VIEW MATRIX
+*   (const glm::vec3&, const glm::vec3&, const glm::vec3&)
 *-----------------------------------------------------------------------------*/
 void CameraNode::updateViewMatrix(const glm::vec3& cameraPosition, const glm::vec3& targetPosition, 
     const glm::vec3& localY)
@@ -172,7 +172,7 @@ void CameraNode::updateViewMatrix(const glm::vec3& cameraPosition, const glm::ve
 }
 
 /*-----------------------------------------------------------------------------
-*	UPDATE PERSPECTIVE MATRIX
+*   UPDATE PERSPECTIVE MATRIX
 *-----------------------------------------------------------------------------*/
 void CameraNode::updatePerspectiveMatrix(const float aspectRatio)
 {
@@ -183,7 +183,7 @@ void CameraNode::updatePerspectiveMatrix(const float aspectRatio)
 }
 
 /*-----------------------------------------------------------------------------
-*	UPDATE ORTHOGRAPHIC MATRIX
+*   UPDATE ORTHOGRAPHIC MATRIX
 *-----------------------------------------------------------------------------*/
 void CameraNode::updateOrthographicMatrix(const float aspectRatio)
 {

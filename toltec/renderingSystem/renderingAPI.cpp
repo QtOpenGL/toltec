@@ -1,18 +1,18 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		05 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       05 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
-*	(RenderingAPI::Type, AbstractRenderer*)
+*   CONSTRUCTOR
+*   (RenderingAPI::Type, AbstractRenderer*)
 *-----------------------------------------------------------------------------*/
 RenderingAPI::RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer)
     :

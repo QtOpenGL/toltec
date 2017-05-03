@@ -1,30 +1,30 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		31 VII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		ViewportPanel is a class that holds Viewport and menus associated with
-*		it.
+*   CREATED:
+*       31 VII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ViewportPanel is a class that holds Viewport and menus associated with
+*       it.
 *-----------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------	---
-*	IMPORTS
+/*--------------------------------------------------------------------------    ---
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qwidget.h>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractViewport;
 class QComboBox;
 class RenderingSystem;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	VIEWPORT PANEL
+*   CLASS DECLARATIONS
+*   VIEWPORT PANEL
 *-----------------------------------------------------------------------------*/
 class ViewportPanel : public QWidget
 {
@@ -33,20 +33,20 @@ class ViewportPanel : public QWidget
 public:
     //CONSTRUCTORS
                 ViewportPanel();
-    virtual		~ViewportPanel();
+    virtual     ~ViewportPanel();
 
     //GET
-    AbstractViewport*	getViewport() const;
+    AbstractViewport*   getViewport() const;
 
 private:
-    void		setupViewport();
-    void		setupUI();
+    void        setupViewport();
+    void        setupUI();
 
 private:
-    RenderingSystem*			mp_activeRenderingSystem;	
-    AbstractViewport*			mp_viewport;
+    RenderingSystem*            mp_activeRenderingSystem;   
+    AbstractViewport*           mp_viewport;
 
-    QComboBox*					mp_activeCameraComboBox;
+    QComboBox*                  mp_activeCameraComboBox;
 };
 
 /*----------------------------------------------------------------------------*/

@@ -1,30 +1,30 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		11 I 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		VolumeShaderProgramNode is a base class for all shaders programs that
-*		mimics fluid look from the inside (water, fog, etc.).
+*   CREATED:
+*       11 I 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       VolumeShaderProgramNode is a base class for all shaders programs that
+*       mimics fluid look from the inside (water, fog, etc.).
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "shaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	VOLUME SHADER PROGRAM NODE
+*   CLASS DECLARATIONS
+*   VOLUME SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 class VolumeShaderProgramNode : public ShaderProgramNode
 {
 public:
     //CONSTRUCTORS
                 VolumeShaderProgramNode();
-    virtual		~VolumeShaderProgramNode() {}
+    virtual     ~VolumeShaderProgramNode() {}
 
 private:
     //...

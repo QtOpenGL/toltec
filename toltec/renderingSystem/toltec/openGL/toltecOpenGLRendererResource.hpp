@@ -1,16 +1,16 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		04 VIII 2016
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       04 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <cstdint>
 #include <map>
@@ -23,7 +23,7 @@
 #include "renderingSystem/toltec/openGL/shaders/shaderProgram.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
@@ -36,47 +36,46 @@ class PolygonMeshNode;
 class TransformNode;
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	TOLTEC OPENGL RENDERER RESOURCE
+    *   CLASS DECLARATIONS
+    *   TOLTEC OPENGL RENDERER RESOURCE
     *-----------------------------------------------------------------------------*/
     class ToltecOpenGLRendererResource : public AbstractRendererResource
     {
     public:
         //CONSTRUCTORS
-
-        virtual			~ToltecOpenGLRendererResource();
+        virtual         ~ToltecOpenGLRendererResource();
 
         //OTHER
-        virtual void	initializeResources();
-        virtual void	updateResources() {};
-        virtual void	deleteResources();
+        virtual void    initializeResources();
+        virtual void    updateResources() {};
+        virtual void    deleteResources();
 
     private:
-        void			initializeShaderProgramMap();
+        void            initializeShaderProgramMap();
 
-        virtual void	scanSceneTree(
-                            TransformNode* p_transformNode,
-                            int& treeDepthLevel,
+        virtual void    scanSceneTree(
+                            TransformNode*          p_transformNode,
+                            int&                    treeDepthLevel,
                             std::vector<glm::mat4>* p_modelMatrixList,
-                            bool& calculateFinalModelMatrixFlag,
-                            const bool& initializeRendererResourceFlag);
+                            bool&                   calculateFinalModelMatrixFlag,
+                            const bool&             initializeRendererResourceFlag);
 
-        void			processPolygonMeshNode(
-                            PolygonMeshNode* p_polygonMeshNode, 
-                            RenderableObject* p_renderableObject,
-                            const bool& initializeRendererResourceFlag);
+        void            processPolygonMeshNode(
+                            PolygonMeshNode*        p_polygonMeshNode, 
+                            RenderableObject*       p_renderableObject,
+                            const bool&             initializeRendererResourceFlag);
 
     private:
-        std::map<Node::Type, ShaderProgram>			m_shaderProgramLMap;
+        std::map<Node::Type, ShaderProgram>         m_shaderProgramMap;
 
-        std::map<std::uint32_t, RenderableObject*>	m_renderableObjectMap;
-        std::map<std::uint32_t, ShaderInstance*>	m_shaderInstanceMap;
+        std::map<std::uint32_t, RenderableObject*>  m_renderableObjectMap;
+        std::map<std::uint32_t, ShaderInstance*>    m_shaderInstanceMap;
 
-        std::vector<RenderItem*>					m_finalRenderItemList;
+        std::vector<RenderItem*>                    m_finalRenderItemList;
     };
 } //NAMESPACE: TGL

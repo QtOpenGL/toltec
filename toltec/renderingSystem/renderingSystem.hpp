@@ -1,16 +1,16 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		02 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		...
+*   CREATED:
+*       02 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <map>
 #include <string>
@@ -19,43 +19,43 @@
 #include "renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class ViewportPanel;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	RENDERING SYSTEM
+*   CLASS DECLARATIONS
+*   RENDERING SYSTEM
 *-----------------------------------------------------------------------------*/
 class RenderingSystem
 {
 public:
     //CONSTRUCTORS
-    explicit		RenderingSystem(const std::string& name);
-    virtual			~RenderingSystem() {};
+    explicit        RenderingSystem(const std::string& name);
+    virtual         ~RenderingSystem() {};
 
     //ADD
-    void			addRenderingAPI(RenderingAPI* p_renderingAPI);
-    void			addViewportPanel(ViewportPanel* p_viewportPanel);
+    void            addRenderingAPI(RenderingAPI* p_renderingAPI);
+    void            addViewportPanel(ViewportPanel* p_viewportPanel);
 
     //REMOVE
-    void			removeViewportPanel(ViewportPanel* p_viewportPanel);
+    void            removeViewportPanel(ViewportPanel* p_viewportPanel);
 
     //GET
-    const std::string&					getName() const;
-    const std::vector<ViewportPanel*>*	getViewportPanelList() const;
-    RenderingAPI*						getActiveRenderingAPI() const;
+    const std::string&                  getName() const;
+    const std::vector<ViewportPanel*>*  getViewportPanelList() const;
+    RenderingAPI*                       getActiveRenderingAPI() const;
 
     //OTHER
-    void			switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
-    void			printOpenGLData() const;
+    void            switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
+    void            printOpenGLData() const;
 
 private:
-    std::string										m_name;
-    std::vector<ViewportPanel*>						m_viewportPanelList;
+    std::string                                     m_name;
+    std::vector<ViewportPanel*>                     m_viewportPanelList;
 
-    std::map<RenderingAPI::Type, RenderingAPI*>		m_renderingAPIMap;
-    RenderingAPI*									mp_activeRenderingAPI;
+    std::map<RenderingAPI::Type, RenderingAPI*>     m_renderingAPIMap;
+    RenderingAPI*                                   mp_activeRenderingAPI;
 };
 
 /*----------------------------------------------------------------------------*/

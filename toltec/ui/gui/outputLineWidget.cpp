@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		10 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       10 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "ui/gui/outputLineWidget.hpp"
 
@@ -15,16 +15,16 @@
 #include <QtGui/qpen.h>
 
 /*-----------------------------------------------------------------------------
-*	STATIC
+*   STATIC
 *-----------------------------------------------------------------------------*/
 //CONSTANTS
 //private
-const QColor OutputLineWidget::ms_MESSAGE_COLOR =	QColor(0, 0, 0);
-const QColor OutputLineWidget::ms_WARNING_COLOR =	QColor(120, 80, 0);
-const QColor OutputLineWidget::ms_ERROR_COLOR =		QColor(160, 0, 0);
+const QColor OutputLineWidget::ms_MESSAGE_COLOR =   QColor(0, 0, 0);
+const QColor OutputLineWidget::ms_WARNING_COLOR =   QColor(120, 80, 0);
+const QColor OutputLineWidget::ms_ERROR_COLOR =     QColor(160, 0, 0);
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 OutputLineWidget::OutputLineWidget()
     :
@@ -34,17 +34,17 @@ OutputLineWidget::OutputLineWidget()
 }
 
 /*-----------------------------------------------------------------------------
-*	PAINT EVENT
+*   PAINT EVENT
 *-----------------------------------------------------------------------------*/
 void OutputLineWidget::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
 
     //LOAD PARAMETERS
-    int x =			this->rect().x();
-    int y =			this->rect().y();
-    int width =		this->rect().width();
-    int height =	this->rect().height();
+    int x =         this->rect().x();
+    int y =         this->rect().y();
+    int width =     this->rect().width();
+    int height =    this->rect().height();
 
     //DRAW
     //background
@@ -59,7 +59,7 @@ void OutputLineWidget::paintEvent(QPaintEvent* event)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET TEXT
+*   SET TEXT
 *-----------------------------------------------------------------------------*/
 void OutputLineWidget::setText(const std::string& text, OutputLineWidget::MessageType messageType)
 {

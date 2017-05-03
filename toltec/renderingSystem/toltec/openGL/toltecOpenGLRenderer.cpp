@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		07 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       07 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "toltecOpenGLRenderer.hpp"
 
@@ -24,12 +24,12 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CONSTRUCTOR
+    *   CONSTRUCTOR
     *-----------------------------------------------------------------------------*/
     ToltecOpenGLRenderer::ToltecOpenGLRenderer()
     {
@@ -38,14 +38,14 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	EVENT
+    *   EVENT
     *-----------------------------------------------------------------------------*/
     bool ToltecOpenGLRenderer::event(QEvent* p_event)
     {
         if (p_event->type() == RenderEvent::TYPE)
         {
-            RenderEvent* p_rednerEvent =		static_cast<RenderEvent*>(p_event);
-            AbstractViewport* p_viewport =		p_rednerEvent->getViewport();
+            RenderEvent* p_rednerEvent =        static_cast<RenderEvent*>(p_event);
+            AbstractViewport* p_viewport =      p_rednerEvent->getViewport();
 
             this->prepareForRendering();
             this->render(p_viewport);
@@ -58,7 +58,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	REQUEST RENDER
+    *   REQUEST RENDER
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRenderer::requestRender(AbstractViewport* p_viewport)
     {
@@ -68,7 +68,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	PREPARE FOR RENDERING
+    *   PREPARE FOR RENDERING
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRenderer::prepareForRendering()
     {
@@ -83,12 +83,12 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	RENDER
+    *   RENDER
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRenderer::render(AbstractViewport* p_viewport)
     {
         /*-----------------------------------------------------------------------------
-        *	CHECK
+        *   CHECK
         *-----------------------------------------------------------------------------*/
         if (p_viewport->getType() != RenderingAPI::OPENGL_API)
         {
@@ -98,17 +98,17 @@ namespace tgl
         }
 
         /*-----------------------------------------------------------------------------
-        *	CAST
+        *   CAST
         *-----------------------------------------------------------------------------*/
         gl::OpenGLViewport* p_openGLViewport = static_cast<gl::OpenGLViewport*>(p_viewport);
 
         /*-----------------------------------------------------------------------------
-        *	MAKE OPENGL CONTEXT CURRENT AGAINST GIVEN SURFACE
+        *   MAKE OPENGL CONTEXT CURRENT AGAINST GIVEN SURFACE
         *-----------------------------------------------------------------------------*/
         p_openGLViewport->makeCurrent();
 
         /*-----------------------------------------------------------------------------
-        *	BUFFERS
+        *   BUFFERS
         *-----------------------------------------------------------------------------*/
         //SET BACKGROUND COLOR
         gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
@@ -117,13 +117,13 @@ namespace tgl
         gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
 
         /*-----------------------------------------------------------------------------
-        *	SWAP BUFFERS
+        *   SWAP BUFFERS
         *-----------------------------------------------------------------------------*/
         p_openGLViewport->swapBuffers();
 
         /*-----------------------------------------------------------------------------
-        *	DONE CURRENT
-        *	Convenience function for calling makeCurrent with a 0 surface.
+        *   DONE CURRENT
+        *   Convenience function for calling makeCurrent with a 0 surface.
         *-----------------------------------------------------------------------------*/
         p_openGLViewport->doneCurrent();
     }

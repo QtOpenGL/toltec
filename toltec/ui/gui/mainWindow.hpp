@@ -1,31 +1,31 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		27 VII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		MainWindow class, as it's name suggests, is the class for the main window
-*		inside program.
+*   CREATED:
+*       27 VII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       MainWindow class, as it's name suggests, is the class for the main window
+*       inside program.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <string>
 
 #include <QtWidgets/qmainwindow.h>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class QWidget;
 class QVBoxLayout;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	MAIN WINDOW
+*   CLASS DECLARATIONS
+*   MAIN WINDOW
 *-----------------------------------------------------------------------------*/
 class MainWindow : public QMainWindow
 {
@@ -34,15 +34,15 @@ class MainWindow : public QMainWindow
 public:
     //CONSTRUCTORS
                 MainWindow(const std::string& title, int width, int height);
-    virtual		~MainWindow() {}
+    virtual     ~MainWindow() {}
 
     //SET
-    void		setMainPanel(QWidget* p_widget);
+    void        setMainPanel(QWidget* p_widget);
 
 private:
-    void		setupUI();
+    void        setupUI();
 
 private:
-    QWidget*		mp_mainPanel;
-    QVBoxLayout*	mp_mainLayout;
+    QWidget*        mp_mainPanel;
+    QVBoxLayout*    mp_mainLayout;
 };

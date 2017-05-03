@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		04 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       04 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderingSystem.hpp"
 
@@ -21,8 +21,8 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
-*	(const std::string&)
+*   CONSTRUCTOR
+*   (const std::string&)
 *-----------------------------------------------------------------------------*/
 RenderingSystem::RenderingSystem(const std::string& name)
     :
@@ -32,7 +32,7 @@ RenderingSystem::RenderingSystem(const std::string& name)
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD RENDERING API
+*   ADD RENDERING API
 *-----------------------------------------------------------------------------*/
 void RenderingSystem::addRenderingAPI(RenderingAPI* p_renderingAPI)
 {
@@ -49,7 +49,7 @@ void RenderingSystem::addRenderingAPI(RenderingAPI* p_renderingAPI)
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD VIEWPORT PANEL
+*   ADD VIEWPORT PANEL
 *-----------------------------------------------------------------------------*/
 void RenderingSystem::addViewportPanel(ViewportPanel* p_viewportPanel)
 {
@@ -57,7 +57,7 @@ void RenderingSystem::addViewportPanel(ViewportPanel* p_viewportPanel)
 }
 
 /*-----------------------------------------------------------------------------
-*	REMOVE VIEWPORT PANEL
+*   REMOVE VIEWPORT PANEL
 *-----------------------------------------------------------------------------*/
 void RenderingSystem::removeViewportPanel(ViewportPanel* p_viewportPanel)
 {
@@ -70,7 +70,7 @@ void RenderingSystem::removeViewportPanel(ViewportPanel* p_viewportPanel)
 }
 
 /*-----------------------------------------------------------------------------
-*	SWITCH TO RENDERING API
+*   SWITCH TO RENDERING API
 *-----------------------------------------------------------------------------*/
 void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
 {
@@ -96,7 +96,7 @@ void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
 }
 
 /*-----------------------------------------------------------------------------
-*	PRINT OPENGL DATA
+*   PRINT OPENGL DATA
 *-----------------------------------------------------------------------------*/
 void RenderingSystem::printOpenGLData() const
 {

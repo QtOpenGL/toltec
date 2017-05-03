@@ -1,44 +1,44 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		13 I 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		SurfaceNode is a base class for all surface type nodes (polygon meshes,
-*		NURBS-es, t-splines, etc.).
+*   CREATED:
+*       13 I 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       SurfaceNode is a base class for all surface type nodes (polygon meshes,
+*       NURBS-es, t-splines, etc.).
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderableObjectNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATION
+*   FORWARD DECLARATION
 *-----------------------------------------------------------------------------*/
 class SurfaceShaderProgramNode;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SURFACE NODE
+*   CLASS DECLARATIONS
+*   SURFACE NODE
 *-----------------------------------------------------------------------------*/
 class SurfaceNode : public RenderableObjectNode
 {
 public:
     //CONSTRUCTORS
                 SurfaceNode();
-    virtual		~SurfaceNode() {}
+    virtual     ~SurfaceNode() {}
 
     //SET
-    void		setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
+    void        setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
 
     //GET
-    SurfaceShaderProgramNode*	getSurfaceShaderProgramNode();
+    SurfaceShaderProgramNode*   getSurfaceShaderProgramNode();
 
 private:
-    SurfaceShaderProgramNode*	mp_surfaceShaderProgramNode;
+    SurfaceShaderProgramNode*   mp_surfaceShaderProgramNode;
 };
 
 /*----------------------------------------------------------------------------*/

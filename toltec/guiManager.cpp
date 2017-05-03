@@ -1,19 +1,19 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		08 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       08 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "guiManager.hpp"
 
 #include "ui/gui/outputLineWidget.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 GUIManager::GUIManager()
     :
@@ -22,7 +22,7 @@ GUIManager::GUIManager()
 }
 
 /*-----------------------------------------------------------------------------
-*	SET OUTPUT BAR
+*   SET OUTPUT BAR
 *-----------------------------------------------------------------------------*/
 void GUIManager::setOutputLineWidget(OutputLineWidget* p_outputStreamWidget)
 {
@@ -31,7 +31,7 @@ void GUIManager::setOutputLineWidget(OutputLineWidget* p_outputStreamWidget)
 }
 
 /*-----------------------------------------------------------------------------
-*	DISPLAY MESSAGE
+*   DISPLAY MESSAGE
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayMessage(const std::string& message)
 {
@@ -39,7 +39,7 @@ void GUIManager::displayMessage(const std::string& message)
 }
 
 /*-----------------------------------------------------------------------------
-*	DISPLAY WARNING
+*   DISPLAY WARNING
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayWarning(const std::string& warning)
 {
@@ -47,7 +47,7 @@ void GUIManager::displayWarning(const std::string& warning)
 }
 
 /*-----------------------------------------------------------------------------
-*	DISPLAY ERROR
+*   DISPLAY ERROR
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayError(const std::string& error)
 {

@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		21 IX 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       21 IX 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "globalEventFilter.hpp"
 
@@ -14,13 +14,13 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	STATIC VARIABLES
+*   STATIC VARIABLES
 *-----------------------------------------------------------------------------*/
 //PRIVATE
 bool GlobalEventFilter::ms_isAltPressed = false;
 
 /*-----------------------------------------------------------------------------
-*	EVENT FILTER
+*   EVENT FILTER
 *-----------------------------------------------------------------------------*/
 bool GlobalEventFilter::eventFilter(QObject* p_qObject, QEvent* p_qEvent)
 {
@@ -29,14 +29,14 @@ bool GlobalEventFilter::eventFilter(QObject* p_qObject, QEvent* p_qEvent)
     switch (p_qEvent->type())
     {
     /*-----------------------------------------------------------------------------
-    *	KEY PRESS
+    *   KEY PRESS
     *-----------------------------------------------------------------------------*/
     case QEvent::KeyPress:
         p_keyEvent = static_cast<QKeyEvent*>(p_qEvent);
 
         switch (p_keyEvent->key())
         {
-        case Qt::Key_Alt:			//ALT
+        case Qt::Key_Alt:           //ALT
             ms_isAltPressed = true;
             return true;
             break;
@@ -44,14 +44,14 @@ bool GlobalEventFilter::eventFilter(QObject* p_qObject, QEvent* p_qEvent)
         break;
 
     /*-----------------------------------------------------------------------------
-    *	KEY RELEASE
+    *   KEY RELEASE
     *-----------------------------------------------------------------------------*/
     case QEvent::KeyRelease:
         p_keyEvent = static_cast<QKeyEvent*>(p_qEvent);
 
         switch (p_keyEvent->key())
         {
-        case Qt::Key_Alt:			//ALT
+        case Qt::Key_Alt:           //ALT
             ms_isAltPressed = false;
             return true;
             break;

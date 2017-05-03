@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		14 IX 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       14 IX 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "transformNode.hpp"
 
@@ -15,7 +15,7 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 TransformNode::TransformNode()
     :
@@ -38,7 +38,7 @@ TransformNode::TransformNode()
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD CHILD
+*   ADD CHILD
 *-----------------------------------------------------------------------------*/
 void TransformNode::addChild(SceneNode* p_sceneNode)
 {
@@ -55,7 +55,7 @@ void TransformNode::addChild(SceneNode* p_sceneNode)
 }
 
 /*-----------------------------------------------------------------------------
-*	REMOVE CHILD
+*   REMOVE CHILD
 *-----------------------------------------------------------------------------*/
 bool TransformNode::removeChild(SceneNode* p_sceneNode)
 {
@@ -76,84 +76,84 @@ bool TransformNode::removeChild(SceneNode* p_sceneNode)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET TRANSLATION
-*	(const glm::vec3&)
+*   SET TRANSLATION
+*   (const glm::vec3&)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setTranslation(const glm::vec3& translation)
 {
-    m_translation =				translation;
-    m_updateModelMatrixFlag =	true;
+    m_translation =             translation;
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET TRANSLATION
-*	(float, float, float)
+*   SET TRANSLATION
+*   (float, float, float)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setTranslation(float x, float y, float z)
 {
-    m_translation =				glm::vec3(x, y, z);
-    m_updateModelMatrixFlag =	true;
+    m_translation =             glm::vec3(x, y, z);
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET ROTATION
-*	(const glm::vec3& rotation)
+*   SET ROTATION
+*   (const glm::vec3& rotation)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setRotation(const glm::vec3& rotation)
 {
-    m_rotation =				rotation;
-    m_updateModelMatrixFlag =	true;
+    m_rotation =                rotation;
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET ROTATION
-*	(float, float, float)
+*   SET ROTATION
+*   (float, float, float)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setRotation(float x, float y, float z)
 {
-    m_rotation =				glm::vec3(x, y, z);
-    m_updateModelMatrixFlag =	true;
+    m_rotation =                glm::vec3(x, y, z);
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET SCALE
-*	(float)
+*   SET SCALE
+*   (float)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setScale(float uniformScale)
 {
-    m_scale =					glm::vec3(uniformScale);
-    m_updateModelMatrixFlag =	true;
+    m_scale =                   glm::vec3(uniformScale);
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET SCALE
-*	(const glm::vec3& rotation)
+*   SET SCALE
+*   (const glm::vec3& rotation)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setScale(const glm::vec3& scale)
 {
-    m_scale =					scale;
-    m_updateModelMatrixFlag =	true;
+    m_scale =                   scale;
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	SET SCALE
-*	(float, float, float)
+*   SET SCALE
+*   (float, float, float)
 *-----------------------------------------------------------------------------*/
 void TransformNode::setScale(float x, float y, float z)
 {
-    m_scale =					glm::vec3(x, y, z);
-    m_updateModelMatrixFlag =	true;
+    m_scale =                   glm::vec3(x, y, z);
+    m_updateModelMatrixFlag =   true;
 }
 
 /*-----------------------------------------------------------------------------
-*	GET MODEL MATRIX
+*   GET MODEL MATRIX
 *-----------------------------------------------------------------------------*/
 const glm::mat4& TransformNode::getModelMatrix()
 {
     if (m_updateModelMatrixFlag == true)
     {
-        m_modelMatrix =				utils::calcModelMatrix(m_translation, m_rotation, m_scale);
-        m_updateModelMatrixFlag =	false;
+        m_modelMatrix =             utils::calcModelMatrix(m_translation, m_rotation, m_scale);
+        m_updateModelMatrixFlag =   false;
     }
 
     return m_modelMatrix;

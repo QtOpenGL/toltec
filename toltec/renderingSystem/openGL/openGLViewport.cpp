@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		11 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       11 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "openGLViewport.hpp"
 
@@ -16,12 +16,12 @@
 #include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace gl
 {
     /*-----------------------------------------------------------------------------
-    *	CONSTRUCTOR
+    *   CONSTRUCTOR
     *-----------------------------------------------------------------------------*/
     OpenGLViewport::OpenGLViewport()
         :
@@ -33,7 +33,7 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	EXPOSE EVENT
+    *   EXPOSE EVENT
     *-----------------------------------------------------------------------------*/
     void OpenGLViewport::exposeEvent(QExposeEvent* p_exposeEvent)
     {
@@ -43,7 +43,7 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	MAKE CURRENT
+    *   MAKE CURRENT
     *-----------------------------------------------------------------------------*/
     void OpenGLViewport::makeCurrent()
     {
@@ -51,7 +51,7 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	DONE CURRENT
+    *   DONE CURRENT
     *-----------------------------------------------------------------------------*/
     void OpenGLViewport::doneCurrent()
     {
@@ -59,7 +59,7 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	SWAP BUFFERS
+    *   SWAP BUFFERS
     *-----------------------------------------------------------------------------*/
     void OpenGLViewport::swapBuffers()
     {
@@ -67,18 +67,18 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	INITIALIZE OPENGL CONTEXT
+    *   INITIALIZE OPENGL CONTEXT
     *-----------------------------------------------------------------------------*/
     void OpenGLViewport::initializeOpenGLContext()
     {
         //SURFACE FORMAT
         QSurfaceFormat qSurfaceFormat;
-        qSurfaceFormat.setRedBufferSize(8);				//8-BIT RED
-        qSurfaceFormat.setGreenBufferSize(8);			//8-BIT GREEN
-        qSurfaceFormat.setBlueBufferSize(8);			//8-BIT BLUE
-        qSurfaceFormat.setAlphaBufferSize(8);			//8-BIT ALPHA
-        qSurfaceFormat.setDepthBufferSize(24);			//24-BIT DEPTH
-        qSurfaceFormat.setSamples(8);					//8-BIT MULTISAMPLING
+        qSurfaceFormat.setRedBufferSize(8);             //8-BIT RED
+        qSurfaceFormat.setGreenBufferSize(8);           //8-BIT GREEN
+        qSurfaceFormat.setBlueBufferSize(8);            //8-BIT BLUE
+        qSurfaceFormat.setAlphaBufferSize(8);           //8-BIT ALPHA
+        qSurfaceFormat.setDepthBufferSize(24);          //24-BIT DEPTH
+        qSurfaceFormat.setSamples(8);                   //8-BIT MULTISAMPLING
 
         //SET WINDOW PROPERTIES
         this->setSurfaceType(QWindow::OpenGLSurface);

@@ -1,23 +1,23 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		30 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		Base class for the node system.
+*   CREATED:
+*       30 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       Base class for the node system.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <cstdint>
 #include <string>
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	NODE
+*   CLASS DECLARATIONS
+*   NODE
 *-----------------------------------------------------------------------------*/
 class Node
 {
@@ -45,32 +45,32 @@ public:
 
     //CONSTRUCTORS
                             Node();
-    virtual					~Node();
+    virtual                 ~Node();
 
     //SET
-    void					setShortName(const std::string& shortName);
-    void					setInitializeFlag(bool value);
-    void					setUpdateFlag(bool value);
+    void                    setShortName(const std::string& shortName);
+    void                    setInitializeFlag(bool value);
+    void                    setUpdateFlag(bool value);
 
     //GET
-    const std::string&		getShortName() const;
-    const std::uint32_t&	getNodeID() const;
-    std::string				getFullName() const;
-    Node::Type				getType() const;
+    const std::string&      getShortName() const;
+    const std::uint32_t&    getNodeID() const;
+    std::string             getFullName() const;
+    Node::Type              getType() const;
 
-    bool					getInitializeFlag() const;
-    bool					getUpdateFlag() const;
+    bool                    getInitializeFlag() const;
+    bool                    getUpdateFlag() const;
 
 protected:
-    void					setType(Node::Type type);
+    void                    setType(Node::Type type);
 
 private:
-    std::string				m_shortName;
-    const std::uint32_t		m_id;
-    Node::Type				m_type;
+    std::string             m_shortName;
+    const std::uint32_t     m_id;
+    Node::Type              m_type;
 
-    bool					m_initializeFlag;
-    bool					m_updateFlag;
+    bool                    m_initializeFlag;
+    bool                    m_updateFlag;
 };
 
 /*----------------------------------------------------------------------------*/

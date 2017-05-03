@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		30 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       30 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "polygonMeshNode.hpp"
 
@@ -17,7 +17,7 @@
 #include "transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 PolygonMeshNode::PolygonMeshNode()
 {
@@ -27,12 +27,12 @@ PolygonMeshNode::PolygonMeshNode()
 }
 
 /*-----------------------------------------------------------------------------
-*	CREATE
+*   CREATE
 *-----------------------------------------------------------------------------*/
 bool PolygonMeshNode::createMesh(
-    std::vector<glm::vec3>&	point3DList,
-    std::vector<unsigned int>&	vertexSequence,
-    std::vector<unsigned int>&	polygonOffsetList)
+    std::vector<glm::vec3>& point3DList,
+    std::vector<unsigned int>&  vertexSequence,
+    std::vector<unsigned int>&  polygonOffsetList)
 {
     //CHECK
     unsigned int faceVertexCountCheck = 0;

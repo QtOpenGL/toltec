@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		13 I 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       13 I 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "surfaceNode.hpp"
 
@@ -14,7 +14,7 @@
 #include "resourceManager.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 SurfaceNode::SurfaceNode()
     :
@@ -27,7 +27,7 @@ SurfaceNode::SurfaceNode()
 }
 
 /*-----------------------------------------------------------------------------
-*	SET SURFACESHADER PROGRAM
+*   SET SURFACESHADER PROGRAM
 *-----------------------------------------------------------------------------*/
 void SurfaceNode::setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode)
 {

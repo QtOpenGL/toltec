@@ -1,34 +1,34 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		06 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		...
+*   CREATED:
+*       06 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "abstractViewport.hpp"
 
 #include "renderingSystem/abstractRenderer.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class QOpenGLContext;
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace gl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	OPENGL VIEWPORT
+    *   CLASS DECLARATIONS
+    *   OPENGL VIEWPORT
     *-----------------------------------------------------------------------------*/
     class OpenGLViewport : public AbstractViewport
     {
@@ -37,20 +37,20 @@ namespace gl
     public:
         //CONSTRUCTORS
                         OpenGLViewport();
-        virtual			~OpenGLViewport() {}
+        virtual         ~OpenGLViewport() {}
 
         //EVENTS
-        virtual void	exposeEvent(QExposeEvent* p_exposeEvent);
+        virtual void    exposeEvent(QExposeEvent* p_exposeEvent);
 
         //OTHERS
-        void			makeCurrent();
-        void			doneCurrent();
-        void			swapBuffers();
+        void            makeCurrent();
+        void            doneCurrent();
+        void            swapBuffers();
 
     private:
-        void			initializeOpenGLContext();
+        void            initializeOpenGLContext();
 
     private:
-        QOpenGLContext*		mp_openGLContext;
+        QOpenGLContext*     mp_openGLContext;
     };
 }; //NAMESPACE: GL

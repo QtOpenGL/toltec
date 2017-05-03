@@ -1,27 +1,27 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		21 IX 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		...
+*   CREATED:
+*       21 IX 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtCore/qobject.h>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class QEvent;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	GLOBAL EVENT FILTER
+*   CLASS DECLARATIONS
+*   GLOBAL EVENT FILTER
 *-----------------------------------------------------------------------------*/
 class GlobalEventFilter : public QObject
 {
@@ -29,17 +29,17 @@ class GlobalEventFilter : public QObject
 
 public:
     //CONSTRUCTOR
-    virtual			~GlobalEventFilter() {}
+    virtual         ~GlobalEventFilter() {}
 
     //EVENTS
-    virtual bool	eventFilter(QObject* p_qObject, QEvent* p_qEvent);
+    virtual bool    eventFilter(QObject* p_qObject, QEvent* p_qEvent);
 
     //STATIC
-    static bool		isAltPressed();
+    static bool     isAltPressed();
 
 private:
     //STATIC
-    static bool		ms_isAltPressed;
+    static bool     ms_isAltPressed;
 };
 
 /*----------------------------------------------------------------------------*/

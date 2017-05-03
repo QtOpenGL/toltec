@@ -1,17 +1,17 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		30 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		PolygonMeshNode class holds information about mesh data structure 
-*		(vertices, edges, triangles, faces, etc.).
+*   CREATED:
+*       30 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       PolygonMeshNode class holds information about mesh data structure 
+*       (vertices, edges, triangles, faces, etc.).
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <glm/glm.hpp>
 
@@ -19,27 +19,27 @@
 #include "toltecPolygonMeshLibrary/mesh.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SCENE 3D NODE
+*   CLASS DECLARATIONS
+*   SCENE 3D NODE
 *-----------------------------------------------------------------------------*/
 class PolygonMeshNode : public SurfaceNode
 {
 public:
     //CONSTRUCTORS
                 PolygonMeshNode();
-    virtual		~PolygonMeshNode() {}
+    virtual     ~PolygonMeshNode() {}
 
     //GET
-    tpm::Mesh*	getMesh();
+    tpm::Mesh*  getMesh();
 
     //OTHER
-    bool		createMesh(
-                    std::vector<glm::vec3>&	point3DList, 
-                    std::vector<unsigned int>&	vertexSequence,
-                    std::vector<unsigned int>&	polygonOffsets);
+    bool        createMesh(
+                    std::vector<glm::vec3>& point3DList, 
+                    std::vector<unsigned int>&  vertexSequence,
+                    std::vector<unsigned int>&  polygonOffsets);
 
 private:
-    tpm::Mesh		m_mesh;
+    tpm::Mesh       m_mesh;
 };
 
 /*----------------------------------------------------------------------------*/

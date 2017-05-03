@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		27 VII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       27 VII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "mainWindow.hpp"
 
@@ -21,8 +21,8 @@
 #include "renderingSystem/abstractViewport.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
-*	(const std::string&, int, int)
+*   CONSTRUCTOR
+*   (const std::string&, int, int)
 *-----------------------------------------------------------------------------*/
 MainWindow::MainWindow(const std::string& title, int width, int height)
 {
@@ -35,7 +35,7 @@ MainWindow::MainWindow(const std::string& title, int width, int height)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET MAIN PANEL
+*   SET MAIN PANEL
 *-----------------------------------------------------------------------------*/
 void MainWindow::setMainPanel(QWidget* p_widget)
 {
@@ -46,18 +46,18 @@ void MainWindow::setMainPanel(QWidget* p_widget)
 }
 
 /*-----------------------------------------------------------------------------
-*	SETUP UI
+*   SETUP UI
 *-----------------------------------------------------------------------------*/
 void MainWindow::setupUI()
 {
     /*-----------------------------------------------------------------------------
-    *	MENU BAR NESTING
+    *   MENU BAR NESTING
     *
-    *	1..	MENU (FILE)
-    *	2..	MENU (DISPLAY)
-    *	3..	MENU (CREATE)
-    *	3.1....	MENU (POLYGON PRIMITIVE)
-    *	3.2....	MENU (LIGHT)
+    *   1.. MENU (FILE)
+    *   2.. MENU (DISPLAY)
+    *   3.. MENU (CREATE)
+    *   3.1.... MENU (POLYGON PRIMITIVE)
+    *   3.2.... MENU (LIGHT)
     *-----------------------------------------------------------------------------*/
 
     //1. FILE (MENU)
@@ -89,12 +89,12 @@ void MainWindow::setupUI()
     p_lightsMenu->addAction("Area Light");
 
     /*-----------------------------------------------------------------------------
-    *	UI NESTING
+    *   UI NESTING
     *
-    *	1..	WIDGET (CENTRAL WIDGET)
-    *	1.1....	V BOX LAYOUT
-    *	1.1.1......	WIDGET (MAIN PANEL)
-    *	1.1.2......	LABEL (MESSAGE BAR)
+    *   1.. WIDGET (CENTRAL WIDGET)
+    *   1.1.... V BOX LAYOUT
+    *   1.1.1...... WIDGET (MAIN PANEL)
+    *   1.1.2...... LABEL (MESSAGE BAR)
     *-----------------------------------------------------------------------------*/
     
     //1. CENTRAL (WIDGET)

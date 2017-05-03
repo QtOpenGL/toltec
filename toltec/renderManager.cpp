@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		06 VIII 2016
-*	CONTRIBUTORS:
-*		PETER MAKAL
+*   CREATED:
+*       06 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderManager.hpp"
 
@@ -22,7 +22,7 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 RenderManager::RenderManager()
     :
@@ -31,13 +31,13 @@ RenderManager::RenderManager()
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD RENDERING SYSTEM
+*   ADD RENDERING SYSTEM
 *-----------------------------------------------------------------------------*/
 void RenderManager::addRenderingSystem(RenderingSystem* p_renderingSystem)
 {
     //Perform a check if object already exists in a vector to prevent duplicates.
-    auto endIter =		std::end(m_renderingSystemList);
-    auto findIter =		std::find(std::begin(m_renderingSystemList), endIter, p_renderingSystem);
+    auto endIter =      std::end(m_renderingSystemList);
+    auto findIter =     std::find(std::begin(m_renderingSystemList), endIter, p_renderingSystem);
 
     if (findIter != endIter)
         return;
@@ -46,8 +46,8 @@ void RenderManager::addRenderingSystem(RenderingSystem* p_renderingSystem)
 }
 
 /*-----------------------------------------------------------------------------
-*	RENDER CALL
-*	(AbstractViewport*)
+*   RENDER CALL
+*   (AbstractViewport*)
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall(AbstractViewport* p_viewport)
 {
@@ -56,8 +56,8 @@ void RenderManager::renderCall(AbstractViewport* p_viewport)
 }
 
 /*-----------------------------------------------------------------------------
-*	RENDER CALL
-*	(RenderingSystem*)
+*   RENDER CALL
+*   (RenderingSystem*)
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 {
@@ -74,13 +74,13 @@ void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 }
 
 /*-----------------------------------------------------------------------------
-*	RENDER CALL
-*	(RenderingSystem*)
+*   RENDER CALL
+*   (RenderingSystem*)
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall(const std::string& renderingSystemName)
 {
-    AbstractViewport* p_viewport =			nullptr;
-    RenderingSystem* p_renderingSystem =	nullptr;
+    AbstractViewport* p_viewport =          nullptr;
+    RenderingSystem* p_renderingSystem =    nullptr;
 
     //RETRIVE RENDERING SYSTEM
     for (auto p_renderingSystemListItem : m_renderingSystemList)
@@ -110,8 +110,8 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
 }
 
 /*-----------------------------------------------------------------------------
-*	RENDER CALL
-*	()
+*   RENDER CALL
+*   ()
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall()
 {
@@ -121,7 +121,7 @@ void RenderManager::renderCall()
 }
 
 /*-----------------------------------------------------------------------------
-*	FINISH RENDER CALL
+*   FINISH RENDER CALL
 *-----------------------------------------------------------------------------*/
 void RenderManager::finishRenderCall()
 {

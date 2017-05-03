@@ -1,29 +1,29 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		09 I 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		Base class for all shader programs.
+*   CREATED:
+*       09 I 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       Base class for all shader programs.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "nodes/node.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SHADER PROGRAM NODE
+*   CLASS DECLARATIONS
+*   SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 class ShaderProgramNode : public Node
 {
 public:
     //CONSTRUCTORS
                 ShaderProgramNode();
-    virtual		~ShaderProgramNode() {}
+    virtual     ~ShaderProgramNode() {}
 
 private:
     //...

@@ -1,30 +1,30 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		02 VIII 2016
-*	CONTRIBUTORS:
-*		PETER MAKAL
-*	INFO:
-*		AbstractViewport class is a base class for all viewports and holds
-*		common interface for them.
+*   CREATED:
+*       02 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       AbstractViewport class is a base class for all viewports and holds
+*       common interface for them.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtGui/qwindow.h>
 #include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractRenderer;
 class TransformNode;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	ABSTRACT VIEWPORT
+*   CLASS DECLARATIONS
+*   ABSTRACT VIEWPORT
 *-----------------------------------------------------------------------------*/
 class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
 {
@@ -33,34 +33,34 @@ class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGE IN T
 public:
     //CONSTRUCTORS
                         AbstractViewport();
-    virtual				~AbstractViewport() {}
+    virtual             ~AbstractViewport() {}
 
     //EVENTS
-    virtual void		mousePressEvent(QMouseEvent* p_mouseEvent);
-    virtual void		mouseReleaseEvent(QMouseEvent* p_mouseEvent);
-    virtual void		mouseMoveEvent(QMouseEvent* p_mouseEvent);
+    virtual void        mousePressEvent(QMouseEvent* p_mouseEvent);
+    virtual void        mouseReleaseEvent(QMouseEvent* p_mouseEvent);
+    virtual void        mouseMoveEvent(QMouseEvent* p_mouseEvent);
 
     //SET
-    void				setRenderer(AbstractRenderer* p_renderer);
-    void				setCamera(TransformNode* p_camera);
+    void                setRenderer(AbstractRenderer* p_renderer);
+    void                setCamera(TransformNode* p_camera);
 
     //GET
-    RenderingAPI::Type	getType() const;
-    AbstractRenderer*	getRenderer() const;
-    TransformNode*		getCamera() const;
+    RenderingAPI::Type  getType() const;
+    AbstractRenderer*   getRenderer() const;
+    TransformNode*      getCamera() const;
 
 protected:
-    RenderingAPI::Type	m_type;
-    AbstractRenderer*	mp_renderer;
-    TransformNode*		mp_camera;
+    RenderingAPI::Type  m_type;
+    AbstractRenderer*   mp_renderer;
+    TransformNode*      mp_camera;
 
 private:
-    void				tumble(int x, int y);
-    void				track(int x, int y);
-    void				dolly(int x, int y);
+    void                tumble(int x, int y);
+    void                track(int x, int y);
+    void                dolly(int x, int y);
 
 private:
-    bool				
+    bool                
         m_isLeftMouseButtonPressed,
         m_isMiddleMouseButtonPressed,
         m_isRightMouseButtonPressed;

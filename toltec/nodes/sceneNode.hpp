@@ -1,39 +1,39 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		30 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		SceneNode class represnet base class for all nodes that will be 
-*		placed and rendered in the viewport.
+*   CREATED:
+*       30 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       SceneNode class represnet base class for all nodes that will be 
+*       placed and rendered in the viewport.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "node.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	SCENE NODE
+*   CLASS DECLARATIONS
+*   SCENE NODE
 *-----------------------------------------------------------------------------*/
 class SceneNode : public Node
 {
 public:
     //CONSTRUCTORS
                     SceneNode();
-    virtual			~SceneNode() {}
+    virtual         ~SceneNode() {}
 
     //SET
-    virtual void	setParent(SceneNode* p_parent);
+    virtual void    setParent(SceneNode* p_parent);
 
     //GET
-    SceneNode*		getParent();
+    SceneNode*      getParent();
 
 protected:
-    SceneNode*		mp_parent;
+    SceneNode*      mp_parent;
 };
 
 /*----------------------------------------------------------------------------*/

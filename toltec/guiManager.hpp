@@ -1,28 +1,28 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		08 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		GUIManager is a singleton class that is responsible for holding GUI
-*		state, creating GUI objects, displaying information to a user, etc.
+*   CREATED:
+*       08 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       GUIManager is a singleton class that is responsible for holding GUI
+*       state, creating GUI objects, displaying information to a user, etc.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <string>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class OutputLineWidget;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	GUI MANAGER
+*   CLASS DECLARATIONS
+*   GUI MANAGER
 *-----------------------------------------------------------------------------*/
 class GUIManager
 {
@@ -37,17 +37,17 @@ public:
     void operator=(const GUIManager&) = delete;
 
     //SET
-    void	setOutputLineWidget(OutputLineWidget* p_outputLineWidget);
+    void    setOutputLineWidget(OutputLineWidget* p_outputLineWidget);
 
     //OTHER
-    void	displayMessage(const std::string& message);
-    void	displayWarning(const std::string& warning);
-    void	displayError(const std::string& error);
+    void    displayMessage(const std::string& message);
+    void    displayWarning(const std::string& warning);
+    void    displayError(const std::string& error);
 
 private:
     //SINGLETON
     GUIManager();
 
 private:
-    OutputLineWidget*	mp_outputStreamWidget;
+    OutputLineWidget*   mp_outputStreamWidget;
 };

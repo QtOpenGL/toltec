@@ -1,31 +1,31 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		06 VIII 2016
-*	CONTRIBUTORS:
-*		PETER MAKAL
-*	INFO:
-*		Render Manager is responsible for managing renderering systems and 
-*		redner calls.
+*   CREATED:
+*       06 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       Render Manager is responsible for managing renderering systems and 
+*       redner calls.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <cstdint>
 #include <string>
 #include <vector>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class RenderingSystem;
 class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	RENDER MANAGER
+*   CLASS DECLARATIONS
+*   RENDER MANAGER
 *-----------------------------------------------------------------------------*/
 class RenderManager
 {
@@ -40,27 +40,27 @@ public:
     void operator=(const RenderManager&) = delete;
 
     //ADD
-    void		addRenderingSystem(RenderingSystem* p_renderingSystem);
+    void        addRenderingSystem(RenderingSystem* p_renderingSystem);
 
     //GET
-    RenderingSystem*	getDefaultRenderingSystem() const;
+    RenderingSystem*    getDefaultRenderingSystem() const;
 
     //OTHER
-    void		renderCall(AbstractViewport* p_viewport);				//VIEWPORT CALL
-    void		renderCall(RenderingSystem* p_renderingSystem);			//RENDERING SYSTEM CALL
-    void		renderCall(const std::string& renderingSystemName);		//RENDERING SYSTEM CALL
-    void		renderCall();											//GLOBAL CALL
+    void        renderCall(AbstractViewport* p_viewport);               //VIEWPORT CALL
+    void        renderCall(RenderingSystem* p_renderingSystem);         //RENDERING SYSTEM CALL
+    void        renderCall(const std::string& renderingSystemName);     //RENDERING SYSTEM CALL
+    void        renderCall();                                           //GLOBAL CALL
 
 private:
     //SINGLETON
     RenderManager();
 
     //OTHER
-    void		finishRenderCall();
+    void        finishRenderCall();
 
 private:
-    std::vector<RenderingSystem*>	m_renderingSystemList;
-    std::uint64_t					m_renderCycleNumber;
+    std::vector<RenderingSystem*>   m_renderingSystemList;
+    std::uint64_t                   m_renderCycleNumber;
 };
 
 /*----------------------------------------------------------------------------*/

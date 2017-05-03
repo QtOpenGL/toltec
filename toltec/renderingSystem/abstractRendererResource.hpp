@@ -1,46 +1,46 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		04 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		...
+*   CREATED:
+*       04 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <vector>
 #include <glm/glm.hpp>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class TransformNode;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	ABSTRACT RENDERER RESOURCE
+*   CLASS DECLARATIONS
+*   ABSTRACT RENDERER RESOURCE
 *-----------------------------------------------------------------------------*/
 class AbstractRendererResource
 {
 public:
     //CONSTRUCTORS
                     AbstractRendererResource();
-    virtual			~AbstractRendererResource() {}
+    virtual         ~AbstractRendererResource() {}
 
     //GET
-    bool			areResourcesInitialized();
+    bool            areResourcesInitialized();
 
     //OTHER
-    virtual void	initializeResources() = 0;
-    virtual void	updateResources() = 0;
-    virtual void	deleteResources() = 0;
+    virtual void    initializeResources() = 0;
+    virtual void    updateResources() = 0;
+    virtual void    deleteResources() = 0;
 
 protected:
-    virtual void	scanSceneTree(
+    virtual void    scanSceneTree(
                         TransformNode* p_transformNode,
                         int& treeDepthLevel,
                         std::vector<glm::mat4>* p_modelMatrixList,
@@ -48,7 +48,7 @@ protected:
                         const bool& initializeRendererResourceFlag) = 0;
 
 protected:
-    bool			m_areResourcesInitialized;
+    bool            m_areResourcesInitialized;
 
 private:
     //...

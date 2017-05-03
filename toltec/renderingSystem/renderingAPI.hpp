@@ -1,28 +1,28 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		02 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		RenderingAPI class defines specific rendering API: OpenGL, Vulkan, 
-*		Direct3D, etc.
+*   CREATED:
+*       02 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       RenderingAPI class defines specific rendering API: OpenGL, Vulkan, 
+*       Direct3D, etc.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <vector>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractRenderer;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	ABSTRACT RENDERING SYSTEM
+*   CLASS DECLARATIONS
+*   ABSTRACT RENDERING SYSTEM
 *-----------------------------------------------------------------------------*/
 class RenderingAPI
 {
@@ -38,15 +38,15 @@ public:
 
     //CONSTRUCTORS
                 RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer);
-    virtual		~RenderingAPI() {};
+    virtual     ~RenderingAPI() {};
 
     //GET
-    RenderingAPI::Type				getType() const;
-    AbstractRenderer*				getRenderer();
+    RenderingAPI::Type              getType() const;
+    AbstractRenderer*               getRenderer();
 
 private:
-    RenderingAPI::Type				m_type;
-    AbstractRenderer*				mp_renderer;
+    RenderingAPI::Type              m_type;
+    AbstractRenderer*               mp_renderer;
 };
 
 /*----------------------------------------------------------------------------*/

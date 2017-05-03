@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		02 II 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       02 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "toltecOpenGLRendererResource.hpp"
 
@@ -23,12 +23,12 @@
 #include "renderingSystem/toltec/openGL/shaders/shaderInstance.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	DESTRUCTOR
+    *   DESTRUCTOR
     *-----------------------------------------------------------------------------*/
     ToltecOpenGLRendererResource::~ToltecOpenGLRendererResource()
     {
@@ -36,7 +36,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	INITIALIZE RESOURCES
+    *   INITIALIZE RESOURCES
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::initializeResources()
     {
@@ -52,8 +52,8 @@ namespace tgl
 
             //SCAN SCENE TREE
             std::vector<glm::mat4> modelMatrixList;
-            int treeDepthLevel =					0;
-            bool calculateFinalModelMatrixFlag =	false;
+            int treeDepthLevel = 0;
+            bool calculateFinalModelMatrixFlag = false;
 
             this->scanSceneTree(
                 p_resourceManager->getRootTransformNode(), 
@@ -68,7 +68,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	DELETE RESOURCES
+    *   DELETE RESOURCES
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::deleteResources()
     {
@@ -86,7 +86,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	INITIALIZE SHADER PROGRAM MAP
+    *   INITIALIZE SHADER PROGRAM MAP
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     {
@@ -101,7 +101,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	SCAN SCENE TREE
+    *   SCAN SCENE TREE
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::scanSceneTree(TransformNode* p_transformNode, int& treeDepthLevel, 
         std::vector<glm::mat4>* p_modelMatrixList, bool& calculateFinalModelMatrixFlag, 
@@ -124,7 +124,7 @@ namespace tgl
             calculateFinalModelMatrixFlag = true;
 
         //CHECK CHILD LIST
-        std::vector<SceneNode*> childList =	p_transformNode->getChildList();
+        std::vector<SceneNode*> childList = p_transformNode->getChildList();
         for (SceneNode* p_sceneNode : childList)
         {
             //RECUR IF TransformNode DETECTED
@@ -146,7 +146,7 @@ namespace tgl
                 p_sceneNode->getInitializeFlag() == true ||
                 p_sceneNode->getUpdateFlag() == true)
             {
-                //PROCESS : PolygonMeshNode
+                //PROCESS: PolygonMeshNode
                 if (p_sceneNode->getType() == Node::POLYGON_MESH_NODE)
                 {
                     PolygonMeshNode* p_polygonMeshNode = static_cast<PolygonMeshNode*>(p_sceneNode);
@@ -154,7 +154,7 @@ namespace tgl
                         initializeRendererResourceFlag);
                 }
 
-                //PROCESS : ...
+                //PROCESS: ...
                 //else if ()
                 //{
 
@@ -166,7 +166,7 @@ namespace tgl
             {
                 glm::mat4 finalModelMatrix;
                 for (glm::mat4& modelMatrix : *p_modelMatrixList)
-                    finalModelMatrix = finalModelMatrix * modelMatrix;
+                    finalModelMatrix *= modelMatrix;
 
                 if (p_renderableObject != nullptr)
                     p_renderableObject->setModelMatrix(finalModelMatrix);
@@ -175,17 +175,17 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	PROCESS POLYGON MESH NODE
+    *   PROCESS POLYGON MESH NODE
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode, 
         RenderableObject* p_renderableObject, const bool& initializeRendererResourceFlag)
     {
         /*-----------------------------------------------------------------------------
-        *	INITIALIZE
+        *   INITIALIZE
         *-----------------------------------------------------------------------------*/
         if (initializeRendererResourceFlag == true || p_polygonMeshNode->getInitializeFlag() == true)
         {
-            //ADD TO THE RENDERABLE OBJECT MAP			
+            //ADD TO THE RENDERABLE OBJECT MAP          
             auto iter = m_renderableObjectMap.find(p_polygonMeshNode->getNodeID);
             if (iter != m_renderableObjectMap.end())
                 return;
@@ -242,8 +242,8 @@ namespace tgl
                 }
 
                 //generate indices
-                std::uint32_t firstFaceVertexIndexOfAFace =		faceVertexIndexCount;
-                std::size_t numFaceVertices =					p_face->faceVertexIDList.size();
+                std::uint32_t firstFaceVertexIndexOfAFace =     faceVertexIndexCount;
+                std::size_t numFaceVertices =                   p_face->faceVertexIDList.size();
                 for (std::size_t i = 0; i < numFaceVertices; i++)
                 {
                     //face index list
@@ -302,6 +302,7 @@ namespace tgl
             ShaderInstance* p_shaderInstance = nullptr;
             auto iter = m_shaderInstanceMap.find(
                 p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
+            
             if (iter != m_shaderInstanceMap.end())
                 p_shaderInstance = iter->second;
             else
@@ -312,23 +313,26 @@ namespace tgl
                 p_geometry->getVAOID(),
                 faceIndexBuffer.getID(),
                 p_shaderInstance,
-                RenderItem::TRIANGLES_DRAW_MODE);
+                RenderItem::TRIANGLES_DRAW_MODE
+            );
             //line
             RenderItem* p_pointRenderItem = new RenderItem(
                 p_geometry->getVAOID(),
                 edgeIndexBuffer.getID(),
                 p_shaderInstace,
-                RenderItem::LINES_DRAW_MODE);
+                RenderItem::LINES_DRAW_MODE
+            );
             //point
             RenderItem* p_pointRenderItem = new RenderItem(
                 p_geometry->getVAOID(),
                 vertexIndexBuffer.getID(),
                 p_shaderInstace, 
-                RenderItem::POINTS_DRAW_MODE);
+                RenderItem::POINTS_DRAW_MODE
+            );
         }
 
         /*-----------------------------------------------------------------------------
-        *	UPDATE
+        *   UPDATE
         *-----------------------------------------------------------------------------*/
         else if (p_polygonMeshNode->getUpdateFlag() == true)
         {

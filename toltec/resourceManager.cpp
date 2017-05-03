@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		14 IX 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       14 IX 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "resourceManager.hpp"
 
@@ -20,7 +20,7 @@
 #include "nodes/transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 ResourceManager::ResourceManager()
     :
@@ -33,7 +33,7 @@ ResourceManager::ResourceManager()
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD SURFACE SHADER PROGRAM NODE
+*   ADD SURFACE SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode)
 {
@@ -48,7 +48,7 @@ void ResourceManager::addSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_su
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD COMPONENT SHADER PROGRAM NODE
+*   ADD COMPONENT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addComponentShaderProgramNode(ComponentShaderProgramNode* p_componentShaderProgramNode)
 {
@@ -64,7 +64,7 @@ void ResourceManager::addComponentShaderProgramNode(ComponentShaderProgramNode* 
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD TRANSFORM NODE
+*   ADD TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addTransformNode(TransformNode* p_transformNode)
 {
@@ -79,7 +79,7 @@ void ResourceManager::addTransformNode(TransformNode* p_transformNode)
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD POLYGON MESH NODE
+*   ADD POLYGON MESH NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode)
 {
@@ -94,11 +94,11 @@ void ResourceManager::addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET DEFAULT SHADER PROGRAM NODE
+*   SET DEFAULT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgramNode)
 {
-    if (mp_defaultSSPNode != nullptr)	//return if already assigned
+    if (mp_defaultSSPNode != nullptr)   //return if already assigned
         return;
 
     mp_defaultSSPNode = p_shaderProgramNode;
@@ -109,11 +109,11 @@ void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgra
 }
 
 /*-----------------------------------------------------------------------------
-*	SET ROOT TRANSFORM NODE
+*   SET ROOT TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
 {
-    if (mp_rootTransformNode != nullptr)	//return if already assigned
+    if (mp_rootTransformNode != nullptr)    //return if already assigned
         return;
 
     mp_rootTransformNode = p_rootTransformNode;
@@ -124,11 +124,11 @@ void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
 }
 
 /*-----------------------------------------------------------------------------
-*	SET DEFAULT CAMERA NODE
+*   SET DEFAULT CAMERA NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
 {
-    if (mp_defaultCameraNode != nullptr)	//return if already assigned
+    if (mp_defaultCameraNode != nullptr)    //return if already assigned
         return;
 
     mp_defaultCameraNode = p_defaultCameraNode;
@@ -139,7 +139,7 @@ void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
 }
 
 /*-----------------------------------------------------------------------------
-*	ASSIGN NODE ID
+*   ASSIGN NODE ID
 *-----------------------------------------------------------------------------*/
 std::uint32_t ResourceManager::assignNodeID()
 {
@@ -166,7 +166,7 @@ std::uint32_t ResourceManager::assignNodeID()
 }
 
 /*-----------------------------------------------------------------------------
-*	REMOVE NODE ID
+*   REMOVE NODE ID
 *-----------------------------------------------------------------------------*/
 void ResourceManager::removeNodeID(const std::uint32_t nodeID)
 {

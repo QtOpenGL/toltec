@@ -73,11 +73,11 @@ int main(int argc, char* argv[])
     //...
 
     //poly edge component shader - inactive
-    PointCSPNode polyEdgeShaderInactive;
-    polyEdgeShaderInactive.setShortName("polyEdgeShaderInactive");
-    polyEdgeShaderInactive.setColor(1.0f, 0.0f, 1.0f);
-    polyEdgeShaderInactive.setSize(1);
-    ResourceManager::getInstance().addComponentShaderProgramNode(&polyEdgeShaderInactive);
+    //PointCSPNode polyEdgeShaderInactive;
+    //polyEdgeShaderInactive.setShortName("polyEdgeShaderInactive");
+    //polyEdgeShaderInactive.setColor(1.0f, 0.0f, 1.0f);
+    //polyEdgeShaderInactive.setSize(1);
+    //ResourceManager::getInstance().addComponentShaderProgramNode(&polyEdgeShaderInactive);
 
     //poly edge component shader - inactive hover
     //...

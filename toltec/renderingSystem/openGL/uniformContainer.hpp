@@ -1,62 +1,66 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		25 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		UniformContainer class is a base class for three types of 
-*		uniform containers: uniform, uniform array and uniform struct.
+*   CREATED:
+*       25 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <string>
+#include <vector>
+#include "renderingSystem/openGL/uniform.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace gl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	UNIFORM CONTAINER
+    *   CLASS DECLARATIONS
+    *   UNIFORM CONTAINER
     *-----------------------------------------------------------------------------*/
-    class UniformContainer
+    class UniformContainer : public Uniform
     {
     public:
-        //TYPES
-        enum ContainerType {
-            NONE_TYPE,
-            SINGLE_TYPE,
-            ARRAY_TYPE,
-            STRUCT_TYPE
-        };
+        ////TYPES
+        //enum Type {
+        //  TYPE_NONE,
+        //  TYPE_ARRAY,
+        //  TYPE_STRUCT
+        //};
 
         //CONSTRUCTORS
-        explicit		UniformContainer(const std::string& name);
-        virtual			~UniformContainer() {}
-
-        //GET
-        UniformContainer::ContainerType		getContainerType() const;
-        const std::string&					getName() const;
+        explicit        UniformContainer(const std::string& name);
+        virtual         ~UniformContainer() {}
 
     protected:
-        UniformContainer::ContainerType		m_containerType;
-        std::string							m_name;
+        std::vector<Uniform*> m_uniformList;
     };
 
-    /*----------------------------------------------------------------------------*/
-
-    inline UniformContainer::ContainerType UniformContainer::getContainerType() const
+    /*-----------------------------------------------------------------------------
+    *   UNIFORM ARRAY
+    *-----------------------------------------------------------------------------*/
+    class UniformArray : public UniformContainer
     {
-        return m_containerType;
-    }
+    public:
+        //CONSTRUCTORS
+        explicit        UniformArray(const std::string& name);
+        virtual         ~UniformArray() {}
+    };
 
-    inline const std::string& UniformContainer::getName() const
+    /*-----------------------------------------------------------------------------
+    *   UNIFORM STRUCT
+    *-----------------------------------------------------------------------------*/
+    class UniformStruct : public UniformContainer
     {
-        return m_name;
-    }
+    public:
+        //CONSTRUCTORS
+        explicit        UniformStruct(const std::string& name);
+        virtual         ~UniformStruct() {}
+    };
 } //NAMESPACE: GL

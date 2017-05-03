@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		11 I 2017
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
+*   CREATED:
+*       11 I 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "surfaceShaderProgramNode.hpp"
 
@@ -14,7 +14,7 @@
 #include "resourceManager.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 {
@@ -24,7 +24,7 @@ SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 }
 
 /*-----------------------------------------------------------------------------
-*	ADD SURFACE
+*   ADD SURFACE
 *-----------------------------------------------------------------------------*/
 void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode, const bool hardAdd)
 {
@@ -54,7 +54,7 @@ void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode, const bool
 }
 
 /*-----------------------------------------------------------------------------
-*	REMOVE SURFACE
+*   REMOVE SURFACE
 *-----------------------------------------------------------------------------*/
 void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode, const bool hardRemove)
 {

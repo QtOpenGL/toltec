@@ -1,24 +1,24 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		22 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
+*   CREATED:
+*       22 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "lambertShaderProgram.hpp"
 
 #include "renderingSystem/toltec/openGL/shaders/shaderInstance.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CONSTRUCTOR
+    *   CONSTRUCTOR
     *-----------------------------------------------------------------------------*/
     LambertShaderProgram::LambertShaderProgram()
     {
@@ -31,20 +31,20 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	CREATE SHADER INSTANCE
+    *   CREATE SHADER INSTANCE
     *-----------------------------------------------------------------------------*/
     ShaderInstance* LambertShaderProgram::createShaderInstance()
     {
-        ShaderInstance* p_shaderInstance = new ShaderInstance(this);
+        ShaderInstance* p_shaderInstance =              new ShaderInstance(this);
 
-        gl::UniformVec3* p_diffuseColorUniform =		new gl::UniformVec3("g_diffuseColor", m_id);
-        gl::UniformBool* p_isDiffuseMapConnected =		new gl::UniformBool("g_isDiffuseMapConnected", m_id);
+        gl::UniformVec3* p_diffuseColorUniform =        new gl::UniformVec3("g_diffuseColor", m_id);
+        gl::UniformBool* p_isDiffuseMapConnected =      new gl::UniformBool("g_isDiffuseMapConnected", m_id);
 
-        gl::UniformVec3* p_transparencyColorUniform =	new gl::UniformVec3("g_transparencyColor", m_id);
-        gl::UniformBool* p_isDiffuseMapConnected =		new gl::UniformBool("g_isTransparencyMapConnected", m_id);
+        gl::UniformVec3* p_transparencyColorUniform =   new gl::UniformVec3("g_transparencyColor", m_id);
+        gl::UniformBool* p_isDiffuseMapConnected =      new gl::UniformBool("g_isTransparencyMapConnected", m_id);
 
-        gl::UniformVec3* p_ambientColorUniform =		new gl::UniformVec3("g_ambientColor", m_id);
-        gl::UniformBool* p_isDiffuseMapConnected =		new gl::UniformBool("g_isAmbientMapConnected", m_id);
+        gl::UniformVec3* p_ambientColorUniform =        new gl::UniformVec3("g_ambientColor", m_id);
+        gl::UniformBool* p_isDiffuseMapConnected =      new gl::UniformBool("g_isAmbientMapConnected", m_id);
 
 
 
@@ -52,7 +52,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	SET UP UNIFORMS
+    *   SET UP UNIFORMS
     *-----------------------------------------------------------------------------*/
     void LambertShaderProgram::setUpUniforms()
     {

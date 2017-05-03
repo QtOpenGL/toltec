@@ -1,18 +1,18 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		09 VIII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		OutputLineWidget is a class for displaying information inside of a GUI 
-*		of the program. It can spit normal messages as well as warnings and
-*		erros giving a user proper color hint with those.
+*   CREATED:
+*       09 VIII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       OutputLineWidget is a class for displaying information inside of a GUI 
+*       of the program. It can spit normal messages as well as warnings and
+*       erros giving a user proper color hint with those.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <string>
 
@@ -21,8 +21,8 @@
 #include <QtWidgets/qwidget.h>
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	OUTPUT LINE WIDGET
+*   CLASS DECLARATIONS
+*   OUTPUT LINE WIDGET
 *-----------------------------------------------------------------------------*/
 class OutputLineWidget : public QWidget
 {
@@ -36,13 +36,13 @@ public:
 
     //(CON/DE)STRUCTORS
                     OutputLineWidget();
-    virtual			~OutputLineWidget() {}
+    virtual         ~OutputLineWidget() {}
 
     //EVENTS
-    virtual void	paintEvent(QPaintEvent* event);
+    virtual void    paintEvent(QPaintEvent* event);
 
     //SET
-    void			setText(
+    void            setText(
         const std::string& text, 
         OutputLineWidget::MessageType messageType = OutputLineWidget::NORMAL_MESSAGE);
 
@@ -52,6 +52,6 @@ private:
         ms_WARNING_COLOR,
         ms_ERROR_COLOR;
 
-    std::string		m_text;
-    QColor			m_messageColor;
+    std::string     m_text;
+    QColor          m_messageColor;
 };

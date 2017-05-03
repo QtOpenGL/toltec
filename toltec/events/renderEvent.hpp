@@ -1,44 +1,44 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		27 VII 2016
-*	CONTRIBUTORS:
-*		PIOTR MAKAL
-*	INFO:
-*		Render event is send whenever we want to add render request into Qt
-*		event loop.
+*   CREATED:
+*       27 VII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       Render event is send whenever we want to add render request into Qt
+*       event loop.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtGui/qevent.h>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	RENDER EVENT
+*   CLASS DECLARATIONS
+*   RENDER EVENT
 *-----------------------------------------------------------------------------*/
 class RenderEvent : public QEvent
 {
 public:
     //CONSTRUCTORS
                 RenderEvent(AbstractViewport* p_viewport = nullptr);
-    virtual		~RenderEvent() {}
+    virtual     ~RenderEvent() {}
 
     //GET
-    AbstractViewport*	getViewport() const;
+    AbstractViewport*   getViewport() const;
 
 public:
     static const QEvent::Type TYPE;
 
 private:
-    AbstractViewport*	mp_viewport;
+    AbstractViewport*   mp_viewport;
 };
 
 /*----------------------------------------------------------------------------*/
