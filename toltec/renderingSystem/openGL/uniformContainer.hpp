@@ -39,7 +39,7 @@ namespace gl
         virtual         ~UniformContainer() {}
 
     protected:
-        std::vector<Uniform*> m_uniformList;
+        std::vector<Uniform> m_uniformList;
     };
 
     /*-----------------------------------------------------------------------------
