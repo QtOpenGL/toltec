@@ -1,38 +1,103 @@
 #include <iostream> 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
-#include <glm/glm.hpp>
-
-class A
+class Uniform
 {
 public:
-    A() : m_value(99) {}
-    ~A() {}
+    //TYPES
+    enum Classification {
+        NONE,
+        UNIT,
+        CONTAINER
+    };
 
-    void	setValue(int val) { m_value = val; }
-    int		getValue() const { return m_value; }
+    Uniform() : m_classification(Uniform::Classification::NONE) {}
+    virtual ~Uniform() {}
+
+    Uniform::Classification getClassification() const { return m_classification; }
+    virtual void findLocations() { std::cout << "Uniform\n"; }
 
 protected:
-    int m_value;
+    Uniform::Classification m_classification;
 };
 
-class B : public A
+class UniformUnit : public Uniform
 {
 public:
-    B() : m_value("haha") {}
-    ~B() {}
+    UniformUnit() { m_classification = Uniform::Classification::UNIT; }
+    virtual ~UniformUnit() {}
 
-    void			setValue(std::string val) { m_value = val; }
-    std::string		getValue() const { return m_value; }
+    virtual void findLocations() { std::cout << "UniformUnit\n"; }
+};
+
+class UniformContainer : public Uniform
+{
+public:
+    //TYPES
+    enum Type {
+        NONE,
+        ARRAY,
+        STRUCT
+    };
+
+    UniformContainer() { m_classification = Uniform::Classification::CONTAINER; }
+    virtual ~UniformContainer() {}
+
+    virtual void findLocations() { std::cout << "UniformContainer\n"; }
 
 protected:
-    std::string		m_value;
+    UniformContainer::Type m_type;
+};
+
+class UniformArray : public UniformContainer
+{
+public:
+    UniformArray() { m_type = UniformContainer::Type::ARRAY; }
+    virtual ~UniformArray() {}
+
+    virtual void findLocations() { std::cout << "UniformArray\n"; }
+};
+
+class UniformStruct : public UniformContainer
+{
+public:
+    UniformStruct() { m_type = UniformContainer::Type::STRUCT; }
+    virtual ~UniformStruct() {}
+
+    virtual void findLocations() { std::cout << "UniformStruct\n"; }
 };
 
 int main(int argc, char* argv[])
 {
-    B benc;
-    int halo = benc.getValue();
+    std::vector<std::unique_ptr<Uniform>> uniformList;
+
+    std::unique_ptr<UniformUnit> p_uniformUnit(new UniformUnit);
+    uniformList.push_back(std::move(p_uniformUnit));
+
+    std::unique_ptr<UniformArray> p_uniformArray(new UniformArray);
+    uniformList.push_back(std::move(p_uniformArray));
+
+    std::unique_ptr<UniformStruct> p_uniformStruct(new UniformStruct);
+    uniformList.push_back(std::move(p_uniformStruct));
+
+    for (auto& p_uniform : uniformList)
+    {
+        if (p_uniform->getClassification() == Uniform::Classification::CONTAINER)
+        {
+            //UniformContainer* p_uniformContainer = static_cast<UniformContainer*>(p_uniform.get());
+            //p_uniformContainer->findLocations();
+            p_uniform->findLocations();
+        }
+        else
+        {
+            //UniformUnit* p_uniformUnit = static_cast<UniformUnit*>(p_uniform.get());
+            //p_uniformUnit->findLocations();
+            p_uniform->findLocations();
+        }
+    }
+
+    return 0;
 }

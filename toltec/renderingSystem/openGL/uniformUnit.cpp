@@ -24,12 +24,11 @@ namespace gl
     UniformUnit::UniformUnit(const std::string& name)
         :
         Uniform(name),
-        m_type(UniformUnit::TYPE_NONE),
-        m_location(-1),
-        m_isValueLinked(false)
+        m_type(UniformUnit::Type::NONE),
+        m_location(-1)
     {
         //INITIALIZE
-        m_classification = Uniform::CLASSIFICATION_UNIT;
+        m_classification = Uniform::Classification::UNIT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -39,13 +38,20 @@ namespace gl
     UniformUnit::UniformUnit(const std::string& name, gl::GLuint shaderProgramID)
         :
         Uniform(name),
-        m_type(UniformUnit::TYPE_NONE),
-        m_location(-1),
-        m_isValueLinked(false)
+        m_type(UniformUnit::Type::NONE),
+        m_location(-1)
     {
         //INITIALIZE
-        m_classification =  Uniform::CLASSIFICATION_UNIT;
+        m_classification =  Uniform::Classification::UNIT;
         m_location =        gl::glGetUniformLocation(shaderProgramID, m_name.c_str());
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   SET LOCATION
+    *-----------------------------------------------------------------------------*/
+    void UniformUnit::setLocation(gl::GLint location)
+    {
+        m_location = location;
     }
 
     /*-----------------------------------------------------------------------------
@@ -72,7 +78,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_BOOL;
+        m_type = UniformUnit::Type::BOOL;
     }
 
     /*-----------------------------------------------------------------------------
@@ -86,7 +92,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_BOOL;
+        m_type = UniformUnit::Type::BOOL;
     }
 
     /*-----------------------------------------------------------------------------
@@ -100,7 +106,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_BOOL;
+        m_type = UniformUnit::Type::BOOL;
     }
 
     /*-----------------------------------------------------------------------------
@@ -109,15 +115,6 @@ namespace gl
     void UniformBool::setValue(const bool& value)
     {
         m_value = value;
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   SET VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformBool::setValueLink(const bool* p_valueLink)
-    {
-        mp_valueLink = p_valueLink;
-        m_isValueLinked = true;
     }
 
     /*-----------------------------------------------------------------------------
@@ -136,19 +133,7 @@ namespace gl
     *-----------------------------------------------------------------------------*/
     void UniformBool::update() const
     {
-        if (m_isValueLinked)
-            gl::glUniform1i(m_location, *mp_valueLink);
-        else
-            gl::glUniform1i(m_location, m_value);
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   REMOVE VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformBool::removeValueLink()
-    {
-        mp_valueLink = nullptr;
-        m_isValueLinked = false;
+        gl::glUniform1i(m_location, m_value);
     }
 
     /*-----------------------------------------------------------------------------
@@ -162,7 +147,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_INT;
+        m_type = UniformUnit::Type::INT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -176,7 +161,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_INT;
+        m_type = UniformUnit::Type::INT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -190,7 +175,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_INT;
+        m_type = UniformUnit::Type::INT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -199,15 +184,6 @@ namespace gl
     void UniformInt::setValue(const int& value)
     {
         m_value = value;
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   SET VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformInt::setValueLink(const int* p_valueLink)
-    {
-        mp_valueLink = p_valueLink;
-        m_isValueLinked = true;
     }
 
     /*-----------------------------------------------------------------------------
@@ -226,19 +202,7 @@ namespace gl
     *-----------------------------------------------------------------------------*/
     void UniformInt::update() const
     {
-        if (m_isValueLinked)
-            gl::glUniform1i(m_location, *mp_valueLink);
-        else
-            gl::glUniform1i(m_location, m_value);
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   REMOVE VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformInt::removeValueLink()
-    {
-        mp_valueLink = nullptr;
-        m_isValueLinked = false;
+        gl::glUniform1i(m_location, m_value);
     }
 
     /*-----------------------------------------------------------------------------
@@ -252,7 +216,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_FLOAT;
+        m_type = UniformUnit::Type::FLOAT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -266,7 +230,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_FLOAT;
+        m_type = UniformUnit::Type::FLOAT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -280,7 +244,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_FLOAT;
+        m_type = UniformUnit::Type::FLOAT;
     }
 
     /*-----------------------------------------------------------------------------
@@ -289,15 +253,6 @@ namespace gl
     void UniformFloat::setValue(const float& value)
     {
         m_value = value;
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   SET VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformFloat::setValueLink(const float* p_valueLink)
-    {
-        mp_valueLink = p_valueLink;
-        m_isValueLinked = true;
     }
 
     /*-----------------------------------------------------------------------------
@@ -316,19 +271,7 @@ namespace gl
     *-----------------------------------------------------------------------------*/
     void UniformFloat::update() const
     {
-        if (m_isValueLinked)
-            gl::glUniform1f(m_location, *mp_valueLink);
-        else
-            gl::glUniform1f(m_location, m_value);
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   REMOVE VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformFloat::removeValueLink()
-    {
-        mp_valueLink = nullptr;
-        m_isValueLinked = false;
+        gl::glUniform1f(m_location, m_value);
     }
 
     /*-----------------------------------------------------------------------------
@@ -342,7 +285,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_2;
+        m_type = UniformUnit::Type::VEC_2;
     }
 
     /*-----------------------------------------------------------------------------
@@ -356,7 +299,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_2;
+        m_type = UniformUnit::Type::VEC_2;
     }
 
     /*-----------------------------------------------------------------------------
@@ -370,7 +313,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_2;
+        m_type = UniformUnit::Type::VEC_2;
     }
 
     /*-----------------------------------------------------------------------------
@@ -385,7 +328,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_2;
+        m_type = UniformUnit::Type::VEC_2;
     }
 
     /*-----------------------------------------------------------------------------
@@ -407,15 +350,6 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *   SET VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformVec2::setValueLink(const glm::vec2* p_valueLink)
-    {
-        mp_valueLink = p_valueLink;
-        m_isValueLinked = true;
-    }
-
-    /*-----------------------------------------------------------------------------
     *   GET VALUE
     *-----------------------------------------------------------------------------*/
     const glm::vec2& UniformVec2::getValue() const
@@ -431,19 +365,7 @@ namespace gl
     *-----------------------------------------------------------------------------*/
     void UniformVec2::update() const
     {
-        if (m_isValueLinked)
-            gl::glUniform2fv(m_location, 1, &(*mp_valueLink)[0]);
-        else
-            gl::glUniform2fv(m_location, 1, &m_value[0]);
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   REMOVE VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformVec2::removeValueLink()
-    {
-        mp_valueLink = nullptr;
-        m_isValueLinked = false;
+        gl::glUniform2fv(m_location, 1, &m_value[0]);
     }
 
     /*-----------------------------------------------------------------------------
@@ -457,7 +379,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_3;
+        m_type = UniformUnit::Type::VEC_3;
     }
 
     /*-----------------------------------------------------------------------------
@@ -471,7 +393,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_3;
+        m_type = UniformUnit::Type::VEC_3;
     }
 
     /*-----------------------------------------------------------------------------
@@ -485,7 +407,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_3;
+        m_type = UniformUnit::Type::VEC_3;
     }
 
     /*-----------------------------------------------------------------------------
@@ -500,7 +422,7 @@ namespace gl
         mp_valueLink(nullptr)
     {
         //INITIALIZE
-        m_type = UniformUnit::TYPE_VEC_3;
+        m_type = UniformUnit::Type::VEC_3;
     }
 
     /*-----------------------------------------------------------------------------
@@ -522,15 +444,6 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *   SET VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformVec3::setValueLink(const glm::vec3* p_valueLink)
-    {
-        mp_valueLink = p_valueLink;
-        m_isValueLinked = true;
-    }
-
-    /*-----------------------------------------------------------------------------
     *   GET VALUE
     *-----------------------------------------------------------------------------*/
     const glm::vec3& UniformVec3::getValue() const
@@ -546,18 +459,6 @@ namespace gl
     *-----------------------------------------------------------------------------*/
     void UniformVec3::update() const
     {
-        if (m_isValueLinked)
-            gl::glUniform3fv(m_location, 1, &(*mp_valueLink)[0]);
-        else
-            gl::glUniform3fv(m_location, 1, &m_value[0]);
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   REMOVE VALUE LINK
-    *-----------------------------------------------------------------------------*/
-    void UniformVec3::removeValueLink()
-    {
-        mp_valueLink = nullptr;
-        m_isValueLinked = false;
+        gl::glUniform3fv(m_location, 1, &m_value[0]);
     }
 } //NAMESPACE: GL

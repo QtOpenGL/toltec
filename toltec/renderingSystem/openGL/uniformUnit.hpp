@@ -33,21 +33,21 @@ namespace gl
     public:
         //TYPES
         enum Type {
-            TYPE_NONE,
-            TYPE_BOOL,
-            TYPE_INT,
-            TYPE_FLOAT,
-            TYPE_VEC_2,
-            TYPE_VEC_3
+            NONE,
+            BOOL,
+            INT,
+            FLOAT,
+            VEC_2,
+            VEC_3
         };
 
         //CONSTRUCTORS
         explicit        UniformUnit(const std::string& name);
                         UniformUnit(const std::string& name, gl::GLuint shaderProgramID);
         virtual         ~UniformUnit() {}
- 
-        //?
-        bool            isValueLinked() const;
+
+        //SET
+        void                    setLocation(gl::GLint location);
 
         //GET
         UniformUnit::Type       getType() const;
@@ -56,21 +56,13 @@ namespace gl
         //OTHER
         bool            findLocation(gl::GLuint shaderProgramID);
         virtual void    update() const {}
-        virtual void    removeValueLink() {}
 
     protected:
         UniformUnit::Type   m_type;
         gl::GLint           m_location;
-
-        bool                m_isValueLinked;
     };
 
     /*----------------------------------------------------------------------------*/
-
-    inline bool UniformUnit::isValueLinked() const
-    {
-        return m_isValueLinked;
-    }
 
     inline UniformUnit::Type UniformUnit::getType() const
     {
@@ -102,15 +94,12 @@ namespace gl
 
         //SET
         void            setValue(const bool& value);
-        void            setValueLink(const bool* p_valueLink);
 
         //GET
         const bool&     getValue() const;
 
         //OTHER 
-
         virtual void    update() const;
-        virtual void    removeValueLink();
 
     private:
         bool            m_value;
@@ -137,15 +126,12 @@ namespace gl
 
         //SET
         void            setValue(const int& value);
-        void            setValueLink(const int* p_valueLink);
 
         //GET
         const int&      getValue() const;
 
-        //OTHER 
-
+        //OTHER
         virtual void    update() const;
-        virtual void    removeValueLink();
 
     private:
         int             m_value;
@@ -172,15 +158,12 @@ namespace gl
 
         //SET
         void            setValue(const float& value);
-        void            setValueLink(const float* p_valueLink);
 
         //GET
         const float&    getValue() const;
 
-        //OTHER 
-
+        //OTHER
         virtual void    update() const;
-        virtual void    removeValueLink();
 
     private:
         float           m_value;
@@ -213,15 +196,12 @@ namespace gl
         //SET
         void            setValue(const glm::vec2& value);
         void            setValue(const float& value1, const float& value2);
-        void            setValueLink(const glm::vec2* p_valueLink);
 
         //GET
         const glm::vec2&    getValue() const;
 
         //OTHER 
-
         virtual void    update() const;
-        virtual void    removeValueLink();
 
     private:
         glm::vec2           m_value;
@@ -255,15 +235,12 @@ namespace gl
         //SET
         void            setValue(const glm::vec3& value);
         void            setValue(const float& value1, const float& value2, const float& value3);
-        void            setValueLink(const glm::vec3* p_valueLink);
 
         //GET
         const glm::vec3&    getValue() const;
 
         //OTHER 
-
         virtual void    update() const;
-        virtual void    removeValueLink();
 
     private:
         glm::vec3           m_value;

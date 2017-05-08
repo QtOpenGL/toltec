@@ -1,16 +1,16 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		28 VII 2016
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		General utilities used across the program.
+*   CREATED:
+*       28 VII 2016
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       General utilities used across the program.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <iostream>
 #include <string>
@@ -18,18 +18,18 @@
 #include <glm/fwd.hpp>
 
 /*-----------------------------------------------------------------------------
-*	MACROS
+*   MACROS
 *-----------------------------------------------------------------------------*/
 #ifdef DEBUG_BUILD
 
-#define DEBUG_MSG(x) do					\
-{										\
-    std::cout << x << std::endl;		\
-} while (false)							
+#define DEBUG_MSG(x) do                 \
+{                                       \
+    std::cout << "<DEBUG> " << x << std::endl;      \
+} while (false)                         
 
-#define DEBUG_ERR(x) do																\
-{																					\
-    std::cerr << __FILE__ << "(" << __LINE__ << ")\nERROR : " << x << std::endl;	\
+#define DEBUG_ERR(x) do                                                             \
+{                                                                                   \
+    std::cerr << __FILE__ << "(" << __LINE__ << ")<ERROR> " << x << std::endl;      \
 } while (false)
 
 #else
@@ -38,12 +38,12 @@
 #endif
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: UTILS
+*   NAMESPACE: UTILS
 *-----------------------------------------------------------------------------*/
 namespace utils
 {
     /*-----------------------------------------------------------------------------
-    *	FUNCTION DECLARATIONS
+    *   FUNCTION DECLARATIONS
     *-----------------------------------------------------------------------------*/
     const std::string& loadTextFile(const std::string& filePath);
 

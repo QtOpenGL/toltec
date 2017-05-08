@@ -28,14 +28,17 @@ namespace gl
     public:
         //TYPES
         enum Classification {
-            CLASSIFICATION_NONE,
-            CLASSIFICATION_UNIT,
-            CLASSIFICATION_CONTAINER
+            NONE,
+            UNIT,
+            CONTAINER
         };
 
         //CONSTRUCTORS
         explicit        Uniform(const std::string& name);
         virtual         ~Uniform() {}
+
+        //SET
+        void            setName(const std::string& name);
 
         //GET
         Uniform::Classification     getClassification() const;

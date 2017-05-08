@@ -210,9 +210,6 @@
     <ClCompile Include="nodes\shaders\planeCSPNode.cpp">
       <Filter>Main Files\nodes\shaders</Filter>
     </ClCompile>
-    <ClCompile Include="renderingSystem\openGL\uniform.cpp">
-      <Filter>Main Files\renderingSystem\openGL</Filter>
-    </ClCompile>
     <ClCompile Include="renderingSystem\toltec\openGL\shaders\shaderProgram.cpp">
       <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
     </ClCompile>
@@ -221,6 +218,12 @@
     </ClCompile>
     <ClCompile Include="renderingSystem\toltec\openGL\shaders\lambertShaderProgram.cpp">
       <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\uniformUnit.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="renderingSystem\openGL\uniform.cpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
     </ClCompile>
     <ClCompile Include="renderingSystem\openGL\uniformContainer.cpp">
       <Filter>Main Files\renderingSystem\openGL</Filter>
@@ -347,9 +350,6 @@
     <ClInclude Include="nodes\shaders\planeCSPNode.hpp">
       <Filter>Main Files\nodes\shaders</Filter>
     </ClInclude>
-    <ClInclude Include="renderingSystem\openGL\uniform.hpp">
-      <Filter>Main Files\renderingSystem\openGL</Filter>
-    </ClInclude>
     <ClInclude Include="renderingSystem\toltec\openGL\shaders\shaderInstance.hpp">
       <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
     </ClInclude>
@@ -359,10 +359,13 @@
     <ClInclude Include="renderingSystem\toltec\openGL\shaders\lambertShaderProgram.hpp">
       <Filter>Main Files\renderingSystem\toltec\openGL\shaders</Filter>
     </ClInclude>
-    <ClInclude Include="renderingSystem\openGL\uniformContainer.hpp">
+    <ClInclude Include="renderingSystem\openGL\uniformUnit.hpp">
       <Filter>Main Files\renderingSystem\openGL</Filter>
     </ClInclude>
-    <ClInclude Include="renderingSystem\openGL\uniformArray.hpp">
+    <ClInclude Include="renderingSystem\openGL\uniform.hpp">
+      <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\openGL\uniformContainer.hpp">
       <Filter>Main Files\renderingSystem\openGL</Filter>
     </ClInclude>
   </ItemGroup>

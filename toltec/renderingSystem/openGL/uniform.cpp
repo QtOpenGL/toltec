@@ -21,8 +21,16 @@ namespace gl
     *-----------------------------------------------------------------------------*/
     Uniform::Uniform(const std::string& name)
         :
-        m_classification(Uniform::CLASSIFICATION_NONE),
+        m_classification(Uniform::Classification::NONE),
         m_name(name)
     {
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   SET NAME
+    *-----------------------------------------------------------------------------*/
+    void Uniform::setName(const std::string& name)
+    {
+        m_name = name;
     }
 } //NAMESPACE: GL

@@ -44,15 +44,19 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="qt.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="qt.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="qt.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="qt.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -139,8 +143,14 @@
   <ItemGroup>
     <ClCompile Include="events\globalEventFilter.cpp" />
     <ClCompile Include="events\renderEvent.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_abstractViewport.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_abstractRenderer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_abstractViewport.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_globalEventFilter.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_mainWindow.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_openGLViewport.cpp">
@@ -185,8 +195,9 @@
     <ClCompile Include="renderingSystem\abstractViewport.cpp" />
     <ClCompile Include="renderingSystem\openGL\indexBuffer.cpp" />
     <ClCompile Include="renderingSystem\openGL\openGLViewport.cpp" />
-    <ClCompile Include="renderingSystem\openGL\uniform.cpp" />
     <ClCompile Include="renderingSystem\openGL\uniformContainer.cpp" />
+    <ClCompile Include="renderingSystem\openGL\uniformUnit.cpp" />
+    <ClCompile Include="renderingSystem\openGL\uniform.cpp" />
     <ClCompile Include="renderingSystem\openGL\vertexBuffer.cpp" />
     <ClCompile Include="renderingSystem\renderingSystem.cpp" />
     <ClCompile Include="renderingSystem\renderingAPI.cpp" />
@@ -869,10 +880,10 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\gui" "-I.\renderingSystem"</Command>
     </CustomBuild>
-    <ClInclude Include="renderingSystem\openGL\uniformArray.hpp" />
     <ClInclude Include="renderingSystem\openGL\uniformContainer.hpp" />
-    <ClInclude Include="renderingSystem\openGL\indexBuffer.hpp" />
     <ClInclude Include="renderingSystem\openGL\uniform.hpp" />
+    <ClInclude Include="renderingSystem\openGL\indexBuffer.hpp" />
+    <ClInclude Include="renderingSystem\openGL\uniformUnit.hpp" />
     <ClInclude Include="renderingSystem\openGL\vertexBuffer.hpp" />
     <ClInclude Include="renderingSystem\toltec\openGL\geometry.hpp" />
     <ClInclude Include="renderingSystem\toltec\openGL\renderableObject.hpp" />
