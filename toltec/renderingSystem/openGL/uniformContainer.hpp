@@ -97,5 +97,11 @@ namespace gl
         //CONSTRUCTORS
         explicit        UniformStruct(const std::string& name);
         virtual         ~UniformStruct() {}
+
+        //ADD
+        virtual void    addUniform(std::unique_ptr<Uniform> p_uniform, gl::GLuint shaderProgramID);
+
+        //OTHER
+        virtual void    findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID);
     };
 } //NAMESPACE: GL
