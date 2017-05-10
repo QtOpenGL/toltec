@@ -1,39 +1,39 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		22 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       22 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderingSystem/toltec/openGL/shaders/shaderProgram.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	LAMBERT SHADER PROGRAM
+    *   CLASS DECLARATIONS
+    *   LAMBERT SHADER PROGRAM
     *-----------------------------------------------------------------------------*/
     class LambertShaderProgram : public ShaderProgram
     {
     public:
         //CONSTRUCTORS
                         LambertShaderProgram();
-        virtual			~LambertShaderProgram() {}
+        virtual         ~LambertShaderProgram() {}
 
         //OTHER
-        virtual ShaderInstance*		createShaderInstance();
+        virtual ShaderInstance*     createShaderInstance();
 
     private:
-        virtual void	setUpUniforms();
+        virtual std::vector<std::unique_ptr<gl::Uniform>> setUpUniforms();
     };
 } //NAMESPACE: TGL

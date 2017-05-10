@@ -44,6 +44,9 @@ namespace gl
         Uniform::Classification     getClassification() const;
         const std::string&          getName() const;
 
+        //OTHER
+        virtual void    update() const {}
+
     protected:
         Uniform::Classification     m_classification;
         std::string                 m_name;

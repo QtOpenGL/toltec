@@ -22,9 +22,9 @@
 *-----------------------------------------------------------------------------*/
 #ifdef DEBUG_BUILD
 
-#define DEBUG_MSG(x) do                 \
-{                                       \
-    std::cout << "<DEBUG> " << x << std::endl;      \
+#define DEBUG_MSG(x) do                                                             \
+{                                                                                   \
+    std::cout << __FILE__ << "(" << __LINE__ << ")<DEBUG> " << x << std::endl;      \
 } while (false)                         
 
 #define DEBUG_ERR(x) do                                                             \

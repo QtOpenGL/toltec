@@ -1,56 +1,55 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		14 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       14 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <memory>
 #include <string>
+#include <vector>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace gl 
 {
     class Uniform;
-    class UniformArray;
-    class UniformStruct;
 }
 
 class ShaderProgram;
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	SHADER INSTANCE
+    *   CLASS DECLARATIONS
+    *   SHADER INSTANCE
     *-----------------------------------------------------------------------------*/
     class ShaderInstance
     {
     public:
         //CONSTRUCTORS
-        explicit		ShaderInstance(ShaderProgram* p_shaderProgram);
-        virtual			~ShaderInstance() {}
+        explicit        ShaderInstance(ShaderProgram* p_shaderProgram);
+        virtual         ~ShaderInstance() {}
 
-        //GET
-        Uniform*		getUniform(const std::string& name);
-        UniformArray*	getUniformArray(const std::string& name);
-        UniformStruct*	getUniformStruct(const std::string& name);
+        //SET
+        void            setUniformList(std::vector<std::unique_ptr<gl::Uniform>>& uniformList);
 
         //OTHER
-        void			updateUniforms();
+        void            updateUniforms();
 
     private:
-        ShaderProgram*	mp_shaderProgram;
+        ShaderProgram*                              mp_shaderProgram;
+        std::vector<std::unique_ptr<gl::Uniform>>   m_uniformList;
     };
 } //NAMESPACE: TGL

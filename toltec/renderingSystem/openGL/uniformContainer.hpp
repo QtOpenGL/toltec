@@ -37,9 +37,9 @@ namespace gl
     public:
         //TYPES
         enum Type {
-          NONE,
-          ARRAY,
-          STRUCT
+            NONE,
+            ARRAY,
+            STRUCT
         };
 
         //CONSTRUCTORS
@@ -54,6 +54,7 @@ namespace gl
 
         //OTHER
         virtual void    findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID) {}
+        virtual void    update() const {}
 
     protected:
         UniformContainer::Type                  m_type;
@@ -82,6 +83,7 @@ namespace gl
 
         //OTHER
         virtual void    findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID);
+        virtual void    update() const;
 
     private:
         UniformContainer::Type      m_arrayTypeContainer;
@@ -97,5 +99,8 @@ namespace gl
         //CONSTRUCTORS
         explicit        UniformStruct(const std::string& name);
         virtual         ~UniformStruct() {}
+
+        //OTHER
+        virtual void    update() const;
     };
 } //NAMESPACE: GL

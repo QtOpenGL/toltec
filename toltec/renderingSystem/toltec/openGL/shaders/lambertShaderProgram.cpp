@@ -10,6 +10,7 @@
 *-----------------------------------------------------------------------------*/
 #include "lambertShaderProgram.hpp"
 
+#include "renderingSystem/openGL/uniformUnit.hpp"
 #include "renderingSystem/toltec/openGL/shaders/shaderInstance.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -23,8 +24,8 @@ namespace tgl
     LambertShaderProgram::LambertShaderProgram()
     {
         //SETUP
-        this->createShader("../data/shaders/lambert.vert", ShaderProgram::VERTEX_SHADER);
-        this->createShader("../data/shaders/lambert.frag", ShaderProgram::VERTEX_SHADER);
+        this->createShader("../data/shaders/lambert.vert", ShaderProgram::ShaderType::VERTEX);
+        this->createShader("../data/shaders/lambert.frag", ShaderProgram::ShaderType::FRAGMENT);
         this->linkAndValidate();
 
         this->setUpUniforms();
@@ -35,18 +36,8 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     ShaderInstance* LambertShaderProgram::createShaderInstance()
     {
-        ShaderInstance* p_shaderInstance =              new ShaderInstance(this);
-
-        gl::UniformVec3* p_diffuseColorUniform =        new gl::UniformVec3("g_diffuseColor", m_id);
-        gl::UniformBool* p_isDiffuseMapConnected =      new gl::UniformBool("g_isDiffuseMapConnected", m_id);
-
-        gl::UniformVec3* p_transparencyColorUniform =   new gl::UniformVec3("g_transparencyColor", m_id);
-        gl::UniformBool* p_isDiffuseMapConnected =      new gl::UniformBool("g_isTransparencyMapConnected", m_id);
-
-        gl::UniformVec3* p_ambientColorUniform =        new gl::UniformVec3("g_ambientColor", m_id);
-        gl::UniformBool* p_isDiffuseMapConnected =      new gl::UniformBool("g_isAmbientMapConnected", m_id);
-
-
+        ShaderInstance* p_shaderInstance = new ShaderInstance(this);
+        p_shaderInstance->setUniformList(this->setUpUniforms());
 
         return p_shaderInstance;
     }
@@ -54,8 +45,46 @@ namespace tgl
     /*-----------------------------------------------------------------------------
     *   SET UP UNIFORMS
     *-----------------------------------------------------------------------------*/
-    void LambertShaderProgram::setUpUniforms()
+    std::vector<std::unique_ptr<gl::Uniform>> LambertShaderProgram::setUpUniforms()
     {
-        //...
+        std::vector<std::unique_ptr<gl::Uniform>> uniformList;
+
+        //CREATE
+        std::unique_ptr<gl::UniformVec3> p_diffuseColor(new gl::UniformVec3(
+            "g_diffuseColor", 
+            0.5f, 0.5f, 0.5f, 
+            m_id));
+        std::unique_ptr<gl::UniformBool> p_isDiffuseMapConnected(new gl::UniformBool(
+            "g_isDiffuseMapConnected", 
+            false, 
+            m_id));
+
+        std::unique_ptr<gl::UniformVec3> p_transparencyColor(new gl::UniformVec3(
+            "g_transparencyColor", 
+            0.0f, 0.0f, 0.0f, 
+            m_id));
+        std::unique_ptr<gl::UniformBool> p_isTransparencyMapConnected(new gl::UniformBool(
+            "g_isTransparencyMapConnected", 
+            false, 
+            m_id));
+
+        std::unique_ptr<gl::UniformVec3> p_ambientColor(new gl::UniformVec3(
+            "g_ambientColor", 
+            0.0f, 0.0f, 0.0f,
+            m_id));
+        std::unique_ptr<gl::UniformBool> p_isAmbientMapConnected(new gl::UniformBool(
+            "g_isAmbientMapConnected", 
+            false,
+            m_id));
+
+        //ADD
+        uniformList.push_back(std::move(p_diffuseColor));
+        uniformList.push_back(std::move(p_isDiffuseMapConnected));
+        uniformList.push_back(std::move(p_transparencyColor));
+        uniformList.push_back(std::move(p_isTransparencyMapConnected));
+        uniformList.push_back(std::move(p_ambientColor));
+        uniformList.push_back(std::move(p_isAmbientMapConnected));
+
+        return uniformList;
     }
 } //NAMESPACE: TGL

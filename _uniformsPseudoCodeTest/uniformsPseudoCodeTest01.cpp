@@ -18,13 +18,13 @@ uniform float g_color[3];
 
 /*----------------------------------------------------------------------------*/
 
-UniformVec3 colorRed("", floatValue, spID)
+UniformFloat colorRed("", floatValue, spID)
 {
     m_name =        "";
     m_location =    gl::glGetUniformLocation(spID, m_name);
 }
 
-UniformVec3 colorGreen("", floatValue, spID)
+UniformFloat colorGreen("", floatValue, spID)
 {
     m_name =        "";
     m_location =    gl::glGetUniformLocation(spID, m_name);

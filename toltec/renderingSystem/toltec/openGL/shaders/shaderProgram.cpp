@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		15 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
+*   CREATED:
+*       15 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "shaderProgram.hpp"
 
@@ -17,12 +17,12 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CONSTRUCTOR
+    *   CONSTRUCTOR
     *-----------------------------------------------------------------------------*/
     ShaderProgram::ShaderProgram()
         :
@@ -31,34 +31,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	UPDATE UNIFORM
-    *-----------------------------------------------------------------------------*/
-    void ShaderProgram::updateUniform(gl::Uniform* p_uniform)
-    {
-        if (p_uniform->findLocation(m_id))
-            p_uniform->update();
-    }
-
-    /*-----------------------------------------------------------------------------
-    *	UPDATE UNIFORMS
-    *-----------------------------------------------------------------------------*/
-    void ShaderProgram::updateUniforms(ShaderInstance* p_shaderInstance)
-    {
-        auto iter = m_shaderInstanceUniformMap.find(p_shaderInstance);
-        if (iter == m_shaderInstanceUniformMap.end())
-            return;
-
-        //UPDATE SHADER INSTANCE UNIFORMS
-        for (const gl::Uniform* p_uniform : iter->second)
-            p_uniform->update();
-
-        //UPDATE SHADER PROGRAM UNIFORMS
-        for (const gl::Uniform& uniform : m_shaderProgramUniformList)
-            uniform.update();
-    }
-
-    /*-----------------------------------------------------------------------------
-    *	CREATE SHADER
+    *   CREATE SHADER
     *-----------------------------------------------------------------------------*/
     void ShaderProgram::createShader(const std::string& path, ShaderProgram::ShaderType shaderType)
     {
@@ -66,17 +39,19 @@ namespace tgl
         gl::GLuint shaderID = 0;
         switch (shaderType)
         {
-            case ShaderProgram::VERTEX_SHADER:
+            case ShaderProgram::ShaderType::VERTEX:
             {
                 shaderID = gl::glCreateShader(gl::GLenum::GL_VERTEX_SHADER);
                 break;
             }
-            case ShaderProgram::GEOMETRY_SHADER:
+
+            case ShaderProgram::ShaderType::GEOMETRY:
             {
                 shaderID = gl::glCreateShader(gl::GLenum::GL_GEOMETRY_SHADER);
                 break;
             }
-            case ShaderProgram::FRAGMENT_SHADER:
+
+            case ShaderProgram::ShaderType::FRAGMENT:
             {
                 shaderID = gl::glCreateShader(gl::GLenum::GL_FRAGMENT_SHADER);
                 break;
@@ -90,9 +65,9 @@ namespace tgl
         }
         else
         {
-            const std::string& shaderCode =			utils::loadTextFile(path);
-            const gl::GLchar* shaderSourceCode =	shaderCode.c_str();
-            gl::GLint shaderSourceCodeLength =		shaderCode.length();
+            const std::string& shaderCode =         utils::loadTextFile(path);
+            const gl::GLchar* shaderSourceCode =    shaderCode.c_str();
+            gl::GLint shaderSourceCodeLength =      shaderCode.length();
 
             gl::glShaderSource(shaderID, 1, &shaderSourceCode, &shaderSourceCodeLength);
             gl::glCompileShader(shaderID);
@@ -105,7 +80,7 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	LINK AND VALIDATE
+    *   LINK AND VALIDATE
     *-----------------------------------------------------------------------------*/
     void ShaderProgram::linkAndValidate()
     {
@@ -138,13 +113,13 @@ namespace tgl
     }
 
     /*-----------------------------------------------------------------------------
-    *	CHECK FOR ERRORS
+    *   CHECK FOR ERRORS
     *-----------------------------------------------------------------------------*/
     bool ShaderProgram::checkForErrors(bool isShaderProgram, gl::GLuint id, gl::GLenum flag, 
         const std::string& errorMessage)
     {
-        gl::GLint success =			0;
-        gl::GLchar error[2048] =	{ 0 };
+        gl::GLint success =         0;
+        gl::GLchar error[2048] =    { 0 };
 
         if (isShaderProgram)
             gl::glGetProgramiv(id, flag, &success);

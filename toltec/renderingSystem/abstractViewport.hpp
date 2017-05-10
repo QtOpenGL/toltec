@@ -26,7 +26,7 @@ class TransformNode;
 *   CLASS DECLARATIONS
 *   ABSTRACT VIEWPORT
 *-----------------------------------------------------------------------------*/
-class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGE IN THE FUTURE!
+class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGED IN THE FUTURE!
 {
     Q_OBJECT
 
@@ -60,18 +60,16 @@ private:
     void                dolly(int x, int y);
 
 private:
-    bool                
-        m_isLeftMouseButtonPressed,
-        m_isMiddleMouseButtonPressed,
-        m_isRightMouseButtonPressed;
+    bool    m_isLeftMouseButtonPressed,
+            m_isMiddleMouseButtonPressed,
+            m_isRightMouseButtonPressed;
 
-    int
-        m_mouseLocalXPosition,
-        m_mouseLocalYPosition,
-        m_mouseRelativeXPosition,
-        m_mouseRelativeYPosition;
+    int     m_mouseLocalXPosition,
+            m_mouseLocalYPosition,
+            m_mouseRelativeXPosition,
+            m_mouseRelativeYPosition;
 
-    float m_mouseSensitivity;
+    float   m_mouseSensitivity;
 };
 
 /*----------------------------------------------------------------------------*/
