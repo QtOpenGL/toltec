@@ -1,5 +1,0 @@
-﻿1>------ Build started: Project: toltec, Configuration: Debug x64 ------
-1>  toltecOpenGLRenderer.cpp
-1>  toltec.vcxproj -> C:\Users\makal\works\programming\2016\20160727001_toltec\_w\toltec_devProject\x64\Debug\toltec.exe
-1>  toltec.vcxproj -> C:\Users\makal\works\programming\2016\20160727001_toltec\_w\toltec_devProject\x64\Debug\toltec.pdb (Full PDB)
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

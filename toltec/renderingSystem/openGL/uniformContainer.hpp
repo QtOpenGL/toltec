@@ -22,6 +22,7 @@
 #include <glbinding/gl/types.h>
 
 #include "renderingSystem/openGL/uniform.hpp"
+#include "renderingSystem/openGL/uniformUnit.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: GL (OPENGL)
@@ -54,7 +55,7 @@ namespace gl
 
         //OTHER
         virtual void    findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID) {}
-        virtual void    update() const {}
+        virtual void    update() const;
 
     protected:
         UniformContainer::Type                  m_type;
@@ -83,7 +84,6 @@ namespace gl
 
         //OTHER
         virtual void    findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID);
-        virtual void    update() const;
 
     private:
         UniformContainer::Type      m_arrayTypeContainer;
@@ -100,7 +100,10 @@ namespace gl
         explicit        UniformStruct(const std::string& name);
         virtual         ~UniformStruct() {}
 
+        //ADD
+        virtual void    addUniform(std::unique_ptr<Uniform> p_uniform, gl::GLuint shaderProgramID);
+
         //OTHER
-        virtual void    update() const;
+        virtual void    findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID);
     };
 } //NAMESPACE: GL

@@ -22,7 +22,7 @@
 *-----------------------------------------------------------------------------*/
 namespace utils
 {
-    const std::string& loadTextFile(const std::string& filePath)
+    const std::string loadTextFile(const std::string& filePath)
     {
         std::ifstream file(filePath);
 

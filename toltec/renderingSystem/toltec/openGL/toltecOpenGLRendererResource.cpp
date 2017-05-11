@@ -20,6 +20,7 @@
 #include "renderingSystem/openGL/vertexBuffer.hpp"
 #include "renderingSystem/toltec/openGL/renderableObject.hpp"
 #include "renderingSystem/toltec/openGL/renderItem.hpp"
+#include "renderingSystem/toltec/openGL/shaders/lambertShaderProgram.hpp"
 #include "renderingSystem/toltec/openGL/shaders/shaderInstance.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -90,14 +91,8 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     {
-        //LAMBERT SHADER PROGRAM
-        ShaderProgram lambertShader;
-        lambertShader.createShader("../data/shaders/lambert.vert", ShaderProgram::VERTEX_SHADER);
-        lambertShader.createShader("../data/shaders/lambert.frag", ShaderProgram::FRAGMENT_SHADER);
-        lambertShader.linkProgram();
-
-        lambertShader.addUniform();
-        lambertShader.addUniformContainer();
+        //CREATE
+        LambertShaderProgram lambertShaderProgram;      
     }
 
     /*-----------------------------------------------------------------------------
@@ -186,14 +181,14 @@ namespace tgl
         if (initializeRendererResourceFlag == true || p_polygonMeshNode->getInitializeFlag() == true)
         {
             //ADD TO THE RENDERABLE OBJECT MAP          
-            auto iter = m_renderableObjectMap.find(p_polygonMeshNode->getNodeID);
-            if (iter != m_renderableObjectMap.end())
+            auto renderableObjectMapIter = m_renderableObjectMap.find(p_polygonMeshNode->getNodeID());
+            if (renderableObjectMapIter != m_renderableObjectMap.end())
                 return;
 
             p_renderableObject = new RenderableObject();
             m_renderableObjectMap.insert(
                 std::pair<std::uint32_t, RenderableObject*>(
-                    p_polygonMeshNode->getNodeID, p_renderableObject));
+                    p_polygonMeshNode->getNodeID(), p_renderableObject));
 
             //CREATE VERTEX AND INDEX BUFFERS
             tpm::Mesh* p_mesh = p_polygonMeshNode->getMesh();
@@ -300,35 +295,35 @@ namespace tgl
             //CREATE RENDER ITEMS
             //find shader instance
             ShaderInstance* p_shaderInstance = nullptr;
-            auto iter = m_shaderInstanceMap.find(
+            auto shaderInstanceMapIter = m_shaderInstanceMap.find(
                 p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
             
-            if (iter != m_shaderInstanceMap.end())
-                p_shaderInstance = iter->second;
+            if (shaderInstanceMapIter != m_shaderInstanceMap.end())
+                p_shaderInstance = shaderInstanceMapIter->second;
             else
                 p_shaderInstance = m_shaderInstanceMap.begin()->second;
 
-            //triangle
-            RenderItem* p_pointRenderItem = new RenderItem(
-                p_geometry->getVAOID(),
-                faceIndexBuffer.getID(),
-                p_shaderInstance,
-                RenderItem::TRIANGLES_DRAW_MODE
-            );
-            //line
-            RenderItem* p_pointRenderItem = new RenderItem(
-                p_geometry->getVAOID(),
-                edgeIndexBuffer.getID(),
-                p_shaderInstace,
-                RenderItem::LINES_DRAW_MODE
-            );
-            //point
-            RenderItem* p_pointRenderItem = new RenderItem(
-                p_geometry->getVAOID(),
-                vertexIndexBuffer.getID(),
-                p_shaderInstace, 
-                RenderItem::POINTS_DRAW_MODE
-            );
+            ////triangle
+            //RenderItem* p_pointRenderItem = new RenderItem(
+            //  p_geometry->getVAOID(),
+            //  faceIndexBuffer.getID(),
+            //  p_shaderInstance,
+            //  RenderItem::TRIANGLES_DRAW_MODE
+            //);
+            ////line
+            //RenderItem* p_pointRenderItem = new RenderItem(
+            //  p_geometry->getVAOID(),
+            //  edgeIndexBuffer.getID(),
+            //  p_shaderInstace,
+            //  RenderItem::LINES_DRAW_MODE
+            //);
+            ////point
+            //RenderItem* p_pointRenderItem = new RenderItem(
+            //  p_geometry->getVAOID(),
+            //  vertexIndexBuffer.getID(),
+            //  p_shaderInstace, 
+            //  RenderItem::POINTS_DRAW_MODE
+            //);
         }
 
         /*-----------------------------------------------------------------------------

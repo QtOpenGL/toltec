@@ -52,12 +52,13 @@ namespace tgl
         virtual         ~ShaderProgram() {}
 
         //OTHER
-        virtual ShaderInstance*     createShaderInstance() {}
+        virtual ShaderInstance*     createShaderInstance() { return nullptr; }
+        virtual void                updateUniforms() {}
 
     protected:
         void            createShader(const std::string& path, ShaderProgram::ShaderType shaderType);
         void            linkAndValidate();
-        virtual std::vector<std::unique_ptr<gl::Uniform>> setUpUniforms() {}
+        virtual std::vector<std::unique_ptr<gl::Uniform>> setupUniforms() { return {}; }
 
     protected:
         gl::GLuint                  m_id;

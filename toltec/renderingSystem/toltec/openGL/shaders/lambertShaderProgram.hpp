@@ -32,8 +32,9 @@ namespace tgl
 
         //OTHER
         virtual ShaderInstance*     createShaderInstance();
+        virtual void                updateUniforms();
 
     private:
-        virtual std::vector<std::unique_ptr<gl::Uniform>> setUpUniforms();
+        virtual std::vector<std::unique_ptr<gl::Uniform>> setupUniforms();
     };
 } //NAMESPACE: TGL

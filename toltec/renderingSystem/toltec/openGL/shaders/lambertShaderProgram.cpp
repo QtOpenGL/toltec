@@ -28,7 +28,7 @@ namespace tgl
         this->createShader("../data/shaders/lambert.frag", ShaderProgram::ShaderType::FRAGMENT);
         this->linkAndValidate();
 
-        this->setUpUniforms();
+        this->setupUniforms();
     }
 
     /*-----------------------------------------------------------------------------
@@ -37,15 +37,23 @@ namespace tgl
     ShaderInstance* LambertShaderProgram::createShaderInstance()
     {
         ShaderInstance* p_shaderInstance = new ShaderInstance(this);
-        p_shaderInstance->setUniformList(this->setUpUniforms());
+        p_shaderInstance->setUniformList(this->setupUniforms());
 
         return p_shaderInstance;
     }
 
     /*-----------------------------------------------------------------------------
-    *   SET UP UNIFORMS
+    *   UPDATE UNIFORMS
     *-----------------------------------------------------------------------------*/
-    std::vector<std::unique_ptr<gl::Uniform>> LambertShaderProgram::setUpUniforms()
+    void LambertShaderProgram::updateUniforms()
+    {
+        //...
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   SETUP UNIFORMS
+    *-----------------------------------------------------------------------------*/
+    std::vector<std::unique_ptr<gl::Uniform>> LambertShaderProgram::setupUniforms()
     {
         std::vector<std::unique_ptr<gl::Uniform>> uniformList;
 
@@ -53,29 +61,33 @@ namespace tgl
         std::unique_ptr<gl::UniformVec3> p_diffuseColor(new gl::UniformVec3(
             "g_diffuseColor", 
             0.5f, 0.5f, 0.5f, 
-            m_id));
+            m_id
+        ));
         std::unique_ptr<gl::UniformBool> p_isDiffuseMapConnected(new gl::UniformBool(
             "g_isDiffuseMapConnected", 
             false, 
-            m_id));
-
+            m_id
+        ));
         std::unique_ptr<gl::UniformVec3> p_transparencyColor(new gl::UniformVec3(
             "g_transparencyColor", 
             0.0f, 0.0f, 0.0f, 
-            m_id));
+            m_id
+        ));
         std::unique_ptr<gl::UniformBool> p_isTransparencyMapConnected(new gl::UniformBool(
             "g_isTransparencyMapConnected", 
             false, 
-            m_id));
-
+            m_id
+        ));
         std::unique_ptr<gl::UniformVec3> p_ambientColor(new gl::UniformVec3(
             "g_ambientColor", 
             0.0f, 0.0f, 0.0f,
-            m_id));
+            m_id
+        ));
         std::unique_ptr<gl::UniformBool> p_isAmbientMapConnected(new gl::UniformBool(
             "g_isAmbientMapConnected", 
             false,
-            m_id));
+            m_id
+        ));
 
         //ADD
         uniformList.push_back(std::move(p_diffuseColor));

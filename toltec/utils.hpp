@@ -45,7 +45,7 @@ namespace utils
     /*-----------------------------------------------------------------------------
     *   FUNCTION DECLARATIONS
     *-----------------------------------------------------------------------------*/
-    const std::string& loadTextFile(const std::string& filePath);
+    const std::string loadTextFile(const std::string& filePath);
 
     glm::mat4 calcModelMatrix(const glm::vec3& translation, const glm::vec3& rotation,
         const glm::vec3& scale);

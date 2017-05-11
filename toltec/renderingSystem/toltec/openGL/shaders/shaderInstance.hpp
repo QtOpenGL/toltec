@@ -24,7 +24,10 @@ namespace gl
     class Uniform;
 }
 
-class ShaderProgram;
+namespace tgl
+{
+    class ShaderProgram;
+}
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: TGL (TOLTEC OPENGL)
@@ -39,7 +42,7 @@ namespace tgl
     {
     public:
         //CONSTRUCTORS
-        explicit        ShaderInstance(ShaderProgram* p_shaderProgram);
+        explicit        ShaderInstance(ShaderProgram* p_shaderProgram);// : mp_shaderProgram(p_shaderProgram) {}
         virtual         ~ShaderInstance() {}
 
         //SET

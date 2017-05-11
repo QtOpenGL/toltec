@@ -11,6 +11,7 @@
 #include "shaderInstance.hpp"
 
 #include "renderingSystem/openGL/uniform.hpp" 
+#include "renderingSystem/toltec/openGL/shaders/shaderProgram.hpp" 
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: TGL (TOLTEC OPENGL)
@@ -32,7 +33,7 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     void ShaderInstance::setUniformList(std::vector<std::unique_ptr<gl::Uniform>>& uniformList)
     {
-        m_uniformList = uniformList;
+        m_uniformList = std::move(uniformList);
     }
 
     /*-----------------------------------------------------------------------------
@@ -40,6 +41,8 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     void ShaderInstance::updateUniforms()
     {
+        mp_shaderProgram->updateUniforms();
+
         for (auto& p_uniform : m_uniformList)
             p_uniform->update();
     }

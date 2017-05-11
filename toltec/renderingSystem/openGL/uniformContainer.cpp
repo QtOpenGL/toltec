@@ -32,6 +32,15 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
+    *   UPDATE
+    *-----------------------------------------------------------------------------*/
+    void UniformContainer::update() const
+    {
+        for (auto& p_uniform : m_uniformList)
+            p_uniform->update();
+    }
+
+    /*-----------------------------------------------------------------------------
     *   UNIFORM ARRAY
     *   CONSTRUCTOR
     *   (const std::string&)
@@ -125,6 +134,79 @@ namespace gl
                 p_unifromUnit->setLocation(location);
             }
             //CONTAINER
+            if (p_uniform->getClassification() == Uniform::Classification::CONTAINER)
+            {
+                UniformContainer* p_uniformContainer = static_cast<UniformContainer*>(p_uniform);
+                p_uniformContainer->findLocations(uniformName, shaderProgramID);
+            }
+        }
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   UNIFORM STRUCT
+    *   CONSTRUCTOR
+    *   (const std::string&)
+    *-----------------------------------------------------------------------------*/
+    UniformStruct::UniformStruct(const std::string& name)
+        :
+        UniformContainer(name)
+    {
+        //INITIALIZE
+        m_type = UniformContainer::Type::STRUCT;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   ADD UNIFORM
+    *-----------------------------------------------------------------------------*/
+    void UniformStruct::addUniform(std::unique_ptr<Uniform> p_uniform, gl::GLuint shaderProgramID)
+    {
+        std::string uniformName = m_name + "." + p_uniform->getName();
+
+        //CHECK CLASSIFICATION
+        //unit
+        if (p_uniform->getClassification() == Uniform::Classification::UNIT)
+        {
+            UniformUnit* p_unifromUnit = static_cast<UniformUnit*>(p_uniform.get());
+            gl::GLint location = gl::glGetUniformLocation(shaderProgramID, uniformName.c_str());
+
+            p_unifromUnit->setLocation(location);
+        }
+        //container
+        else if (p_uniform->getClassification() == Uniform::Classification::CONTAINER)
+        {
+            UniformContainer* p_uniformContainer = static_cast<UniformContainer*>(p_uniform.get());
+            p_uniformContainer->findLocations(uniformName, shaderProgramID);
+        }
+
+        //ADD
+        m_uniformList.push_back(std::move(p_uniform));
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   FIND LOCATIONS
+    *-----------------------------------------------------------------------------*/
+    void UniformStruct::findLocations(const std::string& baseUniformName, gl::GLuint shaderProgramID)
+    {
+        //This function serves the purpose of finding locations for uniforms inside
+        //struct when struct is nested in bigger structures. Mainly invoked from
+        //UniformContainer::addUniform and UniformContainer::findLocations virtual 
+        //functions (so in some way it's a recursive function).
+
+
+        for (std::size_t i = 0; i < m_uniformList.size(); i++)
+        {
+            Uniform* p_uniform = m_uniformList[i].get();
+            std::string uniformName = baseUniformName + "." + p_uniform->getName();
+
+            //unit
+            if (p_uniform->getClassification() == Uniform::Classification::UNIT)
+            {
+                UniformUnit* p_unifromUnit = static_cast<UniformUnit*>(p_uniform);
+                gl::GLint location = gl::glGetUniformLocation(shaderProgramID, uniformName.c_str());
+
+                p_unifromUnit->setLocation(location);
+            }
+            //container
             if (p_uniform->getClassification() == Uniform::Classification::CONTAINER)
             {
                 UniformContainer* p_uniformContainer = static_cast<UniformContainer*>(p_uniform);
