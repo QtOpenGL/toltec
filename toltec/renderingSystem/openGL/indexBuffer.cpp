@@ -1,12 +1,12 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		12 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
+*   CREATED:
+*       12 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "indexBuffer.hpp"
 
@@ -18,13 +18,13 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace gl
 {
     /*-----------------------------------------------------------------------------
-    *	CONSTRUCTOR
-    *	(IndexBuffer::DataType)
+    *   CONSTRUCTOR
+    *   (IndexBuffer::DataType)
     *-----------------------------------------------------------------------------*/
     gl::IndexBuffer::IndexBuffer(IndexBuffer::DataType dataType)
         :
@@ -39,8 +39,8 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	UPDATE DATA
-    *	(const std::vector<T>& data)
+    *   UPDATE DATA
+    *   (const std::vector<T>& data)
     *-----------------------------------------------------------------------------*/
     //FORWARD DECLARATIONS
     template void IndexBuffer::updateData<std::uint32_t>(const std::vector<uint32_t>& data);
@@ -52,7 +52,7 @@ namespace gl
         //CHECK
         switch (m_dataType)
         {
-            case IndexBuffer::UINT_32:
+            case IndexBuffer::DataType::UINT_32:
             {
                 if (std::is_same<T, std::uint32_t>::value == false)
                 {

@@ -92,8 +92,7 @@ namespace tgl
         *-----------------------------------------------------------------------------*/
         if (p_viewport->getType() != RenderingAPI::OPENGL_API)
         {
-            GUIManager::getInstance().displayError(
-                "Rendering error! Viewport type is not matching renderer type.");
+            GUIManager::getInstance().displayError("Viewport type is not matching renderer type!");
             return;
         }
 

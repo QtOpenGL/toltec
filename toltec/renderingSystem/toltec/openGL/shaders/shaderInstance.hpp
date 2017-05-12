@@ -42,7 +42,7 @@ namespace tgl
     {
     public:
         //CONSTRUCTORS
-        explicit        ShaderInstance(ShaderProgram* p_shaderProgram);// : mp_shaderProgram(p_shaderProgram) {}
+        explicit        ShaderInstance(ShaderProgram* p_shaderProgram);
         virtual         ~ShaderInstance() {}
 
         //SET

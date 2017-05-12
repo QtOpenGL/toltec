@@ -1,21 +1,21 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		08 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       08 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <glbinding/gl/types.h>
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
@@ -23,22 +23,22 @@ namespace tgl
 }
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	RENDER ITEM
+    *   CLASS DECLARATIONS
+    *   RENDER ITEM
     *-----------------------------------------------------------------------------*/
     class RenderItem
     {
     public:
         //TYPES
         enum DrawMode {
-            POINTS_DRAW_MODE,
-            LINES_DRAW_MODE,
-            TRIANGLES_DRAW_MODE
+            POINTS,
+            LINES,
+            TRIANGLES
         };
 
         //CONSTRUCTORS
@@ -47,12 +47,12 @@ namespace tgl
                             gl::GLuint indexBufferID,
                             ShaderInstance* p_shaderInstance,
                             RenderItem::DrawMode drawMode);
-        virtual			~RenderItem() {}
+        virtual         ~RenderItem() {}
 
     private:
-        gl::GLuint				m_vaoID;
-        gl::GLuint				m_indexBufferID;
-        ShaderInstance*			mp_shaderInstance;
-        RenderItem::DrawMode	m_drawMode;
+        gl::GLuint              m_vaoID;
+        gl::GLuint              m_indexBufferID;
+        ShaderInstance*         mp_shaderInstance;
+        RenderItem::DrawMode    m_drawMode;
     };
 } //NAMESPACE: TGL

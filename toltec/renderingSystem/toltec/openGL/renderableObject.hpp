@@ -1,26 +1,27 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		06 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
-*
-*	RAW POINTER MANAGER:
-*		- m_renderItemList		(std::vector<RenderItem*>)
+*   CREATED:
+*       06 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <memory>
 #include <vector>
+
 #include <glm/glm.hpp>
+
+#include "renderingSystem/openGL/uniformUnit.hpp"
 #include "renderingSystem/toltec/openGL/geometry.hpp"
 
 /*-----------------------------------------------------------------------------
-*	FORWARD DECLARATIONS
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace tgl 
 {
@@ -28,39 +29,40 @@ namespace tgl
 }
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	RENDERABLE OBJECT
+    *   CLASS DECLARATIONS
+    *   RENDERABLE OBJECT
     *-----------------------------------------------------------------------------*/
     class RenderableObject
     {
     public:
         //CONSTRUCTORS
-        virtual		~RenderableObject();
+                    RenderableObject();
+        virtual     ~RenderableObject() {}
 
         //ADD
-        void		addRenderItem(RenderItem* p_renderItem);
+        void        addRenderItem(std::unique_ptr<RenderItem> p_renderItem);
 
         //SET
-        void		setModelMatrix(const glm::mat4& modelMatrix);
+        void        setModelMatrix(const glm::mat4& modelMatrix);
 
         //GET
-        Geometry*		getGeometry();
+        Geometry&       getGeometry();
 
     private:
-        Geometry					m_geometry;
-        std::vector<RenderItem*>	m_renderItemList;
-        glm::mat4					m_modelMatrix;
+        Geometry                                    m_geometry;
+        std::vector<std::unique_ptr<RenderItem>>    m_renderItemList;
+        gl::UniformMat4                             m_modelMatrixUniform;
     };
 
     /*----------------------------------------------------------------------------*/
 
-    inline Geometry* RenderableObject::getGeometry()
+    inline Geometry& RenderableObject::getGeometry()
     {
-        return &m_geometry;
+        return m_geometry;
     }
 } //NAMESPACE: TGL

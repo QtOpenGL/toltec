@@ -10,6 +10,7 @@
 *-----------------------------------------------------------------------------*/
 #include "uniformUnit.hpp"
 
+#include <glbinding/gl/boolean.h>
 #include <glbinding/gl/functions.h>
 
 /*-----------------------------------------------------------------------------
@@ -61,10 +62,8 @@ namespace gl
     {
         m_location = gl::glGetUniformLocation(shaderProgramID, m_name.c_str());
 
-        if (m_location != -1)
-            return true;
-        else
-            return false;
+        if (m_location != -1) return true;
+        else return false;
     }
 
     /*-----------------------------------------------------------------------------
@@ -74,8 +73,7 @@ namespace gl
     UniformBool::UniformBool(const std::string& name)
         :
         UniformUnit(name),
-        m_value(false),
-        mp_valueLink(nullptr)
+        m_value(false)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::BOOL;
@@ -88,8 +86,7 @@ namespace gl
     UniformBool::UniformBool(const std::string& name, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(false),
-        mp_valueLink(nullptr)
+        m_value(false)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::BOOL;
@@ -102,8 +99,7 @@ namespace gl
     UniformBool::UniformBool(const std::string& name, const bool& value, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(value),
-        mp_valueLink(nullptr)
+        m_value(value)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::BOOL;
@@ -115,17 +111,6 @@ namespace gl
     void UniformBool::setValue(const bool& value)
     {
         m_value = value;
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   GET VALUE
-    *-----------------------------------------------------------------------------*/
-    const bool& UniformBool::getValue() const
-    {
-        if (mp_valueLink != nullptr)
-            return *mp_valueLink;
-        else
-            return m_value;
     }
 
     /*-----------------------------------------------------------------------------
@@ -143,8 +128,7 @@ namespace gl
     UniformInt::UniformInt(const std::string& name)
         :
         UniformUnit(name),
-        m_value(0),
-        mp_valueLink(nullptr)
+        m_value(0)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::INT;
@@ -157,8 +141,7 @@ namespace gl
     UniformInt::UniformInt(const std::string& name, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(0),
-        mp_valueLink(nullptr)
+        m_value(0)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::INT;
@@ -171,8 +154,7 @@ namespace gl
     UniformInt::UniformInt(const std::string& name, const int& value, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(value),
-        mp_valueLink(nullptr)
+        m_value(value)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::INT;
@@ -184,17 +166,6 @@ namespace gl
     void UniformInt::setValue(const int& value)
     {
         m_value = value;
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   GET VALUE
-    *-----------------------------------------------------------------------------*/
-    const int& UniformInt::getValue() const
-    {
-        if (mp_valueLink != nullptr)
-            return *mp_valueLink;
-        else
-            return m_value;
     }
 
     /*-----------------------------------------------------------------------------
@@ -212,8 +183,7 @@ namespace gl
     UniformFloat::UniformFloat(const std::string& name)
         :
         UniformUnit(name),
-        m_value(0.0f),
-        mp_valueLink(nullptr)
+        m_value(0.0f)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::FLOAT;
@@ -226,8 +196,7 @@ namespace gl
     UniformFloat::UniformFloat(const std::string& name, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(0.0f),
-        mp_valueLink(nullptr)
+        m_value(0.0f)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::FLOAT;
@@ -240,8 +209,7 @@ namespace gl
     UniformFloat::UniformFloat(const std::string& name, const float& value, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(value),
-        mp_valueLink(nullptr)
+        m_value(value)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::FLOAT;
@@ -253,17 +221,6 @@ namespace gl
     void UniformFloat::setValue(const float& value)
     {
         m_value = value;
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   GET VALUE
-    *-----------------------------------------------------------------------------*/
-    const float& UniformFloat::getValue() const
-    {
-        if (mp_valueLink != nullptr)
-            return *mp_valueLink;
-        else
-            return m_value;
     }
 
     /*-----------------------------------------------------------------------------
@@ -281,8 +238,7 @@ namespace gl
     UniformVec2::UniformVec2(const std::string& name)
         :
         UniformUnit(name),
-        m_value(glm::vec2()),
-        mp_valueLink(nullptr)
+        m_value(glm::vec2())
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_2;
@@ -295,8 +251,7 @@ namespace gl
     UniformVec2::UniformVec2(const std::string& name, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(glm::vec2()),
-        mp_valueLink(nullptr)
+        m_value(glm::vec2())
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_2;
@@ -309,8 +264,7 @@ namespace gl
     UniformVec2::UniformVec2(const std::string& name, const glm::vec2& value, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(value),
-        mp_valueLink(nullptr)
+        m_value(value)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_2;
@@ -324,8 +278,7 @@ namespace gl
         gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(glm::vec2(value1, value2)),
-        mp_valueLink(nullptr)
+        m_value(glm::vec2(value1, value2))
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_2;
@@ -350,17 +303,6 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *   GET VALUE
-    *-----------------------------------------------------------------------------*/
-    const glm::vec2& UniformVec2::getValue() const
-    {
-        if (mp_valueLink != nullptr)
-            return *mp_valueLink;
-        else
-            return m_value;
-    }
-
-    /*-----------------------------------------------------------------------------
     *   UPDATE
     *-----------------------------------------------------------------------------*/
     void UniformVec2::update() const
@@ -375,8 +317,7 @@ namespace gl
     UniformVec3::UniformVec3(const std::string& name)
         :
         UniformUnit(name),
-        m_value(glm::vec3()),
-        mp_valueLink(nullptr)
+        m_value(glm::vec3())
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_3;
@@ -389,8 +330,7 @@ namespace gl
     UniformVec3::UniformVec3(const std::string& name, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(glm::vec3()),
-        mp_valueLink(nullptr)
+        m_value(glm::vec3())
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_3;
@@ -398,13 +338,12 @@ namespace gl
 
     /*-----------------------------------------------------------------------------
     *   CONSTRUCTOR
-    *   (const std::string&, const glm::vec2&, gl::GLuint)
+    *   (const std::string&, const glm::vec3&, gl::GLuint)
     *-----------------------------------------------------------------------------*/
     UniformVec3::UniformVec3(const std::string& name, const glm::vec3& value, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(value),
-        mp_valueLink(nullptr)
+        m_value(value)
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_3;
@@ -418,8 +357,7 @@ namespace gl
         const float& value3, gl::GLuint shaderProgramID)
         :
         UniformUnit(name, shaderProgramID),
-        m_value(glm::vec3(value1, value2, value3)),
-        mp_valueLink(nullptr)
+        m_value(glm::vec3(value1, value2, value3))
     {
         //INITIALIZE
         m_type = UniformUnit::Type::VEC_3;
@@ -444,21 +382,79 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *   GET VALUE
-    *-----------------------------------------------------------------------------*/
-    const glm::vec3& UniformVec3::getValue() const
-    {
-        if (mp_valueLink != nullptr)
-            return *mp_valueLink;
-        else
-            return m_value;
-    }
-
-    /*-----------------------------------------------------------------------------
     *   UPDATE
     *-----------------------------------------------------------------------------*/
     void UniformVec3::update() const
     {
         gl::glUniform3fv(m_location, 1, &m_value[0]);
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   CONSTRUCTOR
+    *   (const std::string&)
+    *-----------------------------------------------------------------------------*/
+    UniformMat4::UniformMat4(const std::string& name)
+        :
+        UniformUnit(name),
+        m_value(glm::mat4())
+    {
+        //INITIALIZE
+        m_type = UniformUnit::Type::MAT_4;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   CONSTRUCTOR
+    *   (const std::string&, gl::GLuint)
+    *-----------------------------------------------------------------------------*/
+    UniformMat4::UniformMat4(const std::string& name, gl::GLuint shaderProgramID)
+        :
+        UniformUnit(name, shaderProgramID),
+        m_value(glm::mat4())
+    {
+        //INITIALIZE
+        m_type = UniformUnit::Type::MAT_4;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   CONSTRUCTOR
+    *   (const std::string&, const glm::mat4&, gl::GLuint)
+    *-----------------------------------------------------------------------------*/
+    UniformMat4::UniformMat4(const std::string& name, const glm::mat4& value, gl::GLuint shaderProgramID)
+        :
+        UniformUnit(name, shaderProgramID),
+        m_value(value)
+    {
+        //INITIALIZE
+        m_type = UniformUnit::Type::MAT_4;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   CONSTRUCTOR
+    *   (const std::string&, const float&, gl::GLuint)
+    *-----------------------------------------------------------------------------*/
+    UniformMat4::UniformMat4(const std::string& name, const float& value, gl::GLuint shaderProgramID)
+        :
+        UniformUnit(name, shaderProgramID),
+        m_value(glm::mat4(value))
+    {
+        //INITIALIZE
+        m_type = UniformUnit::Type::MAT_4;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   SET VALUE
+    *   (const glm::vec4&)
+    *-----------------------------------------------------------------------------*/
+    void UniformMat4::setValue(const glm::mat4& value)
+    {
+        m_value = value;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   UPDATE
+    *-----------------------------------------------------------------------------*/
+    void UniformMat4::update() const
+    {
+        gl::glUniformMatrix4fv(m_location, 1, GL_FALSE, &m_value[0][0]);
     }
 } //NAMESPACE: GL

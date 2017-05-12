@@ -10,6 +10,9 @@
 *-----------------------------------------------------------------------------*/
 #include "toltecOpenGLRendererResource.hpp"
 
+#include <memory>
+#include <iostream>
+
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/renderableObjectNode.hpp"
 #include "nodes/sceneNode.hpp"
@@ -200,9 +203,18 @@ namespace tgl
             std::vector<float> faceVertexUVList;
             std::vector<float> faceVertexNormalList;
 
-            gl::VertexBuffer positionVertexBuffer(gl::VertexBuffer::FLOAT, gl::VertexBuffer::POSITION);
-            gl::VertexBuffer uvVertexBuffer(gl::VertexBuffer::FLOAT, gl::VertexBuffer::UV);
-            gl::VertexBuffer normalVertexBuffer(gl::VertexBuffer::FLOAT, gl::VertexBuffer::NORMAL);
+            gl::VertexBuffer positionVertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT, 
+                gl::VertexBuffer::Semantic::POSITION
+            );
+            gl::VertexBuffer uvVertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT, 
+                gl::VertexBuffer::Semantic::UV
+            );
+            gl::VertexBuffer normalVertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT, 
+                gl::VertexBuffer::Semantic::NORMAL
+            );
 
             //index buffers
             std::uint32_t faceVertexIndexCount = 0;
@@ -211,9 +223,9 @@ namespace tgl
             std::vector<std::uint32_t> edgeIndexList;
             std::vector<std::uint32_t> vertexIndexList;
 
-            gl::IndexBuffer faceIndexBuffer(gl::IndexBuffer::UINT_32);
-            gl::IndexBuffer edgeIndexBuffer(gl::IndexBuffer::UINT_32);
-            gl::IndexBuffer vertexIndexBuffer(gl::IndexBuffer::UINT_32);
+            gl::IndexBuffer faceIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
+            gl::IndexBuffer edgeIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
+            gl::IndexBuffer vertexIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
 
             //fetch and generate
             for (const tpm::Face* p_face : p_mesh->getFaceList())
@@ -282,15 +294,15 @@ namespace tgl
             vertexIndexBuffer.updateData(vertexIndexList);
 
             //ADD VERTEX AND INDEX BUFFERS TO THE GEOMETRY
-            tgl::Geometry* p_geometry = p_renderableObject->getGeometry();
+            tgl::Geometry& geometry = p_renderableObject->getGeometry();
 
-            p_geometry->addVertexBuffer(positionVertexBuffer);
-            p_geometry->addVertexBuffer(uvVertexBuffer);
-            p_geometry->addVertexBuffer(normalVertexBuffer);
-
-            p_geometry->addIndexBuffer(faceIndexBuffer);
-            p_geometry->addIndexBuffer(edgeIndexBuffer);
-            p_geometry->addIndexBuffer(vertexIndexBuffer);
+            geometry.addVertexBuffer(positionVertexBuffer);
+            geometry.addVertexBuffer(uvVertexBuffer);
+            geometry.addVertexBuffer(normalVertexBuffer);
+                    
+            geometry.addIndexBuffer(faceIndexBuffer);
+            geometry.addIndexBuffer(edgeIndexBuffer);
+            geometry.addIndexBuffer(vertexIndexBuffer);
 
             //CREATE RENDER ITEMS
             //find shader instance
@@ -303,13 +315,13 @@ namespace tgl
             else
                 p_shaderInstance = m_shaderInstanceMap.begin()->second;
 
-            ////triangle
-            //RenderItem* p_pointRenderItem = new RenderItem(
-            //  p_geometry->getVAOID(),
-            //  faceIndexBuffer.getID(),
-            //  p_shaderInstance,
-            //  RenderItem::TRIANGLES_DRAW_MODE
-            //);
+            //triangle
+            std::unique_ptr<RenderItem> p_pointRenderItem(new RenderItem(
+                geometry.getVAOID(),
+                faceIndexBuffer.getID(),
+                p_shaderInstance,
+                RenderItem::DrawMode::TRIANGLES
+            ));
             ////line
             //RenderItem* p_pointRenderItem = new RenderItem(
             //  p_geometry->getVAOID(),
@@ -324,6 +336,9 @@ namespace tgl
             //  p_shaderInstace, 
             //  RenderItem::POINTS_DRAW_MODE
             //);
+
+            //ADD RENDER ITEMS
+            p_renderableObject->addRenderItem(std::move(p_pointRenderItem));
         }
 
         /*-----------------------------------------------------------------------------

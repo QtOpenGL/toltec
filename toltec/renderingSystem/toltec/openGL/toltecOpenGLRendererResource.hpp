@@ -76,6 +76,6 @@ namespace tgl
         std::map<std::uint32_t, RenderableObject*>  m_renderableObjectMap;
         std::map<std::uint32_t, ShaderInstance*>    m_shaderInstanceMap;
 
-        std::vector<RenderItem*>                    m_finalRenderItemList;
+        std::vector<RenderItem*>                    m_finalRenderItemList;  //cleared every render sequence
     };
 } //NAMESPACE: TGL

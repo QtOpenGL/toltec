@@ -1,44 +1,44 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		08 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
+*   CREATED:
+*       08 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderableObject.hpp"
 
 #include "renderingSystem/toltec/openGL/renderItem.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: TGL (TOLTEC OPENGL)
+*   NAMESPACE: TGL (TOLTEC OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
-    *	DESTRUCTOR
+    *   CONSTRUCTOR
     *-----------------------------------------------------------------------------*/
-    RenderableObject::~RenderableObject()
+    RenderableObject::RenderableObject()
+        :
+        m_modelMatrixUniform("g_modelMatrix")
     {
-        for (RenderItem* p_renderItem : m_renderItemList)
-            delete p_renderItem;
     }
 
     /*-----------------------------------------------------------------------------
-    *	ADD RENDER ITEM
+    *   ADD RENDER ITEM
     *-----------------------------------------------------------------------------*/
-    void RenderableObject::addRenderItem(RenderItem* p_renderItem)
+    void RenderableObject::addRenderItem(std::unique_ptr<RenderItem> p_renderItem)
     {
-        m_renderItemList.push_back(p_renderItem);
+        m_renderItemList.push_back(std::move(p_renderItem));
     }
 
     /*-----------------------------------------------------------------------------
-    *	SET MODEL MATRIX
+    *   SET MODEL MATRIX
     *-----------------------------------------------------------------------------*/
     void RenderableObject::setModelMatrix(const glm::mat4& modelMatrix)
     {
-        m_modelMatrix = modelMatrix;
+        m_modelMatrixUniform.setValue(modelMatrix);
     }
 } //NAMESPACE: TGL

@@ -1,16 +1,16 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		06 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       06 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <cstdint>
 #include <cstdlib>
@@ -20,13 +20,13 @@
 #include <glbinding/gl/types.h>
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace gl
 {
     /*-----------------------------------------------------------------------------
-    *	CLASS DECLARATIONS
-    *	INDEX BUFFER
+    *   CLASS DECLARATIONS
+    *   INDEX BUFFER
     *-----------------------------------------------------------------------------*/
     class IndexBuffer
     {
@@ -37,16 +37,26 @@ namespace gl
         };
 
         //CONSTRUCTORS
-        explicit	IndexBuffer(IndexBuffer::DataType dataType);
-        virtual		~IndexBuffer() {};
+        explicit        IndexBuffer(IndexBuffer::DataType dataType);
+        virtual         ~IndexBuffer() {};
+
+        //GET
+        gl::GLuint      getID() const;
 
         //OTHER
         template<typename T>
-        void		updateData(const std::vector<T>& data);
+        void            updateData(const std::vector<T>& data);
 
     private:
-        gl::GLuint					m_id;
-        IndexBuffer::DataType		m_dataType;
-        std::size_t					m_sizeInBytes;
+        gl::GLuint                  m_id;
+        IndexBuffer::DataType       m_dataType;
+        std::size_t                 m_sizeInBytes;
     };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline gl::GLuint IndexBuffer::getID() const
+    {
+        return m_id;
+    }
 } //NAMESPACE: GL

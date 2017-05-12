@@ -38,7 +38,8 @@ namespace gl
             INT,
             FLOAT,
             VEC_2,
-            VEC_3
+            VEC_3,
+            MAT_4
         };
 
         //CONSTRUCTORS
@@ -103,8 +104,14 @@ namespace gl
 
     private:
         bool            m_value;
-        const bool*     mp_valueLink;
     };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline const bool& UniformBool::getValue() const
+    {
+        return m_value;
+    }
 
     /*-----------------------------------------------------------------------------
     *   UNIFORM INT
@@ -135,8 +142,14 @@ namespace gl
 
     private:
         int             m_value;
-        const int*      mp_valueLink;
     };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline const int& UniformInt::getValue() const
+    {
+        return m_value;
+    }
 
     /*-----------------------------------------------------------------------------
     *   UNIFORM FLOAT
@@ -167,8 +180,14 @@ namespace gl
 
     private:
         float           m_value;
-        const float*    mp_valueLink;
     };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline const float& UniformFloat::getValue() const
+    {
+        return m_value;
+    }
 
     /*-----------------------------------------------------------------------------
     *   UNIFORM VECTOR 2
@@ -205,8 +224,14 @@ namespace gl
 
     private:
         glm::vec2           m_value;
-        const glm::vec2*    mp_valueLink;
     };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline const glm::vec2& UniformVec2::getValue() const
+    {
+        return m_value;
+    }
 
     /*-----------------------------------------------------------------------------
     *   UNIFORM VECTOR 3
@@ -244,6 +269,54 @@ namespace gl
 
     private:
         glm::vec3           m_value;
-        const glm::vec3*    mp_valueLink;
     };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline const glm::vec3& UniformVec3::getValue() const
+    {
+        return m_value;
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   UNIFORM MATRIX 4    
+    *-----------------------------------------------------------------------------*/
+    class UniformMat4 : public UniformUnit
+    {
+    public:
+        //CONSTRUCTORS
+        explicit        UniformMat4(
+                            const std::string&      name);
+                        UniformMat4(
+                            const std::string&      name,
+                            gl::GLuint              shaderProgramID);
+                        UniformMat4(
+                            const std::string&      name,
+                            const glm::mat4&        value,
+                            gl::GLuint              shaderProgramID);
+                        UniformMat4(
+                            const std::string&      name,
+                            const float&            value,
+                            gl::GLuint              shaderProgramID);
+        virtual         ~UniformMat4() {}
+
+        //SET
+        void            setValue(const glm::mat4& value);
+
+        //GET
+        const glm::mat4&    getValue() const;
+
+        //OTHER 
+        virtual void    update() const;
+
+    private:
+        glm::mat4       m_value;
+    };
+
+    /*----------------------------------------------------------------------------*/
+
+    inline const glm::mat4& UniformMat4::getValue() const
+    {
+        return m_value;
+    }
 } //NAMESPACE: GL

@@ -1,30 +1,26 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		06 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
+*   CREATED:
+*       06 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "vertexBuffer.hpp"
 
 #include <type_traits>
-
-#include <glbinding/gl/functions.h>
-#include <glbinding/gl/enum.h>
-
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*	NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GL (OPENGL)
 *-----------------------------------------------------------------------------*/
 namespace gl
 {
     /*-----------------------------------------------------------------------------
-    *	CONSTRUCTOR
-    *	(VertexBuffer::DataType, VertexBuffer::Semantic)
+    *   CONSTRUCTOR
+    *   (VertexBuffer::DataType, VertexBuffer::Semantic)
     *-----------------------------------------------------------------------------*/
     VertexBuffer::VertexBuffer(VertexBuffer::DataType dataType, VertexBuffer::Semantic semantic)
         :
@@ -42,8 +38,8 @@ namespace gl
     }
 
     /*-----------------------------------------------------------------------------
-    *	UPDATE DATA
-    *	(const std::vector<T>& data)
+    *   UPDATE DATA
+    *   (const std::vector<T>& data)
     *-----------------------------------------------------------------------------*/
     //FORWARD DECLARATIONS
     template void VertexBuffer::updateData<float>(const std::vector<float>& data);
@@ -58,7 +54,7 @@ namespace gl
         //CHECK
         switch (m_dataType)
         {
-            case VertexBuffer::FLOAT:
+            case VertexBuffer::DataType::FLOAT:
             {
                 if (std::is_same<T, float>::value == false)
                 {
@@ -68,7 +64,7 @@ namespace gl
                 break;
             }
 
-            case VertexBuffer::DOUBLE:
+            case VertexBuffer::DataType::DOUBLE:
             {
                 if (std::is_same<T, double>::value == false)
                 {
@@ -78,7 +74,7 @@ namespace gl
                 break;
             }
 
-            case VertexBuffer::INT_32:
+            case VertexBuffer::DataType::INT:
             {
                 if (std::is_same<T, std::int32_t>::value == false)
                 {
@@ -88,7 +84,7 @@ namespace gl
                 break;
             }
 
-            case VertexBuffer::UINT_32:
+            case VertexBuffer::DataType::UINT:
             {
                 if (std::is_same<T, std::uint32_t>::value == false)
                 {
@@ -100,8 +96,8 @@ namespace gl
         }
         //-->
 
-        m_vertexCount =					data.size();
-        std::size_t dataSizeInBytes =	sizeof(T) * m_vertexCount;
+        m_vertexCount =                 data.size();
+        std::size_t dataSizeInBytes =   sizeof(T) * m_vertexCount;
 
         //UPDATE DATA
         glBindBuffer(GLenum::GL_ARRAY_BUFFER, m_id);
