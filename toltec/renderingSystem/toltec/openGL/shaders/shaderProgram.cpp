@@ -13,6 +13,7 @@
 #include <glbinding/gl/boolean.h>
 #include <glbinding/gl/enum.h>
 #include <glbinding/gl/functions.h>
+#include <glbinding/Binding.h>
 
 #include "utils.hpp"
 

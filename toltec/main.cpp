@@ -103,14 +103,9 @@ int main(int argc, char* argv[])
     *   GUI
     *-----------------------------------------------------------------------------*/
     MainWindow mainWindow("Toltec", 960, 600);
-    
-    //VIEWPORT PANEL
     ViewportPanel viewportPanel0;
 
-    //SET MAIN PANEL
     mainWindow.setMainPanel(&viewportPanel0);
-
-    //SHOW MAIN WINDOW
     mainWindow.show();
 
     /*-----------------------------------------------------------------------------

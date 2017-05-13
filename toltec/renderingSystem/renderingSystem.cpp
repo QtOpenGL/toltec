@@ -76,10 +76,10 @@ void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
 {
     //CHECK
     //if exists
-    auto iterator = m_renderingAPIMap.find(renderingAPIType);
-    if (iterator == m_renderingAPIMap.end())
+    auto iter = m_renderingAPIMap.find(renderingAPIType);
+    if (iter == m_renderingAPIMap.end())
     {
-        DEBUG_MSG("ERROR : Specified API type could not be found!");
+        DEBUG_ERR("Specified API type could not be found!");
         return;
     }
 
@@ -91,7 +91,7 @@ void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
     mp_activeRenderingAPI->getRenderer()->getRendererResource()->deleteResources();
 
     //SET NEW
-    mp_activeRenderingAPI = iterator->second;
+    mp_activeRenderingAPI = iter->second;
     mp_activeRenderingAPI->getRenderer()->getRendererResource()->initializeResources();
 }
 

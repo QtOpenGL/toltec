@@ -48,6 +48,7 @@ namespace tgl
     {
     public:
         //CONSTRUCTORS
+                        ToltecOpenGLRendererResource();
         virtual         ~ToltecOpenGLRendererResource();
 
         //OTHER
@@ -76,6 +77,6 @@ namespace tgl
         std::map<std::uint32_t, RenderableObject*>  m_renderableObjectMap;
         std::map<std::uint32_t, ShaderInstance*>    m_shaderInstanceMap;
 
-        std::vector<RenderItem*>                    m_finalRenderItemList;  //cleared every render sequence
+        std::vector<RenderItem*>                    m_finalRenderItemList;  //cleared after every render sequence
     };
 } //NAMESPACE: TGL

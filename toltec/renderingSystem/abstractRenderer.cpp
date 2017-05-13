@@ -18,11 +18,3 @@ AbstractRenderer::AbstractRenderer()
     mp_rendererResource(nullptr)
 {
 }
-
-/*-----------------------------------------------------------------------------
-*   DESTRUCTOR
-*-----------------------------------------------------------------------------*/
-AbstractRenderer::~AbstractRenderer()
-{
-    delete mp_rendererResource;
-}

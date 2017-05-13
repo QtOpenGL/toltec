@@ -10,6 +10,7 @@
 *-----------------------------------------------------------------------------*/
 #include "openGLViewport.hpp"
 
+#include <glbinding/Binding.h>
 #include <QtGui/qsurfaceformat.h>
 #include <QtGui/qopenglcontext.h>
 
@@ -48,6 +49,7 @@ namespace gl
     void OpenGLViewport::makeCurrent()
     {
         mp_openGLContext->makeCurrent(this);
+        glbinding::Binding::useCurrentContext();
     }
 
     /*-----------------------------------------------------------------------------

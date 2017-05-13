@@ -32,6 +32,14 @@
 namespace tgl
 {
     /*-----------------------------------------------------------------------------
+    *   CONSTRUCTOR
+    *-----------------------------------------------------------------------------*/
+    ToltecOpenGLRendererResource::ToltecOpenGLRendererResource()
+    {
+        //this->initializeResources();
+    }
+
+    /*-----------------------------------------------------------------------------
     *   DESTRUCTOR
     *-----------------------------------------------------------------------------*/
     ToltecOpenGLRendererResource::~ToltecOpenGLRendererResource()
@@ -76,17 +84,13 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::deleteResources()
     {
-        //CLEAN UP RENDERABLE OBJECTS
-        for (auto iter : m_renderableObjectMap)
-            delete iter.second;
+        for (auto& kv : m_renderableObjectMap)
+            delete kv.second;
 
-        //CLEAN UP SHADER INSTANCES
-        for (auto iter : m_shaderInstanceMap)
-            delete iter.second;
+        for (auto& kv : m_shaderInstanceMap)
+            delete kv.second;
 
-        //CLEAN UP RENDER ITEMS
-        for (auto p_renderItem : m_finalRenderItemList)
-            delete p_renderItem;
+        m_finalRenderItemList.clear();
     }
 
     /*-----------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "renderer.hpp"
 
@@ -8,8 +8,8 @@
 #include <glbinding/ContextInfo.h>
 
 /*-----------------------------------------------------------------------------
-*	CLASS DEFINITIONS
-*	RENDERER
+*   CLASS DEFINITIONS
+*   RENDERER
 *-----------------------------------------------------------------------------*/
 Renderer::Renderer(Window* p_window)
     :
@@ -23,11 +23,20 @@ Renderer::Renderer(Window* p_window)
         << "Lib. vendor:\t" << gl::glGetString(gl::GLenum::GL_VENDOR) << std::endl
         << "Renderer:\t" << gl::glGetString(gl::GLenum::GL_RENDERER) << "\n\n";
 
+    gl::GLuint shaderProgramID = gl::glCreateProgram();
+    gl::GLuint vsID = gl::glCreateShader(gl::GLenum::GL_VERTEX_SHADER);
+    gl::GLuint fsID = gl::glCreateShader(gl::GLenum::GL_FRAGMENT_SHADER);   
+    
+    std::cout
+        << "Shader Program ID:\t\t" << shaderProgramID << std::endl
+        << "Vertex Shader ID:\t\t" << vsID << std::endl
+        << "Fragment Shader ID:\t\t" << fsID << std::endl;
+
     mp_window->doneCurrent();
 }
 
 /*-----------------------------------------------------------------------------
-*	EVENT
+*   EVENT
 *-----------------------------------------------------------------------------*/
 bool Renderer::event(QEvent* event)
 {
@@ -43,7 +52,7 @@ bool Renderer::event(QEvent* event)
 }
 
 /*-----------------------------------------------------------------------------
-*	REQUEST RENDER
+*   REQUEST RENDER
 *-----------------------------------------------------------------------------*/
 void Renderer::requestRender()
 {
@@ -51,7 +60,7 @@ void Renderer::requestRender()
 }
 
 /*-----------------------------------------------------------------------------
-*	RENDER
+*   RENDER
 *-----------------------------------------------------------------------------*/
 void Renderer::render()
 {

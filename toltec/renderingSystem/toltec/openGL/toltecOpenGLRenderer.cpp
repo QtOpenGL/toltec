@@ -34,7 +34,8 @@ namespace tgl
     ToltecOpenGLRenderer::ToltecOpenGLRenderer()
     {
         //INITIALIZE
-        mp_rendererResource = new ToltecOpenGLRendererResource();
+        mp_rendererResource = std::move(
+            std::unique_ptr<ToltecOpenGLRendererResource>(new ToltecOpenGLRendererResource()));
     }
 
     /*-----------------------------------------------------------------------------
@@ -73,7 +74,7 @@ namespace tgl
     void ToltecOpenGLRenderer::prepareForRendering()
     {
         //INITIALIZE OR UPDATE RENDER RESOURCES
-        if (mp_rendererResource->areResourcesInitialized())
+        if (mp_rendererResource->areResourcesInitialized() == false)
             mp_rendererResource->initializeResources();
         else
             mp_rendererResource->updateResources();
@@ -110,7 +111,7 @@ namespace tgl
         *   BUFFERS
         *-----------------------------------------------------------------------------*/
         //SET BACKGROUND COLOR
-        gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+        gl::glClearColor(1.5f, 0.5f, 0.5f, 1.0f);
 
         //CLEAR BUFFERS
         gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);
