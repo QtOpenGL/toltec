@@ -11,23 +11,26 @@
 #include "guiManager.hpp"
 
 #include "ui/gui/outputLineWidget.hpp"
+#include "ui/gui/panelContainer.hpp"
+#include "ui/gui/viewportPanel.hpp"
 
 /*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 GUIManager::GUIManager()
     :
-    mp_outputStreamWidget(nullptr)
+    m_viewportPanelList{{ nullptr, nullptr, nullptr, nullptr }},
+    mp_outputLineWidget(nullptr)
 {
 }
 
 /*-----------------------------------------------------------------------------
 *   SET OUTPUT BAR
 *-----------------------------------------------------------------------------*/
-void GUIManager::setOutputLineWidget(OutputLineWidget* p_outputStreamWidget)
+void GUIManager::setOutputLineWidget(gui::OutputLineWidget* p_outputStreamWidget)
 {
-    if (mp_outputStreamWidget == nullptr)
-        mp_outputStreamWidget = p_outputStreamWidget;
+    if (mp_outputLineWidget == nullptr)
+        mp_outputLineWidget = p_outputStreamWidget;
 }
 
 /*-----------------------------------------------------------------------------
@@ -35,7 +38,7 @@ void GUIManager::setOutputLineWidget(OutputLineWidget* p_outputStreamWidget)
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayMessage(const std::string& message)
 {
-    mp_outputStreamWidget->setText(message, OutputLineWidget::NORMAL_MESSAGE);
+    mp_outputLineWidget->setText(message, gui::OutputLineWidget::MessageType::NORMAL);
 }
 
 /*-----------------------------------------------------------------------------
@@ -43,7 +46,7 @@ void GUIManager::displayMessage(const std::string& message)
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayWarning(const std::string& warning)
 {
-    mp_outputStreamWidget->setText(warning, OutputLineWidget::WARNING_MESSAGE);
+    mp_outputLineWidget->setText(warning, gui::OutputLineWidget::MessageType::WARNING);
 }
 
 /*-----------------------------------------------------------------------------
@@ -51,5 +54,28 @@ void GUIManager::displayWarning(const std::string& warning)
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayError(const std::string& error)
 {
-    mp_outputStreamWidget->setText(error, OutputLineWidget::ERROR_MESSAGE);
+    mp_outputLineWidget->setText(error, gui::OutputLineWidget::MessageType::ERROR);
+}
+
+/*-----------------------------------------------------------------------------
+*   CREATE PANEL
+*-----------------------------------------------------------------------------*/
+gui::Panel* GUIManager::createPanel(GUIManager::PanelType panelType)
+{
+    switch (panelType)
+    {
+        case GUIManager::PanelType::VIEWPORT:
+        {
+            if (m_viewportPanelList.size() >= GUIManager::MAX_VIEWPORT_PANELS)
+                return nullptr;
+
+            gui::ViewportPanel* p_viewportPanel = new gui::ViewportPanel();
+            return p_viewportPanel;
+        }
+
+        case GUIManager::PanelType::SCENE_TREE:
+        {
+            //...
+        }
+    }
 }

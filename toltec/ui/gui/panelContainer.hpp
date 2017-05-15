@@ -2,57 +2,44 @@
 
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       06 VIII 2016
+*       14 V 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *   INFO:
-*       ...
+*       PanelContainer is a visual container for all sorts of classes that 
+*       inherit from Panel. Those panels can be arranged inside container in 
+*       a multiple different ways (creating on the spot vertical and 
+*       horizontal layouts).
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "abstractViewport.hpp"
-
-#include "renderingSystem/abstractRenderer.hpp"
+#include <QtWidgets/qwidget.h>
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class QOpenGLContext;
+namespace gui
+{
+    class Panel;
+}
 
 /*-----------------------------------------------------------------------------
-*   NAMESPACE: GL (OPENGL)
+*   NAMESPACE: GUI
 *-----------------------------------------------------------------------------*/
-namespace gl
+namespace gui
 {
     /*-----------------------------------------------------------------------------
     *   CLASS DECLARATIONS
-    *   OPENGL VIEWPORT
+    *   PANEL CONTAINER
     *-----------------------------------------------------------------------------*/
-    class OpenGLViewport : public AbstractViewport
+    class PanelContainer : public QWidget
     {
         Q_OBJECT
 
     public:
         //CONSTRUCTORS
-                        OpenGLViewport();
-        virtual         ~OpenGLViewport() {}
-
-        //EVENTS
-        virtual void    exposeEvent(QExposeEvent* p_exposeEvent);
-
-        //OTHERS
-        void            makeCurrent();
-        void            doneCurrent();
-        void            swapBuffers();
-
-        void            printOpenGLInfo();
-
-    private:
-        void            initializeOpenGLContext();
-
-    private:
-        QOpenGLContext*     mp_openGLContext;
+        virtual     ~PanelContainer() {}
     };
-}; //NAMESPACE: GL
+}

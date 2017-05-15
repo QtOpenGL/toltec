@@ -25,8 +25,6 @@
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 RenderManager::RenderManager()
-    :
-    m_renderCycleNumber(0)
 {
 }
 
@@ -61,14 +59,9 @@ void RenderManager::renderCall(AbstractViewport* p_viewport)
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 {
-    AbstractViewport* p_viewport = nullptr;
-
-    auto p_viewportPanelList = p_renderingSystem->getViewportPanelList();
-    for (auto p_viewportPanel : *p_viewportPanelList)
-    {
-        p_viewport = p_viewportPanel->getViewport();
-        p_viewport->getRenderer()->requestRender(p_viewport);
-    }
+    const auto& viewportList = p_renderingSystem->getViewportList();
+    for (const auto& p_viewport : viewportList)
+        p_viewport->getRenderer()->requestRender(p_viewport.get());
 
     this->finishRenderCall();
 }
@@ -79,7 +72,6 @@ void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 *-----------------------------------------------------------------------------*/
 void RenderManager::renderCall(const std::string& renderingSystemName)
 {
-    AbstractViewport* p_viewport =          nullptr;
     RenderingSystem* p_renderingSystem =    nullptr;
 
     //RETRIVE RENDERING SYSTEM
@@ -93,17 +85,14 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
     }
     if (p_renderingSystem == nullptr)
     {
-        DEBUG_MSG("ERROR : Rendering system not found!");
+        DEBUG_ERR("Rendering system not found!");
         return;
     }
 
     //REQUEST RENDERER
-    auto p_viewportPanelList = p_renderingSystem->getViewportPanelList();
-    for (auto p_viewportPanel : *p_viewportPanelList)
-    {
-        p_viewport = p_viewportPanel->getViewport();
-        p_viewport->getRenderer()->requestRender(p_viewport);
-    }
+    const auto& viewportList = p_renderingSystem->getViewportList();
+    for (const auto& p_viewport : viewportList)
+        p_viewport->getRenderer()->requestRender(p_viewport.get());
     //-->
 
     this->finishRenderCall();
@@ -132,7 +121,4 @@ void RenderManager::finishRenderCall()
         p_node->setInitializeFlag(false);
         p_node->setUpdateFlag(false);
     }
-
-    //INCREASE RENDER CYCLE NUMBER
-    m_renderCycleNumber++;
 }

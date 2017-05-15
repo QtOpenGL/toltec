@@ -24,25 +24,29 @@ class QWidget;
 class QVBoxLayout;
 
 /*-----------------------------------------------------------------------------
-*   CLASS DECLARATIONS
-*   MAIN WINDOW
+*   NAMESPACE: GUI
 *-----------------------------------------------------------------------------*/
-class MainWindow : public QMainWindow
+namespace gui
 {
-    Q_OBJECT
+    /*-----------------------------------------------------------------------------
+    *   CLASS DECLARATIONS
+    *   MAIN WINDOW
+    *-----------------------------------------------------------------------------*/
+    class MainWindow : public QMainWindow
+    {
+        Q_OBJECT
 
-public:
-    //CONSTRUCTORS
-                MainWindow(const std::string& title, int width, int height);
-    virtual     ~MainWindow() {}
+    public:
+        //CONSTRUCTORS
+                    MainWindow(const std::string& title, int width, int height);
+        virtual     ~MainWindow() {}
 
-    //SET
-    void        setMainPanel(QWidget* p_widget);
+    private:
+        void        setupUI();
+        void        setupMenuBar();
 
-private:
-    void        setupUI();
-
-private:
-    QWidget*        mp_mainPanel;
-    QVBoxLayout*    mp_mainLayout;
-};
+    private:
+        QWidget*        mp_mainPanel;
+        QVBoxLayout*    mp_mainLayout;
+    };
+} //NAMESPACE: GUI

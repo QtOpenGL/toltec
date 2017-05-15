@@ -8,12 +8,17 @@
 *   INFO:
 *       ViewportPanel is a class that holds Viewport and menus associated with
 *       it.
+*   
+*       IMPORTANT: Do not create instance of this class directly! Use 
+*       GUIManager::createViewportPanel() function!
 *-----------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------    ---
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qwidget.h>
+
+#include "ui/gui/panel.hpp"
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
@@ -23,36 +28,43 @@ class QComboBox;
 class RenderingSystem;
 
 /*-----------------------------------------------------------------------------
-*   CLASS DECLARATIONS
-*   VIEWPORT PANEL
+*   NAMESPACE: GUI
 *-----------------------------------------------------------------------------*/
-class ViewportPanel : public QWidget
+namespace gui
 {
-    Q_OBJECT
+    /*-----------------------------------------------------------------------------
+    *   CLASS DECLARATIONS
+    *   VIEWPORT PANEL
+    *-----------------------------------------------------------------------------*/
+    class ViewportPanel : public Panel
+    {
+        Q_OBJECT
 
-public:
-    //CONSTRUCTORS
-                ViewportPanel();
-    virtual     ~ViewportPanel();
+    public:
+        //CONSTRUCTORS
+                    ViewportPanel();
+        explicit    ViewportPanel(const unsigned int idNumber);
+        virtual     ~ViewportPanel();
 
-    //GET
-    AbstractViewport*   getViewport() const;
+        //GET
+        AbstractViewport*   getViewport() const;
 
-private:
-    void        setupViewport();
-    void        setupUI();
+    private:
+        void        setupUI();
 
-private:
-    RenderingSystem*            mp_activeRenderingSystem;   
-    AbstractViewport*           mp_viewport;
+    private:
+        unsigned int                m_idNumber;
 
-    QComboBox*                  mp_activeCameraComboBox;
-};
+        RenderingSystem*            mp_activeRenderingSystem;   
+        AbstractViewport*           mp_viewport;
 
-/*----------------------------------------------------------------------------*/
+        QComboBox*                  mp_activeCameraComboBox;
+    };
 
-inline AbstractViewport* ViewportPanel::getViewport() const
-{
-    return mp_viewport;
+    /*----------------------------------------------------------------------------*/
+
+    inline AbstractViewport* ViewportPanel::getViewport() const
+    {
+        return mp_viewport;
+    }
 }
-

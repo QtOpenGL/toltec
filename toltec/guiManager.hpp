@@ -13,12 +13,23 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <array>
+#include <memory>
 #include <string>
+#include <vector>
+
+#include "ui/gui/panelContainer.hpp"
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class OutputLineWidget;
+namespace gui
+{
+    class OutputLineWidget;
+    class Panel;
+    class ViewportPanel;
+}
+class AbstractViewport;
 
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
@@ -27,6 +38,16 @@ class OutputLineWidget;
 class GUIManager
 {
 public:
+    static const unsigned int MAX_VIEWPORT_PANELS =     4;
+    static const unsigned int MAX_SCENE_TREE_PANELS =   2;
+
+public:
+    //TYPES
+    enum PanelType {
+        VIEWPORT,
+        SCENE_TREE
+    };
+
     //SINGLETON
     static GUIManager& getInstance()
     {
@@ -37,17 +58,40 @@ public:
     void operator=(const GUIManager&) = delete;
 
     //SET
-    void    setOutputLineWidget(OutputLineWidget* p_outputLineWidget);
+    void            setOutputLineWidget(gui::OutputLineWidget* p_outputLineWidget);
+
+    //GET
+    std::vector<std::unique_ptr<gui::PanelContainer>>&                  getFloatingPanelContainerList();
+    std::array<gui::ViewportPanel*, GUIManager::MAX_VIEWPORT_PANELS>&   getViewportPanelList();
 
     //OTHER
-    void    displayMessage(const std::string& message);
-    void    displayWarning(const std::string& warning);
-    void    displayError(const std::string& error);
+    void            displayMessage(const std::string& message);
+    void            displayWarning(const std::string& warning);
+    void            displayError(const std::string& error);
+
+    //create
+    gui::Panel*     createPanel(GUIManager::PanelType panelType);
+    gui::Panel&     createPanelWithContainer(GUIManager::PanelType panelType);
 
 private:
     //SINGLETON
     GUIManager();
 
 private:
-    OutputLineWidget*   mp_outputStreamWidget;
+    gui::OutputLineWidget*                                              mp_outputLineWidget;
+
+    std::vector<std::unique_ptr<gui::PanelContainer>>                   m_floatingPanelContainerList;
+    std::array<gui::ViewportPanel*, GUIManager::MAX_VIEWPORT_PANELS>    m_viewportPanelList;
 };
+
+/*----------------------------------------------------------------------------*/
+
+inline std::vector<std::unique_ptr<gui::PanelContainer>>& GUIManager::getFloatingPanelContainerList()
+{
+    return m_floatingPanelContainerList;
+}
+
+inline std::array<gui::ViewportPanel*, GUIManager::MAX_VIEWPORT_PANELS>& GUIManager::getViewportPanelList()
+{
+    return m_viewportPanelList;
+}

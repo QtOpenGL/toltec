@@ -228,6 +228,18 @@
     <ClCompile Include="renderingSystem\openGL\uniformContainer.cpp">
       <Filter>Main Files\renderingSystem\openGL</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_panel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_panel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_panelContainer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_panelContainer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -302,6 +314,12 @@
     <CustomBuild Include="20160924001.cd" />
     <CustomBuild Include="renderingSystem\openGL\openGLViewport.hpp">
       <Filter>Main Files\renderingSystem\openGL</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\gui\panel.hpp">
+      <Filter>Main Files\ui\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ui\gui\panelContainer.hpp">
+      <Filter>Main Files\ui\gui</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
