@@ -6,11 +6,11 @@
 *   CONTRIBUTORS:
 *       Piotr Makal
 *   INFO:
-*       Panel is a base class for all Panel widgets (those widgets can be placed
-*       with drag-and-drop behaviour inside PanelContainer.
+*       AbstractPanel is a base class for all Panel widgets (those widgets can
+*       be placed with drag-and-drop behaviour inside PanelContainer.
 *-----------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------    ---
+/*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qwidget.h>
@@ -22,17 +22,26 @@ namespace gui
 {
     /*-----------------------------------------------------------------------------
     *   CLASS DECLARATIONS
-    *   PANEL
+    *   ABSTRACT PANEL
     *-----------------------------------------------------------------------------*/
-    class Panel : public QWidget
+    class AbstractPanel : public QWidget
     {
         Q_OBJECT
 
     public:
+        //TYPES
+        enum Type {
+            VIEWPORT,
+            SCENE_TREE
+        };
+
         //CONSTRUCTORS
-        virtual         ~Panel() {}
+        virtual         ~AbstractPanel() {}
 
     protected:
-        virtual void    setupUI() {}
+        virtual void    setupUI() = 0;
+
+    protected:
+        AbstractPanel::Type m_type;
     };
 }

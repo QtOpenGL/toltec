@@ -22,14 +22,16 @@
 *-----------------------------------------------------------------------------*/
 #ifdef DEBUG_BUILD
 
-#define DEBUG_MSG(x) do                                                             \
-{                                                                                   \
-    std::cout << __FILE__ << "(" << __LINE__ << ")<DEBUG> " << x << std::endl;      \
+#define DEBUG_MSG(x) do                                                     \
+{                                                                           \
+    std::cout << "<DEBUG> : " << __FILE__ << "(" << __LINE__ << ")\n"       \
+        << "  " << x << "\n";                                               \
 } while (false)                         
 
-#define DEBUG_ERR(x) do                                                             \
-{                                                                                   \
-    std::cerr << __FILE__ << "(" << __LINE__ << ")<ERROR> " << x << std::endl;      \
+#define DEBUG_ERR(x) do                                                     \
+{                                                                           \
+    std::cout << "<ERROR> : " << __FILE__ << "(" << __LINE__ << ")\n"       \
+        << "  " << x << "\n\n";                                             \
 } while (false)
 
 #else

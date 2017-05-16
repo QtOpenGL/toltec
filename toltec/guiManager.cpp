@@ -13,6 +13,7 @@
 #include "ui/gui/outputLineWidget.hpp"
 #include "ui/gui/panelContainer.hpp"
 #include "ui/gui/viewportPanel.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
@@ -60,20 +61,31 @@ void GUIManager::displayError(const std::string& error)
 /*-----------------------------------------------------------------------------
 *   CREATE PANEL
 *-----------------------------------------------------------------------------*/
-gui::Panel* GUIManager::createPanel(GUIManager::PanelType panelType)
+gui::AbstractPanel* GUIManager::createPanel(gui::AbstractPanel::Type panelType)
 {
     switch (panelType)
     {
-        case GUIManager::PanelType::VIEWPORT:
+        case gui::AbstractPanel::Type::VIEWPORT:
         {
-            if (m_viewportPanelList.size() >= GUIManager::MAX_VIEWPORT_PANELS)
-                return nullptr;
+            gui::ViewportPanel* p_viewportPanel = nullptr;
+            bool isCreated = false;
+            for (auto p_viewportPanelListElement : m_viewportPanelList)
+            {
+                if (p_viewportPanelListElement == nullptr)
+                {
+                    p_viewportPanelListElement =    new gui::ViewportPanel();
+                    p_viewportPanel =               p_viewportPanelListElement;
+                    isCreated =                     true;
 
-            gui::ViewportPanel* p_viewportPanel = new gui::ViewportPanel();
-            return p_viewportPanel;
+                    break;
+                }
+            }
+
+            if (isCreated)  return p_viewportPanel;
+            else            return nullptr;
         }
 
-        case GUIManager::PanelType::SCENE_TREE:
+        case gui::AbstractPanel::Type::SCENE_TREE:
         {
             //...
         }

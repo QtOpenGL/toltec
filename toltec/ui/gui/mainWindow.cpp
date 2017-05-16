@@ -18,6 +18,7 @@
 
 #include "guiManager.hpp"
 #include "ui/gui/outputLineWidget.hpp"
+#include "ui/gui/abstractPanel.hpp"
 #include "ui/gui/panelContainer.hpp"
 #include "renderingSystem/abstractViewport.hpp"
 
@@ -31,6 +32,9 @@ namespace gui
     *   (const std::string&, int, int)
     *-----------------------------------------------------------------------------*/
     MainWindow::MainWindow(const std::string& title, int width, int height)
+        :
+        mp_mainPanelContainer(nullptr),
+        mp_mainLayout(nullptr)
     {
         //INITIALIZE
         this->setWindowTitle(title.c_str());
@@ -70,13 +74,16 @@ namespace gui
         p_centralWidget->setLayout(mp_mainLayout);
 
         //1.1.1. PANEL CONTAINER
-        mp_mainPanel = new PanelContainer();
-        mp_mainPanel->setContentsMargins(0, 0, 0, 0);
+        mp_mainPanelContainer = new PanelContainer();
+        mp_mainPanelContainer->setContentsMargins(0, 0, 0, 0);
         //add
-        mp_mainLayout->addWidget(mp_mainPanel);
+        mp_mainLayout->addWidget(mp_mainPanelContainer);
 
         //1.1.1.1. VIEWPORT PANEL
-
+        AbstractPanel* p_viewportPanel = GUIManager::getInstance().createPanel(AbstractPanel::Type::VIEWPORT);
+        p_viewportPanel->setContentsMargins(0, 0, 0, 0);
+        //add
+        mp_mainPanelContainer->addPanel(p_viewportPanel);
 
         //1.1.2. OUTPUT STREAM (LABEL)
         auto p_outputLineWidget = new OutputLineWidget();

@@ -18,6 +18,7 @@
 #include <string>
 #include <vector>
 
+#include "ui/gui/abstractPanel.hpp"
 #include "ui/gui/panelContainer.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -26,7 +27,7 @@
 namespace gui
 {
     class OutputLineWidget;
-    class Panel;
+    class AbstractPanel;
     class ViewportPanel;
 }
 class AbstractViewport;
@@ -42,36 +43,30 @@ public:
     static const unsigned int MAX_SCENE_TREE_PANELS =   2;
 
 public:
-    //TYPES
-    enum PanelType {
-        VIEWPORT,
-        SCENE_TREE
-    };
-
     //SINGLETON
-    static GUIManager& getInstance()
+    static GUIManager&  getInstance()
     {
         static GUIManager instance;
         return instance;
     }
-    GUIManager(const GUIManager&) = delete;
-    void operator=(const GUIManager&) = delete;
+                        GUIManager(const GUIManager&) = delete;
+    void                operator=(const GUIManager&) = delete;
 
     //SET
-    void            setOutputLineWidget(gui::OutputLineWidget* p_outputLineWidget);
+    void                setOutputLineWidget(gui::OutputLineWidget* p_outputLineWidget);
 
     //GET
     std::vector<std::unique_ptr<gui::PanelContainer>>&                  getFloatingPanelContainerList();
     std::array<gui::ViewportPanel*, GUIManager::MAX_VIEWPORT_PANELS>&   getViewportPanelList();
 
     //OTHER
-    void            displayMessage(const std::string& message);
-    void            displayWarning(const std::string& warning);
-    void            displayError(const std::string& error);
+    void                displayMessage(const std::string& message);
+    void                displayWarning(const std::string& warning);
+    void                displayError(const std::string& error);
 
     //create
-    gui::Panel*     createPanel(GUIManager::PanelType panelType);
-    gui::Panel&     createPanelWithContainer(GUIManager::PanelType panelType);
+    gui::AbstractPanel* createPanel(gui::AbstractPanel::Type panelType);
+    gui::AbstractPanel& createPanelWithContainer(gui::AbstractPanel::Type panelType);
 
 private:
     //SINGLETON

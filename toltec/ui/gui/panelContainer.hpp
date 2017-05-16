@@ -16,13 +16,14 @@
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qwidget.h>
+#include <QtWidgets/qboxlayout.h>
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace gui
 {
-    class Panel;
+    class AbstractPanel;
 }
 
 /*-----------------------------------------------------------------------------
@@ -40,6 +41,13 @@ namespace gui
 
     public:
         //CONSTRUCTORS
+                    PanelContainer();
         virtual     ~PanelContainer() {}
+
+        //ADD
+        void        addPanel(AbstractPanel* p_panel);
+
+    private:
+        QVBoxLayout*    mp_mainLayout;
     };
-}
+} //NAMESPACE: GUI

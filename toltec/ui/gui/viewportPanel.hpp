@@ -17,8 +17,7 @@
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtWidgets/qwidget.h>
-
-#include "ui/gui/panel.hpp"
+#include "ui/gui/abstractPanel.hpp"
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
@@ -36,25 +35,22 @@ namespace gui
     *   CLASS DECLARATIONS
     *   VIEWPORT PANEL
     *-----------------------------------------------------------------------------*/
-    class ViewportPanel : public Panel
+    class ViewportPanel : public AbstractPanel
     {
         Q_OBJECT
 
     public:
         //CONSTRUCTORS
-                    ViewportPanel();
-        explicit    ViewportPanel(const unsigned int idNumber);
-        virtual     ~ViewportPanel();
+                            ViewportPanel();
+        virtual             ~ViewportPanel();
 
         //GET
         AbstractViewport*   getViewport() const;
 
     private:
-        void        setupUI();
+        virtual void        setupUI();
 
     private:
-        unsigned int                m_idNumber;
-
         RenderingSystem*            mp_activeRenderingSystem;   
         AbstractViewport*           mp_viewport;
 

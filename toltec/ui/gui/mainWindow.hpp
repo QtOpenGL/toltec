@@ -20,7 +20,10 @@
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class QWidget;
+namespace gui
+{
+    class PanelContainer;
+}
 class QVBoxLayout;
 
 /*-----------------------------------------------------------------------------
@@ -46,7 +49,7 @@ namespace gui
         void        setupMenuBar();
 
     private:
-        QWidget*        mp_mainPanel;
+        PanelContainer* mp_mainPanelContainer;
         QVBoxLayout*    mp_mainLayout;
     };
 } //NAMESPACE: GUI
