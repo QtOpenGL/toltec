@@ -12,8 +12,10 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <memory>
 #include <vector>
 #include <glm/glm.hpp>
+#include "renderingSystem/abstractViewport.hpp"
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
@@ -31,8 +33,11 @@ public:
                     AbstractRendererResource();
     virtual         ~AbstractRendererResource() {}
 
-    //GET
+    //?
     bool            areResourcesInitialized();
+
+    //GET
+    std::vector<std::unique_ptr<AbstractViewport>>& getViewportList();
 
     //OTHER
     virtual void    initializeResources() = 0;
@@ -48,7 +53,8 @@ protected:
                         const bool& initializeRendererResourceFlag) = 0;
 
 protected:
-    bool            m_areResourcesInitialized;
+    bool                                            m_areResourcesInitialized;
+    std::vector<std::unique_ptr<AbstractViewport>>  m_viewportList;
 
 private:
     //...
@@ -59,4 +65,9 @@ private:
 inline bool AbstractRendererResource::areResourcesInitialized()
 {
     return m_areResourcesInitialized;
+}
+
+inline std::vector<std::unique_ptr<AbstractViewport>>& AbstractRendererResource::getViewportList()
+{
+    return m_viewportList;
 }

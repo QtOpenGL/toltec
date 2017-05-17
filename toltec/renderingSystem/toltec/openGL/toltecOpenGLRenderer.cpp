@@ -48,6 +48,7 @@ namespace tgl
             RenderEvent* p_rednerEvent =        static_cast<RenderEvent*>(p_event);
             AbstractViewport* p_viewport =      p_rednerEvent->getViewport();
 
+            //RENDER
             this->prepareForRendering();
             this->render(p_viewport);
             return true;
@@ -74,10 +75,10 @@ namespace tgl
     void ToltecOpenGLRenderer::prepareForRendering()
     {
         //INITIALIZE OR UPDATE RENDER RESOURCES
-        //if (mp_rendererResource->areResourcesInitialized() == false)
-        //  mp_rendererResource->initializeResources();
-        //else
-        //  mp_rendererResource->updateResources();
+        if (mp_rendererResource->areResourcesInitialized() == false)
+          mp_rendererResource->initializeResources();
+        else
+          mp_rendererResource->updateResources();
 
         //RENDER ITEM PRUNING
         //...
@@ -89,18 +90,11 @@ namespace tgl
     void ToltecOpenGLRenderer::render(AbstractViewport* p_viewport)
     {
         /*-----------------------------------------------------------------------------
-        *   CHECK
+        *   CHECK TYPE
         *-----------------------------------------------------------------------------*/
-        if (p_viewport->getType() != RenderingAPI::OPENGL_API)
-        {
-            GUIManager::getInstance().displayError("Viewport type is not matching renderer type!");
+        gl::OpenGLViewport* p_openGLViewport = dynamic_cast<gl::OpenGLViewport*>(p_viewport);
+        if (p_openGLViewport == nullptr)
             return;
-        }
-
-        /*-----------------------------------------------------------------------------
-        *   CAST
-        *-----------------------------------------------------------------------------*/
-        gl::OpenGLViewport* p_openGLViewport = static_cast<gl::OpenGLViewport*>(p_viewport);
 
         /*-----------------------------------------------------------------------------
         *   MAKE OPENGL CONTEXT CURRENT AGAINST GIVEN SURFACE

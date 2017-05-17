@@ -12,9 +12,7 @@
 
 #include <iostream>
 
-#include <glbinding/gl/gl.h>        //include glbinding before qt headers!
 #include <glbinding/Binding.h>
-#include <glbinding/ContextInfo.h>
 #include <QtGui/qsurfaceformat.h>
 #include <QtGui/qopenglcontext.h>
 
@@ -33,7 +31,6 @@ namespace gl
         mp_openGLContext(nullptr)
     {
         //INITIALIZE
-        m_type = RenderingAPI::OPENGL_API;
         this->initializeOpenGLContext();
     }
 
@@ -70,33 +67,6 @@ namespace gl
     void OpenGLViewport::swapBuffers()
     {
         mp_openGLContext->swapBuffers(this);
-    }
-
-    /*-----------------------------------------------------------------------------
-    *   PRINT OPENGL INFO
-    *-----------------------------------------------------------------------------*/
-    void OpenGLViewport::printOpenGLInfo()
-    {
-        ////PRINT
-        //this->makeCurrent();
-
-        ////fetch data
-        //int data[10];
-        //glGetIntegerv(GLenum::GL_MAX_UNIFORM_LOCATIONS, &data[0]);
-        //glGetIntegerv(GLenum::GL_MAX_VERTEX_UNIFORM_COMPONENTS, &data[1]);
-        //glGetIntegerv(GLenum::GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &data[2]);
-
-        ////print data
-        //std::cout << "OpenGL ver.:\t" << glGetString(GLenum::GL_VERSION) << std::endl
-        //  << "GLSL ver.:\t" << glGetString(GLenum::GL_SHADING_LANGUAGE_VERSION) << std::endl
-        //  << "Lib. vendor:\t" << glGetString(GLenum::GL_VENDOR) << std::endl
-        //  << "Renderer:\t" << glGetString(GLenum::GL_RENDERER) << "\n\n"
-
-        //  << "Max uniform locations:\t\t" << data[0] << std::endl
-        //  << "Max vert uniform components:\t" << data[1] << std::endl
-        //  << "Max frag uniform components:\t" << data[2] << "\n\n";
-
-        //this->doneCurrent();
     }
 
     /*-----------------------------------------------------------------------------

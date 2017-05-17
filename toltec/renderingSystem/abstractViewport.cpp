@@ -19,7 +19,6 @@
 *-----------------------------------------------------------------------------*/
 AbstractViewport::AbstractViewport()
     :
-    m_type(RenderingAPI::UNSPECIFIED_API),
     mp_renderer(nullptr),
     mp_camera(nullptr),
 

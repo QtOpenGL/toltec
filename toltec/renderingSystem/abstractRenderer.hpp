@@ -41,7 +41,7 @@ public:
     virtual bool    event(QEvent* p_event) = 0;
 
     //GET
-    std::unique_ptr<AbstractRendererResource>&  getRendererResource();
+    AbstractRendererResource&   getRendererResource();
 
     //OTHER
     virtual void    requestRender(AbstractViewport* p_viewport) = 0;
@@ -56,7 +56,7 @@ protected:
 
 /*----------------------------------------------------------------------------*/
 
-inline std::unique_ptr<AbstractRendererResource>& AbstractRenderer::getRendererResource()
+inline AbstractRendererResource& AbstractRenderer::getRendererResource()
 {
-    return mp_rendererResource;
+    return *mp_rendererResource;
 }

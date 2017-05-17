@@ -13,11 +13,8 @@
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <map>
-#include <memory>
 #include <string>
-#include <vector>
 
-#include "renderingSystem/abstractViewport.hpp"
 #include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -35,21 +32,19 @@ public:
     void                addRenderingAPI(RenderingAPI* p_renderingAPI);
 
     //GET
-    const std::string&                                      getName() const;
-    const RenderingAPI&                                     getActiveRenderingAPI() const;
-    const std::vector<std::unique_ptr<AbstractViewport>>&   getViewportList() const;
+    const std::string&      getName() const;
+    RenderingAPI&           getActiveRenderingAPI();
 
     //OTHER
     void                switchToRenderingAPI(RenderingAPI::Type renderingAPIType);
     AbstractViewport*   createViewport();
+    void                printContextInfo() const;
 
 private:
-    std::string                                     m_name;
+    std::string                                 m_name;
 
-    std::map<RenderingAPI::Type, RenderingAPI*>     m_renderingAPIMap;
-    RenderingAPI*                                   mp_activeRenderingAPI;
-
-    std::vector<std::unique_ptr<AbstractViewport>>  m_viewportList;
+    std::map<RenderingAPI::Type, RenderingAPI*> m_renderingAPIMap;
+    RenderingAPI*                               mp_activeRenderingAPI;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -59,12 +54,7 @@ inline const std::string& RenderingSystem::getName() const
     return m_name;
 }
 
-inline const RenderingAPI& RenderingSystem::getActiveRenderingAPI() const
+inline RenderingAPI& RenderingSystem::getActiveRenderingAPI()
 {
     return *mp_activeRenderingAPI;
-}
-
-inline const std::vector<std::unique_ptr<AbstractViewport>>& RenderingSystem::getViewportList() const
-{
-    return m_viewportList;
 }

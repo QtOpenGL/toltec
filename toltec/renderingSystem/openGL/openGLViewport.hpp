@@ -47,8 +47,6 @@ namespace gl
         void            doneCurrent();
         void            swapBuffers();
 
-        void            printOpenGLInfo();
-
     private:
         void            initializeOpenGLContext();
 

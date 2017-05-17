@@ -65,8 +65,8 @@ public:
     void                displayError(const std::string& error);
 
     //create
-    gui::AbstractPanel* createPanel(gui::AbstractPanel::Type panelType);
-    gui::AbstractPanel& createPanelWithContainer(gui::AbstractPanel::Type panelType);
+    gui::AbstractPanel* createPanel(gui::AbstractPanel::PanelType panelType);
+    gui::AbstractPanel& createPanelWithContainer(gui::AbstractPanel::PanelType panelType);
 
 private:
     //SINGLETON

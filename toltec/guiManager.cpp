@@ -61,31 +61,28 @@ void GUIManager::displayError(const std::string& error)
 /*-----------------------------------------------------------------------------
 *   CREATE PANEL
 *-----------------------------------------------------------------------------*/
-gui::AbstractPanel* GUIManager::createPanel(gui::AbstractPanel::Type panelType)
+gui::AbstractPanel* GUIManager::createPanel(gui::AbstractPanel::PanelType panelType)
 {
     switch (panelType)
     {
-        case gui::AbstractPanel::Type::VIEWPORT:
+        case gui::AbstractPanel::PanelType::VIEWPORT:
         {
             gui::ViewportPanel* p_viewportPanel = nullptr;
-            bool isCreated = false;
             for (auto p_viewportPanelListElement : m_viewportPanelList)
             {
                 if (p_viewportPanelListElement == nullptr)
                 {
                     p_viewportPanelListElement =    new gui::ViewportPanel();
                     p_viewportPanel =               p_viewportPanelListElement;
-                    isCreated =                     true;
 
                     break;
                 }
             }
 
-            if (isCreated)  return p_viewportPanel;
-            else            return nullptr;
+            return p_viewportPanel;
         }
 
-        case gui::AbstractPanel::Type::SCENE_TREE:
+        case gui::AbstractPanel::PanelType::SCENE_TREE:
         {
             //...
         }

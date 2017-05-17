@@ -14,7 +14,6 @@
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <QtGui/qwindow.h>
-#include "renderingSystem/renderingAPI.hpp"
 
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
@@ -45,12 +44,10 @@ public:
     void                setCamera(TransformNode* p_camera);
 
     //GET
-    RenderingAPI::Type  getType() const;
     AbstractRenderer*   getRenderer() const;
     TransformNode*      getCamera() const;
 
 protected:
-    RenderingAPI::Type  m_type;
     AbstractRenderer*   mp_renderer;
     TransformNode*      mp_camera;
 
@@ -73,11 +70,6 @@ private:
 };
 
 /*----------------------------------------------------------------------------*/
-
-inline RenderingAPI::Type AbstractViewport::getType() const
-{
-    return m_type;
-}
 
 inline AbstractRenderer* AbstractViewport::getRenderer() const
 {

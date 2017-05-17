@@ -30,7 +30,7 @@ namespace gui
 
     public:
         //TYPES
-        enum Type {
+        enum PanelType {
             VIEWPORT,
             SCENE_TREE
         };
@@ -42,6 +42,6 @@ namespace gui
         virtual void    setupUI() = 0;
 
     protected:
-        AbstractPanel::Type m_type;
+        AbstractPanel::PanelType m_type;
     };
 }

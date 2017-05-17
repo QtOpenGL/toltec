@@ -13,8 +13,6 @@
 #include <cstdlib>
 #include <glbinding/Binding.h>
 
-#include "renderingSystem/abstractRenderer.hpp"
-#include "renderingSystem/abstractRendererResource.hpp"
 #include "renderingSystem/openGL/openGLViewport.hpp"
 #include "ui/gui/viewportPanel.hpp"
 #include "utils.hpp"
@@ -66,11 +64,11 @@ void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
         return;
 
     //CLEAR OLD RESOURCES
-    mp_activeRenderingAPI->getRenderer()->getRendererResource()->deleteResources();
+    mp_activeRenderingAPI->getRenderer().getRendererResource().deleteResources();
 
     //SET NEW
     mp_activeRenderingAPI = iter->second;
-    mp_activeRenderingAPI->getRenderer()->getRendererResource()->initializeResources();
+    mp_activeRenderingAPI->getRenderer().getRendererResource().initializeResources();
 }
 
 /*-----------------------------------------------------------------------------
@@ -82,7 +80,7 @@ AbstractViewport* RenderingSystem::createViewport()
     {
     case RenderingAPI::OPENGL_API:
         gl::OpenGLViewport* p_viewport = new gl::OpenGLViewport();
-        p_viewport->setRenderer(mp_activeRenderingAPI->getRenderer());
+        p_viewport->setRenderer(&(mp_activeRenderingAPI->getRenderer()));
 
         //set opengl
         p_viewport->makeCurrent();
@@ -91,4 +89,31 @@ AbstractViewport* RenderingSystem::createViewport()
 
         return p_viewport;
     }
+}
+
+/*-----------------------------------------------------------------------------
+*   PRINT CONTEXT INFO
+*-----------------------------------------------------------------------------*/
+void RenderingSystem::printContextInfo() const
+{
+    ////PRINT
+    //this->makeCurrent();
+
+    ////fetch data
+    //int data[10];
+    //glGetIntegerv(GLenum::GL_MAX_UNIFORM_LOCATIONS, &data[0]);
+    //glGetIntegerv(GLenum::GL_MAX_VERTEX_UNIFORM_COMPONENTS, &data[1]);
+    //glGetIntegerv(GLenum::GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &data[2]);
+
+    ////print data
+    //std::cout << "OpenGL ver.:\t" << glGetString(GLenum::GL_VERSION) << std::endl
+    //  << "GLSL ver.:\t" << glGetString(GLenum::GL_SHADING_LANGUAGE_VERSION) << std::endl
+    //  << "Lib. vendor:\t" << glGetString(GLenum::GL_VENDOR) << std::endl
+    //  << "Renderer:\t" << glGetString(GLenum::GL_RENDERER) << "\n\n"
+
+    //  << "Max uniform locations:\t\t" << data[0] << std::endl
+    //  << "Max vert uniform components:\t" << data[1] << std::endl
+    //  << "Max frag uniform components:\t" << data[2] << "\n\n";
+
+    //this->doneCurrent();
 }

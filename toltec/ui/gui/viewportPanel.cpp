@@ -35,7 +35,7 @@ namespace gui
         mp_activeRenderingSystem(RenderManager::getInstance().getDefaultRenderingSystem())
     {
         //INITIALIZE
-        m_type = AbstractPanel::Type::VIEWPORT;
+        m_type = AbstractPanel::PanelType::VIEWPORT;
 
         //SETUP
         this->setupUI();

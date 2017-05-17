@@ -13,12 +13,10 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <memory>
 #include <vector>
 
-/*-----------------------------------------------------------------------------
-*   FORWARD DECLARATIONS
-*-----------------------------------------------------------------------------*/
-class AbstractRenderer;
+#include "renderingSystem/abstractRenderer.hpp"
 
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
@@ -42,11 +40,11 @@ public:
 
     //GET
     RenderingAPI::Type              getType() const;
-    AbstractRenderer*               getRenderer();
+    AbstractRenderer&           getRenderer();
 
 private:
-    RenderingAPI::Type              m_type;
-    AbstractRenderer*               mp_renderer;
+    RenderingAPI::Type                  m_type;
+    std::unique_ptr<AbstractRenderer>   mp_renderer;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -56,7 +54,7 @@ inline RenderingAPI::Type RenderingAPI::getType() const
     return m_type;
 }
 
-inline AbstractRenderer* RenderingAPI::getRenderer()
+inline AbstractRenderer& RenderingAPI::getRenderer()
 {
-    return mp_renderer;
+    return *mp_renderer;
 }

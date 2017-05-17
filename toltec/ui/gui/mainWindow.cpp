@@ -80,7 +80,8 @@ namespace gui
         mp_mainLayout->addWidget(mp_mainPanelContainer);
 
         //1.1.1.1. VIEWPORT PANEL
-        AbstractPanel* p_viewportPanel = GUIManager::getInstance().createPanel(AbstractPanel::Type::VIEWPORT);
+        AbstractPanel* p_viewportPanel = GUIManager::getInstance().createPanel(
+            AbstractPanel::PanelType::VIEWPORT);
         p_viewportPanel->setContentsMargins(0, 0, 0, 0);
         //add
         mp_mainPanelContainer->addPanel(p_viewportPanel);
