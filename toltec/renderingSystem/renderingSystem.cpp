@@ -64,11 +64,11 @@ void RenderingSystem::switchToRenderingAPI(RenderingAPI::Type renderingAPIType)
         return;
 
     //CLEAR OLD RESOURCES
-    mp_activeRenderingAPI->getRenderer().getRendererResource().deleteResources();
+    mp_activeRenderingAPI->getActiveRenderer().getRendererResource().deleteResources();
 
     //SET NEW
     mp_activeRenderingAPI = iter->second;
-    mp_activeRenderingAPI->getRenderer().getRendererResource().initializeResources();
+    mp_activeRenderingAPI->getActiveRenderer().getRendererResource().initializeResources();
 }
 
 /*-----------------------------------------------------------------------------
@@ -80,7 +80,7 @@ AbstractViewport* RenderingSystem::createViewport()
     {
     case RenderingAPI::OPENGL_API:
         gl::OpenGLViewport* p_viewport = new gl::OpenGLViewport();
-        p_viewport->setRenderer(&(mp_activeRenderingAPI->getRenderer()));
+        p_viewport->setRenderer(&(mp_activeRenderingAPI->getActiveRenderer()));
 
         //set opengl
         p_viewport->makeCurrent();

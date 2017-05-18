@@ -61,7 +61,7 @@ void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
 {
     const auto& viewportList = p_renderingSystem
         ->getActiveRenderingAPI()
-        .getRenderer()
+        .getActiveRenderer()
         .getRendererResource()
         .getViewportList();
 
@@ -97,7 +97,7 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
     //REQUEST RENDERER
     const auto& viewportList = p_renderingSystem
         ->getActiveRenderingAPI()
-        .getRenderer()
+        .getActiveRenderer()
         .getRendererResource()
         .getViewportList();
 

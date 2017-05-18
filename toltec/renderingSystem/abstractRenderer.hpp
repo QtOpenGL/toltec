@@ -17,12 +17,11 @@
 
 #include <QtCore/qobject.h>
 
-#include "renderingSystem/abstractRendererResource.hpp"
-
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 class AbstractViewport;
+class AbstractRendererResource;
 
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
@@ -34,7 +33,7 @@ class AbstractRenderer : public QObject
 
 public:
     //CONSTRUCTORS
-                    AbstractRenderer();
+    explicit        AbstractRenderer(AbstractRendererResource* p_abstractRendererResource);
     virtual         ~AbstractRenderer() {}
 
     //EVENTS
@@ -51,7 +50,7 @@ protected:
     virtual void    render(AbstractViewport* p_viewport) = 0;
 
 protected:
-    std::unique_ptr<AbstractRendererResource>   mp_rendererResource;
+    AbstractRendererResource*   mp_rendererResource;
 };
 
 /*----------------------------------------------------------------------------*/

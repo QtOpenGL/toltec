@@ -17,6 +17,7 @@
 #include <vector>
 
 #include "renderingSystem/abstractRenderer.hpp"
+#include "renderingSystem/abstractRendererResource.hpp"
 
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
@@ -35,16 +36,24 @@ public:
     };
 
     //CONSTRUCTORS
-                RenderingAPI(RenderingAPI::Type type, AbstractRenderer* p_renderer);
-    virtual     ~RenderingAPI() {};
+                    RenderingAPI(
+                        RenderingAPI::Type                          type,
+                        std::unique_ptr<AbstractRendererResource>   p_abstractRendererResource,
+                        std::unique_ptr<AbstractRenderer>           p_renderer);
+    virtual         ~RenderingAPI() {};
+
+    //ADD
+    void            addRenderer(std::unique_ptr<AbstractRenderer> p_renderer);
 
     //GET
-    RenderingAPI::Type              getType() const;
-    AbstractRenderer&           getRenderer();
+    RenderingAPI::Type      getType() const;
+    AbstractRenderer&       getActiveRenderer();
 
 private:
-    RenderingAPI::Type                  m_type;
-    std::unique_ptr<AbstractRenderer>   mp_renderer;
+    RenderingAPI::Type                              m_type;
+    std::unique_ptr<AbstractRendererResource>       mp_rendererResource;
+    std::vector<std::unique_ptr<AbstractRenderer>>  mp_rendererList;
+    AbstractRenderer*                               mp_activeRenderer;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -54,7 +63,7 @@ inline RenderingAPI::Type RenderingAPI::getType() const
     return m_type;
 }
 
-inline AbstractRenderer& RenderingAPI::getRenderer()
+inline AbstractRenderer& RenderingAPI::getActiveRenderer()
 {
-    return *mp_renderer;
+    return *mp_activeRenderer;
 }

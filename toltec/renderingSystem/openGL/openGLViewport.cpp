@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#include <glbinding/Binding.h>
+#include <glbinding/Binding.h>      //this causes warning C4005 'WINAPI': macro redefinition
 #include <QtGui/qsurfaceformat.h>
 #include <QtGui/qopenglcontext.h>
 

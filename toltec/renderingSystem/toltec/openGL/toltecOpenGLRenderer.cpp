@@ -30,12 +30,12 @@ namespace tgl
 {
     /*-----------------------------------------------------------------------------
     *   CONSTRUCTOR
+    *   (AbstractRendererResource*)
     *-----------------------------------------------------------------------------*/
-    ToltecOpenGLRenderer::ToltecOpenGLRenderer()
+    ToltecOpenGLRenderer::ToltecOpenGLRenderer(AbstractRendererResource* p_abstractRendererResource)
+        :
+        AbstractRenderer(p_abstractRendererResource)
     {
-        //INITIALIZE
-        mp_rendererResource = std::move(
-            std::unique_ptr<ToltecOpenGLRendererResource>(new ToltecOpenGLRendererResource()));
     }
 
     /*-----------------------------------------------------------------------------

@@ -92,8 +92,15 @@ int main(int argc, char* argv[])
     //TOLTEC RENDERING SYSTEM
     RenderingSystem toltecRenderingSystem("toltec");
     //opengl
-    tgl::ToltecOpenGLRenderer toltecOpenGLRenderer;
-    RenderingAPI toltecOpenGLRenderingAPI(RenderingAPI::OPENGL_API, &toltecOpenGLRenderer);
+    std::unique_ptr<tgl::ToltecOpenGLRendererResource> p_toltecRendererResource(
+        new tgl::ToltecOpenGLRendererResource());
+    std::unique_ptr<tgl::ToltecOpenGLRenderer> p_toltecOpenGLRenderer(
+        new tgl::ToltecOpenGLRenderer(p_toltecRendererResource.get()));
+    RenderingAPI toltecOpenGLRenderingAPI(
+        RenderingAPI::OPENGL_API, 
+        std::move(p_toltecRendererResource),
+        std::move(p_toltecOpenGLRenderer)
+    );
     toltecRenderingSystem.addRenderingAPI(&toltecOpenGLRenderingAPI);
 
     //ADD RENDERING SYSTEMS TO THE RENDER MANAGER

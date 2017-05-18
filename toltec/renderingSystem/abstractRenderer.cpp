@@ -12,9 +12,10 @@
 
 /*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
+*   (AbstractRendererResource*)
 *-----------------------------------------------------------------------------*/
-AbstractRenderer::AbstractRenderer()
+AbstractRenderer::AbstractRenderer(AbstractRendererResource* p_abstractRendererResource)
     :
-    mp_rendererResource(nullptr)
+    mp_rendererResource(p_abstractRendererResource)
 {
 }

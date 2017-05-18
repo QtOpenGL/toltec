@@ -37,7 +37,7 @@ namespace tgl
 
     public:
         //CONSTRUCTORS
-                        ToltecOpenGLRenderer();
+        explicit        ToltecOpenGLRenderer(AbstractRendererResource* p_abstractRendererResource);
         virtual         ~ToltecOpenGLRenderer() {}
 
         //EVENTS
