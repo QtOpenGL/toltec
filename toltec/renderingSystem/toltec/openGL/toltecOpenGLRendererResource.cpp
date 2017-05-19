@@ -36,7 +36,6 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     ToltecOpenGLRendererResource::ToltecOpenGLRendererResource()
     {
-        //this->initializeResources();
     }
 
     /*-----------------------------------------------------------------------------

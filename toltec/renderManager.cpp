@@ -65,8 +65,8 @@ void RenderManager::renderCall(RenderingSystem* p_renderingSystem)
         .getRendererResource()
         .getViewportList();
 
-    for (const auto& p_viewport : viewportList)
-        p_viewport->getRenderer()->requestRender(p_viewport.get());
+    for (auto p_viewport : viewportList)
+        p_viewport->getRenderer()->requestRender(p_viewport);
 
     this->finishRenderCall();
 }
@@ -101,8 +101,8 @@ void RenderManager::renderCall(const std::string& renderingSystemName)
         .getRendererResource()
         .getViewportList();
 
-    for (const auto& p_viewport : viewportList)
-        p_viewport->getRenderer()->requestRender(p_viewport.get());
+    for (auto p_viewport : viewportList)
+        p_viewport->getRenderer()->requestRender(p_viewport);
     //-->
 
     this->finishRenderCall();

@@ -36,8 +36,11 @@ public:
     //?
     bool            areResourcesInitialized();
 
+    //ADD
+    void            addViewport(AbstractViewport* p_viewport);
+
     //GET
-    std::vector<std::unique_ptr<AbstractViewport>>& getViewportList();
+    std::vector<AbstractViewport*>& getViewportList();
 
     //OTHER
     virtual void    initializeResources() = 0;
@@ -53,8 +56,8 @@ protected:
                         const bool& initializeRendererResourceFlag) = 0;
 
 protected:
-    bool                                            m_areResourcesInitialized;
-    std::vector<std::unique_ptr<AbstractViewport>>  m_viewportList;
+    bool                            m_areResourcesInitialized;
+    std::vector<AbstractViewport*>  m_viewportList;
 
 private:
     //...
@@ -67,7 +70,7 @@ inline bool AbstractRendererResource::areResourcesInitialized()
     return m_areResourcesInitialized;
 }
 
-inline std::vector<std::unique_ptr<AbstractViewport>>& AbstractRendererResource::getViewportList()
+inline std::vector<AbstractViewport*>& AbstractRendererResource::getViewportList()
 {
     return m_viewportList;
 }

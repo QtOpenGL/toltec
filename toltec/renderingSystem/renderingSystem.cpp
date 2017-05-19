@@ -78,16 +78,24 @@ AbstractViewport* RenderingSystem::createViewport()
 {
     switch (mp_activeRenderingAPI->getType())
     {
-    case RenderingAPI::OPENGL_API:
-        gl::OpenGLViewport* p_viewport = new gl::OpenGLViewport();
-        p_viewport->setRenderer(&(mp_activeRenderingAPI->getActiveRenderer()));
+        case RenderingAPI::OPENGL_API:
+        {
+            gl::OpenGLViewport* p_viewport = new gl::OpenGLViewport();
+            p_viewport->setRenderer(&(mp_activeRenderingAPI->getActiveRenderer()));
 
-        //set opengl
-        p_viewport->makeCurrent();
-        glbinding::Binding::initialize();
-        p_viewport->doneCurrent();
+            p_viewport->makeCurrent();
+            glbinding::Binding::initialize();
+            p_viewport->doneCurrent();
 
-        return p_viewport;
+            mp_activeRenderingAPI->getRendererResource().addViewport(p_viewport);
+
+            return p_viewport;
+        }
+
+        default:
+        {
+            return nullptr;
+        }
     }
 }
 

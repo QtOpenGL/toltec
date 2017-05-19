@@ -18,3 +18,11 @@ AbstractRendererResource::AbstractRendererResource()
     m_areResourcesInitialized(false)
 {
 }
+
+/*-----------------------------------------------------------------------------
+*   ADD VIEWPORT
+*-----------------------------------------------------------------------------*/
+void AbstractRendererResource::addViewport(AbstractViewport* p_viewport)
+{
+    m_viewportList.push_back(p_viewport);
+}

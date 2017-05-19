@@ -121,6 +121,8 @@ namespace gui
 
         //1.2. VIEWPORT
         mp_viewport = mp_activeRenderingSystem->createViewport();
+        if (mp_viewport == nullptr)
+            DEBUG_MSG(":D");
         QWidget* p_viewportWidget = QWidget::createWindowContainer(mp_viewport);
         p_viewportWidget->setAutoFillBackground(false);
         //add

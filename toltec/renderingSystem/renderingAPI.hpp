@@ -28,11 +28,11 @@ class RenderingAPI
 public:
     //TYPES
     enum Type {
+        UNSPECIFIED_API,
         OPENGL_API,
         VULKAN_API,
         DIRECT3D_API,
-        METAL_API,
-        UNSPECIFIED_API
+        METAL_API
     };
 
     //CONSTRUCTORS
@@ -46,8 +46,9 @@ public:
     void            addRenderer(std::unique_ptr<AbstractRenderer> p_renderer);
 
     //GET
-    RenderingAPI::Type      getType() const;
-    AbstractRenderer&       getActiveRenderer();
+    RenderingAPI::Type          getType() const;
+    AbstractRendererResource&   getRendererResource();
+    AbstractRenderer&           getActiveRenderer();
 
 private:
     RenderingAPI::Type                              m_type;
@@ -61,6 +62,11 @@ private:
 inline RenderingAPI::Type RenderingAPI::getType() const
 {
     return m_type;
+}
+
+inline AbstractRendererResource& RenderingAPI::getRendererResource()
+{
+    return *mp_rendererResource;
 }
 
 inline AbstractRenderer& RenderingAPI::getActiveRenderer()
