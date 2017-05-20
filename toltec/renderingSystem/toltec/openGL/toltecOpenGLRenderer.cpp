@@ -75,10 +75,10 @@ namespace tgl
     void ToltecOpenGLRenderer::prepareForRendering()
     {
         //INITIALIZE OR UPDATE RENDER RESOURCES
-        //if (mp_rendererResource->areResourcesInitialized() == false)
-        //  mp_rendererResource->initializeResources();
-        //else
-        //  mp_rendererResource->updateResources();
+        if (mp_rendererResource->areResourcesInitialized() == false)
+          mp_rendererResource->initializeResources();
+        else
+          mp_rendererResource->updateResources();
 
         //RENDER ITEM PRUNING
         //...

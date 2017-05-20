@@ -34,7 +34,8 @@ namespace tgl
     /*-----------------------------------------------------------------------------
     *   CREATE SHADER
     *-----------------------------------------------------------------------------*/
-    void ShaderProgram::createShader(const std::string& path, ShaderProgram::ShaderType shaderType)
+    void ShaderProgram::createShader(const std::string& shaderFilePath, 
+        ShaderProgram::ShaderType shaderType)
     {
         //CREATE SHADER
         gl::GLuint shaderID = 0;
@@ -45,13 +46,11 @@ namespace tgl
                 shaderID = gl::glCreateShader(gl::GLenum::GL_VERTEX_SHADER);
                 break;
             }
-
             case ShaderProgram::ShaderType::GEOMETRY:
             {
                 shaderID = gl::glCreateShader(gl::GLenum::GL_GEOMETRY_SHADER);
                 break;
             }
-
             case ShaderProgram::ShaderType::FRAGMENT:
             {
                 shaderID = gl::glCreateShader(gl::GLenum::GL_FRAGMENT_SHADER);
@@ -59,25 +58,25 @@ namespace tgl
             }
         }
 
-        //COMPILE SHADER
+        //CHECK
         if (shaderID == 0)
         {
             DEBUG_ERR("Shader creation failed!");
+            return;
         }
-        else
-        {
-            const std::string& shaderCode =         utils::loadTextFile(path);
-            const gl::GLchar* shaderSourceCode =    shaderCode.c_str();
-            gl::GLint shaderSourceCodeLength =      shaderCode.length();
 
-            gl::glShaderSource(shaderID, 1, &shaderSourceCode, &shaderSourceCodeLength);
-            gl::glCompileShader(shaderID);
+        //COMPILE SHADER
+        const std::string& shaderCode =         utils::loadTextFile(shaderFilePath, true);
+        const gl::GLchar* shaderSourceCode =    shaderCode.c_str();
+        gl::GLint shaderSourceCodeLength =      shaderCode.length();
 
-            bool failureFlag = this->checkForErrors(false, shaderID, gl::GLenum::GL_COMPILE_STATUS, 
-                "Shader compilation failed!");
-            if (failureFlag == false)
-                m_unattachedShaderIDList.push_back(shaderID);
-        }
+        gl::glShaderSource(shaderID, 1, &shaderSourceCode, &shaderSourceCodeLength);
+        gl::glCompileShader(shaderID);
+
+        bool failureFlag = this->checkForErrors(false, shaderID, gl::GLenum::GL_COMPILE_STATUS, 
+            "Shader compilation failed!");
+        if (failureFlag == false)
+            m_unattachedShaderIDList.push_back(shaderID);
     }
 
     /*-----------------------------------------------------------------------------

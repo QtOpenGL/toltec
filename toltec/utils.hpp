@@ -30,7 +30,7 @@
 
 #define DEBUG_ERR(x) do                                                     \
 {                                                                           \
-    std::cout << "<ERROR> : " << __FILE__ << "(" << __LINE__ << ")\n"       \
+    std::cerr << "<ERROR> : " << __FILE__ << "(" << __LINE__ << ")\n"       \
         << "  " << x << "\n\n";                                             \
 } while (false)
 
@@ -47,7 +47,7 @@ namespace utils
     /*-----------------------------------------------------------------------------
     *   FUNCTION DECLARATIONS
     *-----------------------------------------------------------------------------*/
-    const std::string loadTextFile(const std::string& filePath);
+    const std::string loadTextFile(const std::string& filePath, bool readLineByLineFlag = false);
 
     glm::mat4 calcModelMatrix(const glm::vec3& translation, const glm::vec3& rotation,
         const glm::vec3& scale);

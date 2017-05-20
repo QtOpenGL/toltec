@@ -20,11 +20,13 @@
 #include "nodes/transformNode.hpp"
 #include "resourceManager.hpp"
 #include "renderingSystem/openGL/indexBuffer.hpp"
+#include "renderingSystem/openGL/openGLViewport.hpp"
 #include "renderingSystem/openGL/vertexBuffer.hpp"
 #include "renderingSystem/toltec/openGL/renderableObject.hpp"
 #include "renderingSystem/toltec/openGL/renderItem.hpp"
 #include "renderingSystem/toltec/openGL/shaders/lambertShaderProgram.hpp"
 #include "renderingSystem/toltec/openGL/shaders/shaderInstance.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: TGL (TOLTEC OPENGL)
@@ -35,6 +37,8 @@ namespace tgl
     *   CONSTRUCTOR
     *-----------------------------------------------------------------------------*/
     ToltecOpenGLRendererResource::ToltecOpenGLRendererResource()
+        :
+        m_activeViewportIndex(0)
     {
     }
 
@@ -53,25 +57,44 @@ namespace tgl
     {
         if (m_areResourcesInitialized == false)
         {
-            ResourceManager* p_resourceManager = &ResourceManager::getInstance();
-
             //MAKE SURE WE START WITH CLEAN SHEET
             this->deleteResources();
 
-            //CREATE SHADER PROGRAMS
-            this->initializeShaderProgramMap();
+            //CREATE RESOURCES PER CONTEXT (VIEWPORT)
+            std::size_t viewportListSize = m_viewportList.size();
+            for (std::size_t i = 0; i < viewportListSize; i++)
+            {
+                //MAKE CONTEXT CURRENT
+                gl::OpenGLViewport* p_viewport = dynamic_cast<gl::OpenGLViewport*>(m_viewportList[i]);
+                if (p_viewport == nullptr)
+                {
+                    DEBUG_ERR("AbstractViewport could not be casted to OpenGLViewport!");
+                    return;
+                }
+                p_viewport->makeCurrent();
 
-            //SCAN SCENE TREE
-            std::vector<glm::mat4> modelMatrixList;
-            int treeDepthLevel = 0;
-            bool calculateFinalModelMatrixFlag = false;
+                //CREATE RESOURCE
+                m_resourcePerViewportList.push_back(ResourcePerViewport());
+                m_activeViewportIndex = i;
 
-            this->scanSceneTree(
-                p_resourceManager->getRootTransformNode(), 
-                treeDepthLevel, 
-                &modelMatrixList, 
-                calculateFinalModelMatrixFlag, 
-                true);
+                //CREATE SHADER PROGRAMS
+                this->initializeShaderProgramMap();
+
+                //SCAN SCENE TREE
+                std::vector<glm::mat4> modelMatrixList;
+                int treeDepthLevel = 0;
+                bool calculateFinalModelMatrixFlag = false;
+
+                this->scanSceneTree(
+                    ResourceManager::getInstance().getRootTransformNode(),
+                    treeDepthLevel,
+                    &modelMatrixList,
+                    calculateFinalModelMatrixFlag,
+                    true);
+
+                //FINISH OPERATION ON CONTEXT
+                p_viewport->doneCurrent();
+            }
             //-->
 
             m_areResourcesInitialized = true;
@@ -83,13 +106,16 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::deleteResources()
     {
-        for (auto& kv : m_renderableObjectMap)
-            delete kv.second;
+        for (auto& resourcePerViewport : m_resourcePerViewportList)
+        {
+            for (auto& kv : resourcePerViewport.renderableObjectMap)
+                delete kv.second;
 
-        for (auto& kv : m_shaderInstanceMap)
-            delete kv.second;
+            for (auto& kv : resourcePerViewport.shaderInstanceMap)
+                delete kv.second;
 
-        m_finalRenderItemList.clear();
+            resourcePerViewport.finalRenderItemList.clear();
+        }
     }
 
     /*-----------------------------------------------------------------------------
@@ -98,7 +124,7 @@ namespace tgl
     void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     {
         //CREATE
-        LambertShaderProgram lambertShaderProgram;      
+        LambertShaderProgram lambertShaderProgram;
     }
 
     /*-----------------------------------------------------------------------------
@@ -186,13 +212,15 @@ namespace tgl
         *-----------------------------------------------------------------------------*/
         if (initializeRendererResourceFlag == true || p_polygonMeshNode->getInitializeFlag() == true)
         {
-            //ADD TO THE RENDERABLE OBJECT MAP          
-            auto renderableObjectMapIter = m_renderableObjectMap.find(p_polygonMeshNode->getNodeID());
-            if (renderableObjectMapIter != m_renderableObjectMap.end())
+            //ADD TO THE RENDERABLE OBJECT MAP
+            auto& renderableObjectMap = m_resourcePerViewportList[m_activeViewportIndex].renderableObjectMap;
+
+            auto renderableObjectMapIter = renderableObjectMap.find(p_polygonMeshNode->getNodeID());
+            if (renderableObjectMapIter != renderableObjectMap.end())
                 return;
 
             p_renderableObject = new RenderableObject();
-            m_renderableObjectMap.insert(
+            renderableObjectMap.insert(
                 std::pair<std::uint32_t, RenderableObject*>(
                     p_polygonMeshNode->getNodeID(), p_renderableObject));
 
@@ -309,14 +337,16 @@ namespace tgl
 
             //CREATE RENDER ITEMS
             //find shader instance
+            auto& shaderInstanceMap = m_resourcePerViewportList[m_activeViewportIndex].shaderInstanceMap;
             ShaderInstance* p_shaderInstance = nullptr;
-            auto shaderInstanceMapIter = m_shaderInstanceMap.find(
+
+            auto shaderInstanceMapIter = shaderInstanceMap.find(
                 p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
             
-            if (shaderInstanceMapIter != m_shaderInstanceMap.end())
+            if (shaderInstanceMapIter != shaderInstanceMap.end())
                 p_shaderInstance = shaderInstanceMapIter->second;
             else
-                p_shaderInstance = m_shaderInstanceMap.begin()->second;
+                p_shaderInstance = shaderInstanceMap.begin()->second;
 
             //triangle
             std::unique_ptr<RenderItem> p_pointRenderItem(new RenderItem(

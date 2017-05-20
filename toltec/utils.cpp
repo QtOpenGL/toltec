@@ -22,20 +22,40 @@
 *-----------------------------------------------------------------------------*/
 namespace utils
 {
-    const std::string loadTextFile(const std::string& filePath)
+    /*-----------------------------------------------------------------------------
+    *   LOAD TEXT FILE
+    *-----------------------------------------------------------------------------*/
+    const std::string loadTextFile(const std::string& filePath, bool readLineByLineFlag)
     {
-        std::ifstream file(filePath);
+        std::ifstream file;
+        file.open(filePath);
 
         if (file.is_open())
         {
-            std::stringstream stream;
-            stream << file.rdbuf();
+            if (readLineByLineFlag == false)
+            {
+                std::stringstream stream;
+                stream << file.rdbuf();
 
-            return stream.str();
+                return stream.str();
+            }
+            else
+            {
+                std::string outputString;
+                std::string line;
+
+                while (file.good())
+                {
+                    std::getline(file, line);
+                    outputString.append(line + "\n");
+                }
+
+                return outputString;
+            }
         }
         else
         {
-            DEBUG_MSG("ERROR : Unable to load a file: " << filePath << "!");
+            DEBUG_ERR("Unable to load a file: " << filePath << "!");
             return "";
         }
     }

@@ -56,7 +56,7 @@ namespace tgl
         virtual void                updateUniforms() {}
 
     protected:
-        void            createShader(const std::string& path, ShaderProgram::ShaderType shaderType);
+        void            createShader(const std::string& shaderFilePath, ShaderProgram::ShaderType shaderType);
         void            linkAndValidate();
         virtual std::vector<std::unique_ptr<gl::Uniform>> setupUniforms() { return {}; }
 

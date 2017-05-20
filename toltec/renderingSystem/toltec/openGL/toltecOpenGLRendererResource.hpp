@@ -47,6 +47,14 @@ namespace tgl
     class ToltecOpenGLRendererResource : public AbstractRendererResource
     {
     public:
+        //STRUCTS
+        struct ResourcePerViewport {
+            std::map<Node::Type, ShaderProgram>         shaderProgramMap;
+            std::map<std::uint32_t, RenderableObject*>  renderableObjectMap;
+            std::map<std::uint32_t, ShaderInstance*>    shaderInstanceMap;
+            std::vector<RenderItem*>                    finalRenderItemList;  //cleared after every render sequence
+        };
+
         //CONSTRUCTORS
                         ToltecOpenGLRendererResource();
         virtual         ~ToltecOpenGLRendererResource();
@@ -72,11 +80,7 @@ namespace tgl
                             const bool&             initializeRendererResourceFlag);
 
     private:
-        std::map<Node::Type, ShaderProgram>         m_shaderProgramMap;
-
-        std::map<std::uint32_t, RenderableObject*>  m_renderableObjectMap;
-        std::map<std::uint32_t, ShaderInstance*>    m_shaderInstanceMap;
-
-        std::vector<RenderItem*>                    m_finalRenderItemList;  //cleared after every render sequence
+        std::vector<ToltecOpenGLRendererResource::ResourcePerViewport>  m_resourcePerViewportList;
+        unsigned int                                                    m_activeViewportIndex;
     };
 } //NAMESPACE: TGL
