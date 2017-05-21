@@ -32,14 +32,8 @@ namespace utils
 
         if (file.is_open())
         {
-            if (readLineByLineFlag == false)
-            {
-                std::stringstream stream;
-                stream << file.rdbuf();
-
-                return stream.str();
-            }
-            else
+            //READ LINE BY LINE
+            if (readLineByLineFlag == true)
             {
                 std::string outputString;
                 std::string line;
@@ -51,6 +45,14 @@ namespace utils
                 }
 
                 return outputString;
+            }
+            //READ WHOLE FILE
+            else
+            {
+                std::stringstream stream;
+                stream << file.rdbuf();
+
+                return stream.str();
             }
         }
         else

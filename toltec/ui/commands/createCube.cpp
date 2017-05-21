@@ -42,7 +42,7 @@ void createCube()
     };
 
     //DEFINE VERTEX SEQUENCE
-    std::vector<unsigned int> vertexSequence = {
+    std::vector<unsigned int> faceVertexSequence = {
         0, 1, 2, 3,
         7, 6, 5, 4,
         1, 0, 4, 5,
@@ -57,7 +57,7 @@ void createCube()
     //CREATE POLYGON MESH NODE
     PolygonMeshNode* p_polygonMeshNode = new PolygonMeshNode();
     p_polygonMeshNode->setShortName("polyCube");
-    p_polygonMeshNode->createMesh(point3DList, vertexSequence, polygonOffsetList);
+    p_polygonMeshNode->createMesh(point3DList, faceVertexSequence, polygonOffsetList);
 
     //SET SCENE TREE
     p_transformNode->addChild(p_polygonMeshNode);

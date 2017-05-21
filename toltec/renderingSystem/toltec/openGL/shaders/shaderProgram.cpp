@@ -66,7 +66,7 @@ namespace tgl
         }
 
         //COMPILE SHADER
-        const std::string& shaderCode =         utils::loadTextFile(shaderFilePath, true);
+        const std::string& shaderCode =         utils::loadTextFile(shaderFilePath);
         const gl::GLchar* shaderSourceCode =    shaderCode.c_str();
         gl::GLint shaderSourceCodeLength =      shaderCode.length();
 

@@ -226,6 +226,13 @@ namespace tgl
 
             //CREATE VERTEX AND INDEX BUFFERS
             tpm::Mesh* p_mesh = p_polygonMeshNode->getMesh();
+
+            DEBUG_MSG(
+                p_polygonMeshNode->getFullName() << std::endl <<
+                "Face vertex list size: " << p_mesh->getFaceVertexList().size() << std::endl <<
+                "Vertex list size: " << p_mesh->getVertexList().size() << std::endl <<
+                "Face list size: " << p_mesh->getFaceList().size());
+
             tpm::FaceVertex* p_faceVertex = nullptr;
             tpm::Vertex* p_vertex = nullptr;
 
@@ -259,13 +266,13 @@ namespace tgl
             gl::IndexBuffer vertexIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
 
             //fetch and generate
-            for (const tpm::Face* p_face : p_mesh->getFaceList())
+            for (const std::unique_ptr<tpm::Face>& p_face : p_mesh->getFaceList())
             {
                 //fetch vertex attributes
                 for (const std::uint32_t& faceVertexID : p_face->faceVertexIDList)
                 {
-                    p_faceVertex = p_mesh->getFaceVertexList()[faceVertexID];
-                    p_vertex = p_mesh->getVertexList()[p_faceVertex->vertexID];
+                    p_faceVertex = p_mesh->getFaceVertexList()[faceVertexID].get();
+                    p_vertex = p_mesh->getVertexList()[p_faceVertex->vertexID].get();
 
                     faceVertexPositionList.push_back(p_vertex->position.x);
                     faceVertexPositionList.push_back(p_vertex->position.y);

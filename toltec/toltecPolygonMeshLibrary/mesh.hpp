@@ -13,6 +13,7 @@
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <cstdint>
+#include <memory>
 #include <vector>
 
 #include <glm/glm.hpp>
@@ -48,17 +49,17 @@ namespace tpm
     {
     public:
         //CONSTRUCTORS
-        virtual     ~Mesh();
+        virtual     ~Mesh() {}
 
         //ADD
-        Vertex*     addVertex(const glm::vec3& point3D);
-        Vertex*     addVertex(float x, float y, float z);
-        Face*       addFace(const std::vector<Vertex*>& vertexList);
+        const std::unique_ptr<Vertex>&  addVertex(const glm::vec3& point3D);
+        const std::unique_ptr<Vertex>&  addVertex(float x, float y, float z);
+        const std::unique_ptr<Face>&    addFace(const std::vector<Vertex*>& vertexList);
 
         //GET
-        const std::vector<FaceVertex*>& getFaceVertexList() const;
-        const std::vector<Vertex*>&     getVertexList() const;
-        const std::vector<Face*>&       getFaceList() const;
+        const std::vector<std::unique_ptr<FaceVertex>>& getFaceVertexList() const;
+        const std::vector<std::unique_ptr<Vertex>>&     getVertexList() const;
+        const std::vector<std::unique_ptr<Face>>&       getFaceList() const;
 
         //OTHER
         void        zeroOutUVs();
@@ -67,24 +68,24 @@ namespace tpm
         void        collectGarbage();
 
     private:
-        std::vector<FaceVertex*>    m_faceVertexList;
-        std::vector<Vertex*>        m_vertexList;
-        std::vector<Face*>          m_faceList;
+        std::vector<std::unique_ptr<FaceVertex>>    m_faceVertexList;
+        std::vector<std::unique_ptr<Vertex>>        m_vertexList;
+        std::vector<std::unique_ptr<Face>>          m_faceList;
     };
 
     /*----------------------------------------------------------------------------*/
 
-    inline const std::vector<FaceVertex*>& Mesh::getFaceVertexList() const
+    inline const std::vector<std::unique_ptr<FaceVertex>>& Mesh::getFaceVertexList() const
     {
         return m_faceVertexList;
     }
 
-    inline const std::vector<Vertex*>& Mesh::getVertexList() const
+    inline const std::vector<std::unique_ptr<Vertex>>& Mesh::getVertexList() const
     {
         return m_vertexList;
     }
 
-    inline const std::vector<Face*>& Mesh::getFaceList() const
+    inline const std::vector<std::unique_ptr<Face>>& Mesh::getFaceList() const
     {
         return m_faceList;
     }

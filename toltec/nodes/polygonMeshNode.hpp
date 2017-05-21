@@ -34,8 +34,8 @@ public:
 
     //OTHER
     bool        createMesh(
-                    std::vector<glm::vec3>& point3DList, 
-                    std::vector<unsigned int>&  vertexSequence,
+                    std::vector<glm::vec3>&     point3DList,
+                    std::vector<unsigned int>&  faceVertexSequence,
                     std::vector<unsigned int>&  polygonOffsets);
 
 private:
