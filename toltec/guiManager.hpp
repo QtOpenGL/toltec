@@ -44,13 +44,13 @@ public:
 
 public:
     //SINGLETON
-    static GUIManager&  getInstance()
+    static GUIManager& getInstance()
     {
         static GUIManager instance;
         return instance;
     }
-                        GUIManager(const GUIManager&) = delete;
-    void                operator=(const GUIManager&) = delete;
+    GUIManager(const GUIManager&) = delete;
+    void operator=(const GUIManager&) = delete;
 
     //SET
     void                setOutputLineWidget(gui::OutputLineWidget* p_outputLineWidget);

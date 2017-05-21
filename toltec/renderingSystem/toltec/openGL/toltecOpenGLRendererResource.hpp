@@ -67,13 +67,13 @@ namespace tgl
     private:
         void            initializeShaderProgramMap();
 
+        virtual void    scanShaderProgramNodeList() {}
         virtual void    scanSceneTree(
                             TransformNode*          p_transformNode,
                             int&                    treeDepthLevel,
                             std::vector<glm::mat4>* p_modelMatrixList,
                             bool&                   calculateFinalModelMatrixFlag,
                             const bool&             initializeRendererResourceFlag);
-
         void            processPolygonMeshNode(
                             PolygonMeshNode*        p_polygonMeshNode, 
                             RenderableObject*       p_renderableObject,

@@ -35,62 +35,79 @@ ResourceManager::ResourceManager()
 /*-----------------------------------------------------------------------------
 *   ADD SURFACE SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode)
+void ResourceManager::addSurfaceShaderProgramNode(
+    std::unique_ptr<SurfaceShaderProgramNode> p_surfaceShaderProgramNode)
 {
-    //CHECK IF ALREADY ON THE LIST
-    for (SurfaceShaderProgramNode* p_surfaceShaderProgramNodeListItem : m_surfaceShaderProgramNodeList)
-        if (p_surfaceShaderProgramNodeListItem == p_surfaceShaderProgramNode)
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_surfaceShaderProgramNodeListElement : m_surfaceShaderProgramNodeList)
+        if (p_surfaceShaderProgramNodeListElement == p_surfaceShaderProgramNode.get())
             return;
 
     //ADD
-    m_surfaceShaderProgramNodeList.push_back(p_surfaceShaderProgramNode);
-    m_allNodeList.push_back(p_surfaceShaderProgramNode);
+    m_surfaceShaderProgramNodeList.push_back(p_surfaceShaderProgramNode.get());
+    m_allNodeList.push_back(std::move(p_surfaceShaderProgramNode));
 }
 
 /*-----------------------------------------------------------------------------
 *   ADD COMPONENT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addComponentShaderProgramNode(ComponentShaderProgramNode* p_componentShaderProgramNode)
+void ResourceManager::addComponentShaderProgramNode(
+    std::unique_ptr<ComponentShaderProgramNode> p_componentShaderProgramNode)
 {
-    //CHECK IF ALREADY ON THE LIST
-    for (ComponentShaderProgramNode* p_componentShaderProgramNodeListItem : m_componentShaderProgramNodeList)
-        if (p_componentShaderProgramNodeListItem == p_componentShaderProgramNode)
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_componentShaderProgramNodeListElement : m_componentShaderProgramNodeList)
+        if (p_componentShaderProgramNodeListElement == p_componentShaderProgramNode.get())
             return;
 
     //ADD
-    m_componentShaderProgramNodeList.push_back(p_componentShaderProgramNode);
-    m_allNodeList.push_back(p_componentShaderProgramNode);
-    m_undeletableNodeList.push_back(p_componentShaderProgramNode);
+    m_componentShaderProgramNodeList.push_back(p_componentShaderProgramNode.get());
+    m_undeletableNodeList.push_back(p_componentShaderProgramNode.get());
+    m_allNodeList.push_back(std::move(p_componentShaderProgramNode));
 }
 
 /*-----------------------------------------------------------------------------
 *   ADD TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addTransformNode(TransformNode* p_transformNode)
+void ResourceManager::addTransformNode(std::unique_ptr<TransformNode> p_transformNode)
 {
-    //CHECK IF ALREADY ON THE LIST
-    for (TransformNode* p_transformNodeListItem : m_transformNodeList)
-        if (p_transformNodeListItem == p_transformNode)
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_transformNodeListElement : m_transformNodeList)
+        if (p_transformNodeListElement == p_transformNode.get())
             return;
 
     //ADD
-    m_transformNodeList.push_back(p_transformNode);
-    m_allNodeList.push_back(p_transformNode);
+    m_transformNodeList.push_back(p_transformNode.get());
+    m_allNodeList.push_back(std::move(p_transformNode));
+}
+
+/*-----------------------------------------------------------------------------
+*   ADD CAMERA NODE
+*-----------------------------------------------------------------------------*/
+void ResourceManager::addCameraNode(std::unique_ptr<CameraNode> p_cameraNode)
+{
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_cameraNodeListElement : m_cameraNodeList)
+        if (p_cameraNodeListElement == p_cameraNode.get())
+            return;
+
+    //ADD
+    m_cameraNodeList.push_back(p_cameraNode.get());
+    m_allNodeList.push_back(std::move(p_cameraNode));
 }
 
 /*-----------------------------------------------------------------------------
 *   ADD POLYGON MESH NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode)
+void ResourceManager::addPolygonMeshNode(std::unique_ptr<PolygonMeshNode> p_polygonMeshNode)
 {
-    //CHECK IF ALREADY ON THE LIST
-    for (PolygonMeshNode* p_polygonMeshNodeListItem : m_polygonMeshNodeList)
-        if (p_polygonMeshNodeListItem == p_polygonMeshNode)
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_polygonMeshNodeListElement : m_polygonMeshNodeList)
+        if (p_polygonMeshNodeListElement == p_polygonMeshNode.get())
             return;
 
     //ADD
-    m_polygonMeshNodeList.push_back(p_polygonMeshNode);
-    m_allNodeList.push_back(p_polygonMeshNode);
+    m_polygonMeshNodeList.push_back(p_polygonMeshNode.get());
+    m_allNodeList.push_back(std::move(p_polygonMeshNode));
 }
 
 /*-----------------------------------------------------------------------------
@@ -102,9 +119,6 @@ void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgra
         return;
 
     mp_defaultSSPNode = p_shaderProgramNode;
-
-    m_surfaceShaderProgramNodeList.push_back(mp_defaultSSPNode);
-    m_allNodeList.push_back(mp_defaultSSPNode);
     m_undeletableNodeList.push_back(mp_defaultSSPNode);
 }
 
@@ -117,9 +131,6 @@ void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
         return;
 
     mp_rootTransformNode = p_rootTransformNode;
-
-    m_transformNodeList.push_back(mp_rootTransformNode);
-    m_allNodeList.push_back(mp_rootTransformNode);
     m_undeletableNodeList.push_back(mp_rootTransformNode);
 }
 
@@ -132,9 +143,6 @@ void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
         return;
 
     mp_defaultCameraNode = p_defaultCameraNode;
-
-    m_cameraNodeList.push_back(mp_defaultCameraNode);
-    m_allNodeList.push_back(mp_defaultCameraNode);
     m_undeletableNodeList.push_back(mp_defaultCameraNode);
 }
 

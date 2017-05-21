@@ -44,26 +44,29 @@ int main(int argc, char* argv[])
      
     //CREATE CORE OBJECTS
     //root transform node
-    TransformNode rootTransformNode;
-    rootTransformNode.setShortName("root");
-    ResourceManager::getInstance().setRootTransformNode(&rootTransformNode);
+    std::unique_ptr<TransformNode> p_rootTransformNode(new TransformNode());
+    p_rootTransformNode->setShortName("root");
+    ResourceManager::getInstance().setRootTransformNode(p_rootTransformNode.get());
+    ResourceManager::getInstance().addTransformNode(std::move(p_rootTransformNode));
 
     //default camera node
-    CameraNode defaultCameraNode;
-    defaultCameraNode.setShortName("defaultCam");
-    ResourceManager::getInstance().setDefaultCameraNode(&defaultCameraNode);
+    std::unique_ptr<CameraNode> p_defaultCameraNode(new CameraNode());
+    p_defaultCameraNode->setShortName("defaultCam");
+    ResourceManager::getInstance().setDefaultCameraNode(p_defaultCameraNode.get());
+    ResourceManager::getInstance().addCameraNode(std::move(p_defaultCameraNode));
 
     //default shader
-    LambertSSPNode lambertShaderProgramNode;
-    lambertShaderProgramNode.setShortName("defaultShader");
-    ResourceManager::getInstance().setDefaultSSPNode(&lambertShaderProgramNode);
+    std::unique_ptr<LambertSSPNode> p_lambertShaderProgramNode(new LambertSSPNode());
+    p_lambertShaderProgramNode->setShortName("defaultShader");
+    ResourceManager::getInstance().setDefaultSSPNode(p_lambertShaderProgramNode.get());
+    ResourceManager::getInstance().addSurfaceShaderProgramNode(std::move(p_lambertShaderProgramNode));
 
     //poly vertex component shader - inactive
-    PointCSPNode polyVertexShaderInactive;
-    polyVertexShaderInactive.setShortName("polyVertexShaderInactive");
-    polyVertexShaderInactive.setColor(1.0f, 0.0f, 1.0f);
-    polyVertexShaderInactive.setSize(2);
-    ResourceManager::getInstance().addComponentShaderProgramNode(&polyVertexShaderInactive);
+    std::unique_ptr<PointCSPNode> p_polyVertexShaderInactive(new PointCSPNode());
+    p_polyVertexShaderInactive->setShortName("polyVertexShaderInactive");
+    p_polyVertexShaderInactive->setColor(1.0f, 0.0f, 1.0f);
+    p_polyVertexShaderInactive->setSize(2);
+    ResourceManager::getInstance().addComponentShaderProgramNode(std::move(p_polyVertexShaderInactive));
 
     //vertex component shader - inactive hover
     //...
@@ -91,6 +94,7 @@ int main(int argc, char* argv[])
     *-----------------------------------------------------------------------------*/
     //TOLTEC RENDERING SYSTEM
     RenderingSystem toltecRenderingSystem("toltec");
+
     //opengl
     std::unique_ptr<tgl::ToltecOpenGLRendererResource> p_toltecRendererResource(
         new tgl::ToltecOpenGLRendererResource());
@@ -101,6 +105,8 @@ int main(int argc, char* argv[])
         std::move(p_toltecRendererResource),
         std::move(p_toltecOpenGLRenderer)
     );
+
+    //add
     toltecRenderingSystem.addRenderingAPI(&toltecOpenGLRenderingAPI);
 
     //ADD RENDERING SYSTEMS TO THE RENDER MANAGER

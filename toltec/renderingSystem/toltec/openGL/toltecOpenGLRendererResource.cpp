@@ -80,6 +80,9 @@ namespace tgl
                 //CREATE SHADER PROGRAMS
                 this->initializeShaderProgramMap();
 
+                //SCAN SHADER PROGRAM LIST
+                this->scanShaderProgramNodeList();
+
                 //SCAN SCENE TREE
                 std::vector<glm::mat4> modelMatrixList;
                 int treeDepthLevel = 0;
@@ -123,8 +126,10 @@ namespace tgl
     *-----------------------------------------------------------------------------*/
     void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     {
-        //CREATE
+        //LAMBERT SHADER PROGRAM
         LambertShaderProgram lambertShaderProgram;
+        m_resourcePerViewportList[m_activeViewportIndex]
+            .shaderProgramMap[Node::Type::LAMBERT_SSP_NODE] = lambertShaderProgram;
     }
 
     /*-----------------------------------------------------------------------------
