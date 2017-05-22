@@ -8,7 +8,7 @@
 #include <glm/glm.hpp>
 
 #include "events/globalEventFilter.hpp"
-#include "ui/commands/createCube.hpp"
+#include "ui/commands/creationCommands.hpp"
 #include "ui/gui/mainWindow.hpp"
 #include "ui/gui/viewportPanel.hpp"
 #include "nodes/cameraNode.hpp"
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
     GlobalEventFilter globalEventFilter;
     application.installEventFilter(&globalEventFilter);
      
-    //CREATE CORE OBJECTS
+    //CREATE PRIMARY OBJECTS
     //root transform node
     std::unique_ptr<TransformNode> p_rootTransformNode(new TransformNode());
     p_rootTransformNode->setShortName("root");
@@ -115,13 +115,13 @@ int main(int argc, char* argv[])
     /*-----------------------------------------------------------------------------
     *   GUI
     *-----------------------------------------------------------------------------*/
-    gui::MainWindow mainWindow("Toltec", 960, 600);
+    ui::gui::MainWindow mainWindow("Toltec", 960, 600);
     mainWindow.show();
 
     /*-----------------------------------------------------------------------------
     *   CREATE SECONDARY OBJECTS
     *-----------------------------------------------------------------------------*/
-    createCube();
+    ui::cmds::createCube();
 
     /*-----------------------------------------------------------------------------
     *   EXECUTE

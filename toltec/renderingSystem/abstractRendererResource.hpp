@@ -52,11 +52,11 @@ public:
 protected:
     virtual void    scanShaderProgramNodeList() = 0;
     virtual void    scanSceneTree(
-                        TransformNode* p_transformNode,
-                        int& treeDepthLevel,
+                        TransformNode&          transformNode,
+                        int&                    treeDepthLevel,
                         std::vector<glm::mat4>* p_modelMatrixList,
-                        bool& calculateFinalModelMatrixFlag,
-                        const bool& initializeRendererResourceFlag) = 0;
+                        bool&                   calculateFinalModelMatrixFlag,
+                        const bool&             initializeRendererResourceFlag) = 0;
 
 protected:
     bool                            m_areResourcesInitialized;

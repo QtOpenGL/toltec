@@ -21,33 +21,42 @@
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-namespace gui
+namespace ui
 {
-    class AbstractPanel;
+    namespace gui
+    {
+        class AbstractPanel;
+    }
 }
 
 /*-----------------------------------------------------------------------------
-*   NAMESPACE: GUI
+*   NAMESPACE: UI (USER INTERFACE)
+*-----------------------------------------------------------------------------*/
+namespace ui
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: GUI (GRAPHICAL USER INTERFACE)
 *-----------------------------------------------------------------------------*/
 namespace gui
 {
-    /*-----------------------------------------------------------------------------
-    *   CLASS DECLARATIONS
-    *   PANEL CONTAINER
-    *-----------------------------------------------------------------------------*/
-    class PanelContainer : public QWidget
-    {
-        Q_OBJECT
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   PANEL CONTAINER
+*-----------------------------------------------------------------------------*/
+class PanelContainer : public QWidget
+{
+    Q_OBJECT
 
-    public:
-        //CONSTRUCTORS
-                    PanelContainer();
-        virtual     ~PanelContainer() {}
+public:
+    //CONSTRUCTORS
+                PanelContainer();
+    virtual     ~PanelContainer() {}
 
-        //ADD
-        void        addPanel(AbstractPanel* p_panel);
+    //ADD
+    void        addPanel(AbstractPanel* p_panel);
 
-    private:
-        QVBoxLayout*    mp_mainLayout;
-    };
+private:
+    QVBoxLayout*    mp_mainLayout;
+};
 } //NAMESPACE: GUI
+} //NAMESPACE: UI

@@ -40,47 +40,47 @@ class TransformNode;
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-    /*-----------------------------------------------------------------------------
-    *   CLASS DECLARATIONS
-    *   TOLTEC OPENGL RENDERER RESOURCE
-    *-----------------------------------------------------------------------------*/
-    class ToltecOpenGLRendererResource : public AbstractRendererResource
-    {
-    public:
-        //STRUCTS
-        struct ResourcePerViewport {
-            std::map<Node::Type, ShaderProgram>         shaderProgramMap;
-            std::map<std::uint32_t, RenderableObject*>  renderableObjectMap;
-            std::map<std::uint32_t, ShaderInstance*>    shaderInstanceMap;
-            std::vector<RenderItem*>                    finalRenderItemList;  //cleared after every render sequence
-        };
-
-        //CONSTRUCTORS
-                        ToltecOpenGLRendererResource();
-        virtual         ~ToltecOpenGLRendererResource();
-
-        //OTHER
-        virtual void    initializeResources();
-        virtual void    updateResources() {};
-        virtual void    deleteResources();
-
-    private:
-        void            initializeShaderProgramMap();
-
-        virtual void    scanShaderProgramNodeList() {}
-        virtual void    scanSceneTree(
-                            TransformNode*          p_transformNode,
-                            int&                    treeDepthLevel,
-                            std::vector<glm::mat4>* p_modelMatrixList,
-                            bool&                   calculateFinalModelMatrixFlag,
-                            const bool&             initializeRendererResourceFlag);
-        void            processPolygonMeshNode(
-                            PolygonMeshNode*        p_polygonMeshNode, 
-                            RenderableObject*       p_renderableObject,
-                            const bool&             initializeRendererResourceFlag);
-
-    private:
-        std::vector<ToltecOpenGLRendererResource::ResourcePerViewport>  m_resourcePerViewportList;
-        unsigned int                                                    m_activeViewportIndex;
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   TOLTEC OPENGL RENDERER RESOURCE
+*-----------------------------------------------------------------------------*/
+class ToltecOpenGLRendererResource : public AbstractRendererResource
+{
+public:
+    //STRUCTS
+    struct ResourcePerViewport {
+        std::map<Node::Type, ShaderProgram>         shaderProgramMap;
+        std::map<std::uint32_t, RenderableObject*>  renderableObjectMap;
+        std::map<std::uint32_t, ShaderInstance*>    shaderInstanceMap;
+        std::vector<RenderItem*>                    finalRenderItemList;  //cleared after every render sequence
     };
+
+    //CONSTRUCTORS
+                    ToltecOpenGLRendererResource();
+    virtual         ~ToltecOpenGLRendererResource();
+
+    //OTHER
+    virtual void    initializeResources();
+    virtual void    updateResources() {};
+    virtual void    deleteResources();
+
+private:
+    void            initializeShaderProgramMap();
+
+    virtual void    scanShaderProgramNodeList() {}
+    virtual void    scanSceneTree(
+                        TransformNode&          transformNode,
+                        int&                    treeDepthLevel,
+                        std::vector<glm::mat4>* p_modelMatrixList,
+                        bool&                   calculateFinalModelMatrixFlag,
+                        const bool&             initializeRendererResourceFlag);
+    void            processPolygonMeshNode(
+                        PolygonMeshNode*        p_polygonMeshNode, 
+                        RenderableObject*       p_renderableObject,
+                        const bool&             initializeRendererResourceFlag);
+
+private:
+    std::vector<ToltecOpenGLRendererResource::ResourcePerViewport>  m_resourcePerViewportList;
+    unsigned int                                                    m_activeViewportIndex;
+};
 } //NAMESPACE: TGL

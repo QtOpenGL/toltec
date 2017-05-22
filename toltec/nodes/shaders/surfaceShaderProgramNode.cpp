@@ -73,7 +73,7 @@ void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode, const b
 
             //set default
             if (hardRemove == false)
-                p_surfaceNode->setSurfaceShaderProgramNode(ResourceManager::getInstance().getDefaultSSPNode());
+                p_surfaceNode->setSurfaceShaderProgramNode(&ResourceManager::getInstance().getDefaultSSPNode());
 
             break;
         }

@@ -27,40 +27,46 @@ class QComboBox;
 class RenderingSystem;
 
 /*-----------------------------------------------------------------------------
-*   NAMESPACE: GUI
+*   NAMESPACE: UI (USER INTERFACE)
+*-----------------------------------------------------------------------------*/
+namespace ui
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: GUI (GRAPHICAL USER INTERFACE)
 *-----------------------------------------------------------------------------*/
 namespace gui
 {
-    /*-----------------------------------------------------------------------------
-    *   CLASS DECLARATIONS
-    *   VIEWPORT PANEL
-    *-----------------------------------------------------------------------------*/
-    class ViewportPanel : public AbstractPanel
-    {
-        Q_OBJECT
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   VIEWPORT PANEL
+*-----------------------------------------------------------------------------*/
+class ViewportPanel : public AbstractPanel
+{
+    Q_OBJECT
 
-    public:
-        //CONSTRUCTORS
-                            ViewportPanel();
-        virtual             ~ViewportPanel();
+public:
+    //CONSTRUCTORS
+    ViewportPanel();
+    virtual             ~ViewportPanel();
 
-        //GET
-        AbstractViewport*   getViewport() const;
+    //GET
+    AbstractViewport*   getViewport() const;
 
-    private:
-        virtual void        setupUI();
+private:
+    virtual void        setupUI();
 
-    private:
-        RenderingSystem*            mp_activeRenderingSystem;   
-        AbstractViewport*           mp_viewport;
+private:
+    RenderingSystem*            mp_activeRenderingSystem;
+    AbstractViewport*           mp_viewport;
 
-        QComboBox*                  mp_activeCameraComboBox;
-    };
+    QComboBox*                  mp_activeCameraComboBox;
+};
 
-    /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
-    inline AbstractViewport* ViewportPanel::getViewport() const
-    {
-        return mp_viewport;
-    }
+inline AbstractViewport* ViewportPanel::getViewport() const
+{
+    return mp_viewport;
 }
+} //NAMESPACE: GUI
+} //NAMESPACE: UI

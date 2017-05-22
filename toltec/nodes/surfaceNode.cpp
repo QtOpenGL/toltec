@@ -23,11 +23,11 @@ SurfaceNode::SurfaceNode()
     //INITIALIZE
     this->setShortName("surfaceNode");
     this->setType(Node::SURFACE_NODE);
-    this->setSurfaceShaderProgramNode(ResourceManager::getInstance().getDefaultSSPNode());
+    this->setSurfaceShaderProgramNode(&ResourceManager::getInstance().getDefaultSSPNode());
 }
 
 /*-----------------------------------------------------------------------------
-*   SET SURFACESHADER PROGRAM
+*   SET SURFACE SHADER PROGRAM
 *-----------------------------------------------------------------------------*/
 void SurfaceNode::setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode)
 {
@@ -38,7 +38,7 @@ void SurfaceNode::setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfac
     //REMOVE / SET / ADD
     if (p_surfaceShaderProgramNode == nullptr)
     {
-        mp_surfaceShaderProgramNode = ResourceManager::getInstance().getDefaultSSPNode();
+        mp_surfaceShaderProgramNode = &ResourceManager::getInstance().getDefaultSSPNode();
         mp_surfaceShaderProgramNode->addSurface(this, true);
     }
     else

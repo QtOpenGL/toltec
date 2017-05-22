@@ -58,8 +58,8 @@ public:
 
     //GET
     std::vector<std::unique_ptr<Node>>&     getAllNodeList();
-    SurfaceShaderProgramNode*               getDefaultSSPNode();
-    TransformNode*                          getRootTransformNode();
+    SurfaceShaderProgramNode&               getDefaultSSPNode();
+    TransformNode&                          getRootTransformNode();
 
     //OTHER
     std::uint32_t   assignNodeID();
@@ -93,12 +93,12 @@ inline std::vector<std::unique_ptr<Node>>& ResourceManager::getAllNodeList()
     return m_allNodeList;
 }
 
-inline SurfaceShaderProgramNode* ResourceManager::getDefaultSSPNode()
+inline SurfaceShaderProgramNode& ResourceManager::getDefaultSSPNode()
 {
-    return mp_defaultSSPNode;
+    return *mp_defaultSSPNode;
 }
 
-inline TransformNode* ResourceManager::getRootTransformNode()
+inline TransformNode& ResourceManager::getRootTransformNode()
 {
-    return mp_rootTransformNode;
+    return *mp_rootTransformNode;
 }

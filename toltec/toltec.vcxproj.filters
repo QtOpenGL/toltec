@@ -102,9 +102,6 @@
     <ClCompile Include="ui\gui\viewportPanel.cpp">
       <Filter>Main Files\ui\gui</Filter>
     </ClCompile>
-    <ClCompile Include="ui\commands\createCube.cpp">
-      <Filter>Main Files\ui\commands</Filter>
-    </ClCompile>
     <ClCompile Include="nodes\node.cpp">
       <Filter>Main Files\nodes</Filter>
     </ClCompile>
@@ -243,6 +240,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_abstractPanel.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ui\commands\creationCommands.cpp">
+      <Filter>Main Files\ui\commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -307,9 +307,6 @@
     </CustomBuild>
     <CustomBuild Include="ui\gui\outputLineWidget.hpp">
       <Filter>Main Files\ui\gui</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ui\commands\createCube.hpp">
-      <Filter>Main Files\ui\commands</Filter>
     </CustomBuild>
     <CustomBuild Include="renderingSystem\toltec\openGL\toltecOpenGLRenderer.hpp">
       <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
@@ -388,6 +385,12 @@
     </ClInclude>
     <ClInclude Include="renderingSystem\openGL\uniformContainer.hpp">
       <Filter>Main Files\renderingSystem\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\commands\generalCommands.hpp">
+      <Filter>Main Files\ui\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\commands\creationCommands.hpp">
+      <Filter>Main Files\ui\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,28 +13,34 @@
 #include "ui/gui/abstractPanel.hpp"
 
 /*-----------------------------------------------------------------------------
-*   NAMESPACE: GUI
+*   NAMESPACE: UI (USER INTERFACE)
+*-----------------------------------------------------------------------------*/
+namespace ui
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: GUI (GRAPHICAL USER INTERFACE)
 *-----------------------------------------------------------------------------*/
 namespace gui
 {
-    /*-----------------------------------------------------------------------------
-    *   CONSTRUCTOR
-    *-----------------------------------------------------------------------------*/
-    PanelContainer::PanelContainer()
-        :
-        mp_mainLayout(new QVBoxLayout())
-    {   
-        //SETUP
-        mp_mainLayout->setContentsMargins(0, 0, 0, 0);
-        mp_mainLayout->setSpacing(0);
-        this->setLayout(mp_mainLayout);
-    }
+/*-----------------------------------------------------------------------------
+*   CONSTRUCTOR
+*-----------------------------------------------------------------------------*/
+PanelContainer::PanelContainer()
+    :
+    mp_mainLayout(new QVBoxLayout())
+{   
+    //SETUP
+    mp_mainLayout->setContentsMargins(0, 0, 0, 0);
+    mp_mainLayout->setSpacing(0);
+    this->setLayout(mp_mainLayout);
+}
 
-    /*-----------------------------------------------------------------------------
-    *   ADD PANEL
-    *-----------------------------------------------------------------------------*/
-    void PanelContainer::addPanel(AbstractPanel* p_panel)
-    {
-        mp_mainLayout->addWidget(p_panel);
-    }
+/*-----------------------------------------------------------------------------
+*   ADD PANEL
+*-----------------------------------------------------------------------------*/
+void PanelContainer::addPanel(AbstractPanel* p_panel)
+{
+    mp_mainLayout->addWidget(p_panel);
+}
 } //NAMESPACE: GUI
+} //NAMESPACE: UI

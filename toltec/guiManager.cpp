@@ -28,7 +28,7 @@ GUIManager::GUIManager()
 /*-----------------------------------------------------------------------------
 *   SET OUTPUT BAR
 *-----------------------------------------------------------------------------*/
-void GUIManager::setOutputLineWidget(gui::OutputLineWidget* p_outputStreamWidget)
+void GUIManager::setOutputLineWidget(ui::gui::OutputLineWidget* p_outputStreamWidget)
 {
     if (mp_outputLineWidget == nullptr)
         mp_outputLineWidget = p_outputStreamWidget;
@@ -39,7 +39,7 @@ void GUIManager::setOutputLineWidget(gui::OutputLineWidget* p_outputStreamWidget
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayMessage(const std::string& message)
 {
-    mp_outputLineWidget->setText(message, gui::OutputLineWidget::MessageType::NORMAL);
+    mp_outputLineWidget->setText(message, ui::gui::OutputLineWidget::MessageType::NORMAL);
 }
 
 /*-----------------------------------------------------------------------------
@@ -47,7 +47,7 @@ void GUIManager::displayMessage(const std::string& message)
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayWarning(const std::string& warning)
 {
-    mp_outputLineWidget->setText(warning, gui::OutputLineWidget::MessageType::WARNING);
+    mp_outputLineWidget->setText(warning, ui::gui::OutputLineWidget::MessageType::WARNING);
 }
 
 /*-----------------------------------------------------------------------------
@@ -55,24 +55,24 @@ void GUIManager::displayWarning(const std::string& warning)
 *-----------------------------------------------------------------------------*/
 void GUIManager::displayError(const std::string& error)
 {
-    mp_outputLineWidget->setText(error, gui::OutputLineWidget::MessageType::ERROR);
+    mp_outputLineWidget->setText(error, ui::gui::OutputLineWidget::MessageType::ERROR);
 }
 
 /*-----------------------------------------------------------------------------
 *   CREATE PANEL
 *-----------------------------------------------------------------------------*/
-gui::AbstractPanel* GUIManager::createPanel(gui::AbstractPanel::PanelType panelType)
+ui::gui::AbstractPanel* GUIManager::createPanel(ui::gui::AbstractPanel::PanelType panelType)
 {
     switch (panelType)
     {
-        case gui::AbstractPanel::PanelType::VIEWPORT:
+        case ui::gui::AbstractPanel::PanelType::VIEWPORT:
         {
-            gui::ViewportPanel* p_viewportPanel = nullptr;
+            ui::gui::ViewportPanel* p_viewportPanel = nullptr;
             for (auto p_viewportPanelListElement : m_viewportPanelList)
             {
                 if (p_viewportPanelListElement == nullptr)
                 {
-                    p_viewportPanelListElement =    new gui::ViewportPanel();
+                    p_viewportPanelListElement =    new ui::gui::ViewportPanel();
                     p_viewportPanel =               p_viewportPanelListElement;
 
                     break;
@@ -82,7 +82,7 @@ gui::AbstractPanel* GUIManager::createPanel(gui::AbstractPanel::PanelType panelT
             return p_viewportPanel;
         }
 
-        case gui::AbstractPanel::PanelType::SCENE_TREE:
+        case ui::gui::AbstractPanel::PanelType::SCENE_TREE:
         {
             //...
         }

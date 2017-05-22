@@ -44,15 +44,15 @@
 *-----------------------------------------------------------------------------*/
 namespace utils
 {
-    /*-----------------------------------------------------------------------------
-    *   FUNCTION DECLARATIONS
-    *-----------------------------------------------------------------------------*/
-    const std::string loadTextFile(const std::string& filePath, bool readLineByLineFlag = false);
+/*-----------------------------------------------------------------------------
+*   FUNCTION DECLARATIONS
+*-----------------------------------------------------------------------------*/
+const std::string loadTextFile(const std::string& filePath, bool readLineByLineFlag = false);
 
-    glm::mat4 calcModelMatrix(const glm::vec3& translation, const glm::vec3& rotation,
-        const glm::vec3& scale);
-    glm::vec3 rotate(const glm::vec3& point, const glm::vec3& xyzAngles);
-    glm::vec3 rotate(const glm::vec3& point, float xAngle, float yAngle, float zAngle);
-    glm::vec3 rotate(const glm::vec3& point, float angle, const glm::vec3& rotationVector);
+glm::mat4 calcModelMatrix(const glm::vec3& translation, const glm::vec3& rotation,
+    const glm::vec3& scale);
+glm::vec3 rotate(const glm::vec3& point, const glm::vec3& xyzAngles);
+glm::vec3 rotate(const glm::vec3& point, float xAngle, float yAngle, float zAngle);
+glm::vec3 rotate(const glm::vec3& point, float angle, const glm::vec3& rotationVector);
 } //NAMESPACE: UTILS
 

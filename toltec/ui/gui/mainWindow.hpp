@@ -20,36 +20,45 @@
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-namespace gui
+namespace ui
 {
-    class PanelContainer;
+    namespace gui
+    {
+        class PanelContainer;
+    }
 }
 class QVBoxLayout;
 
 /*-----------------------------------------------------------------------------
-*   NAMESPACE: GUI
+*   NAMESPACE: UI (USER INTERFACE)
+*-----------------------------------------------------------------------------*/
+namespace ui
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: GUI (GRAPHICAL USER INTERFACE)
 *-----------------------------------------------------------------------------*/
 namespace gui
 {
-    /*-----------------------------------------------------------------------------
-    *   CLASS DECLARATIONS
-    *   MAIN WINDOW
-    *-----------------------------------------------------------------------------*/
-    class MainWindow : public QMainWindow
-    {
-        Q_OBJECT
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   MAIN WINDOW
+*-----------------------------------------------------------------------------*/
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
 
-    public:
-        //CONSTRUCTORS
-                    MainWindow(const std::string& title, int width, int height);
-        virtual     ~MainWindow() {}
+public:
+    //CONSTRUCTORS
+                MainWindow(const std::string& title, int width, int height);
+    virtual     ~MainWindow() {}
 
-    private:
-        void        setupUI();
-        void        setupMenuBar();
+private:
+    void        setupUI();
+    void        setupMenuBar();
 
-    private:
-        PanelContainer* mp_mainPanelContainer;
-        QVBoxLayout*    mp_mainLayout;
-    };
+private:
+    PanelContainer* mp_mainPanelContainer;
+    QVBoxLayout*    mp_mainLayout;
+};
 } //NAMESPACE: GUI
+} //NAMESPACE: UI

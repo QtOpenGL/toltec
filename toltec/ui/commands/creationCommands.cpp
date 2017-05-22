@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       13 IX 2016
+*       22 V 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *-----------------------------------------------------------------------------*/
@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "createCube.hpp"
+#include "creationCommands.hpp"
 
 #include <memory>
 #include <vector>
@@ -20,6 +20,16 @@
 #include "toltecPolygonMeshLibrary/mesh.hpp"
 #include "resourceManager.hpp"
 
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: UI (USER ITERFACE)
+*-----------------------------------------------------------------------------*/
+namespace ui
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: CMDS (COMMANDS)
+*-----------------------------------------------------------------------------*/
+namespace cmds
+{
 /*-----------------------------------------------------------------------------
 *   FUNCTION DEFINITIONS
 *   CREATE CUBE
@@ -62,9 +72,11 @@ void createCube()
 
     //SET SCENE TREE
     p_transformNode->addChild(p_polygonMeshNode.get());
-    ResourceManager::getInstance().getRootTransformNode()->addChild(p_transformNode.get());
+    ResourceManager::getInstance().getRootTransformNode().addChild(p_transformNode.get());
 
     //ADD TO THE RESOURCE MANAGER
     ResourceManager::getInstance().addTransformNode(std::move(p_transformNode));
     ResourceManager::getInstance().addPolygonMeshNode(std::move(p_polygonMeshNode));
 }
+} //NAMESPACE: CMDS
+} //NAMESPACE: UI
