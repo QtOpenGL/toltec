@@ -2,34 +2,32 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
 class A
 {
 public:
-    explicit A(int val) : m_int(val) {}
-    void setInt(int val) { m_int = val; }
-    int getInt() const { return m_int; }
+    A() : mp_int(new int(4)) {}
+    virtual ~A() {}
 private:
-    int m_int;
+    std::unique_ptr<int>    mp_int;
 };
 
-class B
-{
-public:
-    B() : mp_a(new A(4)) {}
-    std::unique_ptr<A>& getA() { return mp_a; }
-private:
-    std::unique_ptr<A> mp_a;
+enum Some {
+    SOME_A,
+    SOME_B
 };
 
 int main(int argc, char* argv[])
 {
-    B b;
-    std::cout << b.getA()->getInt() << std::endl;
+    int* p_someInt2 = new int(4);
+    //std::unique_ptr<int> p_someInt(p_someInt2);
 
-    b.getA()->setInt(5);
-    std::cout << b.getA()->getInt() << std::endl;
+    std::map<Some, std::unique_ptr<int>> someMap;
+    someMap.insert(std::make_pair(Some::SOME_A, p_someInt2));
+
+    std::cout << *someMap[Some::SOME_A] << std::endl;
 
     return 0;
 }

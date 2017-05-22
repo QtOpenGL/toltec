@@ -49,10 +49,11 @@ class ToltecOpenGLRendererResource : public AbstractRendererResource
 public:
     //STRUCTS
     struct ResourcePerViewport {
-        std::map<Node::Type, ShaderProgram>         shaderProgramMap;
-        std::map<std::uint32_t, RenderableObject*>  renderableObjectMap;
-        std::map<std::uint32_t, ShaderInstance*>    shaderInstanceMap;
-        std::vector<RenderItem*>                    finalRenderItemList;  //cleared after every render sequence
+        std::map<Node::Type, ShaderProgram>                         shaderProgramMap;
+        std::map<std::uint32_t, std::unique_ptr<RenderableObject>>  renderableObjectMap;
+        std::map<std::uint32_t, std::unique_ptr<ShaderInstance>>    shaderInstanceMap;
+
+        std::vector<RenderItem*> finalRenderItemList;  //cleared after every render sequence
     };
 
     //CONSTRUCTORS
@@ -67,7 +68,7 @@ public:
 private:
     void            initializeShaderProgramMap();
 
-    virtual void    scanShaderProgramNodeList() {}
+    virtual void    scanShaderProgramNodeList(const bool& initializeRendererResourceFlag);
     virtual void    scanSceneTree(
                         TransformNode&          transformNode,
                         int&                    treeDepthLevel,

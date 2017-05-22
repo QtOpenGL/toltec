@@ -81,7 +81,7 @@ void ToltecOpenGLRendererResource::initializeResources()
             this->initializeShaderProgramMap();
 
             //SCAN SHADER PROGRAM LIST
-            this->scanShaderProgramNodeList();
+            this->scanShaderProgramNodeList(true);
 
             //SCAN SCENE TREE
             std::vector<glm::mat4> modelMatrixList;
@@ -110,15 +110,7 @@ void ToltecOpenGLRendererResource::initializeResources()
 void ToltecOpenGLRendererResource::deleteResources()
 {
     for (auto& resourcePerViewport : m_resourcePerViewportList)
-    {
-        for (auto& kv : resourcePerViewport.renderableObjectMap)
-            delete kv.second;
-
-        for (auto& kv : resourcePerViewport.shaderInstanceMap)
-            delete kv.second;
-
         resourcePerViewport.finalRenderItemList.clear();
-    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -130,6 +122,46 @@ void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     LambertShaderProgram lambertShaderProgram;
     m_resourcePerViewportList[m_activeViewportIndex]
         .shaderProgramMap[Node::Type::LAMBERT_SSP_NODE] = lambertShaderProgram;
+}
+
+/*-----------------------------------------------------------------------------
+*   SCAN SHADER PROGRAM NODE LIST
+*-----------------------------------------------------------------------------*/
+void ToltecOpenGLRendererResource::scanShaderProgramNodeList(const bool& initializeRendererResourceFlag)
+{
+    //SURFACE SHADER PROGRAM NODES
+    auto& surfaceShaderProgramNodeList = ResourceManager::getInstance().getSurfaceShaderProgramNodeList();
+    auto& shaderProgramMap = m_resourcePerViewportList[m_activeViewportIndex].shaderProgramMap;
+
+    for (auto p_surfaceShaderProgramNode : surfaceShaderProgramNodeList)
+    {
+        //INITIALIZE
+        if (initializeRendererResourceFlag == true ||
+            p_surfaceShaderProgramNode->getInitializeFlag() == true)
+        {
+            //If you find corresponding ShaderProgram in a shaderProgramMap (created
+            //previously in a ToltecOpenGLRendererResource::initializeShaderProgramMap
+            //function) then create ShaderInstance of this ShaderProgram and insert it
+            //into shaderInstanceMap.
+
+            auto iter = shaderProgramMap.find(p_surfaceShaderProgramNode->getType());
+            if (iter != shaderProgramMap.end())
+            {
+                m_resourcePerViewportList[m_activeViewportIndex]
+                    .shaderInstanceMap
+                    .insert(std::make_pair(
+                        p_surfaceShaderProgramNode->getNodeID(),
+                        iter->second.createShaderInstance()
+                    ));
+            }
+        }
+
+        //UPDATE
+        else if (p_surfaceShaderProgramNode->getUpdateFlag() == true)
+        {
+            //...
+        }
+    }
 }
 
 /*-----------------------------------------------------------------------------
@@ -225,9 +257,7 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
             return;
 
         p_renderableObject = new RenderableObject();
-        renderableObjectMap.insert(
-            std::pair<std::uint32_t, RenderableObject*>(
-                p_polygonMeshNode->getNodeID(), p_renderableObject));
+        renderableObjectMap.insert(std::make_pair(p_polygonMeshNode->getNodeID(), p_renderableObject));
 
         //CREATE VERTEX AND INDEX BUFFERS
         tpm::Mesh* p_mesh = p_polygonMeshNode->getMesh();
@@ -356,9 +386,9 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
             p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
             
         if (shaderInstanceMapIter != shaderInstanceMap.end())
-            p_shaderInstance = shaderInstanceMapIter->second;
+            p_shaderInstance = shaderInstanceMapIter->second.get();
         else
-            p_shaderInstance = shaderInstanceMap.begin()->second;
+            p_shaderInstance = shaderInstanceMap.begin()->second.get();
 
         //triangle
         std::unique_ptr<RenderItem> p_pointRenderItem(new RenderItem(

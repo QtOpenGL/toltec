@@ -50,7 +50,7 @@ public:
     virtual void    deleteResources() = 0;
 
 protected:
-    virtual void    scanShaderProgramNodeList() = 0;
+    virtual void    scanShaderProgramNodeList(const bool& initializeRendererResourceFlag) = 0;
     virtual void    scanSceneTree(
                         TransformNode&          transformNode,
                         int&                    treeDepthLevel,
