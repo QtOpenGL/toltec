@@ -51,7 +51,8 @@ namespace tgl
         void        setModelMatrix(const glm::mat4& modelMatrix);
 
         //GET
-        Geometry&       getGeometry();
+        Geometry&                                       getGeometry();
+        const std::vector<std::unique_ptr<RenderItem>>& getRenderItemList() const;
 
     private:
         Geometry                                    m_geometry;
@@ -64,5 +65,10 @@ namespace tgl
     inline Geometry& RenderableObject::getGeometry()
     {
         return m_geometry;
+    }
+
+    inline const std::vector<std::unique_ptr<RenderItem>>& RenderableObject::getRenderItemList() const
+    {
+        return m_renderItemList;
     }
 } //NAMESPACE: TGL

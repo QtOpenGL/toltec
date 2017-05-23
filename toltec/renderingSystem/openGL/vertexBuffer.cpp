@@ -58,7 +58,7 @@ namespace gl
             {
                 if (std::is_same<T, float>::value == false)
                 {
-                    DEBUG_MSG("ERROR : Passed data missmatched the definied type (float)!");
+                    DEBUG_ERR("Passed data missmatched the definied type (float)!");
                     return;
                 }
                 break;
@@ -68,7 +68,7 @@ namespace gl
             {
                 if (std::is_same<T, double>::value == false)
                 {
-                    DEBUG_MSG("ERROR : Passed data missmatched the definied type (double)!");
+                    DEBUG_ERR("Passed data missmatched the definied type (double)!");
                     return;
                 }
                 break;
@@ -78,7 +78,7 @@ namespace gl
             {
                 if (std::is_same<T, std::int32_t>::value == false)
                 {
-                    DEBUG_MSG("ERROR : Passed data missmatched the definied type (int32)!");
+                    DEBUG_ERR("Passed data missmatched the definied type (int32)!");
                     return;
                 }
                 break;
@@ -88,7 +88,7 @@ namespace gl
             {
                 if (std::is_same<T, std::uint32_t>::value == false)
                 {
-                    DEBUG_MSG("ERROR : Passed data missmatched the definied type (uint32)!");
+                    DEBUG_ERR("Passed data missmatched the definied type (uint32)!");
                     return;
                 }
                 break;

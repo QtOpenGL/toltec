@@ -46,10 +46,6 @@ public:
     virtual void    requestRender(AbstractViewport* p_viewport) = 0;
 
 protected:
-    virtual void    prepareForRendering() = 0;
-    virtual void    render(AbstractViewport* p_viewport) = 0;
-
-protected:
     AbstractRendererResource*   mp_rendererResource;
 };
 

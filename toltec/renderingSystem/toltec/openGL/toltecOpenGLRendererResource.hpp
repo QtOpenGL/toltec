@@ -60,10 +60,20 @@ public:
                     ToltecOpenGLRendererResource();
     virtual         ~ToltecOpenGLRendererResource();
 
+    //ADD
+    void            addToFinalRenderItemList(RenderItem* p_renderItem, unsigned int viewportIndex);
+
+    //GET
+    const std::map<std::uint32_t, std::unique_ptr<RenderableObject>>&   
+                    getRenderableObjectMap(unsigned int viewportIndex) const;
+
     //OTHER
     virtual void    initializeResources();
     virtual void    updateResources() {};
     virtual void    deleteResources();
+
+    void            clearFinalRenderItemList(const int& viewportIndex = -1);
+    void            clearAllFinalRenderItemLists();
 
 private:
     void            initializeShaderProgramMap();

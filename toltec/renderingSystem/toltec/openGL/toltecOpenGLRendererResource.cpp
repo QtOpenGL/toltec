@@ -51,6 +51,41 @@ ToltecOpenGLRendererResource::~ToltecOpenGLRendererResource()
 }
 
 /*-----------------------------------------------------------------------------
+*   ADD TO FINAL RENDER ITEM LIST
+*-----------------------------------------------------------------------------*/
+void ToltecOpenGLRendererResource::addToFinalRenderItemList(RenderItem* p_renderItem, 
+    unsigned int viewportIndex)
+{
+    try
+    {
+        auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex).finalRenderItemList;
+        finalRenderItemList.push_back(p_renderItem);
+    }
+    catch (std::out_of_range& e1)
+    {
+        DEBUG_ERR("Invalid viewport index!");
+    }
+}
+
+/*-----------------------------------------------------------------------------
+*   GET RENDERABLE OBJECT MAP
+*-----------------------------------------------------------------------------*/
+const std::map<std::uint32_t, std::unique_ptr<RenderableObject>>& 
+ToltecOpenGLRendererResource::getRenderableObjectMap(unsigned int viewportIndex) const
+{
+    try
+    {
+        const auto& renderableObjectMap = m_resourcePerViewportList.at(viewportIndex).renderableObjectMap;
+        return renderableObjectMap;
+    }
+    catch (std::out_of_range& e1)
+    {
+        DEBUG_ERR("Invalid viewport index!");
+        return std::map<std::uint32_t, std::unique_ptr<RenderableObject>>();
+    }
+}
+
+/*-----------------------------------------------------------------------------
 *   INITIALIZE RESOURCES
 *-----------------------------------------------------------------------------*/
 void ToltecOpenGLRendererResource::initializeResources()
@@ -108,6 +143,31 @@ void ToltecOpenGLRendererResource::initializeResources()
 *   DELETE RESOURCES
 *-----------------------------------------------------------------------------*/
 void ToltecOpenGLRendererResource::deleteResources()
+{
+    for (auto& resourcePerViewport : m_resourcePerViewportList)
+        resourcePerViewport.finalRenderItemList.clear();
+}
+
+/*-----------------------------------------------------------------------------
+*   CLEAR FINAL RENDER ITEM LIST
+*-----------------------------------------------------------------------------*/
+void ToltecOpenGLRendererResource::clearFinalRenderItemList(const int& viewportIndex)
+{
+    try
+    {
+        auto& renderableObjectMap = m_resourcePerViewportList.at(viewportIndex).renderableObjectMap;
+        renderableObjectMap.clear();
+    }
+    catch (std::out_of_range& e1)
+    {
+        DEBUG_ERR("Invalid viewport index!");
+    }
+}
+
+/*-----------------------------------------------------------------------------
+*   CLEAR ALL FINAL RENDER ITEM LISTS
+*-----------------------------------------------------------------------------*/
+void ToltecOpenGLRendererResource::clearAllFinalRenderItemLists()
 {
     for (auto& resourcePerViewport : m_resourcePerViewportList)
         resourcePerViewport.finalRenderItemList.clear();
