@@ -67,7 +67,7 @@ bool ToltecOpenGLRenderer::event(QEvent* p_event)
         if (p_openGLViewport != nullptr)
         {
             this->prepareForRendering(viewportIndex);
-            this->render(p_openGLViewport);
+            this->render(p_openGLViewport, viewportIndex);
         }
 
         return true;
@@ -122,12 +122,11 @@ void ToltecOpenGLRenderer::prepareForRendering(const unsigned int& viewportIndex
 /*-----------------------------------------------------------------------------
 *   RENDER
 *-----------------------------------------------------------------------------*/
-void ToltecOpenGLRenderer::render(gl::OpenGLViewport* p_viewport)
+void ToltecOpenGLRenderer::render(gl::OpenGLViewport* p_viewport, const unsigned int& viewportIndex)
 {
     /*-----------------------------------------------------------------------------
-    *   PREPARATION
+    *   CAST
     *-----------------------------------------------------------------------------*/
-    //CAST
     ToltecOpenGLRendererResource* p_renderResource = 
         static_cast<ToltecOpenGLRendererResource*>(mp_rendererResource);
 
@@ -148,7 +147,11 @@ void ToltecOpenGLRenderer::render(gl::OpenGLViewport* p_viewport)
     /*-----------------------------------------------------------------------------
     *   RENDER
     *----------------------------------------------------------------------------*/
-    //...
+    const auto& finalRenderItemList = p_renderResource->getFinalRenderItemList(viewportIndex);
+    for (const auto p_renderItem : finalRenderItemList)
+    {
+        p_renderItem->draw();
+    }
 
     /*-----------------------------------------------------------------------------
     *   SWAP BUFFERS

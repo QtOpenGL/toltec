@@ -49,7 +49,7 @@ class ToltecOpenGLRendererResource : public AbstractRendererResource
 public:
     //STRUCTS
     struct ResourcePerViewport {
-        std::map<Node::Type, ShaderProgram>                         shaderProgramMap;
+        std::map<Node::Type, std::unique_ptr<ShaderProgram>>        shaderProgramMap;
         std::map<std::uint32_t, std::unique_ptr<RenderableObject>>  renderableObjectMap;
         std::map<std::uint32_t, std::unique_ptr<ShaderInstance>>    shaderInstanceMap;
 
@@ -66,6 +66,8 @@ public:
     //GET
     const std::map<std::uint32_t, std::unique_ptr<RenderableObject>>&   
                     getRenderableObjectMap(unsigned int viewportIndex) const;
+    const std::vector<RenderItem*>&
+                    getFinalRenderItemList(unsigned int viewportIndex) const;
 
     //OTHER
     virtual void    initializeResources();
@@ -94,4 +96,5 @@ private:
     std::vector<ToltecOpenGLRendererResource::ResourcePerViewport>  m_resourcePerViewportList;
     unsigned int                                                    m_activeViewportIndex;
 };
+
 } //NAMESPACE: TGL

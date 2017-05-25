@@ -12,6 +12,7 @@
 
 #include "renderingSystem/openGL/uniform.hpp" 
 #include "renderingSystem/toltec/openGL/shaders/shaderProgram.hpp" 
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: TGL (TOLTEC OPENGL)

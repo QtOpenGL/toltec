@@ -52,6 +52,6 @@ public:
 
 private:
     void            prepareForRendering(const unsigned int& viewportIndex);
-    void            render(gl::OpenGLViewport* p_viewport);
+    void            render(gl::OpenGLViewport* p_viewport, const unsigned int& viewportIndex);
 };
 } //NAMESPACE: TGL

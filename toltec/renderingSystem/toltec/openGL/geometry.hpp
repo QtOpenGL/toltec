@@ -13,7 +13,9 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <memory>
 #include <vector>
+
 #include <glbinding/gl/types.h>
 
 #include "renderingSystem/openGL/indexBuffer.hpp"
@@ -24,34 +26,34 @@
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-    /*-----------------------------------------------------------------------------
-    *   CLASS DECLARATIONS
-    *   GEOMETRY
-    *-----------------------------------------------------------------------------*/
-    class Geometry
-    {
-    public:
-        //CONSTRUCTORS
-                        Geometry();
-        virtual         ~Geometry() {}
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   GEOMETRY
+*-----------------------------------------------------------------------------*/
+class Geometry
+{
+public:
+    //CONSTRUCTORS
+                    Geometry();
+    virtual         ~Geometry() {}
 
-        //ADD
-        void            addVertexBuffer(const gl::VertexBuffer& vertexBuffer);
-        void            addIndexBuffer(const gl::IndexBuffer& indexBuffer);
+    //ADD
+    void            addVertexBuffer(std::unique_ptr<gl::VertexBuffer> p_vertexBuffer);
+    void            addIndexBuffer(std::unique_ptr<gl::IndexBuffer> p_indexBuffer);
 
-        //GET
-        gl::GLuint      getVAOID() const;
+    //GET
+    gl::GLuint      getVAOID() const;
 
-    private:
-        gl::GLuint                      m_vaoID;
-        std::vector<gl::VertexBuffer>   m_vertexBufferList;
-        std::vector<gl::IndexBuffer>    m_indexBufferList;
-    };
+private:
+    gl::GLuint                                      m_vaoID;
+    std::vector<std::unique_ptr<gl::VertexBuffer>>  m_vertexBufferList;
+    std::vector<std::unique_ptr<gl::IndexBuffer>>   m_indexBufferList;
+};
 
-    /*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
-    inline gl::GLuint Geometry::getVAOID() const
-    {
-        return m_vaoID;
-    }
+inline gl::GLuint Geometry::getVAOID() const
+{
+    return m_vaoID;
+}
 } //NAMESPACE: TGL

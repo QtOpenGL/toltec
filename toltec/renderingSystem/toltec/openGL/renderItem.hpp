@@ -17,6 +17,10 @@
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
+namespace gl
+{
+    class IndexBuffer;
+}
 namespace tgl
 {
     class ShaderInstance;
@@ -27,32 +31,35 @@ namespace tgl
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-    /*-----------------------------------------------------------------------------
-    *   CLASS DECLARATIONS
-    *   RENDER ITEM
-    *-----------------------------------------------------------------------------*/
-    class RenderItem
-    {
-    public:
-        //TYPES
-        enum DrawMode {
-            POINTS,
-            LINES,
-            TRIANGLES
-        };
-
-        //CONSTRUCTORS
-                        RenderItem(
-                            gl::GLuint vaoID,
-                            gl::GLuint indexBufferID,
-                            ShaderInstance* p_shaderInstance,
-                            RenderItem::DrawMode drawMode);
-        virtual         ~RenderItem() {}
-
-    private:
-        gl::GLuint              m_vaoID;
-        gl::GLuint              m_indexBufferID;
-        ShaderInstance*         mp_shaderInstance;
-        RenderItem::DrawMode    m_drawMode;
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   RENDER ITEM
+*-----------------------------------------------------------------------------*/
+class RenderItem
+{
+public:
+    //TYPES
+    enum DrawMode {
+        POINTS,
+        LINES,
+        TRIANGLES
     };
+
+    //CONSTRUCTORS
+                    RenderItem(
+                        gl::GLuint              vaoID,
+                        gl::IndexBuffer*        p_indexBuffer,
+                        ShaderInstance*         p_shaderInstance,
+                        RenderItem::DrawMode    drawMode);
+    virtual         ~RenderItem() {}
+
+    //OTHER
+    void            draw() const;
+
+private:
+    gl::GLuint              m_vaoID;
+    gl::IndexBuffer*        mp_indexBuffer;
+    ShaderInstance*         mp_shaderInstance;
+    RenderItem::DrawMode    m_drawMode;
+};
 } //NAMESPACE: TGL

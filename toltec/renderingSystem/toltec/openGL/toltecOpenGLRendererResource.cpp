@@ -80,8 +80,27 @@ ToltecOpenGLRendererResource::getRenderableObjectMap(unsigned int viewportIndex)
     }
     catch (std::out_of_range& e1)
     {
-        DEBUG_ERR("Invalid viewport index!");
-        return std::map<std::uint32_t, std::unique_ptr<RenderableObject>>();
+        DEBUG_ERR("Invalid viewport index! Returning object at index 0.");
+        const auto& renderableObjectMap = m_resourcePerViewportList.at(0).renderableObjectMap;
+        return renderableObjectMap;
+    }
+}
+
+/*-----------------------------------------------------------------------------
+*   GET FINAL RENDER ITEM LIST
+*-----------------------------------------------------------------------------*/
+const std::vector<RenderItem*>& ToltecOpenGLRendererResource::getFinalRenderItemList(unsigned int viewportIndex) const
+{
+    try
+    {
+        const auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex).finalRenderItemList;
+        return finalRenderItemList;
+    }
+    catch (std::out_of_range& e1)
+    {
+        DEBUG_ERR("Invalid viewport index! Returning object at index 0.");
+        const auto& finalRenderItemList = m_resourcePerViewportList.at(0).finalRenderItemList;
+        return finalRenderItemList;
     }
 }
 
@@ -155,8 +174,8 @@ void ToltecOpenGLRendererResource::clearFinalRenderItemList(const int& viewportI
 {
     try
     {
-        auto& renderableObjectMap = m_resourcePerViewportList.at(viewportIndex).renderableObjectMap;
-        renderableObjectMap.clear();
+        auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex).finalRenderItemList;
+        finalRenderItemList.clear();
     }
     catch (std::out_of_range& e1)
     {
@@ -179,9 +198,13 @@ void ToltecOpenGLRendererResource::clearAllFinalRenderItemLists()
 void ToltecOpenGLRendererResource::initializeShaderProgramMap()
 {
     //LAMBERT SHADER PROGRAM
-    LambertShaderProgram lambertShaderProgram;
+    std::unique_ptr<LambertShaderProgram> p_lambertShaderProgram(new LambertShaderProgram());
     m_resourcePerViewportList[m_activeViewportIndex]
-        .shaderProgramMap[Node::Type::LAMBERT_SSP_NODE] = lambertShaderProgram;
+        .shaderProgramMap
+        .insert(std::make_pair(
+            Node::Type::LAMBERT_SSP_NODE,
+            std::move(p_lambertShaderProgram)
+        ));
 }
 
 /*-----------------------------------------------------------------------------
@@ -211,7 +234,7 @@ void ToltecOpenGLRendererResource::scanShaderProgramNodeList(const bool& initial
                     .shaderInstanceMap
                     .insert(std::make_pair(
                         p_surfaceShaderProgramNode->getNodeID(),
-                        iter->second.createShaderInstance()
+                        iter->second->createShaderInstance()
                     ));
             }
         }
@@ -336,18 +359,18 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
         std::vector<float> faceVertexUVList;
         std::vector<float> faceVertexNormalList;
 
-        gl::VertexBuffer positionVertexBuffer(
+        std::unique_ptr<gl::VertexBuffer> p_positionVertexBuffer(new gl::VertexBuffer(
             gl::VertexBuffer::DataType::FLOAT, 
             gl::VertexBuffer::Semantic::POSITION
-        );
-        gl::VertexBuffer uvVertexBuffer(
+        ));
+        std::unique_ptr<gl::VertexBuffer> p_uvVertexBuffer(new gl::VertexBuffer(
             gl::VertexBuffer::DataType::FLOAT, 
             gl::VertexBuffer::Semantic::UV
-        );
-        gl::VertexBuffer normalVertexBuffer(
+        ));
+        std::unique_ptr<gl::VertexBuffer> p_normalVertexBuffer(new gl::VertexBuffer(
             gl::VertexBuffer::DataType::FLOAT, 
             gl::VertexBuffer::Semantic::NORMAL
-        );
+        ));
 
         //index buffers
         std::uint32_t faceVertexIndexCount = 0;
@@ -356,9 +379,12 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
         std::vector<std::uint32_t> edgeIndexList;
         std::vector<std::uint32_t> vertexIndexList;
 
-        gl::IndexBuffer faceIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
-        gl::IndexBuffer edgeIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
-        gl::IndexBuffer vertexIndexBuffer(gl::IndexBuffer::DataType::UINT_32);
+        std::unique_ptr<gl::IndexBuffer> p_faceIndexBuffer(new gl::IndexBuffer(
+            gl::IndexBuffer::DataType::UINT_32));
+        std::unique_ptr<gl::IndexBuffer> p_edgeIndexBuffer(new gl::IndexBuffer(
+            gl::IndexBuffer::DataType::UINT_32));
+        std::unique_ptr<gl::IndexBuffer> p_vertexIndexBuffer(new gl::IndexBuffer(
+            gl::IndexBuffer::DataType::UINT_32));
 
         //fetch and generate
         for (const std::unique_ptr<tpm::Face>& p_face : p_mesh->getFaceList())
@@ -418,24 +444,28 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
         }
 
         //UPDATE VERTEX AND INDEX BUFFERS
-        positionVertexBuffer.updateData(faceVertexPositionList);
-        uvVertexBuffer.updateData(faceVertexUVList);
-        normalVertexBuffer.updateData(faceVertexNormalList);
+        p_positionVertexBuffer->updateData(faceVertexPositionList);
+        p_uvVertexBuffer->updateData(faceVertexUVList);
+        p_normalVertexBuffer->updateData(faceVertexNormalList);
 
-        faceIndexBuffer.updateData(faceIndexList);
-        edgeIndexBuffer.updateData(edgeIndexList);
-        vertexIndexBuffer.updateData(vertexIndexList);
+        p_faceIndexBuffer->updateData(faceIndexList);
+        p_edgeIndexBuffer->updateData(edgeIndexList);
+        p_vertexIndexBuffer->updateData(vertexIndexList);
 
         //ADD VERTEX AND INDEX BUFFERS TO THE GEOMETRY
         tgl::Geometry& geometry = p_renderableObject->getGeometry();
 
-        geometry.addVertexBuffer(positionVertexBuffer);
-        geometry.addVertexBuffer(uvVertexBuffer);
-        geometry.addVertexBuffer(normalVertexBuffer);
-                    
-        geometry.addIndexBuffer(faceIndexBuffer);
-        geometry.addIndexBuffer(edgeIndexBuffer);
-        geometry.addIndexBuffer(vertexIndexBuffer);
+        geometry.addVertexBuffer(std::move(p_positionVertexBuffer));
+        geometry.addVertexBuffer(std::move(p_uvVertexBuffer));
+        geometry.addVertexBuffer(std::move(p_normalVertexBuffer));
+        
+        gl::IndexBuffer* p_faceIndexBufferReference = p_faceIndexBuffer.get();
+        gl::IndexBuffer* p_edgeIndexBufferReference = p_edgeIndexBuffer.get();
+        gl::IndexBuffer* p_vertexIndexBufferReference = p_vertexIndexBuffer.get();
+
+        geometry.addIndexBuffer(std::move(p_faceIndexBuffer));
+        geometry.addIndexBuffer(std::move(p_edgeIndexBuffer));
+        geometry.addIndexBuffer(std::move(p_vertexIndexBuffer));
 
         //CREATE RENDER ITEMS
         //find shader instance
@@ -453,7 +483,7 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
         //triangle
         std::unique_ptr<RenderItem> p_pointRenderItem(new RenderItem(
             geometry.getVAOID(),
-            faceIndexBuffer.getID(),
+            p_faceIndexBufferReference,
             p_shaderInstance,
             RenderItem::DrawMode::TRIANGLES
         ));
