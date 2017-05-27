@@ -46,7 +46,7 @@ public:
     virtual         ~ShaderInstance() {}
 
     //SET
-    void            setUniformList(std::vector<std::unique_ptr<gl::Uniform>>& uniformList);
+    void            setUniformList(std::vector<std::unique_ptr<gl::Uniform>> uniformList);
 
     //GET
     const ShaderProgram&    getShaderProgram() const;

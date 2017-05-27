@@ -79,7 +79,7 @@ void Geometry::addVertexBuffer(std::unique_ptr<gl::VertexBuffer> p_vertexBuffer)
     {
         case gl::VertexBuffer::DataType::FLOAT:
         {
-            type = gl::GLenum::GL_FLAT;
+            type = gl::GLenum::GL_FLOAT;
             break;
         }
         case gl::VertexBuffer::DataType::DOUBLE:

@@ -32,7 +32,7 @@ namespace tgl
     /*-----------------------------------------------------------------------------
     *   SET UNIFORM LIST
     *-----------------------------------------------------------------------------*/
-    void ShaderInstance::setUniformList(std::vector<std::unique_ptr<gl::Uniform>>& uniformList)
+    void ShaderInstance::setUniformList(std::vector<std::unique_ptr<gl::Uniform>> uniformList)
     {
         m_uniformList = std::move(uniformList);
     }

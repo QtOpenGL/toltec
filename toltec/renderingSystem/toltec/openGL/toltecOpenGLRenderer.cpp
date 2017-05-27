@@ -135,6 +135,8 @@ void ToltecOpenGLRenderer::render(gl::OpenGLViewport* p_viewport, const unsigned
     *-----------------------------------------------------------------------------*/
     p_viewport->makeCurrent();
 
+    gl::glViewport(0, 0, p_viewport->width(), p_viewport->height());
+
     /*-----------------------------------------------------------------------------
     *   BUFFERS
     *-----------------------------------------------------------------------------*/

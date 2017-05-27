@@ -66,7 +66,7 @@ void IndexBuffer::updateData(const std::vector<T>& data)
     //UPDATE DATA
     glBindBuffer(GLenum::GL_ELEMENT_ARRAY_BUFFER, m_id);
 
-    if (dataSizeInBytes > m_sizeInBytes)
+    if (dataSizeInBytes != m_sizeInBytes)
         glBufferData(GLenum::GL_ELEMENT_ARRAY_BUFFER, dataSizeInBytes, &data[0], GLenum::GL_DYNAMIC_DRAW);
     else
         glBufferSubData(GLenum::GL_ELEMENT_ARRAY_BUFFER, 0, dataSizeInBytes, &data[0]);

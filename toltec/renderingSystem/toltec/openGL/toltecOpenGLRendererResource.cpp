@@ -445,27 +445,27 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
 
         //UPDATE VERTEX AND INDEX BUFFERS
         p_positionVertexBuffer->updateData(faceVertexPositionList);
-        p_uvVertexBuffer->updateData(faceVertexUVList);
-        p_normalVertexBuffer->updateData(faceVertexNormalList);
+        //p_uvVertexBuffer->updateData(faceVertexUVList);
+        //p_normalVertexBuffer->updateData(faceVertexNormalList);           
 
         p_faceIndexBuffer->updateData(faceIndexList);
-        p_edgeIndexBuffer->updateData(edgeIndexList);
-        p_vertexIndexBuffer->updateData(vertexIndexList);
+        //p_edgeIndexBuffer->updateData(edgeIndexList);
+        //p_vertexIndexBuffer->updateData(vertexIndexList);
 
         //ADD VERTEX AND INDEX BUFFERS TO THE GEOMETRY
         tgl::Geometry& geometry = p_renderableObject->getGeometry();
 
         geometry.addVertexBuffer(std::move(p_positionVertexBuffer));
-        geometry.addVertexBuffer(std::move(p_uvVertexBuffer));
-        geometry.addVertexBuffer(std::move(p_normalVertexBuffer));
+        //geometry.addVertexBuffer(std::move(p_uvVertexBuffer));
+        //geometry.addVertexBuffer(std::move(p_normalVertexBuffer));
         
         gl::IndexBuffer* p_faceIndexBufferReference = p_faceIndexBuffer.get();
         gl::IndexBuffer* p_edgeIndexBufferReference = p_edgeIndexBuffer.get();
         gl::IndexBuffer* p_vertexIndexBufferReference = p_vertexIndexBuffer.get();
 
         geometry.addIndexBuffer(std::move(p_faceIndexBuffer));
-        geometry.addIndexBuffer(std::move(p_edgeIndexBuffer));
-        geometry.addIndexBuffer(std::move(p_vertexIndexBuffer));
+        //geometry.addIndexBuffer(std::move(p_edgeIndexBuffer));
+        //geometry.addIndexBuffer(std::move(p_vertexIndexBuffer));
 
         //CREATE RENDER ITEMS
         //find shader instance

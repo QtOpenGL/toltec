@@ -27,8 +27,6 @@ namespace tgl
         this->createShader("../data/shaders/lambert.vert", ShaderProgram::ShaderType::VERTEX);
         this->createShader("../data/shaders/lambert.frag", ShaderProgram::ShaderType::FRAGMENT);
         this->linkAndValidate();
-
-        this->setupUniforms();
     }
 
     /*-----------------------------------------------------------------------------
@@ -37,7 +35,7 @@ namespace tgl
     ShaderInstance* LambertShaderProgram::createShaderInstance()
     {
         ShaderInstance* p_shaderInstance = new ShaderInstance(this);
-        p_shaderInstance->setUniformList(this->setupUniforms());
+        p_shaderInstance->setUniformList(std::move(this->setupUniforms()));
 
         return p_shaderInstance;
     }
@@ -97,6 +95,6 @@ namespace tgl
         uniformList.push_back(std::move(p_ambientColor));
         uniformList.push_back(std::move(p_isAmbientMapConnected));
 
-        return uniformList;
+        return std::move(uniformList);
     }
 } //NAMESPACE: TGL

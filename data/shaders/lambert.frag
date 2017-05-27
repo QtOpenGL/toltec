@@ -85,6 +85,8 @@ void main()
         g_outColor.a = transparencyColor.a;
     else
         g_outColor.a = 1.0f - transparencyColor.a;
+
+    g_outColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);  
 }
 
 /*-----------------------------------------------------------------------------
