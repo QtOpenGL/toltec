@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GUIManager" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAACAAAAEAAAICQAAAAAyAAAAQAAABgAAAAQAA=</HashCode>
+      <FileName>guiManager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RenderManager" Collapsed="true">
+    <Position X="21.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgAAAAAEAAAAAAAAAAAAkAAQAAAAgABAAAAA=</HashCode>
+      <FileName>renderManager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResourceManager" Collapsed="true">
+    <Position X="21.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAEggIBAgAAAAADAEAEIUQAAAA4AQQIiAgAUAAAAA=</HashCode>
+      <FileName>resourceManager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractRenderer" Collapsed="true">
+    <Position X="3.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAACAAAAAAAAAAAAAAAAEAAAAAIgAAAAAAAAAAA=</HashCode>
+      <FileName>renderingSystem\abstractRenderer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractViewport" Collapsed="true">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAEAQAABACAJgghAAAABAAAAQgACAAACgQAAAIQA=</HashCode>
+      <FileName>renderingSystem\abstractViewport.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbstractRendererResource" Collapsed="true">
+    <Position X="5.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAEAAQAEAAIAAEAAAICgAAAAAACAAAAAAAAEAAA=</HashCode>
+      <FileName>renderingSystem\abstractRendererResource.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RenderingAPI" Collapsed="true">
+    <Position X="1.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAEABABAAAAEGQAQAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>renderingSystem\renderingAPI.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RenderingSystem" Collapsed="true">
+    <Position X="1.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIACAAAQAABQAAAAAAggAAAAAAAAAAAAAAAFAAQAAAA=</HashCode>
+      <FileName>renderingSystem\renderingSystem.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GlobalEventFilter" Collapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>events\globalEventFilter.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RenderEvent" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABQAAAIAAAAAAAAABAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>events\renderEvent.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfaceNode" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAABAAgAAAAAAAAAEACAAAAAAA=</HashCode>
+      <FileName>nodes\surfaceNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraNode" Collapsed="true">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEAsAAgAAgQAAYAAAA4EACAAgAAAAAoIgBAAggIAAA=</HashCode>
+      <FileName>nodes\cameraNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAiIAAAAAAAAIAAAAAAACQAARgAQARAgAAAAAEIAAg=</HashCode>
+      <FileName>nodes\node.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PolygonMeshNode" Collapsed="true">
+    <Position X="12.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAQBAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>nodes\polygonMeshNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RenderableObjectNode" Collapsed="true">
+    <Position X="13.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>nodes\renderableObjectNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneNode" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAABAAAAAAAAAAAAAAAgAAAAAEAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>nodes\sceneNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TransformNode" Collapsed="true">
+    <Position X="16.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABAIAAABAAAaQAAhAQAgAICAAwAAAGAAAAAAEigCI=</HashCode>
+      <FileName>nodes\transformNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ComponentShaderProgramNode" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAQAAgAgIAAA=</HashCode>
+      <FileName>nodes\shaders\componentShaderProgramNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LambertSSPNode" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIgAAAAAAAAAAAAQACAAAAAAAAAAEBAACAAEAAAAAAE=</HashCode>
+      <FileName>nodes\shaders\lambertSSPNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LineCSPNode" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAAAAAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>nodes\shaders\lineCSPNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlaneCSPNode" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>nodes\shaders\planeCSPNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointCSPNode" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAgAgAAAAAAAACAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>nodes\shaders\pointCSPNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShaderProgramNode" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>nodes\shaders\shaderProgramNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfaceShaderProgramNode" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAJAACA=</HashCode>
+      <FileName>nodes\shaders\surfaceShaderProgramNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VolumeShaderProgramNode" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>nodes\shaders\volumeShaderProgramNode.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ui::gui::OutputLineWidget" Collapsed="true">
+    <Position X="23.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAgAABAAAAACgAAAAABAAAgAAAAAAAgg=</HashCode>
+      <FileName>ui\gui\outputLineWidget.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ui::gui::AbstractPanel" Collapsed="true">
+    <Position X="19.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>ui\gui\abstractPanel.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ui::gui::ViewportPanel" Collapsed="true">
+    <Position X="19.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAASAQAAAAABAAAAAAAAAAAAAAIgAAAAAA=</HashCode>
+      <FileName>ui\gui\viewportPanel.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ui::gui::PanelContainer" Collapsed="true">
+    <Position X="21.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ui\gui\panelContainer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ui::gui::MainWindow" Collapsed="true">
+    <Position X="21.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ui\gui\mainWindow.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::Geometry" Collapsed="true">
+    <Position X="5.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAEAAAAAAAgAAgAAAAAgAEwAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\geometry.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::RenderItem" Collapsed="true">
+    <Position X="1.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\renderItem.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::RenderableObject" Collapsed="true">
+    <Position X="3.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\renderableObject.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::ShaderInstance" Collapsed="true">
+    <Position X="11.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAEAAAAAAAAAAAAAAAAAAAAAAABAAAAIIAAAQA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\shaders\shaderInstance.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::ToltecOpenGLRendererResource" Collapsed="true">
+    <Position X="5.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\toltecOpenGLRendererResource.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::ToltecOpenGLRenderer" Collapsed="true">
+    <Position X="3.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAQEAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\toltecOpenGLRenderer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::LambertShaderProgram" Collapsed="true">
+    <Position X="9.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAEAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\shaders\lambertShaderProgram.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tgl::ShaderProgram" Collapsed="true">
+    <Position X="9.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAEAAAAAIAAAACAAACAAABAAAEAIEQAAAABBAAABAA=</HashCode>
+      <FileName>renderingSystem\toltec\openGL\shaders\shaderProgram.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::IndexBuffer" Collapsed="true">
+    <Position X="9.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAJAAAECAAAAAEAABEAAAACQAAAAAEAAABAA=</HashCode>
+      <FileName>renderingSystem\openGL\indexBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::OpenGLViewport" Collapsed="true">
+    <Position X="7.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAIAAEAAAAIAAAAAAAAAAgAAEEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\openGLViewport.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::Uniform" Collapsed="true">
+    <Position X="8.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAQAAAAAABAAAABAAAAEAgAEAgA=</HashCode>
+      <FileName>renderingSystem\openGL\uniform.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformContainer" Collapsed="true">
+    <Position X="2" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEAAAAAAIAAQAAAAAAAIAAEIAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformContainer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformArray" Collapsed="true">
+    <Position X="1" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAEAAEAAAAAAAAAAAAgACAAEAAAAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformContainer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformStruct" Collapsed="true">
+    <Position X="3.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAGAAAAEAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformContainer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformUnit" Collapsed="true">
+    <Position X="11" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAIAAAAAAAACAAAAAIAAAACSAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformBool" Collapsed="true">
+    <Position X="5.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAIABAAAAAQAAAAAAAAIAAAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformInt" Collapsed="true">
+    <Position X="7.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAIBAAAAAAQAAAAAAAAAAgAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformFloat" Collapsed="true">
+    <Position X="10" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAYACAAAAIAAAAAAAQAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformVec2" Collapsed="true">
+    <Position X="12.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACABAAIAAAAAAAQIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformVec3" Collapsed="true">
+    <Position X="14.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIACAAAAIAAAAAAAQIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::UniformMat4" Collapsed="true">
+    <Position X="16.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAACAAAAIAAAAAAAQAAAAAABAAAAAEAAA=</HashCode>
+      <FileName>renderingSystem\openGL\uniformUnit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gl::VertexBuffer" Collapsed="true">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAIIAgAAAAAAQAAAAEAAAACQAAAAAEAAAFIA=</HashCode>
+      <FileName>renderingSystem\openGL\vertexBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="tpm::Mesh" Collapsed="true">
+    <Position X="24.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQgMAAACiAAAAgAIAIAAAAAEAAgAAACAAAAA=</HashCode>
+      <FileName>toltecPolygonMeshLibrary\mesh.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="qt_meta_stringdata_ui__gui__AbstractPanel_t" Collapsed="true">
+    <Position X="21.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_abstractPanel.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_AbstractRenderer_t" Collapsed="true">
+    <Position X="23" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_abstractRenderer.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_AbstractViewport_t" Collapsed="true">
+    <Position X="24.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_abstractViewport.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_GlobalEventFilter_t" Collapsed="true">
+    <Position X="19.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_globalEventFilter.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_ui__gui__MainWindow_t" Collapsed="true">
+    <Position X="23" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_mainWindow.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_gl__OpenGLViewport_t" Collapsed="true">
+    <Position X="26.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_openGLViewport.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_ui__gui__PanelContainer_t" Collapsed="true">
+    <Position X="24.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_panelContainer.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_tgl__ToltecOpenGLRenderer_t" Collapsed="true">
+    <Position X="21.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_toltecOpenGLRenderer.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="qt_meta_stringdata_ui__gui__ViewportPanel_t" Collapsed="true">
+    <Position X="19.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\Debug\moc_viewportPanel.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="tpm::FaceVertex" Collapsed="true">
+    <Position X="21.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAgA=</HashCode>
+      <FileName>toltecPolygonMeshLibrary\mesh.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="tpm::Vertex" Collapsed="true">
+    <Position X="23" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>toltecPolygonMeshLibrary\mesh.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="tpm::Face" Collapsed="true">
+    <Position X="19.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>toltecPolygonMeshLibrary\mesh.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
