@@ -58,7 +58,7 @@ void ToltecOpenGLRendererResource::addToFinalRenderItemList(RenderItem* p_render
 {
     try
     {
-        auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex).finalRenderItemList;
+        auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex)->finalRenderItemList;
         finalRenderItemList.push_back(p_renderItem);
     }
     catch (std::out_of_range& e1)
@@ -75,13 +75,13 @@ ToltecOpenGLRendererResource::getRenderableObjectMap(unsigned int viewportIndex)
 {
     try
     {
-        const auto& renderableObjectMap = m_resourcePerViewportList.at(viewportIndex).renderableObjectMap;
+        const auto& renderableObjectMap = m_resourcePerViewportList.at(viewportIndex)->renderableObjectMap;
         return renderableObjectMap;
     }
     catch (std::out_of_range& e1)
     {
         DEBUG_ERR("Invalid viewport index! Returning object at index 0.");
-        const auto& renderableObjectMap = m_resourcePerViewportList.at(0).renderableObjectMap;
+        const auto& renderableObjectMap = m_resourcePerViewportList.at(0)->renderableObjectMap;
         return renderableObjectMap;
     }
 }
@@ -93,13 +93,13 @@ const std::vector<RenderItem*>& ToltecOpenGLRendererResource::getFinalRenderItem
 {
     try
     {
-        const auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex).finalRenderItemList;
+        const auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex)->finalRenderItemList;
         return finalRenderItemList;
     }
     catch (std::out_of_range& e1)
     {
         DEBUG_ERR("Invalid viewport index! Returning object at index 0.");
-        const auto& finalRenderItemList = m_resourcePerViewportList.at(0).finalRenderItemList;
+        const auto& finalRenderItemList = m_resourcePerViewportList.at(0)->finalRenderItemList;
         return finalRenderItemList;
     }
 }
@@ -128,7 +128,8 @@ void ToltecOpenGLRendererResource::initializeResources()
             p_viewport->makeCurrent();
 
             //CREATE RESOURCE
-            m_resourcePerViewportList.push_back(ResourcePerViewport());
+            m_resourcePerViewportList.push_back(
+                std::move(std::make_unique<ToltecOpenGLRendererResource::ResourcePerViewport>()));
             m_activeViewportIndex = i;
 
             //CREATE SHADER PROGRAMS
@@ -164,7 +165,7 @@ void ToltecOpenGLRendererResource::initializeResources()
 void ToltecOpenGLRendererResource::deleteResources()
 {
     for (auto& resourcePerViewport : m_resourcePerViewportList)
-        resourcePerViewport.finalRenderItemList.clear();
+        resourcePerViewport->finalRenderItemList.clear();
 }
 
 /*-----------------------------------------------------------------------------
@@ -174,7 +175,7 @@ void ToltecOpenGLRendererResource::clearFinalRenderItemList(const int& viewportI
 {
     try
     {
-        auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex).finalRenderItemList;
+        auto& finalRenderItemList = m_resourcePerViewportList.at(viewportIndex)->finalRenderItemList;
         finalRenderItemList.clear();
     }
     catch (std::out_of_range& e1)
@@ -189,7 +190,7 @@ void ToltecOpenGLRendererResource::clearFinalRenderItemList(const int& viewportI
 void ToltecOpenGLRendererResource::clearAllFinalRenderItemLists()
 {
     for (auto& resourcePerViewport : m_resourcePerViewportList)
-        resourcePerViewport.finalRenderItemList.clear();
+        resourcePerViewport->finalRenderItemList.clear();
 }
 
 /*-----------------------------------------------------------------------------
@@ -200,7 +201,7 @@ void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     //LAMBERT SHADER PROGRAM
     std::unique_ptr<LambertShaderProgram> p_lambertShaderProgram(new LambertShaderProgram());
     m_resourcePerViewportList[m_activeViewportIndex]
-        .shaderProgramMap
+        ->shaderProgramMap
         .insert(std::make_pair(
             Node::Type::LAMBERT_SSP_NODE,
             std::move(p_lambertShaderProgram)
@@ -214,7 +215,7 @@ void ToltecOpenGLRendererResource::scanShaderProgramNodeList(const bool& initial
 {
     //SURFACE SHADER PROGRAM NODES
     auto& surfaceShaderProgramNodeList = ResourceManager::getInstance().getSurfaceShaderProgramNodeList();
-    auto& shaderProgramMap = m_resourcePerViewportList[m_activeViewportIndex].shaderProgramMap;
+    auto& shaderProgramMap = m_resourcePerViewportList[m_activeViewportIndex]->shaderProgramMap;
 
     for (auto p_surfaceShaderProgramNode : surfaceShaderProgramNodeList)
     {
@@ -231,7 +232,7 @@ void ToltecOpenGLRendererResource::scanShaderProgramNodeList(const bool& initial
             if (iter != shaderProgramMap.end())
             {
                 m_resourcePerViewportList[m_activeViewportIndex]
-                    .shaderInstanceMap
+                    ->shaderInstanceMap
                     .insert(std::make_pair(
                         p_surfaceShaderProgramNode->getNodeID(),
                         iter->second->createShaderInstance()
@@ -333,7 +334,7 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
     if (initializeRendererResourceFlag == true || p_polygonMeshNode->getInitializeFlag() == true)
     {
         //ADD TO THE RENDERABLE OBJECT MAP
-        auto& renderableObjectMap = m_resourcePerViewportList[m_activeViewportIndex].renderableObjectMap;
+        auto& renderableObjectMap = m_resourcePerViewportList[m_activeViewportIndex]->renderableObjectMap;
 
         auto renderableObjectMapIter = renderableObjectMap.find(p_polygonMeshNode->getNodeID());
         if (renderableObjectMapIter != renderableObjectMap.end())
@@ -469,7 +470,7 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_pol
 
         //CREATE RENDER ITEMS
         //find shader instance
-        auto& shaderInstanceMap = m_resourcePerViewportList[m_activeViewportIndex].shaderInstanceMap;
+        auto& shaderInstanceMap = m_resourcePerViewportList[m_activeViewportIndex]->shaderInstanceMap;
         ShaderInstance* p_shaderInstance = nullptr;
 
         auto shaderInstanceMapIter = shaderInstanceMap.find(

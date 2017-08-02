@@ -14,7 +14,7 @@
 #include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
-*   STATIC VARIABLES
+*   STATIC CLASS MEMBERS
 *-----------------------------------------------------------------------------*/
 //PRIVATE
 bool GlobalEventFilter::ms_isAltPressed = false;

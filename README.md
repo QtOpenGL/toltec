@@ -1,5 +1,5 @@
 ## Milestones
-- [x] First light (succesful render of a cube).
+- [x] First light (successful render of a cube).
 - [ ] Selecting 3D objects.
 - [ ] Applying transformations to objects (move, rotate, scale).
 - [ ] Selecting components (vertices, edges, faces).

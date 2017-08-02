@@ -28,9 +28,12 @@
 namespace tgl
 {
     class RenderableObject;
-    class RenderItem;
-    class ShaderInstance;
+    /*class RenderItem;*/
+    /*class ShaderInstance;*/
 }
+
+#include "renderingSystem/toltec/openGL/renderableObject.hpp"
+#include "renderingSystem/toltec/openGL/renderItem.hpp"
 
 class PolygonMeshNode;
 class TransformNode;
@@ -64,14 +67,14 @@ public:
     void            addToFinalRenderItemList(RenderItem* p_renderItem, unsigned int viewportIndex);
 
     //GET
-    const std::map<std::uint32_t, std::unique_ptr<RenderableObject>>&   
+    const std::map<std::uint32_t, std::unique_ptr<RenderableObject>>&
                     getRenderableObjectMap(unsigned int viewportIndex) const;
     const std::vector<RenderItem*>&
                     getFinalRenderItemList(unsigned int viewportIndex) const;
 
     //OTHER
     virtual void    initializeResources();
-    virtual void    updateResources() {};
+    virtual void    updateResources() {}
     virtual void    deleteResources();
 
     void            clearFinalRenderItemList(const int& viewportIndex = -1);
@@ -88,13 +91,13 @@ private:
                         bool&                   calculateFinalModelMatrixFlag,
                         const bool&             initializeRendererResourceFlag);
     void            processPolygonMeshNode(
-                        PolygonMeshNode*        p_polygonMeshNode, 
+                        PolygonMeshNode*        p_polygonMeshNode,
                         RenderableObject*       p_renderableObject,
                         const bool&             initializeRendererResourceFlag);
 
 private:
-    std::vector<ToltecOpenGLRendererResource::ResourcePerViewport>  m_resourcePerViewportList;
-    unsigned int                                                    m_activeViewportIndex;
+    std::vector<std::unique_ptr<ToltecOpenGLRendererResource::ResourcePerViewport>> m_resourcePerViewportList;
+    unsigned int    m_activeViewportIndex;
 };
 
 } //NAMESPACE: TGL
