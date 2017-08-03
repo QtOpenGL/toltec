@@ -13,6 +13,16 @@
 #include "transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 SceneNode::SceneNode()
@@ -21,7 +31,7 @@ SceneNode::SceneNode()
 {
     //INITIALIZE
     this->setShortName("sceneNode");
-    this->setType(Node::SCENE_NODE);
+    this->setType(nodes::Type::SCENE_NODE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -45,3 +55,5 @@ void SceneNode::setParent(SceneNode* p_parent)
     //ADD CHILD
     p_transformNode->addChild(this);
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

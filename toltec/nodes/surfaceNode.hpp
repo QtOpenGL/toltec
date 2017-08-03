@@ -18,8 +18,24 @@
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATION
 *-----------------------------------------------------------------------------*/
-class SurfaceShaderProgramNode;
+namespace core
+{
+    namespace nodes
+    {
+        class SurfaceShaderProgramNode;
+    }
+}
 
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
 *   SURFACE NODE
@@ -47,3 +63,5 @@ inline SurfaceShaderProgramNode* SurfaceNode::getSurfaceShaderProgramNode()
 {
     return mp_surfaceShaderProgramNode;
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

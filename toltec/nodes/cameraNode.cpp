@@ -10,6 +10,16 @@
 #include "transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 CameraNode::CameraNode()
@@ -26,7 +36,7 @@ CameraNode::CameraNode()
 {
     //INITIALIZE
     this->setShortName("cameraNode");
-    this->setType(Node::CAMERA_NODE);
+    this->setType(nodes::Type::CAMERA_NODE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -198,3 +208,5 @@ void CameraNode::updateOrthographicMatrix(const float aspectRatio)
         m_zFar);
     m_updatePerspectiveMatrixFlag = false;
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

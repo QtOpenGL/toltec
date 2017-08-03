@@ -22,7 +22,13 @@
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
-class TransformNode;
+namespace core
+{
+    namespace nodes
+    {
+        class TransformNode;
+    }
+}
 
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
@@ -52,11 +58,11 @@ public:
 protected:
     virtual void    scanShaderProgramNodeList(const bool& initializeRendererResourceFlag) = 0;
     virtual void    scanSceneTree(
-                        TransformNode&          transformNode,
-                        int&                    treeDepthLevel,
-                        std::vector<glm::mat4>* p_modelMatrixList,
-                        bool&                   calculateFinalModelMatrixFlag,
-                        const bool&             initializeRendererResourceFlag) = 0;
+                        core::nodes::TransformNode& transformNode,
+                        int&                        treeDepthLevel,
+                        std::vector<glm::mat4>*     p_modelMatrixList,
+                        bool&                       calculateFinalModelMatrixFlag,
+                        const bool&                 initializeRendererResourceFlag) = 0;
 
 protected:
     bool                            m_areResourcesInitialized;

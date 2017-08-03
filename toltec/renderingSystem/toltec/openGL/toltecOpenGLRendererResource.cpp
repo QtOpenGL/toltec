@@ -148,7 +148,8 @@ void ToltecOpenGLRendererResource::initializeResources()
                 treeDepthLevel,
                 &modelMatrixList,
                 calculateFinalModelMatrixFlag,
-                true);
+                true
+            );
 
             //FINISH OPERATION ON CONTEXT
             p_viewport->doneCurrent();
@@ -203,7 +204,7 @@ void ToltecOpenGLRendererResource::initializeShaderProgramMap()
     m_resourcePerViewportList[m_activeViewportIndex]
         ->shaderProgramMap
         .insert(std::make_pair(
-            Node::Type::LAMBERT_SSP_NODE,
+            core::nodes::Type::LAMBERT_SSP_NODE,
             std::move(p_lambertShaderProgram)
         ));
 }
@@ -251,9 +252,12 @@ void ToltecOpenGLRendererResource::scanShaderProgramNodeList(const bool& initial
 /*-----------------------------------------------------------------------------
 *   SCAN SCENE TREE
 *-----------------------------------------------------------------------------*/
-void ToltecOpenGLRendererResource::scanSceneTree(TransformNode& transformNode, int& treeDepthLevel, 
-    std::vector<glm::mat4>* p_modelMatrixList, bool& calculateFinalModelMatrixFlag, 
-    const bool& initializeRendererResourceFlag)
+void ToltecOpenGLRendererResource::scanSceneTree(
+    core::nodes::TransformNode&     transformNode, 
+    int&                            treeDepthLevel, 
+    std::vector<glm::mat4>*         p_modelMatrixList, 
+    bool&                           calculateFinalModelMatrixFlag, 
+    const bool&                     initializeRendererResourceFlag)
 {
     //COLLECTING MODEL MATRICES
     //clear model matrices from higher or same depth level branches
@@ -272,13 +276,14 @@ void ToltecOpenGLRendererResource::scanSceneTree(TransformNode& transformNode, i
         calculateFinalModelMatrixFlag = true;
 
     //CHECK CHILD LIST
-    std::vector<SceneNode*> childList = transformNode.getChildList();
-    for (SceneNode* p_sceneNode : childList)
+    std::vector<core::nodes::SceneNode*> childList = transformNode.getChildList();
+    for (core::nodes::SceneNode* p_sceneNode : childList)
     {
         //RECUR IF TransformNode DETECTED
-        if (p_sceneNode->getType() == Node::TRANSFORM_NODE)
+        if (p_sceneNode->getType() == core::nodes::Type::TRANSFORM_NODE)
         {
-            TransformNode* p_transformNode = static_cast<TransformNode*>(p_sceneNode);
+            core::nodes::TransformNode* p_transformNode = 
+                static_cast<core::nodes::TransformNode*>(p_sceneNode);
             treeDepthLevel++;
 
             this->scanSceneTree(*p_transformNode, treeDepthLevel, p_modelMatrixList, 
@@ -295,9 +300,10 @@ void ToltecOpenGLRendererResource::scanSceneTree(TransformNode& transformNode, i
             p_sceneNode->getUpdateFlag() == true)
         {
             //PROCESS: PolygonMeshNode
-            if (p_sceneNode->getType() == Node::POLYGON_MESH_NODE)
+            if (p_sceneNode->getType() == core::nodes::Type::POLYGON_MESH_NODE)
             {
-                PolygonMeshNode* p_polygonMeshNode = static_cast<PolygonMeshNode*>(p_sceneNode);
+                core::nodes::PolygonMeshNode* p_polygonMeshNode = 
+                    static_cast<core::nodes::PolygonMeshNode*>(p_sceneNode);
                 this->processPolygonMeshNode(p_polygonMeshNode, p_renderableObject, 
                     initializeRendererResourceFlag);
             }
@@ -325,8 +331,10 @@ void ToltecOpenGLRendererResource::scanSceneTree(TransformNode& transformNode, i
 /*-----------------------------------------------------------------------------
 *   PROCESS POLYGON MESH NODE
 *-----------------------------------------------------------------------------*/
-void ToltecOpenGLRendererResource::processPolygonMeshNode(PolygonMeshNode* p_polygonMeshNode, 
-    RenderableObject* p_renderableObject, const bool& initializeRendererResourceFlag)
+void ToltecOpenGLRendererResource::processPolygonMeshNode(
+    core::nodes::PolygonMeshNode*   p_polygonMeshNode, 
+    RenderableObject*               p_renderableObject, 
+    const bool&                     initializeRendererResourceFlag)
 {
     /*-----------------------------------------------------------------------------
     *   INITIALIZE

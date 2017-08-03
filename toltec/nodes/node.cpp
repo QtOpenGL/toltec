@@ -13,13 +13,23 @@
 #include "resourceManager.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 Node::Node()
     :
     m_shortName("node"),
     m_id(ResourceManager::getInstance().assignNodeID()),
-    m_type(Node::NODE),
+    m_type(nodes::Type::NODE),
 
     m_initializeFlag(true),
     m_updateFlag(false)
@@ -69,8 +79,10 @@ std::string Node::getFullName() const
 /*-----------------------------------------------------------------------------
 *   SET TYPE
 *-----------------------------------------------------------------------------*/
-void Node::setType(Node::Type type)
+void Node::setType(nodes::Type type)
 {
     m_type = type;
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE
 

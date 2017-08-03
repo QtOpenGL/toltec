@@ -1,17 +1,27 @@
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		13 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
+*   CREATED:
+*       13 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "componentShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CONSTRUCTOR
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 ComponentShaderProgramNode::ComponentShaderProgramNode()
     :
@@ -19,18 +29,25 @@ ComponentShaderProgramNode::ComponentShaderProgramNode()
 {
     //INITIALIZE
     this->setShortName("componentShaderProgramNode");
-    this->setType(Node::COMPONENT_SHADER_PROGRAM_NODE);
+    this->setType(nodes::Type::COMPONENT_SHADER_PROGRAM_NODE);
 }
 
 /*-----------------------------------------------------------------------------
-*	SET COLOR
+*   SET COLOR
+*   (const glm::vec3&)
 *-----------------------------------------------------------------------------*/
 void ComponentShaderProgramNode::setColor(const glm::vec3& color)
 {
     m_color = color;
 }
 
+/*-----------------------------------------------------------------------------
+*   SET COLOR
+*   (float, float, float)
+*-----------------------------------------------------------------------------*/
 void ComponentShaderProgramNode::setColor(float r, float g, float b)
 {
     m_color = glm::vec3(r, g, b);
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

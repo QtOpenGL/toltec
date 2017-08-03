@@ -10,9 +10,24 @@
 *-----------------------------------------------------------------------------*/
 #include "renderableObjectNode.hpp"
 
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
+*   CONSTRUCTOR
+*-----------------------------------------------------------------------------*/
 RenderableObjectNode::RenderableObjectNode()
 {
     //INITIALIZE
     this->setShortName("renderableObjectNode");
-    this->setType(Node::RENDERABLE_OBJECT_NODE);
+    this->setType(nodes::Type::RENDERABLE_OBJECT_NODE);
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

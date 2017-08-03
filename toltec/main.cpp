@@ -44,25 +44,25 @@ int main(int argc, char* argv[])
      
     //CREATE PRIMARY OBJECTS
     //root transform node
-    std::unique_ptr<TransformNode> p_rootTransformNode(new TransformNode());
+    auto p_rootTransformNode = std::make_unique<core::nodes::TransformNode>();
     p_rootTransformNode->setShortName("root");
     ResourceManager::getInstance().setRootTransformNode(p_rootTransformNode.get());
     ResourceManager::getInstance().addTransformNode(std::move(p_rootTransformNode));
 
     //default camera node
-    std::unique_ptr<CameraNode> p_defaultCameraNode(new CameraNode());
+    auto p_defaultCameraNode = std::make_unique<core::nodes::CameraNode>();
     p_defaultCameraNode->setShortName("defaultCam");
     ResourceManager::getInstance().setDefaultCameraNode(p_defaultCameraNode.get());
     ResourceManager::getInstance().addCameraNode(std::move(p_defaultCameraNode));
 
     //default shader
-    std::unique_ptr<LambertSSPNode> p_lambertShaderProgramNode(new LambertSSPNode());
+    auto p_lambertShaderProgramNode = std::make_unique<core::nodes::LambertSSPNode>();
     p_lambertShaderProgramNode->setShortName("defaultShader");
     ResourceManager::getInstance().setDefaultSSPNode(p_lambertShaderProgramNode.get());
     ResourceManager::getInstance().addSurfaceShaderProgramNode(std::move(p_lambertShaderProgramNode));
 
     //poly vertex component shader - inactive
-    std::unique_ptr<PointCSPNode> p_polyVertexShaderInactive(new PointCSPNode());
+    auto p_polyVertexShaderInactive = std::make_unique<core::nodes::PointCSPNode>();
     p_polyVertexShaderInactive->setShortName("polyVertexShaderInactive");
     p_polyVertexShaderInactive->setColor(1.0f, 0.0f, 1.0f);
     p_polyVertexShaderInactive->setSize(2);
@@ -96,10 +96,8 @@ int main(int argc, char* argv[])
     RenderingSystem toltecRenderingSystem("toltec");
 
     //opengl
-    std::unique_ptr<tgl::ToltecOpenGLRendererResource> p_toltecRendererResource(
-        new tgl::ToltecOpenGLRendererResource());
-    std::unique_ptr<tgl::ToltecOpenGLRenderer> p_toltecOpenGLRenderer(
-        new tgl::ToltecOpenGLRenderer(p_toltecRendererResource.get()));
+    auto p_toltecRendererResource = std::make_unique<tgl::ToltecOpenGLRendererResource>();
+    auto p_toltecOpenGLRenderer =   std::make_unique<tgl::ToltecOpenGLRenderer>(p_toltecRendererResource.get());
     RenderingAPI toltecOpenGLRenderingAPI(
         RenderingAPI::OPENGL_API, 
         std::move(p_toltecRendererResource),

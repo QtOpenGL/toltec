@@ -14,6 +14,16 @@
 #include "resourceManager.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 SurfaceNode::SurfaceNode()
@@ -22,7 +32,7 @@ SurfaceNode::SurfaceNode()
 {
     //INITIALIZE
     this->setShortName("surfaceNode");
-    this->setType(Node::SURFACE_NODE);
+    this->setType(nodes::Type::SURFACE_NODE);
     this->setSurfaceShaderProgramNode(&ResourceManager::getInstance().getDefaultSSPNode());
 }
 
@@ -50,3 +60,5 @@ void SurfaceNode::setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfac
         mp_surfaceShaderProgramNode->addSurface(this, true);
     }
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

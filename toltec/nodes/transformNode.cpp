@@ -11,9 +11,18 @@
 #include "transformNode.hpp"
 
 #include <cstddef>
-
 #include "utils.hpp"
 
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
 /*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
@@ -33,7 +42,7 @@ TransformNode::TransformNode()
 {
     //INITIALIZE
     this->setShortName("transformNode");
-    this->setType(Node::TRANSFORM_NODE);
+    this->setType(nodes::Type::TRANSFORM_NODE);
     m_modelMatrix = utils::calcModelMatrix(m_translation, m_rotation, m_scale);
 }
 
@@ -158,3 +167,5 @@ const glm::mat4& TransformNode::getModelMatrix()
 
     return m_modelMatrix;
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

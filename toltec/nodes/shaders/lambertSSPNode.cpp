@@ -11,6 +11,16 @@
 #include "lambertSSPNode.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 LambertSSPNode::LambertSSPNode()
@@ -26,5 +36,7 @@ LambertSSPNode::LambertSSPNode()
 {
     //INITIALIZE
     this->setShortName("lambertShader");
-    this->setType(Node::LAMBERT_SSP_NODE);
+    this->setType(nodes::Type::LAMBERT_SSP_NODE);
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

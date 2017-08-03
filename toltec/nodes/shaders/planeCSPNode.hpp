@@ -1,30 +1,42 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		13 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       13 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "nodes/shaders/componentShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	LINE COMPONENT SHADER PROGRAM NODE
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   LINE COMPONENT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 class PlaneCSPNode : public ComponentShaderProgramNode
 {
 public:
     //CONSTRUCTORS
                 PlaneCSPNode();
-    virtual		~PlaneCSPNode() {}
+    virtual     ~PlaneCSPNode() {}
 
 private:
     //...
 };
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

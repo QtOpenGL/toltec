@@ -141,7 +141,7 @@ void ToltecOpenGLRenderer::render(gl::OpenGLViewport* p_viewport, const unsigned
     *   BUFFERS
     *-----------------------------------------------------------------------------*/
     //SET BACKGROUND COLOR
-    gl::glClearColor(1.5f, 0.5f, 0.5f, 1.0f);
+    gl::glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
     //CLEAR BUFFERS
     gl::glClear(gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT);

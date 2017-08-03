@@ -17,13 +17,23 @@
 #include "transformNode.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 PolygonMeshNode::PolygonMeshNode()
 {
     //INITIALIZE
     this->setShortName("polygonMeshNode");
-    this->setType(Node::POLYGON_MESH_NODE);
+    this->setType(nodes::Type::POLYGON_MESH_NODE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -64,3 +74,5 @@ bool PolygonMeshNode::createMesh(
 
     return true;
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

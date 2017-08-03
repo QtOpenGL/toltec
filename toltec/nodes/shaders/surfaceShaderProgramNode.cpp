@@ -14,13 +14,23 @@
 #include "resourceManager.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 {
     //INITIALIZE
     this->setShortName("surfaceShaderProgramNode");
-    this->setType(Node::SURFACE_SHADER_PROGRAM_NODE);
+    this->setType(nodes::Type::SURFACE_SHADER_PROGRAM_NODE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -79,5 +89,6 @@ void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode, const b
         }
     }
 }
-
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE
 

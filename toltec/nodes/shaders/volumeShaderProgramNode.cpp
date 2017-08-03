@@ -11,11 +11,23 @@
 #include "volumeShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 VolumeShaderProgramNode::VolumeShaderProgramNode()
 {
     //INITIALIZE
     this->setShortName("volumeShaderProgramNode");
-    this->setType(Node::VOLUME_SHADER_PROGRAM_NODE);
+    this->setType(nodes::Type::VOLUME_SHADER_PROGRAM_NODE);
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

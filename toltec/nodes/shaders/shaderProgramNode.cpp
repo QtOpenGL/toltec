@@ -11,11 +11,23 @@
 #include "shaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 ShaderProgramNode::ShaderProgramNode()
 {
     //INITIALIZE
     this->setShortName("shaderProgramNode");
-    this->setType(Node::SHADER_PROGRAM_NODE);
+    this->setType(nodes::Type::SHADER_PROGRAM_NODE);
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

@@ -125,7 +125,8 @@ void RenderManager::renderCall()
 void RenderManager::finishRenderCall()
 {
     //SET TO FALSE INITIALIZE AND UPDATE FLAGS ON ALL NODES
-    std::vector<std::unique_ptr<Node>>& p_allNodeList = ResourceManager::getInstance().getAllNodeList();
+    std::vector<std::unique_ptr<core::nodes::Node>>& p_allNodeList = 
+        ResourceManager::getInstance().getAllNodeList();
     for (auto& p_node : p_allNodeList)
     {
         p_node->setInitializeFlag(false);

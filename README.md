@@ -7,6 +7,9 @@
 - [ ] First tool for changing mesh topology (i.e. insert edge loop).
  
 ## History
+###### 02-08-2017
+Back online. Migrated from Visual Studio 2015 to 2017 (now building on MSVC 2017). Also switched Qt to 5.9 (from 5.7).
+
 ###### 28-05-2017
 Leaving this project for two months while I'll be focusing on other stuff.
 

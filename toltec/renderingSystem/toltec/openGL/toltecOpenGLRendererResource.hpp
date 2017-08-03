@@ -28,15 +28,18 @@
 namespace tgl
 {
     class RenderableObject;
-    /*class RenderItem;*/
-    /*class ShaderInstance;*/
+    class RenderItem;
+    class ShaderInstance;
 }
 
-#include "renderingSystem/toltec/openGL/renderableObject.hpp"
-#include "renderingSystem/toltec/openGL/renderItem.hpp"
-
-class PolygonMeshNode;
-class TransformNode;
+namespace core
+{
+    namespace nodes
+    {
+        class PolygonMeshNode;
+        class TransformNode;
+    }
+}
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: TGL (TOLTEC OPENGL)
@@ -52,7 +55,7 @@ class ToltecOpenGLRendererResource : public AbstractRendererResource
 public:
     //STRUCTS
     struct ResourcePerViewport {
-        std::map<Node::Type, std::unique_ptr<ShaderProgram>>        shaderProgramMap;
+        std::map<core::nodes::Type, std::unique_ptr<ShaderProgram>> shaderProgramMap;
         std::map<std::uint32_t, std::unique_ptr<RenderableObject>>  renderableObjectMap;
         std::map<std::uint32_t, std::unique_ptr<ShaderInstance>>    shaderInstanceMap;
 
@@ -85,19 +88,18 @@ private:
 
     virtual void    scanShaderProgramNodeList(const bool& initializeRendererResourceFlag);
     virtual void    scanSceneTree(
-                        TransformNode&          transformNode,
-                        int&                    treeDepthLevel,
-                        std::vector<glm::mat4>* p_modelMatrixList,
-                        bool&                   calculateFinalModelMatrixFlag,
-                        const bool&             initializeRendererResourceFlag);
+                        core::nodes::TransformNode&     transformNode,
+                        int&                            treeDepthLevel,
+                        std::vector<glm::mat4>*         p_modelMatrixList,
+                        bool&                           calculateFinalModelMatrixFlag,
+                        const bool&                     initializeRendererResourceFlag);
     void            processPolygonMeshNode(
-                        PolygonMeshNode*        p_polygonMeshNode,
-                        RenderableObject*       p_renderableObject,
-                        const bool&             initializeRendererResourceFlag);
+                        core::nodes::PolygonMeshNode*   p_polygonMeshNode,
+                        RenderableObject*               p_renderableObject,
+                        const bool&                     initializeRendererResourceFlag);
 
 private:
     std::vector<std::unique_ptr<ToltecOpenGLRendererResource::ResourcePerViewport>> m_resourcePerViewportList;
     unsigned int    m_activeViewportIndex;
 };
-
 } //NAMESPACE: TGL

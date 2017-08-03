@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       22 V 2017
+*       03 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *-----------------------------------------------------------------------------*/
@@ -10,13 +10,11 @@
 *-----------------------------------------------------------------------------*/
 #include "creationCommands.hpp"
 
-#include <memory>
 #include <vector>
 
 #include <glm/glm.hpp>
 
 #include "nodes/polygonMeshNode.hpp"
-#include "nodes/transformNode.hpp"
 #include "toltecPolygonMeshLibrary/mesh.hpp"
 #include "resourceManager.hpp"
 
@@ -34,21 +32,21 @@ namespace cmds
 *   FUNCTION DEFINITIONS
 *   CREATE CUBE
 *-----------------------------------------------------------------------------*/
-void createCube()
+std::unique_ptr<core::nodes::TransformNode>& createCube()
 {
     //CREATE TRANSFORM NODE
-    std::unique_ptr<TransformNode> p_transformNode(new TransformNode());
+    auto p_transformNode = std::make_unique<core::nodes::TransformNode>();
     p_transformNode->setShortName("polyCube");
 
     //DEFINE CUBE POINTS
     std::vector<glm::vec3> point3DList = {
         glm::vec3{ -0.5f, -0.5f,  0.5f },   //0
-        glm::vec3{  0.5f, -0.5f,  0.5f },   //1
-        glm::vec3{  0.5f,  0.5f,  0.5f },   //2
+        glm::vec3{ 0.5f, -0.5f,  0.5f },    //1
+        glm::vec3{ 0.5f,  0.5f,  0.5f },    //2
         glm::vec3{ -0.5f,  0.5f,  0.5f },   //3
         glm::vec3{ -0.5f, -0.5f, -0.5f },   //4
-        glm::vec3{  0.5f, -0.5f, -0.5f },   //5
-        glm::vec3{  0.5f,  0.5f, -0.5f },   //6
+        glm::vec3{ 0.5f, -0.5f, -0.5f },    //5
+        glm::vec3{ 0.5f,  0.5f, -0.5f },    //6
         glm::vec3{ -0.5f,  0.5f, -0.5f }    //7
     };
 
@@ -66,7 +64,7 @@ void createCube()
     std::vector<unsigned int> polygonOffsetList = { 4, 4, 4, 4, 4, 4 };
 
     //CREATE POLYGON MESH NODE
-    std::unique_ptr<PolygonMeshNode> p_polygonMeshNode(new PolygonMeshNode());
+    auto p_polygonMeshNode = std::make_unique<core::nodes::PolygonMeshNode>();
     p_polygonMeshNode->setShortName("polyCube");
     p_polygonMeshNode->createMesh(point3DList, faceVertexSequence, polygonOffsetList);
 
@@ -77,6 +75,8 @@ void createCube()
     //ADD TO THE RESOURCE MANAGER
     ResourceManager::getInstance().addTransformNode(std::move(p_transformNode));
     ResourceManager::getInstance().addPolygonMeshNode(std::move(p_polygonMeshNode));
+
+    return p_transformNode;
 }
 } //NAMESPACE: CMDS
 } //NAMESPACE: UI

@@ -1,43 +1,55 @@
 #pragma once
 
 /*-----------------------------------------------------------------------------
-*	CREATED:
-*		13 II 2017
-*	CONTRIBUTORS:
-*		Piotr Makal
-*	INFO:
-*		...
+*   CREATED:
+*       13 II 2017
+*   CONTRIBUTORS:
+*       Piotr Makal
+*   INFO:
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
-*	IMPORTS
+*   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include "nodes/shaders/componentShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
-*	CLASS DECLARATIONS
-*	POINT COMPONENT SHADER PROGRAM NODE
+*   NAMESPACE: CORE
+*-----------------------------------------------------------------------------*/
+namespace core
+{
+/*-----------------------------------------------------------------------------
+*   NAMESPACE: NODES
+*-----------------------------------------------------------------------------*/
+namespace nodes
+{
+/*-----------------------------------------------------------------------------
+*   CLASS DECLARATIONS
+*   POINT COMPONENT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 class PointCSPNode : public ComponentShaderProgramNode
 {
 public:
     //CONSTRUCTORS
                 PointCSPNode();
-    virtual		~PointCSPNode() {}
+    virtual     ~PointCSPNode() {}
 
     //SET
-    void		setSize(unsigned int size);
+    void        setSize(unsigned int size);
 
     //GET
-    unsigned int	getSize() const;
+    unsigned int    getSize() const;
 
 private:
-    unsigned int	m_size;
+    unsigned int    m_size;
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline unsigned int	PointCSPNode::getSize() const
+inline unsigned int PointCSPNode::getSize() const
 {
     return m_size;
 }
+} //NAMESPACE: NODES
+} //NAMESPACE: CORE

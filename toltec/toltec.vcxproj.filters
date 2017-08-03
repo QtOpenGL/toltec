@@ -240,7 +240,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_abstractPanel.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="ui\commands\creationCommands.cpp">
+    <ClCompile Include="ui\commands\createCube.cpp">
       <Filter>Main Files\ui\commands</Filter>
     </ClCompile>
   </ItemGroup>

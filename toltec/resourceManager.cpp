@@ -36,7 +36,7 @@ ResourceManager::ResourceManager()
 *   ADD SURFACE SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addSurfaceShaderProgramNode(
-    std::unique_ptr<SurfaceShaderProgramNode> p_surfaceShaderProgramNode)
+    std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
     for (const auto& p_surfaceShaderProgramNodeListElement : m_surfaceShaderProgramNodeList)
@@ -52,7 +52,7 @@ void ResourceManager::addSurfaceShaderProgramNode(
 *   ADD COMPONENT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addComponentShaderProgramNode(
-    std::unique_ptr<ComponentShaderProgramNode> p_componentShaderProgramNode)
+    std::unique_ptr<core::nodes::ComponentShaderProgramNode> p_componentShaderProgramNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
     for (const auto& p_componentShaderProgramNodeListElement : m_componentShaderProgramNodeList)
@@ -68,7 +68,7 @@ void ResourceManager::addComponentShaderProgramNode(
 /*-----------------------------------------------------------------------------
 *   ADD TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addTransformNode(std::unique_ptr<TransformNode> p_transformNode)
+void ResourceManager::addTransformNode(std::unique_ptr<core::nodes::TransformNode> p_transformNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
     for (const auto& p_transformNodeListElement : m_transformNodeList)
@@ -83,7 +83,7 @@ void ResourceManager::addTransformNode(std::unique_ptr<TransformNode> p_transfor
 /*-----------------------------------------------------------------------------
 *   ADD CAMERA NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addCameraNode(std::unique_ptr<CameraNode> p_cameraNode)
+void ResourceManager::addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_cameraNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
     for (const auto& p_cameraNodeListElement : m_cameraNodeList)
@@ -98,7 +98,7 @@ void ResourceManager::addCameraNode(std::unique_ptr<CameraNode> p_cameraNode)
 /*-----------------------------------------------------------------------------
 *   ADD POLYGON MESH NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addPolygonMeshNode(std::unique_ptr<PolygonMeshNode> p_polygonMeshNode)
+void ResourceManager::addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMeshNode> p_polygonMeshNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
     for (const auto& p_polygonMeshNodeListElement : m_polygonMeshNodeList)
@@ -113,7 +113,7 @@ void ResourceManager::addPolygonMeshNode(std::unique_ptr<PolygonMeshNode> p_poly
 /*-----------------------------------------------------------------------------
 *   SET DEFAULT SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgramNode)
+void ResourceManager::setDefaultSSPNode(core::nodes::SurfaceShaderProgramNode* p_shaderProgramNode)
 {
     if (mp_defaultSSPNode != nullptr)   //return if already assigned
         return;
@@ -125,7 +125,7 @@ void ResourceManager::setDefaultSSPNode(SurfaceShaderProgramNode* p_shaderProgra
 /*-----------------------------------------------------------------------------
 *   SET ROOT TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
+void ResourceManager::setRootTransformNode(core::nodes::TransformNode* p_rootTransformNode)
 {
     if (mp_rootTransformNode != nullptr)    //return if already assigned
         return;
@@ -137,7 +137,7 @@ void ResourceManager::setRootTransformNode(TransformNode* p_rootTransformNode)
 /*-----------------------------------------------------------------------------
 *   SET DEFAULT CAMERA NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::setDefaultCameraNode(CameraNode* p_defaultCameraNode)
+void ResourceManager::setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode)
 {
     if (mp_defaultCameraNode != nullptr)    //return if already assigned
         return;
