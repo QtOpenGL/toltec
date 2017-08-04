@@ -26,7 +26,7 @@ namespace nodes
 RenderableObjectNode::RenderableObjectNode()
 {
     //INITIALIZE
-    this->setShortName("renderableObjectNode");
+    this->setName("renderableObjectNode");
     this->setType(nodes::Type::RENDERABLE_OBJECT_NODE);
 }
 } //NAMESPACE: NODES

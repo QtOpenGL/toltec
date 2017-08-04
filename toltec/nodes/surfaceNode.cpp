@@ -31,7 +31,7 @@ SurfaceNode::SurfaceNode()
     mp_surfaceShaderProgramNode(nullptr)
 {
     //INITIALIZE
-    this->setShortName("surfaceNode");
+    this->setName("surfaceNode");
     this->setType(nodes::Type::SURFACE_NODE);
     this->setSurfaceShaderProgramNode(&ResourceManager::getInstance().getDefaultSSPNode());
 }

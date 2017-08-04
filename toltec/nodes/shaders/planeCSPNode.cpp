@@ -26,7 +26,7 @@ namespace nodes
 PlaneCSPNode::PlaneCSPNode()
 {
     //INITIALIZE
-    this->setShortName("planeComponentShader");
+    this->setName("planeComponentShader");
     this->setType(nodes::Type::PLANE_CSP_NODE);
 }
 } //NAMESPACE: NODES

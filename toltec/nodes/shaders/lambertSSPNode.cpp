@@ -35,7 +35,7 @@ LambertSSPNode::LambertSSPNode()
     mp_bumpMap(nullptr)
 {
     //INITIALIZE
-    this->setShortName("lambertShader");
+    this->setName("lambertShader");
     this->setType(nodes::Type::LAMBERT_SSP_NODE);
 }
 } //NAMESPACE: NODES

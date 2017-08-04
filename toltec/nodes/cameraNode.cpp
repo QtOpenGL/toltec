@@ -35,7 +35,7 @@ CameraNode::CameraNode()
     m_updateOrthographicMatrixFlag(false)
 {
     //INITIALIZE
-    this->setShortName("cameraNode");
+    this->setName("cameraNode");
     this->setType(nodes::Type::CAMERA_NODE);
 }
 

@@ -32,7 +32,7 @@ namespace nodes
 PolygonMeshNode::PolygonMeshNode()
 {
     //INITIALIZE
-    this->setShortName("polygonMeshNode");
+    this->setName("polygonMeshNode");
     this->setType(nodes::Type::POLYGON_MESH_NODE);
 }
 

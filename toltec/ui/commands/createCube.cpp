@@ -36,7 +36,7 @@ std::unique_ptr<core::nodes::TransformNode>& createCube()
 {
     //CREATE TRANSFORM NODE
     auto p_transformNode = std::make_unique<core::nodes::TransformNode>();
-    p_transformNode->setShortName("polyCube");
+    p_transformNode->setName("polyCube");
 
     //DEFINE CUBE POINTS
     std::vector<glm::vec3> point3DList = {
@@ -65,7 +65,7 @@ std::unique_ptr<core::nodes::TransformNode>& createCube()
 
     //CREATE POLYGON MESH NODE
     auto p_polygonMeshNode = std::make_unique<core::nodes::PolygonMeshNode>();
-    p_polygonMeshNode->setShortName("polyCube");
+    p_polygonMeshNode->setName("polyCube");
     p_polygonMeshNode->createMesh(point3DList, faceVertexSequence, polygonOffsetList);
 
     //SET SCENE TREE

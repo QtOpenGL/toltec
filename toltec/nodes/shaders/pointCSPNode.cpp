@@ -28,7 +28,7 @@ PointCSPNode::PointCSPNode()
     m_size(1)
 {
     //INITIALIZE
-    this->setShortName("pointComponentShader");
+    this->setName("pointComponentShader");
     this->setType(nodes::Type::POINT_CSP_NODE);
 }
 

@@ -28,7 +28,7 @@ ComponentShaderProgramNode::ComponentShaderProgramNode()
     m_color(1.0f, 1.0f, 1.0f)
 {
     //INITIALIZE
-    this->setShortName("componentShaderProgramNode");
+    this->setName("componentShaderProgramNode");
     this->setType(nodes::Type::COMPONENT_SHADER_PROGRAM_NODE);
 }
 

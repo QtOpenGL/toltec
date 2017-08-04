@@ -29,7 +29,7 @@ namespace nodes
 SurfaceShaderProgramNode::SurfaceShaderProgramNode()
 {
     //INITIALIZE
-    this->setShortName("surfaceShaderProgramNode");
+    this->setName("surfaceShaderProgramNode");
     this->setType(nodes::Type::SURFACE_SHADER_PROGRAM_NODE);
 }
 

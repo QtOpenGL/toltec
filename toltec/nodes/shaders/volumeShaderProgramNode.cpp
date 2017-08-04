@@ -26,7 +26,7 @@ namespace nodes
 VolumeShaderProgramNode::VolumeShaderProgramNode()
 {
     //INITIALIZE
-    this->setShortName("volumeShaderProgramNode");
+    this->setName("volumeShaderProgramNode");
     this->setType(nodes::Type::VOLUME_SHADER_PROGRAM_NODE);
 }
 } //NAMESPACE: NODES

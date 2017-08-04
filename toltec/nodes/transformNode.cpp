@@ -41,7 +41,7 @@ TransformNode::TransformNode()
     m_targetPosition(glm::vec3(0.0f, 0.0f, -1.0f))
 {
     //INITIALIZE
-    this->setShortName("transformNode");
+    this->setName("transformNode");
     this->setType(nodes::Type::TRANSFORM_NODE);
     m_modelMatrix = utils::calcModelMatrix(m_translation, m_rotation, m_scale);
 }

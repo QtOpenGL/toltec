@@ -30,6 +30,8 @@
 *-----------------------------------------------------------------------------*/
 int main(int argc, char* argv[])
 { 
+    using namespace core;
+
     /*-----------------------------------------------------------------------------
     *   START QT
     *-----------------------------------------------------------------------------*/
@@ -44,26 +46,26 @@ int main(int argc, char* argv[])
      
     //CREATE PRIMARY OBJECTS
     //root transform node
-    auto p_rootTransformNode = std::make_unique<core::nodes::TransformNode>();
-    p_rootTransformNode->setShortName("root");
+    auto p_rootTransformNode = std::make_unique<nodes::TransformNode>();
+    p_rootTransformNode->setName("root");
     ResourceManager::getInstance().setRootTransformNode(p_rootTransformNode.get());
     ResourceManager::getInstance().addTransformNode(std::move(p_rootTransformNode));
 
     //default camera node
-    auto p_defaultCameraNode = std::make_unique<core::nodes::CameraNode>();
-    p_defaultCameraNode->setShortName("defaultCam");
+    auto p_defaultCameraNode = std::make_unique<nodes::CameraNode>();
+    p_defaultCameraNode->setName("defaultCam");
     ResourceManager::getInstance().setDefaultCameraNode(p_defaultCameraNode.get());
     ResourceManager::getInstance().addCameraNode(std::move(p_defaultCameraNode));
 
     //default shader
-    auto p_lambertShaderProgramNode = std::make_unique<core::nodes::LambertSSPNode>();
-    p_lambertShaderProgramNode->setShortName("defaultShader");
+    auto p_lambertShaderProgramNode = std::make_unique<nodes::LambertSSPNode>();
+    p_lambertShaderProgramNode->setName("defaultShader");
     ResourceManager::getInstance().setDefaultSSPNode(p_lambertShaderProgramNode.get());
     ResourceManager::getInstance().addSurfaceShaderProgramNode(std::move(p_lambertShaderProgramNode));
 
     //poly vertex component shader - inactive
-    auto p_polyVertexShaderInactive = std::make_unique<core::nodes::PointCSPNode>();
-    p_polyVertexShaderInactive->setShortName("polyVertexShaderInactive");
+    auto p_polyVertexShaderInactive = std::make_unique<nodes::PointCSPNode>();
+    p_polyVertexShaderInactive->setName("polyVertexShaderInactive");
     p_polyVertexShaderInactive->setColor(1.0f, 0.0f, 1.0f);
     p_polyVertexShaderInactive->setSize(2);
     ResourceManager::getInstance().addComponentShaderProgramNode(std::move(p_polyVertexShaderInactive));
@@ -77,7 +79,7 @@ int main(int argc, char* argv[])
 
     //poly edge component shader - inactive
     //PointCSPNode polyEdgeShaderInactive;
-    //polyEdgeShaderInactive.setShortName("polyEdgeShaderInactive");
+    //polyEdgeShaderInactive.setName("polyEdgeShaderInactive");
     //polyEdgeShaderInactive.setColor(1.0f, 0.0f, 1.0f);
     //polyEdgeShaderInactive.setSize(1);
     //ResourceManager::getInstance().addComponentShaderProgramNode(&polyEdgeShaderInactive);

@@ -27,7 +27,7 @@ namespace nodes
 *-----------------------------------------------------------------------------*/
 Node::Node()
     :
-    m_shortName("node"),
+    m_name("node"),
     m_id(ResourceManager::getInstance().assignNodeID()),
     m_type(nodes::Type::NODE),
 
@@ -47,9 +47,9 @@ Node::~Node()
 /*-----------------------------------------------------------------------------
 *   SET NAME
 *-----------------------------------------------------------------------------*/
-void Node::setShortName(const std::string& shortName)
+void Node::setName(const std::string& name)
 {
-    m_shortName = shortName;
+    m_name = name;
 }
 
 /*-----------------------------------------------------------------------------
@@ -73,7 +73,7 @@ void Node::setUpdateFlag(bool value)
 *-----------------------------------------------------------------------------*/
 std::string Node::getFullName() const
 {
-    return m_shortName + "#" + std::to_string(m_id);
+    return m_name + "#" + std::to_string(m_id);
 }
 
 /*-----------------------------------------------------------------------------

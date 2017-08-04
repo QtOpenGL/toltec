@@ -25,7 +25,6 @@ namespace core
 *-----------------------------------------------------------------------------*/
 namespace nodes
 {
-
 /*-----------------------------------------------------------------------------
 *   TYPES
 *-----------------------------------------------------------------------------*/
@@ -61,12 +60,12 @@ public:
     virtual                 ~Node();
 
     //SET
-    void                    setShortName(const std::string& shortName);
+    void                    setName(const std::string& name);
     void                    setInitializeFlag(bool value);
     void                    setUpdateFlag(bool value);
 
     //GET
-    const std::string&      getShortName() const;
+    const std::string&      getName() const;
     const std::uint32_t&    getNodeID() const;
     std::string             getFullName() const;
     nodes::Type             getType() const;
@@ -78,7 +77,7 @@ protected:
     void                    setType(nodes::Type type);
 
 private:
-    std::string             m_shortName;
+    std::string             m_name;
     const std::uint32_t     m_id;
     nodes::Type             m_type;
 
@@ -88,9 +87,9 @@ private:
 
 /*----------------------------------------------------------------------------*/
 
-inline const std::string& Node::getShortName() const
+inline const std::string& Node::getName() const
 {
-    return m_shortName;
+    return m_name;
 }
 
 inline const std::uint32_t& Node::getNodeID() const

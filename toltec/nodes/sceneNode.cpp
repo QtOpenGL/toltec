@@ -30,7 +30,7 @@ SceneNode::SceneNode()
     mp_parent(nullptr)
 {
     //INITIALIZE
-    this->setShortName("sceneNode");
+    this->setName("sceneNode");
     this->setType(nodes::Type::SCENE_NODE);
 }
 

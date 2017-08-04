@@ -358,7 +358,8 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(
             p_polygonMeshNode->getFullName() << std::endl <<
             "Face vertex list size: " << p_mesh->getFaceVertexList().size() << std::endl <<
             "Vertex list size: " << p_mesh->getVertexList().size() << std::endl <<
-            "Face list size: " << p_mesh->getFaceList().size());
+            "Face list size: " << p_mesh->getFaceList().size()
+        );
 
         tpm::FaceVertex* p_faceVertex = nullptr;
         tpm::Vertex* p_vertex = nullptr;

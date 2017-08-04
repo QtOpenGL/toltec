@@ -26,7 +26,7 @@ namespace nodes
 ShaderProgramNode::ShaderProgramNode()
 {
     //INITIALIZE
-    this->setShortName("shaderProgramNode");
+    this->setName("shaderProgramNode");
     this->setType(nodes::Type::SHADER_PROGRAM_NODE);
 }
 } //NAMESPACE: NODES

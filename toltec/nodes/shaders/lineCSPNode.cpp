@@ -28,7 +28,7 @@ LineCSPNode::LineCSPNode()
     m_thickness(1)
 {
     //INITIALIZE
-    this->setShortName("lineComponentShader");
+    this->setName("lineComponentShader");
     this->setType(nodes::Type::LINE_CSP_NODE);
 }
 
