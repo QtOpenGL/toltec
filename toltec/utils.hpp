@@ -26,7 +26,7 @@
 {                                                                           \
     std::cout << "<DEBUG> : " << __FILE__ << "(" << __LINE__ << ")\n"       \
         << "  " << x << "\n";                                               \
-} while (false)                         
+} while (false)     
 
 #define DEBUG_ERR(x) do                                                     \
 {                                                                           \
@@ -35,9 +35,16 @@
 } while (false)
 
 #else
+
 #define DEBUG_MSG(x) do {} while (false)
 #define DEBUG_ERR(x) do {} while (false)
+
 #endif
+
+/*-----------------------------------------------------------------------------
+*   TYPEDEFS
+*-----------------------------------------------------------------------------*/
+typedef std::uint32_t node_id_t;
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: UTILS

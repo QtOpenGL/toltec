@@ -12,8 +12,8 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <memory>
-#include "nodes/transformNode.hpp"
+#include <utility>
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: UI (USER ITERFACE)
@@ -28,7 +28,7 @@ namespace cmds
 /*-----------------------------------------------------------------------------
 *   FUNCTION DECLARATIONS
 *-----------------------------------------------------------------------------*/
-//std::unique_ptr<core::nodes::TransformNode>& createCamera();
-std::unique_ptr<core::nodes::TransformNode>& createCube();
+std::pair<node_id_t, node_id_t> createCamera();
+std::pair<node_id_t, node_id_t> createCube();
 } //NAMESPACE: CMDS
 } //NAMESPACE: UI

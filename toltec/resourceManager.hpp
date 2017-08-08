@@ -17,6 +17,8 @@
 #include <memory>
 #include <vector>
 
+#include "utils.hpp"
+
 /*-----------------------------------------------------------------------------
 *   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
@@ -51,16 +53,16 @@ public:
     void operator=(const ResourceManager&) = delete;
 
     //ADD
-    void            addSurfaceShaderProgramNode(std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode);
-    void            addComponentShaderProgramNode(std::unique_ptr<core::nodes::ComponentShaderProgramNode> p_componentShaderProgramNode);
-    void            addTransformNode(std::unique_ptr<core::nodes::TransformNode> p_transformNode);
-    void            addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_cameraNode);
-    void            addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMeshNode> p_polygonMeshNode);
-
+    void addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_cameraNode);
+    void addComponentShaderProgramNode(std::unique_ptr<core::nodes::ComponentShaderProgramNode> p_componentShaderProgramNode);
+    void addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMeshNode> p_polygonMeshNode);
+    void addSurfaceShaderProgramNode(std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode);
+    void addTransformNode(std::unique_ptr<core::nodes::TransformNode> p_transformNode);
+         
     //SET
-    void            setDefaultSSPNode(core::nodes::SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
-    void            setRootTransformNode(core::nodes::TransformNode* p_rootTransformNode);
-    void            setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode);
+    void setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode);
+    void setDefaultSSPNode(core::nodes::SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
+    void setRootTransformNode(core::nodes::TransformNode* p_rootTransformNode);
 
     //GET
     std::vector<std::unique_ptr<core::nodes::Node>>&                getAllNodeList();
@@ -70,28 +72,28 @@ public:
     const std::vector<core::nodes::ComponentShaderProgramNode*>&    getComponentShaderProgramNodeList() const;
 
     //OTHER
-    std::uint32_t   assignNodeID();
-    void            removeNodeID(const std::uint32_t nodeID);
+    const node_id_t&    assignNodeID();
+    void                removeNodeID(const node_id_t nodeID);
 
 private:
     //SINGLETON
     ResourceManager();
 
 private:
-    std::vector<std::uint32_t>                              m_globalNodeIDList;
+    std::vector<node_id_t>                                  m_globalNodeIDList;
 
-    std::vector<std::unique_ptr<core::nodes::Node>>         m_allNodeList;
+    std::vector<std::unique_ptr<core::nodes::Node>>         m_allNodeList;      //owership of all nodes
     std::vector<core::nodes::Node*>                         m_undeletableNodeList;
 
+    core::nodes::CameraNode*                                mp_defaultCameraNode;
     core::nodes::SurfaceShaderProgramNode*                  mp_defaultSSPNode;
     core::nodes::TransformNode*                             mp_rootTransformNode;
-    core::nodes::CameraNode*                                mp_defaultCameraNode;
 
-    std::vector<core::nodes::SurfaceShaderProgramNode*>     m_surfaceShaderProgramNodeList;
-    std::vector<core::nodes::ComponentShaderProgramNode*>   m_componentShaderProgramNodeList;
-    std::vector<core::nodes::TransformNode*>                m_transformNodeList;
     std::vector<core::nodes::CameraNode*>                   m_cameraNodeList;
+    std::vector<core::nodes::ComponentShaderProgramNode*>   m_componentShaderProgramNodeList;
     std::vector<core::nodes::PolygonMeshNode*>              m_polygonMeshNodeList;
+    std::vector<core::nodes::SurfaceShaderProgramNode*>     m_surfaceShaderProgramNodeList;
+    std::vector<core::nodes::TransformNode*>                m_transformNodeList;
 };
 
 /*----------------------------------------------------------------------------*/

@@ -243,6 +243,9 @@
     <ClCompile Include="ui\commands\createCube.cpp">
       <Filter>Main Files\ui\commands</Filter>
     </ClCompile>
+    <ClCompile Include="ui\commands\createCamera.cpp">
+      <Filter>Main Files\ui\commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">

@@ -234,6 +234,7 @@
     <ClCompile Include="renderManager.cpp" />
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="toltecPolygonMeshLibrary\mesh.cpp" />
+    <ClCompile Include="ui\commands\createCamera.cpp" />
     <ClCompile Include="ui\commands\createCube.cpp" />
     <ClCompile Include="ui\gui\mainWindow.cpp" />
     <ClCompile Include="ui\gui\outputLineWidget.cpp" />

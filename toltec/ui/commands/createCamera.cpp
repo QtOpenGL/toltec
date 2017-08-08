@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       03 VIII 2017
+*       08 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *-----------------------------------------------------------------------------*/
@@ -11,13 +11,9 @@
 #include "creationCommands.hpp"
 
 #include <memory>
-#include <vector>
 
-#include <glm/glm.hpp>
-
-#include "nodes/polygonMeshNode.hpp"
+#include "nodes/cameraNode.hpp"
 #include "nodes/transformNode.hpp"
-#include "toltecPolygonMeshLibrary/mesh.hpp"
 #include "resourceManager.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -32,57 +28,30 @@ namespace cmds
 {
 /*-----------------------------------------------------------------------------
 *   FUNCTION DEFINITIONS
-*   CREATE CUBE
+*   CREATE CAMERA
 *-----------------------------------------------------------------------------*/
-std::pair<node_id_t, node_id_t> createCube()
+std::pair<node_id_t, node_id_t> createCamera()
 {
-    //CREATE TRANSFORM NODE
+    //CREATE NODES
     auto p_transformNode = std::make_unique<core::nodes::TransformNode>();
-    p_transformNode->setName("polyCube");
+    p_transformNode->setName("camera");
 
-    //DEFINE CUBE POINTS
-    std::vector<glm::vec3> point3DList = {
-        glm::vec3{ -0.5f, -0.5f,  0.5f },   //0
-        glm::vec3{ 0.5f, -0.5f,  0.5f },    //1
-        glm::vec3{ 0.5f,  0.5f,  0.5f },    //2
-        glm::vec3{ -0.5f,  0.5f,  0.5f },   //3
-        glm::vec3{ -0.5f, -0.5f, -0.5f },   //4
-        glm::vec3{ 0.5f, -0.5f, -0.5f },    //5
-        glm::vec3{ 0.5f,  0.5f, -0.5f },    //6
-        glm::vec3{ -0.5f,  0.5f, -0.5f }    //7
-    };
-
-    //DEFINE VERTEX SEQUENCE
-    std::vector<unsigned int> faceVertexSequence = {
-        0, 1, 2, 3,
-        7, 6, 5, 4,
-        1, 0, 4, 5,
-        2, 1, 5, 6,
-        3, 2, 6, 7,
-        0, 3, 7, 4
-    };
-
-    //DEFINE POLYGON OFFSET LIST
-    std::vector<unsigned int> polygonOffsetList = { 4, 4, 4, 4, 4, 4 };
-
-    //CREATE POLYGON MESH NODE
-    auto p_polygonMeshNode = std::make_unique<core::nodes::PolygonMeshNode>();
-    p_polygonMeshNode->setName("polyCube");
-    p_polygonMeshNode->createMesh(point3DList, faceVertexSequence, polygonOffsetList);
+    auto p_cameraNode = std::make_unique<core::nodes::CameraNode>();
+    p_cameraNode->setName("camera");
 
     //FETCH NODES IDs
     auto nodesIDs = std::pair<node_id_t, node_id_t>(
         p_transformNode->getNodeID(),
-        p_polygonMeshNode->getNodeID()
+        p_cameraNode->getNodeID()
     );
 
     //SET SCENE TREE
-    p_polygonMeshNode->setParent(p_transformNode.get());
+    p_cameraNode->setParent(p_transformNode.get());
     p_transformNode->setParent(&(ResourceManager::getInstance().getRootTransformNode()));
 
     //ADD TO THE RESOURCE MANAGER
     ResourceManager::getInstance().addTransformNode(std::move(p_transformNode));
-    ResourceManager::getInstance().addPolygonMeshNode(std::move(p_polygonMeshNode));
+    ResourceManager::getInstance().addCameraNode(std::move(p_cameraNode));
 
     return nodesIDs;
 }

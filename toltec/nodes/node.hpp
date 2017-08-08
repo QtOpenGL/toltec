@@ -15,6 +15,8 @@
 #include <cstdint>
 #include <string>
 
+#include "utils.hpp"
+
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: CORE
 *-----------------------------------------------------------------------------*/
@@ -66,7 +68,7 @@ public:
 
     //GET
     const std::string&      getName() const;
-    const std::uint32_t&    getNodeID() const;
+    const node_id_t&        getNodeID() const;
     std::string             getFullName() const;
     nodes::Type             getType() const;
 
@@ -78,7 +80,7 @@ protected:
 
 private:
     std::string             m_name;
-    const std::uint32_t     m_id;
+    const node_id_t         m_id;
     nodes::Type             m_type;
 
     bool                    m_initializeFlag;
@@ -92,7 +94,7 @@ inline const std::string& Node::getName() const
     return m_name;
 }
 
-inline const std::uint32_t& Node::getNodeID() const
+inline const node_id_t& Node::getNodeID() const
 {
     return m_id;
 }

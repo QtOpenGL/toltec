@@ -149,7 +149,7 @@ void ResourceManager::setDefaultCameraNode(core::nodes::CameraNode* p_defaultCam
 /*-----------------------------------------------------------------------------
 *   ASSIGN NODE ID
 *-----------------------------------------------------------------------------*/
-std::uint32_t ResourceManager::assignNodeID()
+const node_id_t& ResourceManager::assignNodeID()
 {
     std::size_t globalNodeIDListSize = m_globalNodeIDList.size();
     if (globalNodeIDListSize == 1)
@@ -169,14 +169,14 @@ std::uint32_t ResourceManager::assignNodeID()
         }
 
         m_globalNodeIDList.push_back(globalNodeIDListSize);
-        return globalNodeIDListSize;
+        return (node_id_t)globalNodeIDListSize;
     }
 }
 
 /*-----------------------------------------------------------------------------
 *   REMOVE NODE ID
 *-----------------------------------------------------------------------------*/
-void ResourceManager::removeNodeID(const std::uint32_t nodeID)
+void ResourceManager::removeNodeID(const node_id_t nodeID)
 {
     if (nodeID < m_globalNodeIDList.size())
         m_globalNodeIDList[nodeID] = 0;
