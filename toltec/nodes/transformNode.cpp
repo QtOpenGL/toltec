@@ -47,44 +47,6 @@ TransformNode::TransformNode()
 }
 
 /*-----------------------------------------------------------------------------
-*   ADD CHILD
-*-----------------------------------------------------------------------------*/
-void TransformNode::addChild(SceneNode* p_sceneNode)
-{
-    //CHECK IF ALREADY ON THE CHILD LIST
-    for (SceneNode* p_childListItem : m_childList)
-        if (p_childListItem == p_sceneNode)
-            return;
-
-    //ADD CHILD
-    m_childList.push_back(p_sceneNode);
-
-    //SET PARENT
-    p_sceneNode->setParent(this);
-}
-
-/*-----------------------------------------------------------------------------
-*   REMOVE CHILD
-*-----------------------------------------------------------------------------*/
-bool TransformNode::removeChild(SceneNode* p_sceneNode)
-{
-    bool isRemoved = false;
-
-    for (std::size_t i = 0; i < m_childList.size(); i++)
-    {
-        if (m_childList[i] == p_sceneNode)
-        {
-            m_childList.erase(m_childList.begin() + i);
-            p_sceneNode->setParent(nullptr);
-
-            isRemoved = true;
-        }
-    }
-    
-    return isRemoved;
-}
-
-/*-----------------------------------------------------------------------------
 *   SET TRANSLATION
 *   (const glm::vec3&)
 *-----------------------------------------------------------------------------*/

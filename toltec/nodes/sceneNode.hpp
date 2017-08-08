@@ -13,6 +13,7 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
+#include <vector>
 #include "node.hpp"
 
 /*-----------------------------------------------------------------------------
@@ -37,13 +38,15 @@ public:
     virtual         ~SceneNode() {}
 
     //SET
-    virtual void    setParent(SceneNode* p_parent);
+    void            setParent(SceneNode* p_parent);
 
     //GET
-    SceneNode*      getParent();
+    SceneNode*                  getParent();
+    std::vector<SceneNode*>&    getChildList();
 
-protected:
-    SceneNode*      mp_parent;
+private:
+    SceneNode*                  mp_parent;
+    std::vector<SceneNode*>     m_childList;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -52,5 +55,11 @@ inline SceneNode* SceneNode::getParent()
 {
     return mp_parent;
 }
+
+inline std::vector<SceneNode*>& SceneNode::getChildList()
+{
+    return m_childList;
+}
+
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

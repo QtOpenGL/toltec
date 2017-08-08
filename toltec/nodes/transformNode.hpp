@@ -40,12 +40,6 @@ public:
                 TransformNode();
     virtual     ~TransformNode() {}
 
-    //ADD
-    void        addChild(SceneNode* p_sceneNode);
-
-    //REMOVE
-    bool        removeChild(SceneNode* p_sceneNode);
-
     //SET
     void        setTranslation(const glm::vec3& translation);
     void        setTranslation(float x, float y, float z);
@@ -56,8 +50,6 @@ public:
     void        setScale(float x, float y, float z);
 
     //GET
-    const std::vector<SceneNode*>&  getChildList() const;
-
     const glm::mat4&                getModelMatrix();
 
     const glm::vec3&                getTranslation() const;
@@ -71,8 +63,6 @@ public:
     const glm::vec3&                getTargetPosition() const;
 
 private:
-    std::vector<SceneNode*> m_childList;
-
     bool                    m_updateModelMatrixFlag;
     glm::mat4               m_modelMatrix;
 
@@ -89,11 +79,6 @@ private:
 };
 
 /*----------------------------------------------------------------------------*/
-
-inline const std::vector<SceneNode*>& TransformNode::getChildList() const
-{
-    return m_childList;
-}
 
 inline const glm::vec3& TransformNode::getTranslation() const
 {

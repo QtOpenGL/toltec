@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream> 
 #include <map>
 #include <memory>
@@ -8,26 +9,36 @@
 class A
 {
 public:
-    A() : mp_int(new int(4)) {}
     virtual ~A() {}
-private:
-    std::unique_ptr<int>    mp_int;
-};
 
-enum Some {
-    SOME_A,
-    SOME_B
+    std::vector<int>& getChildList() { return m_childList; }
+private:
+    std::vector<int> m_childList;
 };
 
 int main(int argc, char* argv[])
 {
-    int* p_someInt2 = new int(4);
-    //std::unique_ptr<int> p_someInt(p_someInt2);
+    A a;
+    a.getChildList().push_back(1);
+    a.getChildList().push_back(9);
+    a.getChildList().push_back(2);
+    a.getChildList().push_back(6);
+    a.getChildList().push_back(7);
 
-    std::map<Some, std::unique_ptr<int>> someMap;
-    someMap.insert(std::make_pair(Some::SOME_A, p_someInt2));
+    for (const int& i : a.getChildList())
+    {
+        std::cout << i << std::endl;
+    }
 
-    std::cout << *someMap[Some::SOME_A] << std::endl;
+    auto iter = std::find(a.getChildList().begin(), a.getChildList().end(), 2);
+    if (iter != a.getChildList().end())
+        a.getChildList().erase(iter);
+
+    std::cout << "-----------------------------" << std::endl;
+    for (const int& i : a.getChildList())
+    {
+        std::cout << i << std::endl;
+    }
 
     return 0;
 }

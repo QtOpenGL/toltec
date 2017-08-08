@@ -69,8 +69,8 @@ std::unique_ptr<core::nodes::TransformNode>& createCube()
     p_polygonMeshNode->createMesh(point3DList, faceVertexSequence, polygonOffsetList);
 
     //SET SCENE TREE
-    p_transformNode->addChild(p_polygonMeshNode.get());
-    ResourceManager::getInstance().getRootTransformNode().addChild(p_transformNode.get());
+    p_polygonMeshNode->setParent(p_transformNode.get());
+    p_transformNode->setParent(&(ResourceManager::getInstance().getRootTransformNode()));
 
     //ADD TO THE RESOURCE MANAGER
     ResourceManager::getInstance().addTransformNode(std::move(p_transformNode));

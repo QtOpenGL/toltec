@@ -7,7 +7,9 @@
 #include "cameraNode.hpp"
 
 #include <glm/gtc/matrix_transform.hpp>
+
 #include "transformNode.hpp"
+#include "utils.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: CORE
@@ -165,10 +167,17 @@ const glm::mat4& CameraNode::getOrthographicMatrix()
 void CameraNode::updateViewMatrix()
 {
     TransformNode* p_transformNode = dynamic_cast<TransformNode*>(this->getParent());
-    m_viewMatrix = glm::lookAt(
-        p_transformNode->getTranslation(), 
-        p_transformNode->getTargetPosition(), 
-        p_transformNode->getLocalY());
+    if (p_transformNode != nullptr)
+    {
+        m_viewMatrix = glm::lookAt(
+            p_transformNode->getTranslation(), 
+            p_transformNode->getTargetPosition(), 
+            p_transformNode->getLocalY());
+    }
+    else
+    {
+        DEBUG_ERR("Unable to update view matrix!");
+    }
 }
 
 /*-----------------------------------------------------------------------------
