@@ -70,7 +70,7 @@ void ToltecOpenGLRendererResource::addToFinalRenderItemList(RenderItem* p_render
 /*-----------------------------------------------------------------------------
 *   GET RENDERABLE OBJECT MAP
 *-----------------------------------------------------------------------------*/
-const std::map<node_id_t, std::unique_ptr<RenderableObject>>& 
+const std::map<node_id, std::unique_ptr<RenderableObject>>& 
 ToltecOpenGLRendererResource::getRenderableObjectMap(unsigned int viewportIndex) const
 {
     try

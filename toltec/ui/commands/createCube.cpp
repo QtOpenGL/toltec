@@ -15,7 +15,6 @@
 
 #include <glm/glm.hpp>
 
-#include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
 #include "toltecPolygonMeshLibrary/mesh.hpp"
 #include "resourceManager.hpp"
@@ -34,7 +33,7 @@ namespace cmds
 *   FUNCTION DEFINITIONS
 *   CREATE CUBE
 *-----------------------------------------------------------------------------*/
-std::pair<node_id_t, node_id_t> createCube()
+core::nodes::PolygonMeshNode* createCube()
 {
     //CREATE TRANSFORM NODE
     auto p_transformNode = std::make_unique<core::nodes::TransformNode>();
@@ -70,21 +69,16 @@ std::pair<node_id_t, node_id_t> createCube()
     p_polygonMeshNode->setName("polyCube");
     p_polygonMeshNode->createMesh(point3DList, faceVertexSequence, polygonOffsetList);
 
-    //FETCH NODES IDs
-    auto nodesIDs = std::pair<node_id_t, node_id_t>(
-        p_transformNode->getNodeID(),
-        p_polygonMeshNode->getNodeID()
-    );
-
     //SET SCENE TREE
     p_polygonMeshNode->setParent(p_transformNode.get());
     p_transformNode->setParent(&(ResourceManager::getInstance().getRootTransformNode()));
 
     //ADD TO THE RESOURCE MANAGER
+    core::nodes::PolygonMeshNode* p_returnPointer = p_polygonMeshNode.get();
     ResourceManager::getInstance().addTransformNode(std::move(p_transformNode));
     ResourceManager::getInstance().addPolygonMeshNode(std::move(p_polygonMeshNode));
 
-    return nodesIDs;
+    return p_returnPointer;
 }
 } //NAMESPACE: CMDS
 } //NAMESPACE: UI

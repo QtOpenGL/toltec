@@ -52,9 +52,8 @@ int main(int argc, char* argv[])
     ResourceManager::getInstance().addTransformNode(std::move(p_rootTransformNode));
 
     //default camera node
-    auto p_defaultCameraNode = std::make_unique<nodes::CameraNode>();
-    p_defaultCameraNode->setName("defaultCam");
-    ResourceManager::getInstance().setDefaultCameraNode(p_defaultCameraNode.get());
+    nodes::CameraNode* p_defaultCameraNode = ui::cmds::createCamera();
+    ResourceManager::getInstance().setDefaultCameraNode(p_defaultCameraNode);
 
     //default shader
     auto p_lambertShaderProgramNode = std::make_unique<nodes::LambertSSPNode>();

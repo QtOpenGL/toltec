@@ -68,7 +68,7 @@ public:
 
     //GET
     const std::string&      getName() const;
-    const node_id_t&        getNodeID() const;
+    const node_id&      getNodeID() const;
     std::string             getFullName() const;
     nodes::Type             getType() const;
 
@@ -80,7 +80,7 @@ protected:
 
 private:
     std::string             m_name;
-    const node_id_t         m_id;
+    const node_id           m_id;
     nodes::Type             m_type;
 
     bool                    m_initializeFlag;
@@ -94,7 +94,7 @@ inline const std::string& Node::getName() const
     return m_name;
 }
 
-inline const node_id_t& Node::getNodeID() const
+inline const node_id& Node::getNodeID() const
 {
     return m_id;
 }

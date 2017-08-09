@@ -56,8 +56,8 @@ public:
     //STRUCTS
     struct ResourcePerViewport {
         std::map<core::nodes::Type, std::unique_ptr<ShaderProgram>> shaderProgramMap;
-        std::map<node_id_t, std::unique_ptr<RenderableObject>>  renderableObjectMap;
-        std::map<node_id_t, std::unique_ptr<ShaderInstance>>    shaderInstanceMap;
+        std::map<node_id, std::unique_ptr<RenderableObject>>    renderableObjectMap;
+        std::map<node_id, std::unique_ptr<ShaderInstance>>  shaderInstanceMap;
 
         std::vector<RenderItem*> finalRenderItemList;  //cleared after every render sequence
     };
@@ -70,7 +70,7 @@ public:
     void            addToFinalRenderItemList(RenderItem* p_renderItem, unsigned int viewportIndex);
 
     //GET
-    const std::map<node_id_t, std::unique_ptr<RenderableObject>>&
+    const std::map<node_id, std::unique_ptr<RenderableObject>>&
                     getRenderableObjectMap(unsigned int viewportIndex) const;
     const std::vector<RenderItem*>&
                     getFinalRenderItemList(unsigned int viewportIndex) const;

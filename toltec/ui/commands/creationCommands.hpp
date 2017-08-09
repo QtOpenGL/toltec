@@ -12,8 +12,8 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include <utility>
-#include "utils.hpp"
+#include "nodes/cameraNode.hpp"
+#include "nodes/polygonMeshNode.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: UI (USER ITERFACE)
@@ -28,7 +28,7 @@ namespace cmds
 /*-----------------------------------------------------------------------------
 *   FUNCTION DECLARATIONS
 *-----------------------------------------------------------------------------*/
-std::pair<node_id_t, node_id_t> createCamera();
-std::pair<node_id_t, node_id_t> createCube();
+core::nodes::CameraNode*        createCamera();
+core::nodes::PolygonMeshNode*   createCube();
 } //NAMESPACE: CMDS
 } //NAMESPACE: UI

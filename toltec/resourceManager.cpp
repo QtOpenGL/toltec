@@ -33,19 +33,18 @@ ResourceManager::ResourceManager()
 }
 
 /*-----------------------------------------------------------------------------
-*   ADD SURFACE SHADER PROGRAM NODE
+*   ADD CAMERA NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addSurfaceShaderProgramNode(
-    std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode)
+void ResourceManager::addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_cameraNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
-    for (const auto& p_surfaceShaderProgramNodeListElement : m_surfaceShaderProgramNodeList)
-        if (p_surfaceShaderProgramNodeListElement == p_surfaceShaderProgramNode.get())
+    for (const auto& p_cameraNodeListElement : m_cameraNodeList)
+        if (p_cameraNodeListElement == p_cameraNode.get())
             return;
 
     //ADD
-    m_surfaceShaderProgramNodeList.push_back(p_surfaceShaderProgramNode.get());
-    m_allNodeList.push_back(std::move(p_surfaceShaderProgramNode));
+    m_cameraNodeList.push_back(p_cameraNode.get());
+    m_allNodeList.push_back(std::move(p_cameraNode));
 }
 
 /*-----------------------------------------------------------------------------
@@ -66,6 +65,37 @@ void ResourceManager::addComponentShaderProgramNode(
 }
 
 /*-----------------------------------------------------------------------------
+*   ADD POLYGON MESH NODE
+*-----------------------------------------------------------------------------*/
+void ResourceManager::addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMeshNode> p_polygonMeshNode)
+{
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_polygonMeshNodeListElement : m_polygonMeshNodeList)
+        if (p_polygonMeshNodeListElement == p_polygonMeshNode.get())
+            return;
+
+    //ADD
+    m_polygonMeshNodeList.push_back(p_polygonMeshNode.get());
+    m_allNodeList.push_back(std::move(p_polygonMeshNode));
+}
+
+/*-----------------------------------------------------------------------------
+*   ADD SURFACE SHADER PROGRAM NODE
+*-----------------------------------------------------------------------------*/
+void ResourceManager::addSurfaceShaderProgramNode(
+    std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode)
+{
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_surfaceShaderProgramNodeListElement : m_surfaceShaderProgramNodeList)
+        if (p_surfaceShaderProgramNodeListElement == p_surfaceShaderProgramNode.get())
+            return;
+
+    //ADD
+    m_surfaceShaderProgramNodeList.push_back(p_surfaceShaderProgramNode.get());
+    m_allNodeList.push_back(std::move(p_surfaceShaderProgramNode));
+}
+
+/*-----------------------------------------------------------------------------
 *   ADD TRANSFORM NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::addTransformNode(std::unique_ptr<core::nodes::TransformNode> p_transformNode)
@@ -81,33 +111,15 @@ void ResourceManager::addTransformNode(std::unique_ptr<core::nodes::TransformNod
 }
 
 /*-----------------------------------------------------------------------------
-*   ADD CAMERA NODE
+*   SET DEFAULT CAMERA NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_cameraNode)
+void ResourceManager::setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode)
 {
-    //CHECK IF IT IS ALREADY ON THE LIST
-    for (const auto& p_cameraNodeListElement : m_cameraNodeList)
-        if (p_cameraNodeListElement == p_cameraNode.get())
-            return;
+    if (mp_defaultCameraNode != nullptr)    //return if already assigned
+        return;
 
-    //ADD
-    m_cameraNodeList.push_back(p_cameraNode.get());
-    m_allNodeList.push_back(std::move(p_cameraNode));
-}
-
-/*-----------------------------------------------------------------------------
-*   ADD POLYGON MESH NODE
-*-----------------------------------------------------------------------------*/
-void ResourceManager::addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMeshNode> p_polygonMeshNode)
-{
-    //CHECK IF IT IS ALREADY ON THE LIST
-    for (const auto& p_polygonMeshNodeListElement : m_polygonMeshNodeList)
-        if (p_polygonMeshNodeListElement == p_polygonMeshNode.get())
-            return;
-
-    //ADD
-    m_polygonMeshNodeList.push_back(p_polygonMeshNode.get());
-    m_allNodeList.push_back(std::move(p_polygonMeshNode));
+    mp_defaultCameraNode = p_defaultCameraNode;
+    m_undeletableNodeList.push_back(mp_defaultCameraNode);
 }
 
 /*-----------------------------------------------------------------------------
@@ -135,21 +147,52 @@ void ResourceManager::setRootTransformNode(core::nodes::TransformNode* p_rootTra
 }
 
 /*-----------------------------------------------------------------------------
-*   SET DEFAULT CAMERA NODE
+*   GET CAMERA NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode)
+core::nodes::CameraNode* ResourceManager::getCameraNode(const node_id& nodeID)
 {
-    if (mp_defaultCameraNode != nullptr)    //return if already assigned
-        return;
+    for (auto p_cameraNode : m_cameraNodeList)
+    {
+        if (p_cameraNode->getNodeID() == nodeID)
+            return p_cameraNode;
+    }
 
-    mp_defaultCameraNode = p_defaultCameraNode;
-    m_undeletableNodeList.push_back(mp_defaultCameraNode);
+    return nullptr;
+}
+
+/*-----------------------------------------------------------------------------
+*   GET NODE
+*-----------------------------------------------------------------------------*/
+core::nodes::Node* ResourceManager::getNode(const node_id& nodeID)
+{
+    for (auto& p_node : m_allNodeList)
+    {
+        if (p_node->getNodeID() == nodeID)
+            return p_node.get();
+    }
+
+    return nullptr;
+}
+
+/*-----------------------------------------------------------------------------
+*   GET NODES
+*-----------------------------------------------------------------------------*/
+std::vector<core::nodes::Node*> ResourceManager::getNodes(const std::string& nodeName)
+{
+    std::vector<core::nodes::Node*> selectedNodes;
+    for (auto& p_node : m_allNodeList)
+    {
+        if (p_node->getName() == nodeName)
+            selectedNodes.push_back(p_node.get());
+    }
+
+    return selectedNodes;
 }
 
 /*-----------------------------------------------------------------------------
 *   ASSIGN NODE ID
 *-----------------------------------------------------------------------------*/
-const node_id_t& ResourceManager::assignNodeID()
+node_id ResourceManager::assignNodeID()
 {
     std::size_t globalNodeIDListSize = m_globalNodeIDList.size();
     if (globalNodeIDListSize == 1)
@@ -169,14 +212,14 @@ const node_id_t& ResourceManager::assignNodeID()
         }
 
         m_globalNodeIDList.push_back(globalNodeIDListSize);
-        return (node_id_t)globalNodeIDListSize;
+        return (node_id)globalNodeIDListSize;
     }
 }
 
 /*-----------------------------------------------------------------------------
 *   REMOVE NODE ID
 *-----------------------------------------------------------------------------*/
-void ResourceManager::removeNodeID(const node_id_t nodeID)
+void ResourceManager::removeNodeID(const node_id& nodeID)
 {
     if (nodeID < m_globalNodeIDList.size())
         m_globalNodeIDList[nodeID] = 0;
