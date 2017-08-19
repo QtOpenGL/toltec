@@ -50,17 +50,17 @@ public:
     void        setScale(float x, float y, float z);
 
     //GET
-    const glm::mat4&                getModelMatrix();
+    const glm::mat4&        getModelMatrix();
 
-    const glm::vec3&                getTranslation() const;
-    const glm::vec3&                getRotation() const;
-    const glm::vec3&                getScale() const;
+    const glm::vec3&        getTranslation() const;
+    const glm::vec3&        getRotation() const;
+    const glm::vec3&        getScale() const;
 
-    const glm::vec3&                getLocalX() const;
-    const glm::vec3&                getLocalY() const;
-    const glm::vec3&                getLocalZ() const;
+    const glm::vec3&        getLocalX() const;
+    const glm::vec3&        getLocalY() const;
+    const glm::vec3&        getLocalZ() const;
 
-    const glm::vec3&                getTargetPosition() const;
+    const glm::vec3&        getTargetPosition() const;
 
 private:
     bool                    m_updateModelMatrixFlag;

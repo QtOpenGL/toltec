@@ -60,7 +60,7 @@ public:
     void                        bind() const;
     void                        unbind() const;
     virtual ShaderInstance*     createShaderInstance() { return nullptr; }
-    virtual void                updateUniforms() {}
+    virtual void                updateUniforms();
 
 protected:
     void                        createShader(

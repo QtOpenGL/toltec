@@ -22,7 +22,7 @@ namespace core
 {
     namespace nodes
     {
-        class SurfaceShaderProgramNode;
+        class ShaderProgramNode;
     }
 }
 
@@ -48,20 +48,20 @@ public:
     virtual     ~SurfaceNode() {}
 
     //SET
-    void        setSurfaceShaderProgramNode(SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
+    void        setShaderProgramNode(ShaderProgramNode* p_shaderProgramNode);
 
     //GET
-    SurfaceShaderProgramNode*   getSurfaceShaderProgramNode();
+    ShaderProgramNode*  getShaderProgramNode();
 
 private:
-    SurfaceShaderProgramNode*   mp_surfaceShaderProgramNode;
+    ShaderProgramNode*  mp_shaderProgramNode;
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline SurfaceShaderProgramNode* SurfaceNode::getSurfaceShaderProgramNode()
+inline ShaderProgramNode* SurfaceNode::getShaderProgramNode()
 {
-    return mp_surfaceShaderProgramNode;
+    return mp_shaderProgramNode;
 }
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

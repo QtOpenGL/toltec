@@ -40,15 +40,15 @@ public:
     };
 
     //CONSTRUCTORS
-                    CameraNode();
-    virtual         ~CameraNode() {}
+                        CameraNode();
+    virtual             ~CameraNode() {}
 
     //SET
-    void            setCameraType(const CameraNode::CameraType cameraType);
-    void            setFieldOfView(const float fieldOfView);
-    void            setOrthographicArea(const float orthographicArea);
-    void            setZNear(const float zNear);
-    void            setZFar(const float zFar);
+    void                setCameraType(const CameraNode::CameraType cameraType);
+    void                setFieldOfView(const float fieldOfView);
+    void                setOrthographicArea(const float orthographicArea);
+    void                setZNear(const float zNear);
+    void                setZFar(const float zFar);
 
     //GET
     const glm::mat4&    getViewMatrix();
@@ -57,13 +57,13 @@ public:
     const glm::mat4&    getOrthographicMatrix();
 
     //OTHER
-    void            updateViewMatrix();
-    void            updateViewMatrix(
-        const glm::vec3& cameraPosition, 
-        const glm::vec3& targetPosition,
-        const glm::vec3& localY);
-    void            updatePerspectiveMatrix(const float aspectRatio);
-    void            updateOrthographicMatrix(const float aspectRatio);
+    const glm::mat4&    updateViewMatrix();
+    const glm::mat4&    updateViewMatrix(
+                            const glm::vec3& cameraPosition, 
+                            const glm::vec3& targetPosition,
+                            const glm::vec3& localY);
+    void                updatePerspectiveMatrix(const float aspectRatio);
+    void                updateOrthographicMatrix(const float aspectRatio);
 
 private:
     CameraNode::CameraType  m_type;

@@ -44,6 +44,7 @@ public:
 
     //GET
     gl::GLuint              getID() const;
+    gl::GLenum              getGLDataType() const;
     const std::uint32_t&    getIndexCount() const;
 
     //OTHER
@@ -56,6 +57,7 @@ public:
 private:
     gl::GLuint                  m_id;
     IndexBuffer::DataType       m_dataType;
+    gl::GLenum                  m_glDataType;
     std::size_t                 m_sizeInBytes;
     std::uint32_t               m_indexCount;
 };
@@ -65,6 +67,11 @@ private:
 inline gl::GLuint IndexBuffer::getID() const
 {
     return m_id;
+}
+
+inline gl::GLenum IndexBuffer::getGLDataType() const
+{
+    return m_glDataType;
 }
 
 inline const std::uint32_t& IndexBuffer::getIndexCount() const

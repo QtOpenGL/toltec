@@ -39,7 +39,7 @@ void main()
     // VertexOut.normal =       normalize((transpose(inverse(g_modelMatrix)) * vec4(g_normal, 0.0f)).xyz);
     // VertexOut.texCoord =     vec2(g_texCoord.x, 1.0f - g_texCoord.y);
 
-    // gl_Position =            g_transformMatrix * vec4(g_position, 1.0f);
+    gl_Position =           g_transformMatrix * vec4(g_position, 1.0f);
 
     gl_Position = vec4(g_position, 1.0f);
 }

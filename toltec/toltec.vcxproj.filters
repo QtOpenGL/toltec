@@ -246,6 +246,12 @@
     <ClCompile Include="ui\commands\createCamera.cpp">
       <Filter>Main Files\ui\commands</Filter>
     </ClCompile>
+    <ClCompile Include="renderingSystem\toltec\openGL\cameraData.cpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\shaders\cameraShaderProgramNode.cpp">
+      <Filter>Main Files\nodes\shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -394,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="ui\commands\creationCommands.hpp">
       <Filter>Main Files\ui\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="renderingSystem\toltec\openGL\cameraData.hpp">
+      <Filter>Main Files\renderingSystem\toltec\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\shaders\cameraShaderProgramNode.hpp">
+      <Filter>Main Files\nodes\shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

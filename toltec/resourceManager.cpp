@@ -48,20 +48,21 @@ void ResourceManager::addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_c
 }
 
 /*-----------------------------------------------------------------------------
-*   ADD COMPONENT SHADER PROGRAM NODE
+*   ADD DEDICATED SHADER PROGRAM NODE
 *-----------------------------------------------------------------------------*/
-void ResourceManager::addComponentShaderProgramNode(
-    std::unique_ptr<core::nodes::ComponentShaderProgramNode> p_componentShaderProgramNode)
+void ResourceManager::addDedicatedShaderProgramNode(
+    ResourceManager::DedicatedShaderProgram         dedicatedShaderProgram,
+    std::unique_ptr<core::nodes::ShaderProgramNode> p_shaderProgramNode)
 {
     //CHECK IF IT IS ALREADY ON THE LIST
-    for (const auto& p_componentShaderProgramNodeListElement : m_componentShaderProgramNodeList)
-        if (p_componentShaderProgramNodeListElement == p_componentShaderProgramNode.get())
+    for (const auto& kv : m_dedicatedShaderProgramMap)
+        if (kv.first == dedicatedShaderProgram)
             return;
 
     //ADD
-    m_componentShaderProgramNodeList.push_back(p_componentShaderProgramNode.get());
-    m_undeletableNodeList.push_back(p_componentShaderProgramNode.get());
-    m_allNodeList.push_back(std::move(p_componentShaderProgramNode));
+    m_dedicatedShaderProgramMap[dedicatedShaderProgram] = p_shaderProgramNode.get();
+    m_undeletableNodeList.push_back(p_shaderProgramNode.get());
+    m_allNodeList.push_back(std::move(p_shaderProgramNode));
 }
 
 /*-----------------------------------------------------------------------------
@@ -79,21 +80,6 @@ void ResourceManager::addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMes
     m_allNodeList.push_back(std::move(p_polygonMeshNode));
 }
 
-/*-----------------------------------------------------------------------------
-*   ADD SURFACE SHADER PROGRAM NODE
-*-----------------------------------------------------------------------------*/
-void ResourceManager::addSurfaceShaderProgramNode(
-    std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode)
-{
-    //CHECK IF IT IS ALREADY ON THE LIST
-    for (const auto& p_surfaceShaderProgramNodeListElement : m_surfaceShaderProgramNodeList)
-        if (p_surfaceShaderProgramNodeListElement == p_surfaceShaderProgramNode.get())
-            return;
-
-    //ADD
-    m_surfaceShaderProgramNodeList.push_back(p_surfaceShaderProgramNode.get());
-    m_allNodeList.push_back(std::move(p_surfaceShaderProgramNode));
-}
 
 /*-----------------------------------------------------------------------------
 *   ADD TRANSFORM NODE
@@ -111,6 +97,22 @@ void ResourceManager::addTransformNode(std::unique_ptr<core::nodes::TransformNod
 }
 
 /*-----------------------------------------------------------------------------
+*   ADD USER SHADER PROGRAM NODE
+*-----------------------------------------------------------------------------*/
+void ResourceManager::addUserShaderProgramNode(
+    std::unique_ptr<core::nodes::ShaderProgramNode> p_shaderProgramNode)
+{
+    //CHECK IF IT IS ALREADY ON THE LIST
+    for (const auto& p_userShaderProgramNodeListElement : m_userShaderProgramNodeList)
+        if (p_userShaderProgramNodeListElement == p_shaderProgramNode.get())
+            return;
+
+    //ADD
+    m_userShaderProgramNodeList.push_back(p_shaderProgramNode.get());
+    m_allNodeList.push_back(std::move(p_shaderProgramNode));
+}
+
+/*-----------------------------------------------------------------------------
 *   SET DEFAULT CAMERA NODE
 *-----------------------------------------------------------------------------*/
 void ResourceManager::setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode)
@@ -120,18 +122,6 @@ void ResourceManager::setDefaultCameraNode(core::nodes::CameraNode* p_defaultCam
 
     mp_defaultCameraNode = p_defaultCameraNode;
     m_undeletableNodeList.push_back(mp_defaultCameraNode);
-}
-
-/*-----------------------------------------------------------------------------
-*   SET DEFAULT SHADER PROGRAM NODE
-*-----------------------------------------------------------------------------*/
-void ResourceManager::setDefaultSSPNode(core::nodes::SurfaceShaderProgramNode* p_shaderProgramNode)
-{
-    if (mp_defaultSSPNode != nullptr)   //return if already assigned
-        return;
-
-    mp_defaultSSPNode = p_shaderProgramNode;
-    m_undeletableNodeList.push_back(mp_defaultSSPNode);
 }
 
 /*-----------------------------------------------------------------------------
@@ -158,6 +148,19 @@ core::nodes::CameraNode* ResourceManager::getCameraNode(const node_id& nodeID)
     }
 
     return nullptr;
+}
+
+/*-----------------------------------------------------------------------------
+*   GET DEDICATED SHADER PROGRAM NODE
+*-----------------------------------------------------------------------------*/
+core::nodes::ShaderProgramNode* ResourceManager::getDedicatedShaderProgramNode(
+    const ResourceManager::DedicatedShaderProgram& dedicatedShaderProgram) const
+{
+    const auto& iter = m_dedicatedShaderProgramMap.find(dedicatedShaderProgram);
+    if (iter != m_dedicatedShaderProgramMap.end())
+        return iter->second;
+    else
+        return nullptr;
 }
 
 /*-----------------------------------------------------------------------------

@@ -24,10 +24,20 @@ namespace nodes
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 ShaderProgramNode::ShaderProgramNode()
+    :
+    m_drawMode(ShaderProgramNode::DrawMode::TRIANGLES)
 {
     //INITIALIZE
     this->setName("shaderProgramNode");
     this->setType(nodes::Type::SHADER_PROGRAM_NODE);
+}
+
+/*-----------------------------------------------------------------------------
+*   SET DRAW MODE
+*-----------------------------------------------------------------------------*/
+void ShaderProgramNode::setDrawMode(const ShaderProgramNode::DrawMode& drawMode)
+{
+    m_drawMode = drawMode;
 }
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

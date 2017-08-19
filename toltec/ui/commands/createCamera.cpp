@@ -37,6 +37,11 @@ core::nodes::CameraNode* createCamera()
 
     auto p_cameraNode = std::make_unique<core::nodes::CameraNode>();
     p_cameraNode->setName("camera");
+    p_cameraNode->updateViewMatrix(
+        p_transformNode->getTranslation(),
+        p_transformNode->getTargetPosition(),
+        p_transformNode->getLocalY()
+    );
 
     //SET SCENE TREE
     p_cameraNode->setParent(p_transformNode.get());

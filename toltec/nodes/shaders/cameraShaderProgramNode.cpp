@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       13 II 2017
+*       18 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *-----------------------------------------------------------------------------*/
@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "planeCSPNode.hpp"
+#include "cameraShaderProgramNode.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: CORE
@@ -23,12 +23,32 @@ namespace nodes
 /*-----------------------------------------------------------------------------
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-PlaneCSPNode::PlaneCSPNode()
+CameraShaderProgramNode::CameraShaderProgramNode()
+    :
+    m_color(1.0f, 1.0f, 0.0f)
 {
     //INITIALIZE
-    this->setName("planeComponentShader");
-    this->setType(nodes::Type::PLANE_CSP_NODE);
-    this->setDrawMode(ShaderProgramNode::DrawMode::TRIANGLES);
+    this->setName("cameraShaderProgramNode");
+    this->setType(nodes::Type::COMPONENT_SHADER_PROGRAM_NODE);
+    this->setDrawMode(ShaderProgramNode::DrawMode::LINES);
+}
+
+/*-----------------------------------------------------------------------------
+*   SET COLOR
+*   (const glm::vec3&)
+*-----------------------------------------------------------------------------*/
+void CameraShaderProgramNode::setColor(const glm::vec3& color)
+{
+    m_color = color;
+}
+
+/*-----------------------------------------------------------------------------
+*   SET COLOR
+*   (float, float, float)
+*-----------------------------------------------------------------------------*/
+void CameraShaderProgramNode::setColor(float r, float g, float b)
+{
+    m_color = glm::vec3(r, g, b);
 }
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

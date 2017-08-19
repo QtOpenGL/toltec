@@ -202,6 +202,7 @@
     <ClCompile Include="nodes\polygonMeshNode.cpp" />
     <ClCompile Include="nodes\renderableObjectNode.cpp" />
     <ClCompile Include="nodes\sceneNode.cpp" />
+    <ClCompile Include="nodes\shaders\cameraShaderProgramNode.cpp" />
     <ClCompile Include="nodes\shaders\componentShaderProgramNode.cpp" />
     <ClCompile Include="nodes\shaders\lambertSSPNode.cpp" />
     <ClCompile Include="nodes\shaders\lineCSPNode.cpp" />
@@ -223,6 +224,7 @@
     <ClCompile Include="renderingSystem\openGL\vertexBuffer.cpp" />
     <ClCompile Include="renderingSystem\renderingSystem.cpp" />
     <ClCompile Include="renderingSystem\renderingAPI.cpp" />
+    <ClCompile Include="renderingSystem\toltec\openGL\cameraData.cpp" />
     <ClCompile Include="renderingSystem\toltec\openGL\geometry.cpp" />
     <ClCompile Include="renderingSystem\toltec\openGL\renderableObject.cpp" />
     <ClCompile Include="renderingSystem\toltec\openGL\renderItem.cpp" />
@@ -847,6 +849,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="nodes\shaders\cameraShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\componentShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\lambertSSPNode.hpp" />
     <ClInclude Include="nodes\shaders\lineCSPNode.hpp" />
@@ -856,6 +859,7 @@
     <ClInclude Include="nodes\shaders\surfaceShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\volumeShaderProgramNode.hpp" />
     <ClInclude Include="nodes\surfaceNode.hpp" />
+    <ClInclude Include="renderingSystem\toltec\openGL\cameraData.hpp" />
     <ClInclude Include="ui\commands\creationCommands.hpp" />
     <ClInclude Include="ui\commands\generalCommands.hpp" />
     <CustomBuild Include="ui\gui\panelContainer.hpp">

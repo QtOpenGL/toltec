@@ -31,6 +31,7 @@ SurfaceShaderProgramNode::SurfaceShaderProgramNode()
     //INITIALIZE
     this->setName("surfaceShaderProgramNode");
     this->setType(nodes::Type::SURFACE_SHADER_PROGRAM_NODE);
+    this->setDrawMode(ShaderProgramNode::DrawMode::TRIANGLES);
 }
 
 /*-----------------------------------------------------------------------------
@@ -49,12 +50,12 @@ void SurfaceShaderProgramNode::addSurface(SurfaceNode* p_surfaceNode, const bool
     if (hardAdd == false)
     {
         //clean old
-        SurfaceShaderProgramNode* p_shaderProgram = p_surfaceNode->getSurfaceShaderProgramNode();
+        ShaderProgramNode* p_shaderProgram = p_surfaceNode->getShaderProgramNode();
         p_shaderProgram->removeSurface(p_surfaceNode, true);
 
         //add / set
         m_surfaceNodeList.push_back(p_surfaceNode);
-        p_surfaceNode->setSurfaceShaderProgramNode(this);
+        p_surfaceNode->setShaderProgramNode(this);
     }
     else
     {
@@ -83,7 +84,11 @@ void SurfaceShaderProgramNode::removeSurface(SurfaceNode* p_surfaceNode, const b
 
             //set default
             if (hardRemove == false)
-                p_surfaceNode->setSurfaceShaderProgramNode(&ResourceManager::getInstance().getDefaultSSPNode());
+            {
+                p_surfaceNode->setShaderProgramNode(
+                    ResourceManager::getInstance().getDedicatedShaderProgramNode(
+                        ResourceManager::DedicatedShaderProgram::DEFAULT_SURFACE));
+            }
 
             break;
         }

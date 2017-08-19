@@ -26,12 +26,11 @@ namespace tgl
 *   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
 RenderItem::RenderItem(gl::GLuint vaoID, gl::IndexBuffer* p_indexBuffer, 
-    ShaderInstance* p_shaderInstance, RenderItem::DrawMode drawMode)
+    ShaderInstance* p_shaderInstance)
     :
     m_vaoID(vaoID),
     mp_indexBuffer(p_indexBuffer),
-    mp_shaderInstance(p_shaderInstance),
-    m_drawMode(drawMode)
+    mp_shaderInstance(p_shaderInstance)
 {
 }
 
@@ -49,15 +48,12 @@ void RenderItem::draw() const
     mp_shaderInstance->updateUniforms();
 
     //DRAW
-    gl::GLenum drawMode;
-    switch (m_drawMode)
-    {
-        case RenderItem::DrawMode::POINTS:      drawMode = gl::GLenum::GL_POINTS;       break;
-        case RenderItem::DrawMode::LINES:       drawMode = gl::GLenum::GL_LINES;        break;
-        case RenderItem::DrawMode::TRIANGLES:   drawMode = gl::GLenum::GL_TRIANGLES;    break;
-        default:                                drawMode = gl::GLenum::GL_POINTS;       break;
-    }
-    gl::glDrawElements(drawMode, mp_indexBuffer->getIndexCount(), gl::GLenum::GL_UNSIGNED_INT, 0);
+    gl::glDrawElements(
+        mp_shaderInstance->getDrawMode(), 
+        mp_indexBuffer->getIndexCount(), 
+        mp_indexBuffer->getGLDataType(),
+        0
+    );
 
     //UNBIND
     mp_indexBuffer->unbind();

@@ -10,9 +10,10 @@
 *-----------------------------------------------------------------------------*/
 #include "toltecOpenGLRenderer.hpp"
 
+#include <cstdlib>
 #include <iostream>
-#include <QtCore/qcoreapplication.h>
 
+#include <QtCore/qcoreapplication.h>
 #include <glbinding/gl/gl.h>
 
 #include "events/renderEvent.hpp"
@@ -51,13 +52,13 @@ bool ToltecOpenGLRenderer::event(QEvent* p_event)
         AbstractViewport* p_viewport =      p_rednerEvent->getViewport();
 
         //GET VIEWPORT INDEX
-        unsigned int viewportIndex = 0;
-        for (const auto p_viewportListElement : mp_rendererResource->getViewportList())
-        {
-            if (p_viewportListElement == p_viewport)
-                break;
+        unsigned int viewportIndex =    0;
+        std::size_t viewportListSize =  mp_rendererResource->getViewportList().size();
 
-            viewportIndex++;
+        for (; viewportIndex < viewportListSize; viewportIndex++)
+        {
+            if (mp_rendererResource->getViewportList()[viewportIndex] == p_viewport)
+                break;
         }
 
         //CAST

@@ -13,6 +13,7 @@
 #include <memory>
 #include <iostream>
 
+#include "nodes/cameraNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/renderableObjectNode.hpp"
 #include "nodes/sceneNode.hpp"
@@ -22,6 +23,7 @@
 #include "renderingSystem/openGL/indexBuffer.hpp"
 #include "renderingSystem/openGL/openGLViewport.hpp"
 #include "renderingSystem/openGL/vertexBuffer.hpp"
+#include "renderingSystem/toltec/openGL/cameraData.hpp"
 #include "renderingSystem/toltec/openGL/renderableObject.hpp"
 #include "renderingSystem/toltec/openGL/renderItem.hpp"
 #include "renderingSystem/toltec/openGL/shaders/lambertShaderProgram.hpp"
@@ -136,7 +138,7 @@ void ToltecOpenGLRendererResource::initializeResources()
             this->initializeShaderProgramMap();
 
             //SCAN SHADER PROGRAM LIST
-            this->scanShaderProgramNodeList(true);
+            this->scanUserShaderProgramNodeList(true);
 
             //SCAN SCENE TREE
             std::vector<glm::mat4> modelMatrixList;
@@ -144,7 +146,7 @@ void ToltecOpenGLRendererResource::initializeResources()
             bool calculateFinalModelMatrixFlag = false;
 
             this->scanSceneTree(
-                ResourceManager::getInstance().getRootTransformNode(),
+                *ResourceManager::getInstance().getRootTransformNode(),
                 treeDepthLevel,
                 &modelMatrixList,
                 calculateFinalModelMatrixFlag,
@@ -210,39 +212,38 @@ void ToltecOpenGLRendererResource::initializeShaderProgramMap()
 }
 
 /*-----------------------------------------------------------------------------
-*   SCAN SHADER PROGRAM NODE LIST
+*   SCAN USER SHADER PROGRAM NODE LIST
 *-----------------------------------------------------------------------------*/
-void ToltecOpenGLRendererResource::scanShaderProgramNodeList(const bool& initializeRendererResourceFlag)
+void ToltecOpenGLRendererResource::scanUserShaderProgramNodeList(const bool& initializeRendererResourceFlag)
 {
-    //SURFACE SHADER PROGRAM NODES
-    auto& surfaceShaderProgramNodeList = ResourceManager::getInstance().getSurfaceShaderProgramNodeList();
+    auto& userShaderProgramNodeList = ResourceManager::getInstance().getUserShaderProgramNodeList();
     auto& shaderProgramMap = m_resourcePerViewportList[m_activeViewportIndex]->shaderProgramMap;
 
-    for (auto p_surfaceShaderProgramNode : surfaceShaderProgramNodeList)
+    for (auto p_userShaderProgramNode : userShaderProgramNodeList)
     {
         //INITIALIZE
         if (initializeRendererResourceFlag == true ||
-            p_surfaceShaderProgramNode->getInitializeFlag() == true)
+            p_userShaderProgramNode->getInitializeFlag() == true)
         {
             //If you find corresponding ShaderProgram in a shaderProgramMap (created
             //previously in a ToltecOpenGLRendererResource::initializeShaderProgramMap
             //function) then create ShaderInstance of this ShaderProgram and insert it
             //into shaderInstanceMap.
 
-            auto iter = shaderProgramMap.find(p_surfaceShaderProgramNode->getType());
+            auto iter = shaderProgramMap.find(p_userShaderProgramNode->getType());
             if (iter != shaderProgramMap.end())
             {
                 m_resourcePerViewportList[m_activeViewportIndex]
                     ->shaderInstanceMap
                     .insert(std::make_pair(
-                        p_surfaceShaderProgramNode->getNodeID(),
+                        p_userShaderProgramNode->getNodeID(),
                         iter->second->createShaderInstance()
                     ));
             }
         }
 
         //UPDATE
-        else if (p_surfaceShaderProgramNode->getUpdateFlag() == true)
+        else if (p_userShaderProgramNode->getUpdateFlag() == true)
         {
             //...
         }
@@ -299,8 +300,17 @@ void ToltecOpenGLRendererResource::scanSceneTree(
             p_sceneNode->getInitializeFlag() == true ||
             p_sceneNode->getUpdateFlag() == true)
         {
+            //PROCESS: CameraNode
+            if (p_sceneNode->getType() == core::nodes::Type::CAMERA_NODE)
+            {
+                core::nodes::CameraNode* p_cameraNode =
+                    static_cast<core::nodes::CameraNode*>(p_sceneNode);
+                this->processCameraNode(p_cameraNode, p_renderableObject,
+                    initializeRendererResourceFlag);
+            }
+
             //PROCESS: PolygonMeshNode
-            if (p_sceneNode->getType() == core::nodes::Type::POLYGON_MESH_NODE)
+            else if (p_sceneNode->getType() == core::nodes::Type::POLYGON_MESH_NODE)
             {
                 core::nodes::PolygonMeshNode* p_polygonMeshNode = 
                     static_cast<core::nodes::PolygonMeshNode*>(p_sceneNode);
@@ -318,13 +328,165 @@ void ToltecOpenGLRendererResource::scanSceneTree(
         //CALCULATE AND APPLY FINAL MODEL MATRIX (IF NEEDED)
         if (initializeRendererResourceFlag == true || calculateFinalModelMatrixFlag == true)
         {
-            glm::mat4 finalModelMatrix;
-            for (glm::mat4& modelMatrix : *p_modelMatrixList)
-                finalModelMatrix *= modelMatrix;
-
             if (p_renderableObject != nullptr)
-                p_renderableObject->setModelMatrix(finalModelMatrix);
+            {
+                glm::mat4 finalModelMatrix;
+                for (const glm::mat4& modelMatrix : *p_modelMatrixList)
+                    finalModelMatrix *= modelMatrix;
+
+                p_renderableObject->setModelMatrixValue(finalModelMatrix);
+            }
         }
+    }
+}
+
+/*-----------------------------------------------------------------------------
+*   PROCESS CAMERA NODE
+*-----------------------------------------------------------------------------*/
+void ToltecOpenGLRendererResource::processCameraNode(
+    core::nodes::CameraNode*    p_CameraNode, 
+    RenderableObject*           p_renderableObject, 
+    const bool&                 initializeRendererResourceFlag)
+{
+    /*-----------------------------------------------------------------------------
+    *   INITIALIZE
+    *-----------------------------------------------------------------------------*/
+    if (initializeRendererResourceFlag == true || p_CameraNode->getInitializeFlag() == true)
+    {
+        //CAMERA DATA
+        auto& cameraDataMap = m_resourcePerViewportList[m_activeViewportIndex]->cameraDataMap;
+
+        auto cameraDataMapIter = cameraDataMap.find(p_CameraNode->getNodeID());
+        if (cameraDataMapIter == cameraDataMap.end())
+        {
+            //ADD TO CAMERA DATA MAP
+            CameraData* p_cameraData = new CameraData();
+            cameraDataMap.insert(std::make_pair(p_CameraNode->getNodeID(), p_cameraData));
+
+            //GET CAMERA TRANSFORM NODE PROPERTIES
+            glm::vec3 cameraPosition;
+            glm::vec3 cameraLocalZ;
+
+            core::nodes::TransformNode* p_cameraTranformNode =
+                dynamic_cast<core::nodes::TransformNode*>(p_CameraNode->getParent());
+            if (p_cameraTranformNode == nullptr)
+            {
+                DEBUG_ERR("Camera transform node not found! Default values assign instead."
+                    "This will cause unwanted behaviour.");
+
+                cameraPosition =    glm::vec3(0.0f, 0.0f, 0.0f);
+                cameraLocalZ =      glm::vec3(0.0f, 0.0f, 1.0f);
+            }
+            else
+            {
+                cameraPosition =    p_cameraTranformNode->getTranslation();
+                cameraLocalZ =      p_cameraTranformNode->getLocalZ();
+            }
+
+            //SETUP CAMERA DATA
+            p_cameraData->setupPositionUniform(cameraPosition);
+            p_cameraData->setupLocalZUniform(cameraLocalZ);
+            p_cameraData->setupViewMatrixUniform(p_CameraNode->getViewMatrix());
+            p_cameraData->setupProjectionMatrixUniform(p_CameraNode->getProjectionMatrix());
+        }
+
+        //RENDERABLE OBJECT
+        auto& renderableObjectMap = m_resourcePerViewportList[m_activeViewportIndex]->renderableObjectMap;
+
+        auto renderableObjectMapIter = renderableObjectMap.find(p_CameraNode->getNodeID());
+        if (renderableObjectMapIter == renderableObjectMap.end())
+        {
+            //ADD TO THE RENDERABLE OBJECT MAP
+            p_renderableObject = new RenderableObject();
+            renderableObjectMap.insert(std::make_pair(p_CameraNode->getNodeID(), p_renderableObject));
+
+            //CREATE VERTEX AND INDEX BUFFERS
+            //vertex buffer
+            std::vector<float> vertexPositionList;
+            std::unique_ptr<gl::VertexBuffer> p_vertexPositionBuffer(new gl::VertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT,
+                gl::VertexBuffer::Semantic::POSITION
+            ));
+
+            vertexPositionList = {
+                -0.5f, -0.5f,  0.0f,        //0
+                 0.5f, -0.5f,  0.0f,        //1
+                 0.5f,  0.5f,  0.0f,        //2
+                -0.5f,  0.5f,  0.0f,        //3
+                 0.5f, -0.5f, -1.0f,        //4
+                -0.5f, -0.5f, -1.0f,        //5
+                -0.5f,  0.5f, -1.0f,        //6
+                 0.5f,  0.5f, -1.0f,        //7
+
+                -0.5f,  -0.5f,  0.5f,       //8
+                 0.5f,  -0.5f,  0.5f,       //9
+                 0.5f,   0.5f,  0.5f,       //10
+                -0.5f,   0.5f,  0.5f,       //11
+                 0.25f, -0.25f, 0.0f,       //12
+                -0.25f, -0.25f, 0.0f,       //13
+                -0.25f,  0.25f, 0.0f,       //14
+                 0.25f,  0.25f, 0.0f        //15
+            };
+
+            //index buffer
+            std::vector<std::uint32_t> edgeIndexList;
+            std::unique_ptr<gl::IndexBuffer> p_edgeIndexBuffer(new gl::IndexBuffer(
+                gl::IndexBuffer::DataType::UINT_32));
+
+            edgeIndexList = {
+                0, 1, 1, 2, 2, 3, 3, 0,             //rectangle 0
+                4, 5, 5, 6, 6, 7, 7, 4,             //rectangle 1
+                0, 5, 1, 4, 2, 7, 3, 6,             //lines connecting rectangles
+
+                8, 9, 9, 10, 10, 11, 11, 8,         //rectangle 2
+                12, 13, 13, 14, 14, 15, 15, 12,     //rectangle 3
+                8, 13, 9, 12, 10, 15, 11, 14        //lines connecting rectangles
+            };
+
+            //UPDATE VERTEX AND INDEX BUFFERS
+            p_vertexPositionBuffer->updateData(vertexPositionList);
+            p_edgeIndexBuffer->updateData(edgeIndexList);
+
+            //ADD VERTEX AND INDEX BUFFERS TO THE GEOMETRY
+            tgl::Geometry& geometry = p_renderableObject->getGeometry();
+
+            gl::IndexBuffer* p_edgeIndexBufferReference = p_edgeIndexBuffer.get();
+
+            geometry.addVertexBuffer(std::move(p_vertexPositionBuffer));
+            geometry.addIndexBuffer(std::move(p_edgeIndexBuffer));
+
+            //CREATE RENDER ITEM
+            ////find shader instance
+            //auto& shaderInstanceMap = m_resourcePerViewportList[m_activeViewportIndex]->shaderInstanceMap;
+            //ShaderInstance* p_shaderInstance = nullptr;
+
+            //auto shaderInstanceMapIter = shaderInstanceMap.find(
+            //  p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
+
+            //if (shaderInstanceMapIter != shaderInstanceMap.end())
+            //  p_shaderInstance = shaderInstanceMapIter->second.get();
+            //else
+            //  p_shaderInstance = shaderInstanceMap.begin()->second.get();
+
+            ////line
+            //auto p_lineRenderItem = std::make_unique<RenderItem>(
+            //  geometry.getVAOID(),
+            //  p_edgeIndexBuffer->getID(),
+            //  p_shaderInstace,
+            //  RenderItem::DrawMode::LINES
+            //);
+
+            ////add
+            //p_renderableObject->addRenderItem(std::move(p_lineRenderItem));
+        }
+    }
+
+    /*-----------------------------------------------------------------------------
+    *   UPDATE
+    *-----------------------------------------------------------------------------*/
+    else if (p_CameraNode->getUpdateFlag() == true)
+    {
+        //...
     }
 }
 
@@ -341,179 +503,172 @@ void ToltecOpenGLRendererResource::processPolygonMeshNode(
     *-----------------------------------------------------------------------------*/
     if (initializeRendererResourceFlag == true || p_polygonMeshNode->getInitializeFlag() == true)
     {
-        //ADD TO THE RENDERABLE OBJECT MAP
+        //RENDERABLE OBJECT
         auto& renderableObjectMap = m_resourcePerViewportList[m_activeViewportIndex]->renderableObjectMap;
 
         auto renderableObjectMapIter = renderableObjectMap.find(p_polygonMeshNode->getNodeID());
-        if (renderableObjectMapIter != renderableObjectMap.end())
-            return;
-
-        p_renderableObject = new RenderableObject();
-        renderableObjectMap.insert(std::make_pair(p_polygonMeshNode->getNodeID(), p_renderableObject));
-
-        //CREATE VERTEX AND INDEX BUFFERS
-        tpm::Mesh* p_mesh = p_polygonMeshNode->getMesh();
-
-        DEBUG_MSG(
-            p_polygonMeshNode->getFullName() << std::endl <<
-            "Face vertex list size: " << p_mesh->getFaceVertexList().size() << std::endl <<
-            "Vertex list size: " << p_mesh->getVertexList().size() << std::endl <<
-            "Face list size: " << p_mesh->getFaceList().size()
-        );
-
-        tpm::FaceVertex* p_faceVertex = nullptr;
-        tpm::Vertex* p_vertex = nullptr;
-
-        //vertex buffers
-        std::vector<float> faceVertexPositionList;
-        std::vector<float> faceVertexUVList;
-        std::vector<float> faceVertexNormalList;
-
-        std::unique_ptr<gl::VertexBuffer> p_positionVertexBuffer(new gl::VertexBuffer(
-            gl::VertexBuffer::DataType::FLOAT, 
-            gl::VertexBuffer::Semantic::POSITION
-        ));
-        std::unique_ptr<gl::VertexBuffer> p_uvVertexBuffer(new gl::VertexBuffer(
-            gl::VertexBuffer::DataType::FLOAT, 
-            gl::VertexBuffer::Semantic::UV
-        ));
-        std::unique_ptr<gl::VertexBuffer> p_normalVertexBuffer(new gl::VertexBuffer(
-            gl::VertexBuffer::DataType::FLOAT, 
-            gl::VertexBuffer::Semantic::NORMAL
-        ));
-
-        //index buffers
-        std::uint32_t faceVertexIndexCount = 0;
-
-        std::vector<std::uint32_t> faceIndexList;
-        std::vector<std::uint32_t> edgeIndexList;
-        std::vector<std::uint32_t> vertexIndexList;
-
-        std::unique_ptr<gl::IndexBuffer> p_faceIndexBuffer(new gl::IndexBuffer(
-            gl::IndexBuffer::DataType::UINT_32));
-        std::unique_ptr<gl::IndexBuffer> p_edgeIndexBuffer(new gl::IndexBuffer(
-            gl::IndexBuffer::DataType::UINT_32));
-        std::unique_ptr<gl::IndexBuffer> p_vertexIndexBuffer(new gl::IndexBuffer(
-            gl::IndexBuffer::DataType::UINT_32));
-
-        //fetch and generate
-        for (const std::unique_ptr<tpm::Face>& p_face : p_mesh->getFaceList())
+        if (renderableObjectMapIter == renderableObjectMap.end())
         {
-            //fetch vertex attributes
-            for (const std::uint32_t& faceVertexID : p_face->faceVertexIDList)
+            //ADD TO THE RENDERABLE OBJECT MAP
+            p_renderableObject = new RenderableObject();
+            renderableObjectMap.insert(std::make_pair(p_polygonMeshNode->getNodeID(), p_renderableObject));
+
+            //CREATE VERTEX AND INDEX BUFFERS
+            //vertex buffers
+            std::vector<float> faceVertexPositionList;
+            std::vector<float> faceVertexUVList;
+            std::vector<float> faceVertexNormalList;
+
+            std::unique_ptr<gl::VertexBuffer> p_vertexPositionBuffer(new gl::VertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT, 
+                gl::VertexBuffer::Semantic::POSITION
+            ));
+            std::unique_ptr<gl::VertexBuffer> p_vertexUVBuffer(new gl::VertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT, 
+                gl::VertexBuffer::Semantic::UV
+            ));
+            std::unique_ptr<gl::VertexBuffer> p_vertexNormalBuffer(new gl::VertexBuffer(
+                gl::VertexBuffer::DataType::FLOAT, 
+                gl::VertexBuffer::Semantic::NORMAL
+            ));
+
+            //index buffers
+            std::uint32_t faceVertexIndexCount = 0;
+
+            std::vector<std::uint32_t> faceIndexList;
+            std::vector<std::uint32_t> edgeIndexList;
+            std::vector<std::uint32_t> vertexIndexList;
+
+            std::unique_ptr<gl::IndexBuffer> p_faceIndexBuffer(new gl::IndexBuffer(
+                gl::IndexBuffer::DataType::UINT_32));
+            std::unique_ptr<gl::IndexBuffer> p_edgeIndexBuffer(new gl::IndexBuffer(
+                gl::IndexBuffer::DataType::UINT_32));
+            std::unique_ptr<gl::IndexBuffer> p_vertexIndexBuffer(new gl::IndexBuffer(
+                gl::IndexBuffer::DataType::UINT_32));
+
+            //fetch and generate
+            tpm::Mesh* p_mesh =                 p_polygonMeshNode->getMesh();
+            tpm::FaceVertex* p_faceVertex =     nullptr;
+            tpm::Vertex* p_vertex =             nullptr;
+
+            for (const std::unique_ptr<tpm::Face>& p_face : p_mesh->getFaceList())
             {
-                p_faceVertex = p_mesh->getFaceVertexList()[faceVertexID].get();
-                p_vertex = p_mesh->getVertexList()[p_faceVertex->vertexID].get();
+                //fetch vertex attributes
+                for (const std::uint32_t& faceVertexID : p_face->faceVertexIDList)
+                {
+                    p_faceVertex = p_mesh->getFaceVertexList()[faceVertexID].get();
+                    p_vertex = p_mesh->getVertexList()[p_faceVertex->vertexID].get();
 
-                faceVertexPositionList.push_back(p_vertex->position.x);
-                faceVertexPositionList.push_back(p_vertex->position.y);
-                faceVertexPositionList.push_back(p_vertex->position.z);
+                    faceVertexPositionList.push_back(p_vertex->position.x);
+                    faceVertexPositionList.push_back(p_vertex->position.y);
+                    faceVertexPositionList.push_back(p_vertex->position.z);
 
-                faceVertexUVList.push_back(p_faceVertex->uv.x);
-                faceVertexUVList.push_back(p_faceVertex->uv.y);
+                    faceVertexUVList.push_back(p_faceVertex->uv.x);
+                    faceVertexUVList.push_back(p_faceVertex->uv.y);
 
-                faceVertexNormalList.push_back(p_faceVertex->normal.x);
-                faceVertexNormalList.push_back(p_faceVertex->normal.y);
-                faceVertexNormalList.push_back(p_faceVertex->normal.z);
+                    faceVertexNormalList.push_back(p_faceVertex->normal.x);
+                    faceVertexNormalList.push_back(p_faceVertex->normal.y);
+                    faceVertexNormalList.push_back(p_faceVertex->normal.z);
+                }
+
+                //generate indices
+                std::uint32_t firstFaceVertexIndexOfAFace =     faceVertexIndexCount;
+                std::size_t numFaceVertices =                   p_face->faceVertexIDList.size();
+                for (std::size_t i = 0; i < numFaceVertices; i++)
+                {
+                    //face index list
+                    //This is the simplest triangulation algorithm that only works on a convex 
+                    //polygons (it creates triangle fan). Maybe in the future I will implement
+                    //something more robust.
+                    if (i >= 2)
+                    {
+                        faceIndexList.push_back(firstFaceVertexIndexOfAFace);
+                        faceIndexList.push_back(faceVertexIndexCount - 1);
+                        faceIndexList.push_back(faceVertexIndexCount);
+                    }
+
+                    //edge index list
+                    if (i < numFaceVertices - 1)
+                    {
+                        edgeIndexList.push_back(faceVertexIndexCount);
+                        edgeIndexList.push_back(faceVertexIndexCount + 1);
+                    }
+                    else
+                    {
+                        edgeIndexList.push_back(faceVertexIndexCount);
+                        edgeIndexList.push_back(firstFaceVertexIndexOfAFace);
+                    }
+
+                    //vertex index list
+                    vertexIndexList.push_back(faceVertexIndexCount);
+                    //->
+
+                    faceVertexIndexCount++;
+                }
             }
 
-            //generate indices
-            std::uint32_t firstFaceVertexIndexOfAFace =     faceVertexIndexCount;
-            std::size_t numFaceVertices =                   p_face->faceVertexIDList.size();
-            for (std::size_t i = 0; i < numFaceVertices; i++)
-            {
-                //face index list
-                //This is the simplest triangulation algorithm that only works on a convex 
-                //polygons (it creates triangle fan). Maybe in the future I will implement
-                //something more robust.
-                if (i >= 2)
-                {
-                    faceIndexList.push_back(firstFaceVertexIndexOfAFace);
-                    faceIndexList.push_back(faceVertexIndexCount - 1);
-                    faceIndexList.push_back(faceVertexIndexCount);
-                }
+            //UPDATE VERTEX AND INDEX BUFFERS
+            p_vertexPositionBuffer->updateData(faceVertexPositionList);
+            //p_vertexUVBuffer->updateData(faceVertexUVList);
+            //p_vertexNormalBuffer->updateData(faceVertexNormalList);           
 
-                //edge index list
-                if (i < numFaceVertices - 1)
-                {
-                    edgeIndexList.push_back(faceVertexIndexCount);
-                    edgeIndexList.push_back(faceVertexIndexCount + 1);
-                }
-                else
-                {
-                    edgeIndexList.push_back(faceVertexIndexCount);
-                    edgeIndexList.push_back(firstFaceVertexIndexOfAFace);
-                }
+            p_faceIndexBuffer->updateData(faceIndexList);
+            //p_edgeIndexBuffer->updateData(edgeIndexList);
+            //p_vertexIndexBuffer->updateData(vertexIndexList);
 
-                //vertex index list
-                vertexIndexList.push_back(faceVertexIndexCount);
-                //->
+            //ADD VERTEX AND INDEX BUFFERS TO THE GEOMETRY
+            tgl::Geometry& geometry = p_renderableObject->getGeometry();
 
-                faceVertexIndexCount++;
-            }
+            geometry.addVertexBuffer(std::move(p_vertexPositionBuffer));
+            //geometry.addVertexBuffer(std::move(p_vertexUVBuffer));
+            //geometry.addVertexBuffer(std::move(p_vertexNormalBuffer));
+        
+            gl::IndexBuffer* p_faceIndexBufferReference = p_faceIndexBuffer.get();
+            gl::IndexBuffer* p_edgeIndexBufferReference = p_edgeIndexBuffer.get();
+            gl::IndexBuffer* p_vertexIndexBufferReference = p_vertexIndexBuffer.get();
+
+            geometry.addIndexBuffer(std::move(p_faceIndexBuffer));
+            //geometry.addIndexBuffer(std::move(p_edgeIndexBuffer));
+            //geometry.addIndexBuffer(std::move(p_vertexIndexBuffer));
+
+            //CREATE RENDER ITEMS
+            //find shader instance
+            auto& shaderInstanceMap = m_resourcePerViewportList[m_activeViewportIndex]->shaderInstanceMap;
+            ShaderInstance* p_shaderInstance = nullptr;
+
+            auto shaderInstanceMapIter = shaderInstanceMap.find(
+                p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
+            
+            if (shaderInstanceMapIter != shaderInstanceMap.end())
+                p_shaderInstance = shaderInstanceMapIter->second.get();
+            else
+                p_shaderInstance = shaderInstanceMap.begin()->second.get();
+
+            ////point
+            //RenderItem* p_pointRenderItem = new RenderItem(
+            //  p_geometry->getVAOID(),
+            //  vertexIndexBuffer.getID(),
+            //  p_shaderInstace, 
+            //  RenderItem::POINTS_DRAW_MODE
+            //);
+            ////line
+            //RenderItem* p_pointRenderItem = new RenderItem(
+            //  p_geometry->getVAOID(),
+            //  edgeIndexBuffer.getID(),
+            //  p_shaderInstace,
+            //  RenderItem::LINES_DRAW_MODE
+            //);
+            //triangle
+            std::unique_ptr<RenderItem> p_pointRenderItem(new RenderItem(
+                geometry.getVAOID(),
+                p_faceIndexBufferReference,
+                p_shaderInstance
+            ));
+
+            //ADD RENDER ITEMS
+            p_renderableObject->addRenderItem(std::move(p_pointRenderItem));
         }
 
-        //UPDATE VERTEX AND INDEX BUFFERS
-        p_positionVertexBuffer->updateData(faceVertexPositionList);
-        //p_uvVertexBuffer->updateData(faceVertexUVList);
-        //p_normalVertexBuffer->updateData(faceVertexNormalList);           
-
-        p_faceIndexBuffer->updateData(faceIndexList);
-        //p_edgeIndexBuffer->updateData(edgeIndexList);
-        //p_vertexIndexBuffer->updateData(vertexIndexList);
-
-        //ADD VERTEX AND INDEX BUFFERS TO THE GEOMETRY
-        tgl::Geometry& geometry = p_renderableObject->getGeometry();
-
-        geometry.addVertexBuffer(std::move(p_positionVertexBuffer));
-        //geometry.addVertexBuffer(std::move(p_uvVertexBuffer));
-        //geometry.addVertexBuffer(std::move(p_normalVertexBuffer));
-        
-        gl::IndexBuffer* p_faceIndexBufferReference = p_faceIndexBuffer.get();
-        gl::IndexBuffer* p_edgeIndexBufferReference = p_edgeIndexBuffer.get();
-        gl::IndexBuffer* p_vertexIndexBufferReference = p_vertexIndexBuffer.get();
-
-        geometry.addIndexBuffer(std::move(p_faceIndexBuffer));
-        //geometry.addIndexBuffer(std::move(p_edgeIndexBuffer));
-        //geometry.addIndexBuffer(std::move(p_vertexIndexBuffer));
-
-        //CREATE RENDER ITEMS
-        //find shader instance
-        auto& shaderInstanceMap = m_resourcePerViewportList[m_activeViewportIndex]->shaderInstanceMap;
-        ShaderInstance* p_shaderInstance = nullptr;
-
-        auto shaderInstanceMapIter = shaderInstanceMap.find(
-            p_polygonMeshNode->getSurfaceShaderProgramNode()->getNodeID());
-            
-        if (shaderInstanceMapIter != shaderInstanceMap.end())
-            p_shaderInstance = shaderInstanceMapIter->second.get();
-        else
-            p_shaderInstance = shaderInstanceMap.begin()->second.get();
-
-        //triangle
-        std::unique_ptr<RenderItem> p_pointRenderItem(new RenderItem(
-            geometry.getVAOID(),
-            p_faceIndexBufferReference,
-            p_shaderInstance,
-            RenderItem::DrawMode::TRIANGLES
-        ));
-        ////line
-        //RenderItem* p_pointRenderItem = new RenderItem(
-        //  p_geometry->getVAOID(),
-        //  edgeIndexBuffer.getID(),
-        //  p_shaderInstace,
-        //  RenderItem::LINES_DRAW_MODE
-        //);
-        ////point
-        //RenderItem* p_pointRenderItem = new RenderItem(
-        //  p_geometry->getVAOID(),
-        //  vertexIndexBuffer.getID(),
-        //  p_shaderInstace, 
-        //  RenderItem::POINTS_DRAW_MODE
-        //);
-
-        //ADD RENDER ITEMS
-        p_renderableObject->addRenderItem(std::move(p_pointRenderItem));
     }
 
     /*-----------------------------------------------------------------------------

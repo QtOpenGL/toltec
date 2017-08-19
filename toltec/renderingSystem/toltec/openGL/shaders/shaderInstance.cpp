@@ -19,32 +19,67 @@
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-    /*-----------------------------------------------------------------------------
-    *   CONSTRUCTOR
-    *   (ShaderProgram*)
-    *-----------------------------------------------------------------------------*/
-    ShaderInstance::ShaderInstance(ShaderProgram* p_shaderProgram)
-        :
-        mp_shaderProgram(p_shaderProgram)
-    {
-    }
+/*-----------------------------------------------------------------------------
+*   CONSTRUCTOR
+*   (ShaderProgram*)
+*-----------------------------------------------------------------------------*/
+ShaderInstance::ShaderInstance(ShaderProgram* p_shaderProgram)
+    :
+    mp_shaderProgram(p_shaderProgram),
+    m_drawMode()
+{
+}
 
-    /*-----------------------------------------------------------------------------
-    *   SET UNIFORM LIST
-    *-----------------------------------------------------------------------------*/
-    void ShaderInstance::setUniformList(std::vector<std::unique_ptr<gl::Uniform>> uniformList)
-    {
-        m_uniformList = std::move(uniformList);
-    }
+/*-----------------------------------------------------------------------------
+*   SET DRAW MODE
+*-----------------------------------------------------------------------------*/
+void ShaderInstance::setDrawMode(const gl::GLenum& drawMode)
+{
+    m_drawMode = drawMode;
+}
 
-    /*-----------------------------------------------------------------------------
-    *   UPDATE UNIFORMS
-    *-----------------------------------------------------------------------------*/
-    void ShaderInstance::updateUniforms()
+/*-----------------------------------------------------------------------------
+*   SET DRAW MODE
+*-----------------------------------------------------------------------------*/
+void ShaderInstance::setDrawMode(const core::nodes::ShaderProgramNode::DrawMode& drawMode)
+{
+    switch (drawMode)
     {
-        mp_shaderProgram->updateUniforms();
+        case core::nodes::ShaderProgramNode::DrawMode::POINTS:      
+            m_drawMode = gl::GLenum::GL_POINTS;     
+            break;
 
-        for (auto& p_uniform : m_uniformList)
-            p_uniform->update();
+        case core::nodes::ShaderProgramNode::DrawMode::LINES:       
+            m_drawMode = gl::GLenum::GL_LINES;      
+            break;
+
+        case core::nodes::ShaderProgramNode::DrawMode::TRIANGLES:   
+            m_drawMode = gl::GLenum::GL_TRIANGLES;  
+            break;
+
+        default:                                                    
+            m_drawMode = gl::GLenum::GL_TRIANGLES;  
+            break;
+
     }
+}
+
+/*-----------------------------------------------------------------------------
+*   SET UNIFORM LIST
+*-----------------------------------------------------------------------------*/
+void ShaderInstance::setUniformList(std::vector<std::unique_ptr<gl::Uniform>> uniformList)
+{
+    m_uniformList = std::move(uniformList);
+}
+
+/*-----------------------------------------------------------------------------
+*   UPDATE UNIFORMS
+*-----------------------------------------------------------------------------*/
+void ShaderInstance::updateUniforms()
+{
+    mp_shaderProgram->updateUniforms();
+
+    for (auto& p_uniform : m_uniformList)
+        p_uniform->update();
+}
 } //NAMESPACE: TGL

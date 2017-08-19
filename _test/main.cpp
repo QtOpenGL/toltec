@@ -6,39 +6,19 @@
 #include <utility>
 #include <vector>
 
-class A
-{
-public:
-    virtual ~A() {}
-
-    std::vector<int>& getChildList() { return m_childList; }
-private:
-    std::vector<int> m_childList;
-};
-
 int main(int argc, char* argv[])
 {
-    A a;
-    a.getChildList().push_back(1);
-    a.getChildList().push_back(9);
-    a.getChildList().push_back(2);
-    a.getChildList().push_back(6);
-    a.getChildList().push_back(7);
+    std::vector<int> someV = { 9, 8, 2, 5, 2, 4 };
+    unsigned int index = 0;
+    std::size_t someVSize = someV.size();
 
-    for (const int& i : a.getChildList())
+    for (; index < someVSize; index++)
     {
-        std::cout << i << std::endl;
+        if (someV[index] == 5)
+            break;
     }
 
-    auto iter = std::find(a.getChildList().begin(), a.getChildList().end(), 2);
-    if (iter != a.getChildList().end())
-        a.getChildList().erase(iter);
-
-    std::cout << "-----------------------------" << std::endl;
-    for (const int& i : a.getChildList())
-    {
-        std::cout << i << std::endl;
-    }
+    std::cout << index << std::endl;
 
     return 0;
 }

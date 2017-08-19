@@ -14,6 +14,7 @@
 #include "nodes/cameraNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/transformNode.hpp"
+#include "nodes/shaders/cameraShaderProgramNode.hpp"
 #include "nodes/shaders/lambertSSPNode.hpp"
 #include "nodes/shaders/pointCSPNode.hpp"
 #include "renderingSystem/toltec/openGL/toltecOpenGLRenderer.hpp"
@@ -55,24 +56,34 @@ int main(int argc, char* argv[])
     nodes::CameraNode* p_defaultCameraNode = ui::cmds::createCamera();
     ResourceManager::getInstance().setDefaultCameraNode(p_defaultCameraNode);
 
-    //default shader
+    //default surface shader
     auto p_lambertShaderProgramNode = std::make_unique<nodes::LambertSSPNode>();
-    p_lambertShaderProgramNode->setName("defaultShader");
-    ResourceManager::getInstance().setDefaultSSPNode(p_lambertShaderProgramNode.get());
-    ResourceManager::getInstance().addSurfaceShaderProgramNode(std::move(p_lambertShaderProgramNode));
+    p_lambertShaderProgramNode->setName("defaultSurfaceShader");
+    ResourceManager::getInstance().addDedicatedShaderProgramNode(
+        ResourceManager::DedicatedShaderProgram::DEFAULT_SURFACE,
+        std::move(p_lambertShaderProgramNode));
+
+    //camera shader - inactive
+    auto p_cameraInactiveShaderProgramNode = std::make_unique<nodes::CameraShaderProgramNode>();
+    p_cameraInactiveShaderProgramNode->setName("cameraInactiveShader");
+    ResourceManager::getInstance().addDedicatedShaderProgramNode(
+        ResourceManager::DedicatedShaderProgram::CAMERA_INACTIVE,
+        std::move(p_cameraInactiveShaderProgramNode));
 
     //poly vertex component shader - inactive
-    auto p_polyVertexShaderInactive = std::make_unique<nodes::PointCSPNode>();
-    p_polyVertexShaderInactive->setName("polyVertexShaderInactive");
-    p_polyVertexShaderInactive->setColor(1.0f, 0.0f, 1.0f);
-    p_polyVertexShaderInactive->setSize(2);
-    ResourceManager::getInstance().addComponentShaderProgramNode(std::move(p_polyVertexShaderInactive));
+    auto p_polyVertexInactiveShaderProgramNode = std::make_unique<nodes::PointCSPNode>();
+    p_polyVertexInactiveShaderProgramNode->setName("polyVertexInactiveShader");
+    p_polyVertexInactiveShaderProgramNode->setColor(1.0f, 0.0f, 1.0f);
+    p_polyVertexInactiveShaderProgramNode->setSize(2);
+    ResourceManager::getInstance().addDedicatedShaderProgramNode(
+        ResourceManager::DedicatedShaderProgram::VERTEX_INACTIVE,
+        std::move(p_polyVertexInactiveShaderProgramNode));
 
-    //vertex component shader - inactive hover
+    //poly vertex component shader - inactive hover
     //...
-    //vertex component shader - active
+    //poly vertex component shader - active
     //...
-    //vertex component shader - active hover
+    //poly vertex component shader - active hover
     //...
 
     //poly edge component shader - inactive

@@ -30,6 +30,7 @@ LineCSPNode::LineCSPNode()
     //INITIALIZE
     this->setName("lineComponentShader");
     this->setType(nodes::Type::LINE_CSP_NODE);
+    this->setDrawMode(ShaderProgramNode::DrawMode::LINES);
 }
 
 /*-----------------------------------------------------------------------------

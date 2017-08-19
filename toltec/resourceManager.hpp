@@ -14,6 +14,7 @@
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
 #include <cstdint>
+#include <map>
 #include <memory>
 #include <vector>
 
@@ -52,27 +53,37 @@ public:
     ResourceManager(const ResourceManager&) = delete;
     void operator=(const ResourceManager&) = delete;
 
+    //TYPES
+    enum DedicatedShaderProgram {
+        DEFAULT_SURFACE,
+        CAMERA_ACTIVE,
+        CAMERA_INACTIVE,
+        CAMERA_HOVER,
+        VERTEX_ACTIVE,
+        VERTEX_INACTIVE,
+        VERTEX_HOVER,
+    };
+
     //ADD
     void            addCameraNode(std::unique_ptr<core::nodes::CameraNode> p_cameraNode);
-    void            addComponentShaderProgramNode(std::unique_ptr<core::nodes::ComponentShaderProgramNode> p_componentShaderProgramNode);
+    void            addDedicatedShaderProgramNode(ResourceManager::DedicatedShaderProgram dedicatedShaderProgram, 
+                        std::unique_ptr<core::nodes::ShaderProgramNode> p_shaderProgramNode);
     void            addPolygonMeshNode(std::unique_ptr<core::nodes::PolygonMeshNode> p_polygonMeshNode);
-    void            addSurfaceShaderProgramNode(std::unique_ptr<core::nodes::SurfaceShaderProgramNode> p_surfaceShaderProgramNode);
     void            addTransformNode(std::unique_ptr<core::nodes::TransformNode> p_transformNode);
+    void            addUserShaderProgramNode(std::unique_ptr<core::nodes::ShaderProgramNode> p_shaderProgramNode);
                     
     //SET           
     void            setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode);
-    void            setDefaultSSPNode(core::nodes::SurfaceShaderProgramNode* p_surfaceShaderProgramNode);
     void            setRootTransformNode(core::nodes::TransformNode* p_rootTransformNode);
 
     //GET
-    std::vector<std::unique_ptr<core::nodes::Node>>&                getAllNodeList();
-    core::nodes::CameraNode*                                        getCameraNode(const node_id& nodeID);
-    const std::vector<core::nodes::ComponentShaderProgramNode*>&    getComponentShaderProgramNodeList() const;
-    core::nodes::SurfaceShaderProgramNode&                          getDefaultSSPNode();
-    core::nodes::Node*                                              getNode(const node_id& nodeID);
-    std::vector<core::nodes::Node*>                                 getNodes(const std::string& nodeName);
-    core::nodes::TransformNode&                                     getRootTransformNode();
-    const std::vector<core::nodes::SurfaceShaderProgramNode*>&      getSurfaceShaderProgramNodeList() const;
+    std::vector<std::unique_ptr<core::nodes::Node>>&        getAllNodeList();
+    core::nodes::CameraNode*                                getCameraNode(const node_id& nodeID);
+    core::nodes::ShaderProgramNode*                         getDedicatedShaderProgramNode(const ResourceManager::DedicatedShaderProgram& dedicatedShaderProgram) const;
+    core::nodes::Node*                                      getNode(const node_id& nodeID);
+    std::vector<core::nodes::Node*>                         getNodes(const std::string& nodeName);
+    core::nodes::TransformNode*                             getRootTransformNode();
+    const std::vector<core::nodes::ShaderProgramNode*>&     getUserShaderProgramNodeList() const;
 
     //OTHER
     node_id         assignNodeID();
@@ -93,10 +104,10 @@ private:
     core::nodes::TransformNode*                             mp_rootTransformNode;
 
     std::vector<core::nodes::CameraNode*>                   m_cameraNodeList;
-    std::vector<core::nodes::ComponentShaderProgramNode*>   m_componentShaderProgramNodeList;
+    std::map<ResourceManager::DedicatedShaderProgram, core::nodes::ShaderProgramNode*> m_dedicatedShaderProgramMap;
     std::vector<core::nodes::PolygonMeshNode*>              m_polygonMeshNodeList;
-    std::vector<core::nodes::SurfaceShaderProgramNode*>     m_surfaceShaderProgramNodeList;
     std::vector<core::nodes::TransformNode*>                m_transformNodeList;
+    std::vector<core::nodes::ShaderProgramNode*>            m_userShaderProgramNodeList;
 };
 
 /*----------------------------------------------------------------------------*/
@@ -106,24 +117,13 @@ inline std::vector<std::unique_ptr<core::nodes::Node>>& ResourceManager::getAllN
     return m_allNodeList;
 }
 
-inline core::nodes::SurfaceShaderProgramNode& ResourceManager::getDefaultSSPNode()
+inline core::nodes::TransformNode* ResourceManager::getRootTransformNode()
 {
-    return *mp_defaultSSPNode;
+    return mp_rootTransformNode;
 }
 
-inline core::nodes::TransformNode& ResourceManager::getRootTransformNode()
+inline const std::vector<core::nodes::ShaderProgramNode*>& 
+ResourceManager::getUserShaderProgramNodeList() const
 {
-    return *mp_rootTransformNode;
-}
-
-inline const std::vector<core::nodes::SurfaceShaderProgramNode*>& 
-ResourceManager::getSurfaceShaderProgramNodeList() const
-{
-    return m_surfaceShaderProgramNodeList;
-}
-
-inline const std::vector<core::nodes::ComponentShaderProgramNode*>& 
-ResourceManager::getComponentShaderProgramNodeList() const
-{
-    return m_componentShaderProgramNodeList;
+    return m_userShaderProgramNodeList;
 }

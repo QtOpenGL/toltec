@@ -30,6 +30,7 @@ PointCSPNode::PointCSPNode()
     //INITIALIZE
     this->setName("pointComponentShader");
     this->setType(nodes::Type::POINT_CSP_NODE);
+    this->setDrawMode(ShaderProgramNode::DrawMode::POINTS);
 }
 
 /*-----------------------------------------------------------------------------

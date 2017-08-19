@@ -38,19 +38,11 @@ namespace tgl
 class RenderItem
 {
 public:
-    //TYPES
-    enum DrawMode {
-        POINTS,
-        LINES,
-        TRIANGLES
-    };
-
     //CONSTRUCTORS
                     RenderItem(
                         gl::GLuint              vaoID,
                         gl::IndexBuffer*        p_indexBuffer,
-                        ShaderInstance*         p_shaderInstance,
-                        RenderItem::DrawMode    drawMode);
+                        ShaderInstance*         p_shaderInstance);
     virtual         ~RenderItem() {}
 
     //OTHER
@@ -60,6 +52,5 @@ private:
     gl::GLuint              m_vaoID;
     gl::IndexBuffer*        mp_indexBuffer;
     ShaderInstance*         mp_shaderInstance;
-    RenderItem::DrawMode    m_drawMode;
 };
 } //NAMESPACE: TGL

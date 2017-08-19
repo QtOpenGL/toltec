@@ -38,7 +38,7 @@ TransformNode::TransformNode()
     m_localY(glm::vec3(0.0f, 1.0f, 0.0f)),
     m_localZ(glm::vec3(0.0f, 0.0f, 1.0f)),
 
-    m_targetPosition(glm::vec3(0.0f, 0.0f, -1.0f))
+    m_targetPosition(glm::vec3(0.0f, 0.0f, 1.0f))
 {
     //INITIALIZE
     this->setName("transformNode");

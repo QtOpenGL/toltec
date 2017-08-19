@@ -17,28 +17,28 @@
 *-----------------------------------------------------------------------------*/
 namespace tgl
 {
-    /*-----------------------------------------------------------------------------
-    *   CONSTRUCTOR
-    *-----------------------------------------------------------------------------*/
-    RenderableObject::RenderableObject()
-        :
-        m_modelMatrixUniform("g_modelMatrix")
-    {
-    }
+/*-----------------------------------------------------------------------------
+*   CONSTRUCTOR
+*-----------------------------------------------------------------------------*/
+RenderableObject::RenderableObject()
+    :
+    m_modelMatrixUniform("g_modelMatrix")
+{
+}
 
-    /*-----------------------------------------------------------------------------
-    *   ADD RENDER ITEM
-    *-----------------------------------------------------------------------------*/
-    void RenderableObject::addRenderItem(std::unique_ptr<RenderItem> p_renderItem)
-    {
-        m_renderItemList.push_back(std::move(p_renderItem));
-    }
+/*-----------------------------------------------------------------------------
+*   ADD RENDER ITEM
+*-----------------------------------------------------------------------------*/
+void RenderableObject::addRenderItem(std::unique_ptr<RenderItem> p_renderItem)
+{
+    m_renderItemList.push_back(std::move(p_renderItem));
+}
 
-    /*-----------------------------------------------------------------------------
-    *   SET MODEL MATRIX
-    *-----------------------------------------------------------------------------*/
-    void RenderableObject::setModelMatrix(const glm::mat4& modelMatrix)
-    {
-        m_modelMatrixUniform.setValue(modelMatrix);
-    }
+/*-----------------------------------------------------------------------------
+*   SET MODEL MATRIX VALUE
+*-----------------------------------------------------------------------------*/
+void RenderableObject::setModelMatrixValue(const glm::mat4& modelMatrix)
+{
+    m_modelMatrixUniform.setValue(modelMatrix);
+}
 } //NAMESPACE: TGL

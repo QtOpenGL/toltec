@@ -75,7 +75,7 @@ ui::gui::AbstractPanel* GUIManager::createPanel(ui::gui::AbstractPanel::PanelTyp
                     p_viewportPanelListElement =    new ui::gui::ViewportPanel();
                     p_viewportPanel =               p_viewportPanelListElement;
 
-                    break;
+                    break;  //breaks from for loop not switch-case
                 }
             }
 

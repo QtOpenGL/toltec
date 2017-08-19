@@ -48,7 +48,7 @@ namespace tgl
         void        addRenderItem(std::unique_ptr<RenderItem> p_renderItem);
 
         //SET
-        void        setModelMatrix(const glm::mat4& modelMatrix);
+        void        setModelMatrixValue(const glm::mat4& modelMatrix);
 
         //GET
         Geometry&                                       getGeometry();

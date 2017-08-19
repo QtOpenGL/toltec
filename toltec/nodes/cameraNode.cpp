@@ -164,7 +164,7 @@ const glm::mat4& CameraNode::getOrthographicMatrix()
 *   UPDATE VIEW MATRIX
 *   ()
 *-----------------------------------------------------------------------------*/
-void CameraNode::updateViewMatrix()
+const glm::mat4& CameraNode::updateViewMatrix()
 {
     TransformNode* p_transformNode = dynamic_cast<TransformNode*>(this->getParent());
     if (p_transformNode != nullptr)
@@ -176,18 +176,21 @@ void CameraNode::updateViewMatrix()
     }
     else
     {
-        DEBUG_ERR("Unable to update view matrix!");
+        DEBUG_ERR("Unable to update view matrix! TransformNode is null.");
     }
+
+    return m_viewMatrix;
 }
 
 /*-----------------------------------------------------------------------------
 *   UPDATE VIEW MATRIX
 *   (const glm::vec3&, const glm::vec3&, const glm::vec3&)
 *-----------------------------------------------------------------------------*/
-void CameraNode::updateViewMatrix(const glm::vec3& cameraPosition, const glm::vec3& targetPosition, 
+const glm::mat4& CameraNode::updateViewMatrix(const glm::vec3& cameraPosition, const glm::vec3& targetPosition,
     const glm::vec3& localY)
 {
     m_viewMatrix = glm::lookAt(cameraPosition, targetPosition, localY);
+    return m_viewMatrix;
 }
 
 /*-----------------------------------------------------------------------------

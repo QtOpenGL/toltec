@@ -28,6 +28,13 @@ gl::IndexBuffer::IndexBuffer(IndexBuffer::DataType dataType)
     m_dataType(dataType),
     m_sizeInBytes(0)
 {
+    //INITIALIZE
+    switch (m_dataType)
+    {
+        case IndexBuffer::DataType::UINT_32:    m_glDataType = gl::GLenum::GL_UNSIGNED_INT;     break;
+    }
+
+    //SETUP
     glGenBuffers(1, &m_id);
     glBindBuffer(GLenum::GL_ELEMENT_ARRAY_BUFFER, m_id);
     glBufferData(GLenum::GL_ELEMENT_ARRAY_BUFFER, m_sizeInBytes, nullptr, GLenum::GL_DYNAMIC_DRAW);
