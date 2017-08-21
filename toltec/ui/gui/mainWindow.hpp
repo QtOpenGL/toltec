@@ -48,7 +48,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 MainWindow(const std::string& title, int width, int height);
     virtual     ~MainWindow() {}
 

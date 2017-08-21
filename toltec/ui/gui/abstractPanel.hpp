@@ -40,7 +40,7 @@ public:
         SCENE_TREE
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
     virtual         ~AbstractPanel() {}
 
 protected:

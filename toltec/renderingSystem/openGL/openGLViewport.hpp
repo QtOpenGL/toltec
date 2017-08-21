@@ -35,7 +35,7 @@ namespace gl
         Q_OBJECT
 
     public:
-        //CONSTRUCTORS
+        //CTOR DTOR
                         OpenGLViewport();
         virtual         ~OpenGLViewport() {}
 

@@ -32,7 +32,7 @@ namespace nodes
 class VolumeShaderProgramNode : public ShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 VolumeShaderProgramNode();
     virtual     ~VolumeShaderProgramNode() {}
 

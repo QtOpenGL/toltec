@@ -27,7 +27,7 @@ class AbstractViewport;
 class RenderEvent : public QEvent
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 RenderEvent(AbstractViewport* p_viewport = nullptr);
     virtual     ~RenderEvent() {}
 

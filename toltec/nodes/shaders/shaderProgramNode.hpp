@@ -38,7 +38,7 @@ public:
         TRIANGLES
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
                 ShaderProgramNode();
     virtual     ~ShaderProgramNode() {}
 

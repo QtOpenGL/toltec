@@ -39,7 +39,7 @@ public:
         ORTHOGRAPHIC_CAMERA
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
                         CameraNode();
     virtual             ~CameraNode() {}
 

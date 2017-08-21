@@ -30,7 +30,7 @@ class AbstractViewport : public QWindow //THIS INHARITANCE SHOULD BE CHANGED IN 
     Q_OBJECT
 
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                         AbstractViewport();
     virtual             ~AbstractViewport() {}
 

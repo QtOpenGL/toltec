@@ -31,7 +31,7 @@ namespace nodes
 class LineCSPNode : public ComponentShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                     LineCSPNode();
     virtual         ~LineCSPNode() {}
 

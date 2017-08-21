@@ -38,7 +38,7 @@ namespace tgl
 class RenderItem
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                     RenderItem(
                         gl::GLuint              vaoID,
                         gl::IndexBuffer*        p_indexBuffer,

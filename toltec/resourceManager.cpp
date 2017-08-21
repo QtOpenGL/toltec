@@ -12,6 +12,7 @@
 
 #include <cstddef>
 
+#include "nodes/abstractAttribute.hpp"
 #include "nodes/cameraNode.hpp"
 #include "nodes/polygonMeshNode.hpp"
 #include "nodes/shaders/componentShaderProgramNode.hpp"
@@ -110,6 +111,47 @@ void ResourceManager::addUserShaderProgramNode(
     //ADD
     m_userShaderProgramNodeList.push_back(p_shaderProgramNode.get());
     m_allNodeList.push_back(std::move(p_shaderProgramNode));
+}
+
+/*-----------------------------------------------------------------------------
+*   SET ATTRIBUTE CONNECTION
+*-----------------------------------------------------------------------------*/
+void ResourceManager::setAttributeConnection(
+    core::nodes::AbstractAttribute* p_outputAttribute,
+    core::nodes::AbstractAttribute* p_inputAttribute)
+{
+    //CHECK
+    //classification and type
+    core::nodes::AbstractAttribute::Classification outputAttributeClassification = 
+        p_outputAttribute->getClassification();
+    core::nodes::AbstractAttribute::Type outputAttributeType =
+        p_outputAttribute->getType();
+
+    core::nodes::AbstractAttribute::Classification inputAttributeClassification =
+        p_inputAttribute->getClassification();
+    core::nodes::AbstractAttribute::Type inputAttributeType =
+        p_inputAttribute->getType();
+
+    if (outputAttributeClassification != inputAttributeClassification ||
+        outputAttributeType != inputAttributeType)
+    {
+        DEBUG_ERR("Could not connect attributes! Not matching classification or type.");
+        return;
+    }
+
+    //existing connections
+    //...
+
+    //SET CONNECTION
+    auto p_attributeConnector = 
+        std::make_unique<core::nodes::AttributeConnector>(
+            p_outputAttribute,
+            p_inputAttribute,
+            outputAttributeType
+        );
+
+    //ADD
+    m_attributeConnectorList.push_back(std::move(p_attributeConnector));
 }
 
 /*-----------------------------------------------------------------------------

@@ -47,7 +47,7 @@ namespace nodes
 class SurfaceShaderProgramNode : public ShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 SurfaceShaderProgramNode();
     virtual     ~SurfaceShaderProgramNode() {}
 

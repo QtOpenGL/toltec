@@ -45,7 +45,7 @@ class ViewportPanel : public AbstractPanel
     Q_OBJECT
 
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     ViewportPanel();
     virtual             ~ViewportPanel();
 

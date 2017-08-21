@@ -1,19 +1,14 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       12 IX 2016
+*       21 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
-*   INFO:
-*       RenderableObjectNode is a base class for all nodes that can be 
-*       rendered inside the viewport.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "sceneNode.hpp"
+#include "abstractAttribute.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: CORE
@@ -26,18 +21,20 @@ namespace core
 namespace nodes
 {
 /*-----------------------------------------------------------------------------
-*   CLASS DECLARATIONS
-*   RENDERABLE OBJECT NODE
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-class RenderableObjectNode : public SceneNode
+AbstractAttribute::AbstractAttribute()
+    :
+    mp_inputConnection(nullptr),
+    mp_outputConnection(nullptr)
 {
-public:
-    //CTOR DTOR
-                    RenderableObjectNode();
-    virtual         ~RenderableObjectNode() {}
+}
 
-private:
-    //...
-};
+/*-----------------------------------------------------------------------------
+*   DESTRUCTOR
+*-----------------------------------------------------------------------------*/
+AbstractAttribute::~AbstractAttribute()
+{
+}
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

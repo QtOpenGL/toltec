@@ -1,19 +1,16 @@
-#pragma once
-
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       12 IX 2016
+*       21 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
-*   INFO:
-*       RenderableObjectNode is a base class for all nodes that can be 
-*       rendered inside the viewport.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "sceneNode.hpp"
+#include "attributeConnector.hpp"
+
+#include "nodes/abstractAttribute.hpp"
 
 /*-----------------------------------------------------------------------------
 *   NAMESPACE: CORE
@@ -26,18 +23,29 @@ namespace core
 namespace nodes
 {
 /*-----------------------------------------------------------------------------
-*   CLASS DECLARATIONS
-*   RENDERABLE OBJECT NODE
+*   CONSTRUCTOR
 *-----------------------------------------------------------------------------*/
-class RenderableObjectNode : public SceneNode
+AttributeConnector::AttributeConnector(
+    AbstractAttribute*                  p_inputAttribute, 
+    AbstractAttribute*                  p_outputAttribute,
+    AttributeConnector::ConnectionType  connectionType)
+    :
+    mp_inputAttribute(p_inputAttribute),
+    mp_outputAttribute(p_outputAttribute),
+    m_connectionType(connectionType)
 {
-public:
-    //CTOR DTOR
-                    RenderableObjectNode();
-    virtual         ~RenderableObjectNode() {}
+    //SETUP
+    mp_inputAttribute->setOutputConnection(this);
+    mp_outputAttribute->setInputConnection(this);
+}
 
-private:
-    //...
-};
+/*-----------------------------------------------------------------------------
+*   DESTRUCTOR
+*-----------------------------------------------------------------------------*/
+AttributeConnector::~AttributeConnector()
+{
+    mp_inputAttribute->setOutputConnection(nullptr);
+    mp_outputAttribute->setInputConnection(nullptr);
+}
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

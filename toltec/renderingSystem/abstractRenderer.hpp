@@ -32,7 +32,7 @@ class AbstractRenderer : public QObject
     Q_OBJECT
 
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        AbstractRenderer(AbstractRendererResource* p_abstractRendererResource);
     virtual         ~AbstractRenderer() {}
 

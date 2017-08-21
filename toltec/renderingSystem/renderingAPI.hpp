@@ -35,7 +35,7 @@ public:
         METAL_API
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
                     RenderingAPI(
                         RenderingAPI::Type                          type,
                         std::unique_ptr<AbstractRendererResource>   p_abstractRendererResource,

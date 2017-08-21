@@ -38,7 +38,7 @@ public:
         UINT_32
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        IndexBuffer(IndexBuffer::DataType dataType);
     virtual         ~IndexBuffer() {};
 

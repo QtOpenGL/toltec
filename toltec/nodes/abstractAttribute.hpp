@@ -2,27 +2,26 @@
 
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       13 I 2017
+*       21 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *   INFO:
-*       SurfaceNode is a base class for all surface type nodes (polygon meshes,
-*       NURBS-es, t-splines, etc.).
+*       ...
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderableObjectNode.hpp"
+//...
 
 /*-----------------------------------------------------------------------------
-*   FORWARD DECLARATION
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace core
 {
     namespace nodes
     {
-        class ShaderProgramNode;
+        class AttributeConnector;
     }
 }
 
@@ -38,30 +37,54 @@ namespace nodes
 {
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
-*   SURFACE NODE
+*   ABSTRACT ATTRIBUTE
 *-----------------------------------------------------------------------------*/
-class SurfaceNode : public RenderableObjectNode
+class AbstractAttribute
 {
 public:
+    //TYPES
+    enum Classification {
+        UNIT,
+        CONTAINER
+    };
+
+    enum Type {
+        BOOL,
+        DOUBLE,
+        FLOAT,
+        INT
+    };
+
     //CTOR DTOR
-                SurfaceNode();
-    virtual     ~SurfaceNode() {}
+                AbstractAttribute();
+    virtual     ~AbstractAttribute() = 0;
 
     //SET
-    void        setShaderProgramNode(ShaderProgramNode* p_shaderProgramNode);
+    //...
 
     //GET
-    ShaderProgramNode*  getShaderProgramNode();
+    const AbstractAttribute::Classification&    getClassification() const;
+    const AbstractAttribute::Type&              getType() const;
 
 private:
-    ShaderProgramNode*  mp_shaderProgramNode;
+    AttributeConnector*                         mp_inputConnection;
+    AttributeConnector*                         mp_outputConnection;
+
+protected:
+    AbstractAttribute::Classification           m_classification;
+    AbstractAttribute::Type                     m_type;
 };
 
 /*----------------------------------------------------------------------------*/
 
-inline ShaderProgramNode* SurfaceNode::getShaderProgramNode()
+inline const AbstractAttribute::Classification& AbstractAttribute::getClassification() const
 {
-    return mp_shaderProgramNode;
+    return m_classification;
+}
+
+inline const AbstractAttribute::Type& AbstractAttribute::getType() const
+{
+    return m_type;
 }
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

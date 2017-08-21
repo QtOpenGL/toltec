@@ -38,7 +38,7 @@ namespace nodes
 class LambertSSPNode : public SurfaceShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                         LambertSSPNode();
     virtual             ~LambertSSPNode() {}
 

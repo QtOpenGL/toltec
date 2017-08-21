@@ -27,6 +27,8 @@ namespace core
 {
     namespace nodes 
     {
+        class AbstractAttribute;
+        class AttributeConnector;
         class CameraNode;
         class ComponentShaderProgramNode;
         class Node;
@@ -73,6 +75,7 @@ public:
     void            addUserShaderProgramNode(std::unique_ptr<core::nodes::ShaderProgramNode> p_shaderProgramNode);
                     
     //SET           
+    void            setAttributeConnection(core::nodes::AbstractAttribute* p_outputAttribute, core::nodes::AbstractAttribute* p_inputAttribute);
     void            setDefaultCameraNode(core::nodes::CameraNode* p_defaultCameraNode);
     void            setRootTransformNode(core::nodes::TransformNode* p_rootTransformNode);
 
@@ -87,6 +90,7 @@ public:
 
     //OTHER
     node_id         assignNodeID();
+    void            deleteAttributeConnector(core::nodes::AttributeConnector* p_attributeConnector);
     void            removeNodeID(const node_id& nodeID);
 
 private:
@@ -94,20 +98,21 @@ private:
     ResourceManager();
 
 private:
-    std::vector<node_id>                                    m_globalNodeIDList;
+    std::vector<node_id>                                            m_globalNodeIDList;
 
-    std::vector<std::unique_ptr<core::nodes::Node>>         m_allNodeList;      //owership of all nodes
-    std::vector<core::nodes::Node*>                         m_undeletableNodeList;
+    std::vector<std::unique_ptr<core::nodes::Node>>                 m_allNodeList;      //owership of all nodes
+    std::vector<std::unique_ptr<core::nodes::AttributeConnector>>   m_attributeConnectorList;
+    std::vector<core::nodes::Node*>                                 m_undeletableNodeList;
 
-    core::nodes::CameraNode*                                mp_defaultCameraNode;
-    core::nodes::SurfaceShaderProgramNode*                  mp_defaultSSPNode;
-    core::nodes::TransformNode*                             mp_rootTransformNode;
+    core::nodes::CameraNode*                                        mp_defaultCameraNode;
+    core::nodes::SurfaceShaderProgramNode*                          mp_defaultSSPNode;
+    core::nodes::TransformNode*                                     mp_rootTransformNode;
 
-    std::vector<core::nodes::CameraNode*>                   m_cameraNodeList;
+    std::vector<core::nodes::CameraNode*>                           m_cameraNodeList;
     std::map<ResourceManager::DedicatedShaderProgram, core::nodes::ShaderProgramNode*> m_dedicatedShaderProgramMap;
-    std::vector<core::nodes::PolygonMeshNode*>              m_polygonMeshNodeList;
-    std::vector<core::nodes::TransformNode*>                m_transformNodeList;
-    std::vector<core::nodes::ShaderProgramNode*>            m_userShaderProgramNodeList;
+    std::vector<core::nodes::PolygonMeshNode*>                      m_polygonMeshNodeList;
+    std::vector<core::nodes::TransformNode*>                        m_transformNodeList;
+    std::vector<core::nodes::ShaderProgramNode*>                    m_userShaderProgramNodeList;
 };
 
 /*----------------------------------------------------------------------------*/

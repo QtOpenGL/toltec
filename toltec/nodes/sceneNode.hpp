@@ -33,7 +33,7 @@ namespace nodes
 class SceneNode : public Node
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                     SceneNode();
     virtual         ~SceneNode() {}
 

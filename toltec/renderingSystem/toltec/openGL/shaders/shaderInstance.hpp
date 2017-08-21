@@ -45,7 +45,7 @@ namespace tgl
 class ShaderInstance
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        ShaderInstance(ShaderProgram* p_shaderProgram);
     virtual         ~ShaderInstance() {}
 

@@ -48,7 +48,7 @@ class PanelContainer : public QWidget
     Q_OBJECT
 
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 PanelContainer();
     virtual     ~PanelContainer() {}
 

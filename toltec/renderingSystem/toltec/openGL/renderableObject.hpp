@@ -40,7 +40,7 @@ namespace tgl
     class RenderableObject
     {
     public:
-        //CONSTRUCTORS
+        //CTOR DTOR
                     RenderableObject();
         virtual     ~RenderableObject() {}
 

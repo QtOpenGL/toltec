@@ -48,7 +48,7 @@ struct Face {
 class Mesh
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     virtual     ~Mesh() {}
 
     //ADD

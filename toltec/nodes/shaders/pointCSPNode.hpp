@@ -31,7 +31,7 @@ namespace nodes
 class PointCSPNode : public ComponentShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 PointCSPNode();
     virtual     ~PointCSPNode() {}
 

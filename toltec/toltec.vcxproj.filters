@@ -252,6 +252,9 @@
     <ClCompile Include="nodes\shaders\cameraShaderProgramNode.cpp">
       <Filter>Main Files\nodes\shaders</Filter>
     </ClCompile>
+    <ClCompile Include="nodes\abstractAttribute.cpp">
+      <Filter>Main Files\nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="renderingSystem\abstractRenderer.hpp">
@@ -406,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="nodes\shaders\cameraShaderProgramNode.hpp">
       <Filter>Main Files\nodes\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\abstractAttribute.hpp">
+      <Filter>Main Files\nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

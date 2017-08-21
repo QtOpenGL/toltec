@@ -35,7 +35,7 @@ namespace nodes
 class PolygonMeshNode : public SurfaceNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 PolygonMeshNode();
     virtual     ~PolygonMeshNode() {}
 

@@ -197,6 +197,7 @@
     </ClCompile>
     <ClCompile Include="guiManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="nodes\abstractAttribute.cpp" />
     <ClCompile Include="nodes\cameraNode.cpp" />
     <ClCompile Include="nodes\node.cpp" />
     <ClCompile Include="nodes\polygonMeshNode.cpp" />
@@ -849,6 +850,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="nodes\abstractAttribute.hpp" />
     <ClInclude Include="nodes\shaders\cameraShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\componentShaderProgramNode.hpp" />
     <ClInclude Include="nodes\shaders\lambertSSPNode.hpp" />

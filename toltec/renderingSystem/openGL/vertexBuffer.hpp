@@ -49,7 +49,7 @@ namespace gl
             BITANGENT
         };
 
-        //CONSTRUCTORS
+        //CTOR DTOR
                     VertexBuffer(VertexBuffer::DataType m_dataType, VertexBuffer::Semantic m_semantic);
         virtual     ~VertexBuffer() {};
 

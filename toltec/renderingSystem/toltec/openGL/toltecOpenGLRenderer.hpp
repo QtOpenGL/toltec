@@ -40,7 +40,7 @@ class ToltecOpenGLRenderer : public AbstractRenderer
     Q_OBJECT
 
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        ToltecOpenGLRenderer(AbstractRendererResource* p_abstractRendererResource);
     virtual         ~ToltecOpenGLRenderer() {}
 

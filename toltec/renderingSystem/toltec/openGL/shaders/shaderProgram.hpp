@@ -49,7 +49,7 @@ public:
         FRAGMENT
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
                                 ShaderProgram();
     virtual                     ~ShaderProgram() {}
 

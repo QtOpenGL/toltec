@@ -43,7 +43,7 @@ public:
         STRUCT
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        UniformContainer(const std::string& name);
     virtual         ~UniformContainer() {}
 
@@ -75,7 +75,7 @@ inline UniformContainer::Type UniformContainer::getType() const
 class UniformArray : public UniformContainer
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        UniformArray(const std::string& name);
     virtual         ~UniformArray() {}
 
@@ -96,7 +96,7 @@ private:
 class UniformStruct : public UniformContainer
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        UniformStruct(const std::string& name);
     virtual         ~UniformStruct() {}
 

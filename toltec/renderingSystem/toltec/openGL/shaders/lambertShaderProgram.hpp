@@ -26,7 +26,7 @@ namespace tgl
     class LambertShaderProgram : public ShaderProgram
     {
     public:
-        //CONSTRUCTORS
+        //CTOR DTOR
                         LambertShaderProgram();
         virtual         ~LambertShaderProgram() {}
 

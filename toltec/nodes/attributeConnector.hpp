@@ -2,27 +2,28 @@
 
 /*-----------------------------------------------------------------------------
 *   CREATED:
-*       13 I 2017
+*       21 VIII 2017
 *   CONTRIBUTORS:
 *       Piotr Makal
 *   INFO:
-*       SurfaceNode is a base class for all surface type nodes (polygon meshes,
-*       NURBS-es, t-splines, etc.).
+*       AttributeConnector is a link object between attributes of different 
+*       nodes. It should NOT be created by the user, instead there is a method 
+*       in ResourceManager called setAttributeConnection.
 *-----------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------
 *   IMPORTS
 *-----------------------------------------------------------------------------*/
-#include "renderableObjectNode.hpp"
+//...
 
 /*-----------------------------------------------------------------------------
-*   FORWARD DECLARATION
+*   FORWARD DECLARATIONS
 *-----------------------------------------------------------------------------*/
 namespace core
 {
     namespace nodes
     {
-        class ShaderProgramNode;
+        class AbstractAttribute;
     }
 }
 
@@ -38,30 +39,29 @@ namespace nodes
 {
 /*-----------------------------------------------------------------------------
 *   CLASS DECLARATIONS
-*   SURFACE NODE
+*   ATTRIBUTE CONNECTOR
 *-----------------------------------------------------------------------------*/
-class SurfaceNode : public RenderableObjectNode
+class AttributeConnector
 {
 public:
+    //TYPES
+    enum ConnectionType {
+        UNIT,
+        CONTAINER
+    };
+
     //CTOR DTOR
-                SurfaceNode();
-    virtual     ~SurfaceNode() {}
-
-    //SET
-    void        setShaderProgramNode(ShaderProgramNode* p_shaderProgramNode);
-
-    //GET
-    ShaderProgramNode*  getShaderProgramNode();
+                AttributeConnector(
+                    AbstractAttribute*                  p_inputAttribute, 
+                    AbstractAttribute*                  p_outputAttribute,
+                    AttributeConnector::ConnectionType  connectionType);
+    virtual     ~AttributeConnector();
 
 private:
-    ShaderProgramNode*  mp_shaderProgramNode;
+    AttributeConnector::ConnectionType  m_connectionType;
+
+    AbstractAttribute*                  mp_inputAttribute;
+    AbstractAttribute*                  mp_outputAttribute;
 };
-
-/*----------------------------------------------------------------------------*/
-
-inline ShaderProgramNode* SurfaceNode::getShaderProgramNode()
-{
-    return mp_shaderProgramNode;
-}
 } //NAMESPACE: NODES
 } //NAMESPACE: CORE

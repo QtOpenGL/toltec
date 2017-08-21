@@ -32,7 +32,7 @@ namespace nodes
 class CameraShaderProgramNode : public ShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 CameraShaderProgramNode();
     virtual     ~CameraShaderProgramNode() {}
 

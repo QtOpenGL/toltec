@@ -31,7 +31,7 @@ namespace nodes
 class PlaneCSPNode : public ComponentShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 PlaneCSPNode();
     virtual     ~PlaneCSPNode() {}
 

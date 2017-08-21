@@ -44,7 +44,7 @@ public:
         ERROR
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
                     OutputLineWidget();
     virtual         ~OutputLineWidget() {}
 

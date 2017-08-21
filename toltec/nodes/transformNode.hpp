@@ -36,7 +36,7 @@ namespace nodes
 class TransformNode : public SceneNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 TransformNode();
     virtual     ~TransformNode() {}
 

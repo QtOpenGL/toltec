@@ -66,7 +66,7 @@ public:
         std::vector<RenderItem*>                                    finalRenderItemList;  //cleared after every render sequence
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
                     ToltecOpenGLRendererResource();
     virtual         ~ToltecOpenGLRendererResource();
 

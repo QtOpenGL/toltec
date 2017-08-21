@@ -37,7 +37,7 @@ namespace core
 class AbstractRendererResource
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                     AbstractRendererResource();
     virtual         ~AbstractRendererResource() {}
 

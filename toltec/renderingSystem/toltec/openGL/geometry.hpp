@@ -33,7 +33,7 @@ namespace tgl
 class Geometry
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                     Geometry();
     virtual         ~Geometry() {}
 

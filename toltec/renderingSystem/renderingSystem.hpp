@@ -24,7 +24,7 @@
 class RenderingSystem
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit            RenderingSystem(const std::string& name);
     virtual             ~RenderingSystem() {};
 

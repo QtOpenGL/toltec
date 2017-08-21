@@ -33,7 +33,7 @@ public:
         CONTAINER
     };
 
-    //CONSTRUCTORS
+    //CTOR DTOR
     explicit        Uniform(const std::string& name);
     virtual         ~Uniform() {}
 

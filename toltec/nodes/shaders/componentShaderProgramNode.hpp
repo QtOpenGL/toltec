@@ -36,7 +36,7 @@ namespace nodes
 class ComponentShaderProgramNode : public ShaderProgramNode
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                 ComponentShaderProgramNode();
     virtual     ~ComponentShaderProgramNode() {}
 

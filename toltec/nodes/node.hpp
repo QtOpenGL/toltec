@@ -57,7 +57,7 @@ enum Type {
 class Node
 {
 public:
-    //CONSTRUCTORS
+    //CTOR DTOR
                             Node();
     virtual                 ~Node();
 
